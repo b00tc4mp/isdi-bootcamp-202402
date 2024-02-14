@@ -1,0 +1,85 @@
+@use "./utils"
+.horse__head
+    position: absolute
+    height: 500px
+    width: 200px
+    background-color: rgb(61, 26, 8)
+    top: 50px
+    left: 260px
+    border-radius: 46px
+    @include utils.border(2px , black , solid)
+
+.horse__nose
+    position: relative
+    background-color: rgb(208, 152, 74)
+    border: 2px black solid
+    top: 243px
+    left: 0px
+    border-radius: 46px
+    height: 154px
+    width: 196px
+
+.horse__eyes--right
+    position: relative
+    background-color: black
+    top: 85px
+    left: 8px
+    height: 50px
+    width: 50px
+    border-radius: 25px
+
+.horse__eyes--left
+    position: relative
+    background-color: black
+    top: 33px
+    left: 143px
+    height: 50px
+    width: 50px
+    border-radius: 25px
+
+.horse__ear--right
+    position: relative
+    background-color: rgb(61, 26, 8)
+    top: -57px
+    left: 366px
+    height: 100px
+    width: 56px
+    border: 2px black solid
+    border-top-right-radius: 327px
+
+.horse__ear--left
+    position: relative
+    background-color: rgb(61, 26, 8)
+    top: -157px
+    left: 272px
+    height: 100px
+    width: 56px
+    border: 2px black solid
+    border-top-left-radius: 327px
+
+.horse__nostrils--left
+    position: relative
+    top: 33px
+    left: 111px
+    height: 50px
+    width: 50px
+    border-radius: 25px
+    border: 2px black solid
+
+.horse__nostrils--right
+    position: relative
+    top: -21px
+    left: 35px
+    height: 50px
+    width: 50px
+    border-radius: 25px
+    border: 2px black solid
+
+.horse__face
+    position: absolute
+    height: 344px
+    width: 50px
+    background-color: rgb(208, 152, 74)
+    border: 2px black solid
+    top: -2px
+    left: 73px

@@ -1,0 +1,60 @@
+.background {
+  height: 300px;
+  width: 300px;
+  background-color: black;
+  position: relative;
+}
+.background__column {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  position: absolute;
+}
+.background__column--squareYellow {
+  height: 140px;
+  width: 75px;
+  background-color: yellow;
+}
+.background__column--squareWhite {
+  height: 75px;
+  width: 75px;
+  background-color: white;
+  margin-top: 10px;
+}
+.background__column--squareBlue {
+  height: 43px;
+  width: 75px;
+  background-color: blue;
+  margin-top: 10px;
+}
+.background__squareRed {
+  display: flex;
+  position: absolute;
+  margin: 10px;
+  height: 227px;
+  width: 194px;
+  background-color: red;
+  right: 0;
+}
+.background__row {
+  display: flex;
+  margin: 10px;
+  flex-direction: row;
+  position: absolute;
+  justify-content: flex-end;
+  bottom: 0;
+  right: 0;
+}
+.background__row--squareWhite {
+  height: 43px;
+  width: 135px;
+  background-color: white;
+}
+.background__row--squareWhiteSecond {
+  height: 43px;
+  width: 50px;
+  background-color: white;
+  margin-left: 10px;
+}
+
+/*# sourceMappingURL=style.css.map */
