@@ -1,0 +1,26 @@
+.main-container {
+  display: flex;
+  position: absolute;
+  background-color: white;
+  width: 531px;
+  height: 538px;
+  border: 3px solid black;
+}
+.main-container .main__column--left {
+  display: flex;
+  position: relative;
+  background-color: yellow;
+  width: 146px;
+  height: 249px;
+  border: 15px solid black;
+}
+.main-container .main__column--right {
+  display: flex;
+  position: relative;
+  background-color: red;
+  width: 359px;
+  height: 429px;
+  border: 15px solid black;
+}
+
+/*# sourceMappingURL=style.css.map */

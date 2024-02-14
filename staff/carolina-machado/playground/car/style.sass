@@ -1,0 +1,48 @@
+@mixin size ($width, $height)
+    width: $width
+    height: $height
+    
+.car
+    &__base
+        background-color: rgb(53 212 101)
+        @include size(578px, 176px)
+        position: relative
+        top: 247px
+        left: 138px
+        border-radius: 17%
+        border: 2px solid #662e2e
+
+    &__wheel
+        background-color: rgb(13, 1, 1)
+        @include size(133px, 133px)
+        position: absolute
+        border-radius: 50%
+        border: 2px solid #ebe2e2
+
+    &__wheel--front
+        left: 48px
+        top: 103px
+
+    &__wheel--back
+        left: 367px
+        top: 103px
+
+    &__top
+        background-color: rgb(13 1 1 / 0%)
+        @include size(250px, 0px)
+        position: absolute
+        top: 155px
+        left: 241px
+        border-right: 60px solid transparent
+        border-left: 60px solid #16111100
+        border-bottom: 100px solid #154875
+
+.inside__wheel
+    background-color: rgb(238, 233, 233)
+    @include size(50px, 50px)
+    left: 40px
+    top: 36px
+    position: absolute
+    border-radius: 50%
+    border: 2px solid #2a1d1d
+
