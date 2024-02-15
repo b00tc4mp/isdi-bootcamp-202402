@@ -182,7 +182,10 @@ $ rm -rf
 ```sh
 $ rsync v a--del ./pepito /Users/my-user/pepito
 ```
+## grep -r . -e <expression>
 
+```sh
+$ grep -r . -e pepito
 
-
-
+./staff/pere-hernandez/bash/README.me:/Users/pepito
+```
