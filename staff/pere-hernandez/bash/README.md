@@ -25,7 +25,7 @@ $ ls -l
 
 
 
-## touch --- Crea un documento nuevo---
+## touch hola.js--- Crea un documento nuevo llamado hola.js---
 
 ```sh
 $ touch
@@ -33,15 +33,21 @@ $ touch
 
 
 
-## mkdir --- Crea un repositorio nuevo---
+## mkdir carpeta--- Crea un repositorio nuevo llamado carpeta---
 
 ```sh
 $ mkdir
 ```
 
+## cd staff--- Accede al directorio staff---
+
+```sh
+$ cd
+```
 
 
-## cd --- Accede a un directorio---
+
+## cd --- Accede al directorio predeterminado (Ususarios)---
 
 ```sh
 $ cd
