@@ -1,0 +1,39 @@
+.estructure {
+  background-color: blue;
+  width: 150px;
+  height: 200px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+  background-image: url("https://img.freepik.com/foto-gratis/fondo-hecho-ladrillos_23-2148742475.jpg");
+}
+
+.floor {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.windows {
+  background-color: green;
+  width: 10px;
+  height: 10px;
+  display: inline-flex;
+}
+
+.door {
+  background-color: white;
+  width: 10px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=style.css.map */
