@@ -2,17 +2,24 @@
 
 ## pwd - actual folder
 
-## ls
-
-$ ls
-
 ```sh
-show folders inside another folder
+/c/Users/Irene/workspace/isdi-bootcamp-202402
 ```
 
-### ls -l
+## ls - show folders inside another folder
 
-### ls -a - show hidden files
+```sh
+$ ls
+README.md  staff/
+
+$ ls -1 - allows you to list files in a single column format
+README.md
+staff/
+
+$ ls -a - show hidden files
+
+./  ../  .git/  README.md  staff/
+```
 
 ## l - link
 
@@ -26,6 +33,10 @@ $ mkdir workspace
 
 ## cd - change the directory
 
+```sh
+cd staff/irene-roldan/playground
+```
+
 ## mv - (move file to another name) ex mv hola.mundo hola.world
 
 ```sh
@@ -33,6 +44,10 @@ $mv hello.world folder-a/folder-b/folder-c
 ```
 
 ## touch - create text files
+
+```sh
+$ touch readme
+```
 
 ## code - open visual studio
 
@@ -58,7 +73,15 @@ $ git add Readme.md
 $ git commit -m 'add initial doc'
 ```
 
-## $ git log
+## $ git log - displays all of the commits in a repository's history
+
+```sh
+commit 2f6af74fa89940e911291e169de8b80ec4c2ebc5 (HEAD -> feature/bash, origin/feature/bash)
+Author: Irene <irene.roldan.montiel@gmail.com>
+Date:   Thu Feb 15 16:33:34 2024 +0100
+
+    add change the language to english #20
+```
 
 ## UPLOAD MODIFIED DOCS
 
