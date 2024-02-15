@@ -1,7 +1,7 @@
 delete Array.prototype.forEach
 
 function forEach(array, fn) {
-    for (var i = 0; i < array.length;) {
+    for (var i = 0; i < array.length; i++) {
         fn(array[i])
     }
 }
