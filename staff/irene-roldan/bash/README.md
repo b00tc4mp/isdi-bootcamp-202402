@@ -1,48 +1,48 @@
 # COMMANDS BASH
 
-## pwd - comando para saber la carpeta actual
+## pwd - actual folder
 
 ## ls
 
 $ ls
 
 ```sh
-Muestra carpetas dentro de una carpeta
+show folders inside another folder
 ```
 
 ### ls -l
 
-### ls -a - muestra los archivos ocultos
+### ls -a - show hidden files
 
 ## l - link
 
 ## d - directory
 
-## mkdir - crea otra carpeta
+## mkdir - create a new folder
 
 ```sh
 $ mkdir workspace
 ```
 
-## cd - cambia el directorio
+## cd - change the directory
 
-## mv - (mover archivo a otro nombre) ej mv hola.mundo hola.world
+## mv - (move file to another name) ex mv hola.mundo hola.world
 
 ```sh
 $mv hello.world folder-a/folder-b/folder-c
 ```
 
-## touch - crea fichero de texto
+## touch - create text files
 
-## code - Abre en visual studio
+## code - open visual studio
 
 ## ..q
 
 ```sh
-permite seguir escribiendo
+allow continue writing
 ```
 
-## rm -rf - borra la carpeta directamente y su contenido
+## rm -rf - delete directly the folder and all the content
 
 ```sh
 $ rm -rf workspace/helloworld
