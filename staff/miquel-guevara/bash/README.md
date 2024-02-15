@@ -2,12 +2,12 @@
 
 Command-line interface commands typical in BASH
 
-## commit
+## git commit
 
 ```sh
-$ commit 
+$ git commit 
 
-/archivo
+captura una instantánea de los cambios preparados en ese momento del proyecto
 ```
 
 ## pwd
@@ -15,7 +15,7 @@ $ commit
 ```sh
 $ pwd
 
-/en que carpeta estamos
+en que carpeta estamos
 ```
 
 ## ls
@@ -23,7 +23,7 @@ $ pwd
 ```sh
 $ ls
 
-/ver las todas las carpetas dentro del directorio
+ver las todas las carpetas dentro del directorio
 ```
 
 ## ls -l
@@ -31,7 +31,7 @@ $ ls
 ```sh
 $ ls -l
 
-/todas las carpetas pero mas info
+todas las carpetas pero mas info
 ```
 
 ## touch
@@ -39,7 +39,7 @@ $ ls -l
 ```sh
 $ touch
 
-/se crea un archivo ejemplo touch hola mundo.
+se crea un archivo ejemplo touch hola mundo.
 ```
 
 ## ls -a
@@ -47,7 +47,7 @@ $ touch
 ```sh
 $ ls -a
 
-/archivos ocultos
+archivos ocultos
 ```
 
 ## mk dir
@@ -55,7 +55,7 @@ $ ls -a
 ```sh
 $ mk dir
 
-/crear un directorio
+crear un directorio
 ```
 
 ## cd
@@ -63,7 +63,7 @@ $ mk dir
 ```sh
 $ cd
 
-/meterte en un directorio
+meterte en un directorio
 ```
 
 ## mv
@@ -71,10 +71,10 @@ $ cd
 ```sh
 $ mv
 
-/mover o cambiar el nombre
+mover o cambiar el nombre
 
-Ej: /$ mv hello.world/folder-a/folder-b/folder-c
-/$ hello.world hello.mundo
+Ej: $ mv hello.world/folder-a/folder-b/folder-c
+$ hello.world hello.mundo
 ```
 
 ## cd ..
@@ -82,7 +82,7 @@ Ej: /$ mv hello.world/folder-a/folder-b/folder-c
 ```sh
 $ cd ..
 
-/tirar hacia detras un directorio
+tirar hacia detras un directorio
 ```
 
 ## code
@@ -90,7 +90,7 @@ $ cd ..
 ```sh
 $ code
 
-/para abrir un archivo en visual studio
+para abrir un archivo en visual studio
 ej: code workspace/isdi-bootcamp-202402/staff/miquel-guevara/bash/README.md
 ```
 
@@ -99,7 +99,7 @@ ej: code workspace/isdi-bootcamp-202402/staff/miquel-guevara/bash/README.md
 ```sh
 $ rm -rf
 
-/borrar todo dentro de la carpeta
+borrar todo dentro de la carpeta
 ej: rm -rf workspace/helloworld
 ```
 
@@ -108,7 +108,7 @@ ej: rm -rf workspace/helloworld
 ```sh
 $ clear
 
-/limpiar consola
+limpiar consola
 ```
 
 ## taskmgr
@@ -116,7 +116,7 @@ $ clear
 ```sh
 $ taskmgr
 
-/administrador de tareas
+administrador de tareas
 ```
 
 ## git log
@@ -124,7 +124,7 @@ $ taskmgr
 ```sh
 $ git log
 
-/sirve para ver estado de commit ejemplo: (README.md)
+sirve para ver estado de commit ejemplo: (README.md)
 ```
 
 ## mkdir
@@ -132,7 +132,7 @@ $ git log
 ```sh
 $ mkdir
 
-/crear carpeta para añadir archivos dentro (html, sass...).
+crear carpeta para añadir archivos dentro (html, sass...).
 ```
 
 ## borrar rama
@@ -140,7 +140,7 @@ $ mkdir
 ```sh
 $ borrar rama
 
-/git branch -d master
+git branch -d master
 ```
 
 ## git branch
@@ -148,14 +148,14 @@ $ borrar rama
 ```sh
 $ git branch
 
-/mirar la rama en la que estamos
+mirar la rama en la que estamos
 
 ## kill -9 (mac)
 
 ```sh
 $ kill -9
 
-/cerrar un proceso
+cerrar un proceso
 ```
  
 
@@ -166,8 +166,7 @@ $ kill -9
 ```sh
 $ drwx
 ```
-
-directorio read write execute
+La (d) indica que es un directorio, la (rwx) son los permisos para el propietario, donde la (r) significa permisos de lectura (read), la (w) permisos de escritura (write) y la letra (x) permisos de ejecución (execute)
 
 ```sh
 $ lrwx
