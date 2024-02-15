@@ -158,22 +158,6 @@ $ kill -9
 /cerrar un proceso
 ```
  
-git branch develop: crear rama nueva
-git checkout develop(rama): cambiar de rama
-git push: subir commit
-touch: fichero vacio
-git add: añadir fichero alguna carpeta
-git log --graph: ver en forma de lineas las ramas
-git add .
-git commit --amend: remnplaza el commit que esta en WIP 
-git push -f: forzar a subir commit
-git log --all --decorate --oneline --graph: ver todas las ramas creadas
-git reset y el numero que quieres resetear (git log para ver numero)
-
-subir archivos 
-git add staff/miquel-guevara/playground/mondoriantemplate/
-git commit -m 'add mondroiantemplates #134'
-git push
 
 # siginificados
 
