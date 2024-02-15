@@ -2,182 +2,182 @@
 
 Command-line interface comands typical in BASH
 
-## pwd
+## pwd --- Indica la carpeta actual ---
 
 ```sh
 $ pwd
 ```
 
---- Indica la carpeta actual ---
 
-## ls
+
+## ls --- Enseña las carpetas dentro de la carpeta actual---
 
 ```sh
 $ ls
 ```
 
---- Enseña las carpetas dentro de la carpeta actual---
 
-## ls -l
+
+## ls -l --- Enseña los permisos del directorio---
 ```sh
 $ ls -l
 ```
 
---- Enseña los permisos del directorio---
 
-## touch
+
+## touch --- Crea un documento nuevo---
 
 ```sh
 $ touch
 ```
 
---- Crea un documento nuevo---
 
-## mkdir
+
+## mkdir --- Crea un repositorio nuevo---
 
 ```sh
 $ mkdir
 ```
 
---- Crea un depositorio nuevo---
 
-## cd
+
+## cd --- Accede a un directorio---
 
 ```sh
 $ cd
 ```
 
---- Accede a un directorio---
 
-## cd ..
+
+## cd .. --- Sale del directorio y va a una nivel menor---
 
 ```sh
 $ cd ..
 ```
 
---- Sale del directorio y va a una nivel menor---
 
-## mv
+
+## mv --- Cambia el nombre de un directorio. después de mv debes escribir el nombre actual y el nuevo separados por espacios---
 
 ```sh
 $ mv
 ```
 
---- Cambia el nombre de un directorio. después de mv debes escribir el nombre actual y el nuevo separados por espacios---
 
-## code
+
+## code --- Abre la carpeta en VisualStudio---
 
 ```sh
 $ code
 ```
 
---- Abre la carpeta en VisualStudio---
 
-## drwx
+
+## drwx --- d = directorio, r = read, w = write, x = execute. Determina qué permisos tiene el directorio---
 
 ```sh
 $ drwx
 ```
 
---- d = directorio, r = read, w = write, x = execute. Determina qué permisos tiene el directorio---
 
-## l
+
+## l --- Link---
 
 ```sh
 $ l
 ```
 
---- Link---
 
-## ls -a
+
+## ls -a ---Enseña todos los archivos ocultos de la carpeta---
 
 ```sh
 $ ls -a
 ```
 
----Enseña todos los archivos ocultos de la carpeta---
 
-## code
+
+## code --- Abre la carpeta en VisualStudio---
 
 ```sh
 $ code
 ```
 
---- Abre la carpeta en VisualStudio---
 
-## .
+
+## . --- Archivo oculto---
 
 ```sh
 $ .
 ```
 
---- Archivo oculto---
 
-## top
+
+## top --- Enseña los procesos actuales del ordenador y sus datos (cuánta memoria ocupan, tiempo de ejecución, etc.)---
 
 ```sh
 $ top
 ```
 
---- Enseña los procesos actuales del ordenador y sus datos (cuánta memoria ocupan, tiempo de ejecución, etc.)---
 
-## sudo
+
+## sudo --- (Super User Dub) Ejecutar un archivo ignorando permisos---
 
 ```sh
 $ sudo
 ```
 
---- (Super User Dub) Ejecutar un archivo ignorando permisos---
 
-## taskmgr
+
+## taskmgr --- (Task Manager) Abre el administrador de tareas---
 
 ```sh
 $ taskmgr
 ```
 
---- (Task Manager) Abre el administrador de tareas---
 
-## kill -9
+
+## kill -9 --- Detiene el proceso que le especifiques. Debes pasar el número asignado al proceso (el primero que sale cuando ejecutas $ top) después del -9---
 
 ```sh
 $ kill -9
 ```
 
---- Detiene el proceso que le especifiques. Debes pasar el número asignado al proceso (el primero que sale cuando ejecutas $ top) después del -9---
 
-## clear
+
+## clear --- Despeja el terminal---
 
 ```sh
 $ clear
 ```
 
---- Despeja el terminal---
 
-## ctrl + C
+
+## ctrl + C --- Volver al terminal cuando ejecutas $ top
 
 ```sh
 ctrl + C
 ```
 
---- Volver al terminal cuando ejecutas $ top
 
-## tree
+
+## tree --- Enseña las carpetas y archivos que hay en una carpeta en forma de árbol. Hay que escribir el nombre del directorio después de $ tree---
 
 ```sh
 $ tree
 ```
 
---- Enseña las carpetas y archivos que hay en una carpeta en forma de árbol. Hay que escribir el nombre del directorio después de $ tree---
 
-## rm -rf
+
+## rm -rf --- Elimina la carpeta y todo lo que tenga dentro. Hay que poner el nombre de la carpeta después de -rf---
 
 ```sh
 $ rm -rf
 ```
 
---- Elimina la carpeta y todo lo que tenga dentro. Hay que poner el nombre de la carpeta después de -rf---
 
-#rm -rf (removes folder and all its contents)
+
+# rm -rf (removes folder and all its contents)
 
 ```sh
 $ rsync v a--del ./pepito /Users/my-user/pepito
