@@ -1,91 +1,83 @@
 ##Git Bash Commands
 
-## git init
+## git init (Initializes the new git repository).
 
 ```sh
-Initializes the new git repository.
 $ git init
 ```
 
-## pwd
+## pwd (path to working directory)
 
 ```sh
 It shows us the current folder we are in.
-$ git pwd
+$ pwd
 ```
 
-## mkdir
+## mkdir (Allows us to create folders)
 
 ```sh
-Allows us to create folders.
 $ mkdir
     ej: mkdir newfolder
 ```
 
-## touch
+## touch (Allows us to create new file)
 
 ```sh
-Allows us to create new file.
 $ touch
     ej: touch newfile
 ```
 
-## cd
+## cd (Allows us to change folder)
 
 ```sh
-Allows us to change folder
 $ cd
     ej: cd newcarpet
 ```
 
-## cd ..
+## cd ..(Allows us to return to the previus directory or folder)
 
 ```sh
-Allows us to return to the previus directory or folder.
 
 $ cd ..
     ej: cd /path/to/directory/..
 ```
 
-## ls
+## ls (Allows us to see the files in the folder we are currently in)
 
 ```sh
-Allows us to see the files in the folder we are currently in.
 $ ls
 ```
 
-## ls -l
+## ls -l (View all files as a list including the user, group permissions on the file, size, date and time of creation)
 
 ```sh
-View all files as a list including the user, group permissions on the file, size, date and time of creation.
 $ ls -l
 ```
 
-## rm
+## rm (Allows us to delete a file or folder)
 
 ```sh
-Allows us to delete a file or folder.
 $ rm
     ej: rm Newfile.txt
 ```
 
-## rmdir
+## rmdir ("Directory name" delete a directory (only works with empty directories))
 
 ```sh
-"Directory name" delete a directory (only works with empty directories).
+$ rmdir
     ej: rmdir directory_name
 ```
 
-## rm-r
+## rm-r ("Folder name" allows me to delete the folder and the files inside it recursively)
 
 ```sh
-"Folder name" allows me to delete the folder and the files inside it recursively.
+$ rm-r
     ej: rm-r directory_name
 ```
 
-## mv
+## mv (The directory we want to move from/the file name the directory we want to move to)
 
 ```sh
-The directory we want to move from/the file name the directory we want to move to
+$ mv
     ej: mv file /path/to/directory
 ```
