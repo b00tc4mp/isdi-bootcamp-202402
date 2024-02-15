@@ -28,7 +28,9 @@ $mkdir workspace
 
 ## mv - (mover archivo a otro nombre) ej mv hola.mundo hola.world
 
+```sh
 mv hello.world folder-a/folder-b/folder-c
+```
 
 ## touch - crea fichero de texto
 
