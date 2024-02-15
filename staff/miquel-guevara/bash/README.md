@@ -2,6 +2,10 @@
 
 Command-line interface commands typical in BASH
 
+##definiciones
+
+commit: archivo
+
 ## pwd
 
 ```sh
@@ -111,6 +115,37 @@ $ taskmgr
 /administrador de tareas
 ```
 
+## git log
+
+```sh
+$ git log
+
+/sirve para ver estado de commit ejemplo: (README.md)
+```
+
+## mkdir
+
+```sh
+$ mkdir
+
+/crear carpeta para añadir archivos dentro (html, sass...).
+```
+
+## borrar rama
+
+```sh
+$ borrar rama
+
+/git branch -d master
+```
+
+## git branch
+
+```sh
+$ git branch
+
+/mirar la rama en la que estamos
+
 ## kill -9 (mac)
 
 ```sh
@@ -118,12 +153,7 @@ $ kill -9
 
 /cerrar un proceso
 ```
-
-commit: archivo
-git log: sirve para ver estado de commit(README.md)
-mkdir: crear carpeta para añadir archivos dentro (html, sass....
-borrar rama: git branch -d master
-git branch: mirar la rama en la que estamos
+ 
 git branch develop: crear rama nueva
 git checkout develop(rama): cambiar de rama
 git push: subir commit
