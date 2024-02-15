@@ -2,7 +2,7 @@
 
 Command-line interface comands typical in BASH
 
-## pwd --- Indica la carpeta actual ---
+## pwd --- Shows the current directory ---
 
 ```sh
 $ pwd
@@ -10,7 +10,7 @@ $ pwd
 
 
 
-## ls --- Enseña las carpetas dentro de la carpeta actual---
+## ls --- Shows the files inside the current directory---
 
 ```sh
 $ ls
@@ -18,14 +18,14 @@ $ ls
 
 
 
-## ls -l --- Enseña los permisos del directorio---
+## ls -l --- Show's the current directory's permits---
 ```sh
 $ ls -l
 ```
 
 
 
-## touch hola.js--- Crea un documento nuevo llamado hola.js---
+## touch hola.js--- Creates a new file called 'hola.js'---
 
 ```sh
 $ touch
@@ -33,13 +33,13 @@ $ touch
 
 
 
-## mkdir carpeta--- Crea un repositorio nuevo llamado carpeta---
+## mkdir carpeta--- Creates a new repository called 'carpeta'---
 
 ```sh
 $ mkdir
 ```
 
-## cd staff--- Accede al directorio staff---
+## cd staff--- Accesses the staff directory---
 
 ```sh
 $ cd
@@ -47,7 +47,7 @@ $ cd
 
 
 
-## cd --- Accede al directorio predeterminado (Ususarios)---
+## cd --- Accesses the default directory (Ususarios)---
 
 ```sh
 $ cd
@@ -55,7 +55,7 @@ $ cd
 
 
 
-## cd .. --- Sale del directorio y va a una nivel menor---
+## cd .. --- Leaves the current directory and moves to a lower level---
 
 ```sh
 $ cd ..
@@ -63,7 +63,7 @@ $ cd ..
 
 
 
-## mv --- Cambia el nombre de un directorio. después de mv debes escribir el nombre actual y el nuevo separados por espacios---
+## mv carpeta folder--- Changes the name of the directory 'carpeta' to 'folder'. One must write the current directory's name and the new name, separated by a space---
 
 ```sh
 $ mv
@@ -71,7 +71,7 @@ $ mv
 
 
 
-## code --- Abre la carpeta en VisualStudio---
+## code --- Opens a directory in VisualStudio---
 
 ```sh
 $ code
@@ -95,7 +95,7 @@ $ l
 
 
 
-## ls -a ---Enseña todos los archivos ocultos de la carpeta---
+## ls -a ---Shows all hidden files in the current folder---
 
 ```sh
 $ ls -a
@@ -103,15 +103,7 @@ $ ls -a
 
 
 
-## code --- Abre la carpeta en VisualStudio---
-
-```sh
-$ code
-```
-
-
-
-## . --- Archivo oculto---
+## . --- It means that the file is hidden---
 
 ```sh
 $ .
@@ -119,7 +111,7 @@ $ .
 
 
 
-## top --- Enseña los procesos actuales del ordenador y sus datos (cuánta memoria ocupan, tiempo de ejecución, etc.)---
+## top --- Shows all the current processes and their data (memory, execute time, etc.)---
 
 ```sh
 $ top
@@ -127,7 +119,7 @@ $ top
 
 
 
-## sudo --- (Super User Dub) Ejecutar un archivo ignorando permisos---
+## sudo --- (Super User Dub) Executes a file while ignoring permits---
 
 ```sh
 $ sudo
@@ -135,7 +127,7 @@ $ sudo
 
 
 
-## taskmgr --- (Task Manager) Abre el administrador de tareas---
+## taskmgr --- (Task Manager) Opens the Task Manager---
 
 ```sh
 $ taskmgr
@@ -143,7 +135,7 @@ $ taskmgr
 
 
 
-## kill -9 --- Detiene el proceso que le especifiques. Debes pasar el número asignado al proceso (el primero que sale cuando ejecutas $ top) después del -9---
+## kill -9 --- Stops the specified process. You must pass the number assigned to the process (the first one you see when you execute $ top) right after -9---
 
 ```sh
 $ kill -9
@@ -151,7 +143,7 @@ $ kill -9
 
 
 
-## clear --- Despeja el terminal---
+## clear --- Clears the terminal---
 
 ```sh
 $ clear
@@ -159,7 +151,7 @@ $ clear
 
 
 
-## ctrl + C --- Volver al terminal cuando ejecutas $ top
+## ctrl + C --- Returns to terminal after executing $ top
 
 ```sh
 ctrl + C
@@ -167,7 +159,7 @@ ctrl + C
 
 
 
-## tree --- Enseña las carpetas y archivos que hay en una carpeta en forma de árbol. Hay que escribir el nombre del directorio después de $ tree---
+## tree --- Shows the folders and files contained in a tree-shape folder. One must write the name of the directory after $ tree---
 
 ```sh
 $ tree
@@ -175,15 +167,13 @@ $ tree
 
 
 
-## rm -rf --- Elimina la carpeta y todo lo que tenga dentro. Hay que poner el nombre de la carpeta después de -rf---
+## rm -rf --- Deletes directory an itd contents. One must write the directory name after -rf---
 
 ```sh
 $ rm -rf
 ```
 
 
-
-# rm -rf (removes folder and all its contents)
 
 ```sh
 $ rsync v a--del ./pepito /Users/my-user/pepito
