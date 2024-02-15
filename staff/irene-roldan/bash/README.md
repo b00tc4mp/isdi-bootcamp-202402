@@ -51,10 +51,10 @@ $ touch readme
 
 ## code - open visual studio
 
-## ..q
+## ..q - allow continue writing
 
 ```sh
-allow continue writing
+(END)..q
 ```
 
 ## rm -rf - delete directly the folder and all the content
