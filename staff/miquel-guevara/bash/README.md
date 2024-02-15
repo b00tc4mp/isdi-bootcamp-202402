@@ -2,9 +2,13 @@
 
 Command-line interface commands typical in BASH
 
-##definiciones
+## commit
 
-commit: archivo
+```sh
+$ commit 
+
+/archivo
+```
 
 ## pwd
 
