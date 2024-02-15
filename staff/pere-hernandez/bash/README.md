@@ -177,7 +177,11 @@ $ rm -rf
 
 --- Elimina la carpeta y todo lo que tenga dentro. Hay que poner el nombre de la carpeta después de -rf---
 
+#rm -rf (removes folder and all its contents)
 
+```sh
+$ rsync v a--del ./pepito /Users/my-user/pepito
+```
 
 
 
