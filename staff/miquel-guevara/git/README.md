@@ -107,16 +107,6 @@ $ git push -f
 
 ```
 
-## git commit --amend
-
-replace the commit that is in WIP(example)
-
-```sh
-$ git commit --amend
-
-  git commit --amend -m "an updated commit message"
-```
-
 ## git log --all --decorate --oneline --graph
 
 see all created branches
