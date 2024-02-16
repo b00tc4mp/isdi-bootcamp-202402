@@ -1,7 +1,6 @@
 # BASH
 
-Programación en Bash – Programación para la bioinformática
-Bash es un procesador de comandos que generalmente se ejecuta en una ventana de texto donde el usuario escribe comandos que causan acciones. Bash también puede leer y ejecutar comandos desde un archivo, llamado script de shell.
+Bash is an inline command processor that typically runs in a text window where the user types commands that cause actions. Bash can also read and execute commands from a file, called a shell script.
 
 ## pwd - path to working directory
 returns current path
