@@ -1,0 +1,2 @@
+delete Array.prototype.forEach
+
