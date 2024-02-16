@@ -3,7 +3,10 @@ delete Array.prototype.forEach
 function forEach (element, callback){
     var callbackType = typeof callback
     if (callbackType !== 'function')
-        throw new TypeError(callbackType + ' is not a function')
+        if (callbackType === 'undefined')
+            throw new TypeError(callbackType + ' is not a function')
+        else
+            throw new TypeError(callbackType + callback + ' is not a function')
     else {
         let value = ''
         for (let i = 0; i < element.length; i++){
