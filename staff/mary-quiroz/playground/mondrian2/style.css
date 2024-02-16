@@ -3,10 +3,7 @@
     display: grid;
     grid-template-columns: 22.22px 77.77px;
     grid-template-rows: 44.44px 33.33px 22.22px;
-    grid-template-areas:
-    "header header"
-    "main empty"
-    "footer footer footer"
+    
 }
 .box__one {
     background-color: yellow;
