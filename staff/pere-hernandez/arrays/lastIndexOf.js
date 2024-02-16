@@ -5,19 +5,19 @@ function lastIndexOf (array, search, index) {
         return -1        
     } else if (index === undefined || index > array.length -1 || (index < 0 && (index * -1) > array.length)){
         for (var i = array.length -1; i > -1; i--){
-            if (arr[i] === search)
+            if (array[i] === search)
                 return i
         }
         return -1
     } else if (index > -1 && index < array.length){
         for (var i = array.length -1; i > index -1; i--){
-            if (arr[i] === search)
+            if (array[i] === search)
                 return i
         }
         return -1
     } else if (index < 0 && (index * -1) < array.length){
         for (var i = array.length + index; i > - 1; i--){
-            if (arr[i] === search)
+            if (array[i] === search)
                 return i
         }
         return -1
