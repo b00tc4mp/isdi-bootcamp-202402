@@ -1,49 +1,51 @@
-```bash										
-las comillas invertidas generan un espacio cuando tabulamos										
-si pones bash tal cual arriba te lee todo como bash, si pones js te lee todo como javascript (te cambia colores y todo)										
+```bash:										
+Inverted commas generate a space when we tab								
+If you put bash above it is going to works equal, so it you change to js it is going to be in script js (it change colours and everything)	
+
 #pwd										
-Comando para ver donde estás ubicado										
-![Alt text](image-1.png)										
+Command to see where you are located										
+										
 #ls										
-Comando para ver la lista de carpetas del directorio (todas las carpetas)										
+Command to view folder directory list (all folders):									
 AppData/										
-'Configuración local'@										
+'Local configuration'@										
  Contacts/										
  Cookies@										
-'Datos de programa'@										
+'Program data'@										
  Documents/										
  Downloads/										
-'Entorno de red'@										
-![Alt text](image.png)										
+'Net scope'@										
+
 #ls -l										
-Comando para ver los directorios de las carpetas (los detalles de cada una)										
-drwxr: la x significa ejecución, la d es dekstop (escritorio)										
-lrwx: la l significa que es un link										
+Command to view folder directory list (details), also the details:									
+drwxr:  x means execution,  d is dekstop 										
+lrwx:  l means it is a link										
 drwxr-xr-x 1 jordi 197609       0 Jan 15 23:37  AppData/										
-lrwxrwxrwx 1 jordi 197609      28 Jan 15 23:37 'Configuración local' -> /c/Users/jordi/AppData/Local/										
+lrwxrwxrwx 1 jordi 197609      28 Jan 15 23:37 'Local configuration' -> /c/Users/jordi/AppData/Local/										
 drwxr-xr-x 1 jordi 197609       0 Jan 15 23:49  Contacts/										
 lrwxrwxrwx 1 jordi 197609      58 Jan 15 23:37  Cookies -> /c/Users/jordi/AppData/Local/Microsoft/Windows/INetCookies/										
-lrwxrwxrwx 1 jordi 197609      30 Jan 15 23:37 'Datos de programa' -> /c/Users/j										
-#ls -a (list the hidden files)										
-te muestra los archivos ocultos										
-#touch (pones hola.mundo)										
-sirve para crear files, archivos nuevos										
-![Alt text](image-2.png)										
+lrwxrwxrwx 1 jordi 197609      30 Jan 15 23:37 'Datos de programa' -> /c/Users/j		
+
+#ls -a (list the hidden files)
+
+#touch (pones hola.mundo)	
+It is used to create new files										
+	
+
 #mv (move / rename file or folder)										
-si pones mv hello.world hola.mundo (esto te cambia el nombre de la carpeta)										
-si pones hello.world folder-a/folder-b/folder-c (donde quieras ubicarlo), te lo mueve a la carpeta que designas tan sólo al ponerlo después de un espacio										
-#mdkir										
-Si tu pones workspace/helloworld , hará que dentro de la carpeta workspace te abra helloworld										
-Comando para crear carpetas										
-![Alt text](image-3.png)										
+If you put mv hello.world hello.world (it changes the name of the folder)										
+If you put hello.world folder-a/folder-b/folder-c (wherever you want to locate it), it moves to the folder that you asign just putting it after space
+
+#mdkir																				
+Command to create folders										
+										
 #cd										
-Comando para cambiar de carpeta										
-![Alt text](image-4.png)										
-llegamos aquí, y vamos poniendo notas										
-tenemos un archivo específico y abrimos en VISUAL STUDIO CODE										
-#clear (limpia la terminal)										
-pones clear y te limpiar todo lo que había										
-#taskmgr (te sale el administrador de tareas)										
-#rm -rf (para borrar carpetas y archivos)										
-rm -rf workspace/helloworld (esto te borra esta carpeta y todo el contenido)										
-la r significa recursivo y la f forzado										
+Command to change folders								
+																												
+#clear (clean the terminal)										
+									
+#taskmgr (it shows the task manager)	
+
+#rm -rf (used to delete folders and files)										
+rm -rf workspace/helloworld (it will delete the folder and all the content)										
+r means recursive and f forced									
