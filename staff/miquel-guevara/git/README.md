@@ -153,16 +153,6 @@ delete branches
 ```sh
 $ git branch -D
 
-  git branch -D name branch
-```
-
-## git branch -D
-
-delete branches
-
-```sh
-$ git branch -D
-
   git branch -D name branch/name branch
 ```
 
