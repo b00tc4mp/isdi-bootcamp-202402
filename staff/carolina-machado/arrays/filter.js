@@ -13,7 +13,7 @@ function filter(array, func) {
     return newArr
 }
 
-let arr1 = [2, 3, 5, 4, 6]
+let arr1 = [2, 3, 5, 4, 6, 10, 11, 12, 13, 20, 22]
 let evenNumber = function(num) {
     return num % 2 === 0
 }
