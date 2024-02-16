@@ -1,9 +1,10 @@
 delete Array.prototype.forEach
 
 function forEach (element, callback){
-    if (callback === undefined)
-        throw error
-    else{
+    var callbackType = typeof callback
+    if (callbackType !== 'function')
+        throw new TypeError(callbackType + ' is not a function')
+    else {
         let value = ''
         for (let i = 0; i < element.length; i++){
             value = element[i]
