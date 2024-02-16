@@ -2,7 +2,13 @@
 function forEach(array, callback) {
     var callbackType = typeof callback
 
-    if (callbackType !== 'function') throw new TypeError(callbackType + ' is not a function')
+    if (callbackType !== 'function') {
+
+        if (callbackType === 'number' || callbackType === 'boolean') {
+            throw new TypeError(callbackType + ' ' + callback + ' is not a function')
+        }
+        throw new TypeError(callbackType + ' is not a function')
+    }
 
     for (var i = 0; i < array.length; i++) {
         var element = array[i]
