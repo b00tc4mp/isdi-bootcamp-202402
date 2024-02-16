@@ -1,53 +1,80 @@
-BASH
+#BASH
 
-#```										
-Inverted commas generate a space when we tab								
-If you put bash above it is going to works equal, so it you change to js it is going to be in script js (it change colours and everything)	
+```sh
 
-#pwd										
-Command to see where you are located										
-										
-#ls										
-Command to view folder directory list (all folders):									
-AppData/										
-'Local configuration'@										
- Contacts/										
- Cookies@										
-'Program data'@										
- Documents/										
- Downloads/										
-'Net scope'@										
+##pwd (Command to see where you are located)
+```sh
+$pwd										
+																				
+##ls --Command to view folder directory list (all folders)--									
 
-#ls -l										
-Command to view folder directory list (details), also the details:									
+```sh
+$ls
+
+Documents
+Downloads
+workspace
+```
+																								
+###ls -l (Command to view folder directory list, also the details)
+
+```sh
+$ls -l
+									
 drwxr:  x means execution,  d is dekstop 										
 lrwx:  l means it is a link										
 drwxr-xr-x 1 jordi 197609       0 Jan 15 23:37  AppData/										
-lrwxrwxrwx 1 jordi 197609      28 Jan 15 23:37 'Local configuration' -> /c/Users/jordi/AppData/Local/										
+lrwxrwxrwx 1 jordi 197609      28 Jan 15 23:37 'Local configuration' -> /c/Users/jordi/AppData/Loca									
 drwxr-xr-x 1 jordi 197609       0 Jan 15 23:49  Contacts/										
-lrwxrwxrwx 1 jordi 197609      58 Jan 15 23:37  Cookies -> /c/Users/jordi/AppData/Local/Microsoft/Windows/INetCookies/										
+lrwxrwxrwx 1 jordi 197609      58 Jan 15 23:37  Cookies -> /c/Users/jordi/AppData/Local/M										
 lrwxrwxrwx 1 jordi 197609      30 Jan 15 23:37 'Datos de programa' -> /c/Users/j		
+```
 
-#ls -a (list the hidden files)
+### ls -a (list hidden files / folders)
 
-#touch (pones hola.mundo)	
-It is used to create new files										
+```sh
+$ ls -a 
+```
+
+## touch (creates an empty file)
+
+```sh
+$ touch hello.world
+```										
 	
 
-#mv (move / rename file or folder)										
-If you put mv hello.world hello.world (it changes the name of the folder)										
-If you put hello.world folder-a/folder-b/folder-c (wherever you want to locate it), it moves to the folder that you asign just putting it after space
+## mv (move / rename file or folder)
 
-#mdkir																				
-Command to create folders										
-										
-#cd										
-Command to change folders								
+```sh
+$ mv hello.world folder-a/folder-b/folder-c
+```			
+
+## mdkir (Command to create folders)									
+
+```sh
+$ mdkir workspace
+```	
+
+#cd	(Command to change folders)
+
+```sh
+$ cd workspace
+```	
 																												
-#clear (clean the terminal)										
-									
-#taskmgr (it shows the task manager)	
+## clear (clears the terminal)	
 
-#rm -rf (used to delete folders and files)										
-rm -rf workspace/helloworld (it will delete the folder and all the content)										
-r means recursive and f forced									
+```sh
+$ clear
+```		
+									
+##taskmgr (it shows the task manager)
+
+```sh
+$ taskmgr
+```	
+
+##rm -rf (used to delete folders and files)	
+
+```sh
+$ rm -rf workspace/helloworld
+```									
