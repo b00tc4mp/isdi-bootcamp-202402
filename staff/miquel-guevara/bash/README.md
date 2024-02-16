@@ -2,13 +2,6 @@
 
 Command-line interface commands typical in BASH
 
-## git commit
-
-```sh
-$ git commit
-```
-
-captura una instantánea de los cambios preparados en ese momento del proyecto
 
 ## pwd
 
