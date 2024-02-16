@@ -6,10 +6,9 @@
 $ git init
 ```
 
-## pwd (path to working directory)
+## pwd (path to working directory (It shows us the current folder we are in.))
 
 ```sh
-It shows us the current folder we are in.
 $ pwd
 ```
 
@@ -17,21 +16,21 @@ $ pwd
 
 ```sh
 $ mkdir
-    ej: mkdir newfolder
+mkdir newfolder
 ```
 
 ## touch (Allows us to create new file)
 
 ```sh
 $ touch
-    ej: touch newfile
+touch newfile
 ```
 
 ## cd (Allows us to change folder)
 
 ```sh
 $ cd
-    ej: cd newcarpet
+cd newcarpet
 ```
 
 ## cd ..(Allows us to return to the previus directory or folder)
@@ -39,7 +38,7 @@ $ cd
 ```sh
 
 $ cd ..
-    ej: cd /path/to/directory/..
+cd /path/to/directory/..
 ```
 
 ## ls (Allows us to see the files in the folder we are currently in)
@@ -58,26 +57,26 @@ $ ls -l
 
 ```sh
 $ rm
-    ej: rm Newfile.txt
+rm Newfile.txt
 ```
 
 ## rmdir ("Directory name" delete a directory (only works with empty directories))
 
 ```sh
 $ rmdir
-    ej: rmdir directory_name
+rmdir directory_name
 ```
 
 ## rm-r ("Folder name" allows me to delete the folder and the files inside it recursively)
 
 ```sh
 $ rm-r
-    ej: rm-r directory_name
+rm-r directory_name
 ```
 
 ## mv (The directory we want to move from/the file name the directory we want to move to)
 
 ```sh
 $ mv
-    ej: mv file /path/to/directory
+mv file /path/to/directory
 ```
