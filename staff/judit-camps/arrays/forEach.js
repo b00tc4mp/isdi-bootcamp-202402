@@ -1,7 +1,11 @@
 delete Array.prototype.forEach
 
 function forEach(array, callback) {
-    if (typeof callback !== 'function') throw new TypeError(typeof callback + ' is not a function')
+    if (typeof callback !== 'function') {
+        if (typeof callback === 'number' || typeof callback === 'boolean') {
+            throw new TypeError(typeof callback + ' ' + callback + ' is not a function')
+        } else throw new TypeError(typeof callback + ' is not a function')
+    }
     for (var i = 0; i < array.length; i++) {
         callback(array[i], i, array)
     }
@@ -66,5 +70,42 @@ try {
     console.log(error);
     // TypeError: undefined is not a function
 }
-// This is done so that we have more code it is not cut by the error and when running the code, it continues
+// Try-catch is done so that we have more code it is not cut by the error and when running the code, it continues
 
+console.log('CASE 7')
+var nums = [10, 20, 30, 40, 50]
+try {
+    forEach(nums, {})
+} catch (error) {
+    console.log(error);
+    // TypeError: object is not a function
+}
+
+
+console.log('CASE 8')
+var nums = [10, 20, 30, 40, 50]
+try {
+    forEach(nums, 123)
+} catch (error) {
+    console.log(error);
+    // TypeError: number 123 is not a function
+}
+
+console.log('CASE 9')
+var nums = [10, 20, 30, 40, 50]
+try {
+    forEach(nums, true)
+} catch (error) {
+    console.log(error);
+    // TypeError: boolean true is not a function
+}
+
+
+console.log('CASE 10')
+var nums = [10, 20, 30, 40, 50]
+try {
+    forEach(nums, !true)
+} catch (error) {
+    console.log(error);
+    // TypeError: boolean false is not a function
+}
