@@ -106,6 +106,16 @@ Switched to branch 'develop'
 Your branch is up to date with 'origin/develop'.
 ```
 
+## git rm -rf folder - to delete a folder inside a incorrect branch
+
+```sh
+$ git rm -rf staff/irene-roldan/playground/
+rm 'staff/irene-roldan/playground/Car/index.html'
+rm 'staff/irene-roldan/playground/Car/style.css'
+rm 'staff/irene-roldan/playground/Car/style.css.map'
+rm 'staff/irene-roldan/playground/Car/style.sass'
+```
+
 ## UPLOAD MODIFIED DOCS
 
 ```sh
