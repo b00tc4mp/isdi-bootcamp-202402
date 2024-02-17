@@ -1,3 +1,27 @@
-
+.background {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  width: 400px;
+  height: 400px;
+  background-image: black;
+}
+.background__bloque-rojo {
+  grid-area: 1/1/3/2;
+  background-color: #e60000;
+}
+.background__bloque-amarillo {
+  grid-area: 1/2/2/3;
+  background-color: #ffd700;
+}
+.background__bloque-azul {
+  grid-area: 1/3/3/4;
+  background-color: #0000ff;
+}
+.background__bloque-blanco {
+  grid-area: 2/2/3/3;
+  background-color: #ffffff;
+}
 
 /*# sourceMappingURL=style.css.map */

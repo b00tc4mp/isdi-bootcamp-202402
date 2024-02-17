@@ -1,45 +1,25 @@
-.background
-    height: 300px
-    width: 300px
-    background-color: black
-    position: relative
+
+:root
+    --painting-width: 312
+    --painting-height: 505
+
+.painting
+    width: 100%
+    height: 100%
     display: grid
-    grid-template-columns: 100px 100px 100px
-    grid-template-rows: 100px 100px 100px
-
-    &__squareYellow
-        height: 140px
-        width: 75px
-        background-color: yellow
-        position: absolute
-
-    &__squareWhite
-        height: 75px
-        width: 75px
-        background-color: white
-        position: absolute
-
-    &__squareBlue
-        height: 43px
-        width: 75px
-        background-color: blue
-        position: absolute
-
-    &__squareRed
-        display: grid
-        position: absolute
-        height: 227px
-        width: 194px
-        background-color: red
-
-    &__rectangleWhite
-        height: 43px
-        width: 135px
-        background-color: white
-        position: absolute
-
-    &__squareWhiteLittle
-        height: 43px
-        width: 50px
-        background-color: white
-        position: absolute
+    gap: calc (7 / var(--painting-height) * 100%)
+        calc (7 / var(--painting-width) * 100%)
+    grid-template-rows:
+        calc(32 / var(--painting-height) * 100%)
+        calc(158 / var(--painting-height) * 100%)
+        calc(85 / var(--painting-height) * 100%)
+        calc(21 / var(--painting-height) * 100%)
+        calc(75 / var(--painting-height) * 100%)
+        calc(92 / var(--painting-height) * 100%)
+        0%
+    grid-template-columns:
+        calc(21 / var(--painting-width) * 100%)
+        calc(52 / var(--painting-width) * 100%)
+        calc(166 / var(--painting-width) * 100%)
+        calc(39 / var(--painting-width) * 100%)
+        calc(6 / var(--painting-width) * 100%)
