@@ -1,18 +1,19 @@
-function every(array, func) {
-
-
-    for (let i = 0; i < array.length; i++) {
+function some(array, func) {
+    for (var i = 0; i < array.length; i++) {
         let element = array[i]
 
-        if (func(element) !== true) {
-            return false
+        if (func(element)) {
+
+            return true
         }
+
     }
-    return true
+
+    return false
 }
 
 /*CASE 1
-    let arr1 = [4, 4, 4]
+    let arr1 = [3, 3, 3]
     let evenNumber = function (num) {
         if (num % 2 === 0) {
             return true
@@ -21,7 +22,7 @@ function every(array, func) {
         }
     }
 
-    console.log(every(arr1, evenNumber))*/
+    console.log(some(arr1, evenNumber))*/
 
 //CASE 2
 
@@ -34,4 +35,4 @@ let biggerThanTen = function (num) {
     }
 }
 
-console.log(every(arr1, biggerThanTen))
+console.log(some(arr1, biggerThanTen))
