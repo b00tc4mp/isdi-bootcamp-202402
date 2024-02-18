@@ -2,7 +2,26 @@
     width: $width
     height: $height
 
+@keyframes roll
+    0%
+        top: 7px
+
+    25%
+        left: 7px
+        top: 3.5px
+
+    50%
+        top: 0px
+
+    75%
+        left: 0px
+
+    100%
+        top: 7px
+
 .pig
+    display: flex
+
     &__head
         background-color: pink
         @include size(201px, 176px)
@@ -33,6 +52,8 @@
         left: 8px
         top: 1px
         border-radius: 50%
+        animation-duration: 3s
+        animation-name: roll
 
     &__nose
         background-color: rgb(205 79 79)
