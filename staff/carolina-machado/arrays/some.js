@@ -13,7 +13,7 @@ function some(array, func) {
 }
 
 /*CASE 1
-    let arr1 = [3, 3, 3]
+    let arr1 = [3, 3, 3]git ad
     let evenNumber = function (num) {
         if (num % 2 === 0) {
             return true
