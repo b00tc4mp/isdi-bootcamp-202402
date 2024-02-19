@@ -2,7 +2,7 @@ delete Array.prototype.from
 // es una función estática
 
 function from(arrayLike) {
-    
+
 
 }
 
