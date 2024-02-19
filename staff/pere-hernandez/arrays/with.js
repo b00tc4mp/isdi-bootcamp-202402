@@ -1,11 +1,16 @@
 delete Array.prototype.with
 
 function withArray(array, index, replace){
-    array[index] = replace
+    let newArray = []
     for (let i = 0; i < array.length; i++){
-        if (array[i] == null)
+        if (i === index)
+            newArray[i] = replace
+        else if (array[i] == null)
             array[i] = undefined
+        else
+            newArray[i] = array[i]
     }
+    return newArray
 }
 
 //CASE 1
