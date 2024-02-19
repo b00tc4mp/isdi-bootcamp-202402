@@ -11,7 +11,7 @@ function arrayFindIndex(array, index, callback) {
     } else {
         for (let i = index; i < array.length; i++){
             if (callback(array[i]) === true)
-                return array[i]
+                return i
         } 
     }
 }
@@ -20,7 +20,7 @@ function arrayFindIndex(array, index, callback) {
 let arr = [3, 2, 3, 4, 5]
 let result = arrayFindIndex(arr, 1, (x) => x > 2)
 console.log(result)
-//2
+//1
 
 //CASE 2
 result = arrayFindIndex(arr, (x) => x > 8)

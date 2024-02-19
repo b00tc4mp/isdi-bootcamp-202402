@@ -3,7 +3,7 @@ delete Array.prototype.find
 function findArray(array, formula) {
     for (let i = 0; i < array.length; i++){
         if (formula(array[i]) === true)
-            return i
+            return array[i]
     }
 }
 
