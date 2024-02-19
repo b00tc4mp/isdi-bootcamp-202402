@@ -2,7 +2,7 @@ delete Array.prototype.some
 
 function some(arr, fn) {
     for (var i = 0; i < arr.length; i++) {
-        if (fn(arr[i])) {
+        if (fn(arr[i], i, arr)) {
             return true
         }
     }
