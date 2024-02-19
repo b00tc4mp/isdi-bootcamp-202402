@@ -26,3 +26,13 @@ console.log(nums);
 
 
 console.log('CASE 2')
+var arr = [1, 2];
+console.log(unshift(arr, 0));
+console.log(arr)
+// arr es [0, 1, 2]
+unshift(arr, -2, -1); // = 5
+console.log(arr)
+// arr es [-2, -1, 0, 1, 2]
+unshift(arr, [-3]);
+console.log(arr)
+// arr es [[-3], -2, -1, 0, 1, 2]
