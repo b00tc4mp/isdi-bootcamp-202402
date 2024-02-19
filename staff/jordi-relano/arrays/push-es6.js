@@ -81,11 +81,11 @@ const nums = [100, 200, 300, 400, 500]
     // [10,20,30,40,50,60]
 }
 
-function push(array, ...elements) {
+// function push(array, ...elements) {
     
-    if (elements.length > 1);
-    array[array.length] = elements[0]
+//     if (elements.length > 1);
+//     array[array.length] = elements[0]
     
-    return array.length
+//     return array.length
 
-}
+// }

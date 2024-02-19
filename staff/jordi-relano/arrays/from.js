@@ -1,16 +1,20 @@
 delete Array.prototype.from
 // es una función estática
 
-function from(arrayLike) {
+function from(arrayLike,) {
+
 
 
 }
 
 
+
+
+
 // CASE 1
 
-var arrayString = from("foo");
-// [ "f", "o", "o" ]
+console.log(from('foo'));
+// Expected output: Array ["f", "o", "o"]
 
 // CASE 2
 
@@ -19,6 +23,9 @@ var arraySet = from(set);
 // [ "foo", "bar", "baz" ]
 
 // CASE 3
+
+console.log(from([1, 2, 3], (x) => x + x));
+// Expected output: Array [2, 4, 6]
 
 // arrayLike
 // Objeto iterable para convertirlo en un array.

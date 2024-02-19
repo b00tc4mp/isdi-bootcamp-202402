@@ -104,15 +104,15 @@ console.log(nums);
 
 //Para este caso usaremos más arguments: cambiaremos la función
 
-function push(array, element1) {
-    if (arguments.length > 1);
-    array[array.length] = element1
-    return array.length
-}
-//pasa a:
-function push(array, element1) {
-    if (arguments.length > 1);
-        for (var i = 1; i < arguments.length; i++)
-            array[array.length] = element1
-    return array.length
-} //comenzamos a iterar en la posición 1 de arguments
+// function push(array, element1) {
+//     if (arguments.length > 1);
+//     array[array.length] = element1
+//     return array.length
+// }
+// //pasa a:
+// function push(array, element1) {
+//     if (arguments.length > 1);
+//         for (var i = 1; i < arguments.length; i++)
+//             array[array.length] = element1
+//     return array.length
+// } //comenzamos a iterar en la posición 1 de arguments
