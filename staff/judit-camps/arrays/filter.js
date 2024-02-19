@@ -12,7 +12,7 @@ function filter(arr, fun) {
 
 console.log('CASE 1')
 var words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
-var result = filter(words, (word) => word.length > 6);
+var result = filter(words, function (word) { word.length > 6 });
 console.log(result);
 // Expected output: Array ["exuberant", "destruction", "present"]
 

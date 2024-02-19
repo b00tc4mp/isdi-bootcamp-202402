@@ -1,4 +1,4 @@
-delete Array.from
+delete Array.prototype.from
 
 function from(arrayLike, formula) {
     var newArray = []
@@ -11,18 +11,19 @@ function from(arrayLike, formula) {
             newArray[newArray.length] = formula(arrayLike[el])
         }
     }
+    return newArray
 }
 
 
 // CASE 1
 
 
-console.log(Array.from('foo'));
+console.log(from('foo'));
 // Expected output: Array ["f", "o", "o"]
 
 
 
 // CASE 2
-console.log(Array.from([1, 2, 3], (x) => x + x));
+console.log(from([1, 2, 3], function (x) { return x + x }));
 // Expected output: Array [2, 4, 6]
 

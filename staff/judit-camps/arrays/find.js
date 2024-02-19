@@ -10,7 +10,7 @@ function find(arr, fun) {
 
 console.log('CASE 1')
 var a = [2, 5, 30, 50]
-var found = find(a, (elem) => elem > 10)
+var found = find(a, function (elem) { return elem > 10 })
 console.log(found)
 
 

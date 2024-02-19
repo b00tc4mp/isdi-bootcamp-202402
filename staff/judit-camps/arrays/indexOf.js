@@ -1,7 +1,6 @@
 delete Array.prototype.indexOf
 
 function indexOf(array, searchElement, indexFrom) {
-    debugger
     if (indexFrom >= array.length) {
         return -1
     } else if (indexFrom < 0 && array.length + indexFrom < 0 || indexFrom === undefined) {

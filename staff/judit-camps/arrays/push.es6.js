@@ -1,8 +1,6 @@
 delete Array.prototype.push
 
-debugger
 function push(array, ...element) {
-    debugger
     var len
     for (var arg = 0; arg < element.length; arg++) {
         len = array.length

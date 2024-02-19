@@ -13,7 +13,7 @@ console.log('CASE 1')
 var array = [1, 2, 3, 4, 5];
 
 // Checks whether an element is even
-var even = (element) => element % 2 === 0;
+var even = function (element) { return element % 2 === 0 };
 
 console.log(some(array, even));
 // Expected output: true

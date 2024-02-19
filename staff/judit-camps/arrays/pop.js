@@ -1,7 +1,6 @@
 delete Array.prototype.pop
 
 function pop(array) {
-    debugger
     if (array.length > 0) {
         var last = array[array.length - 1]
         array.length = array.length - 1

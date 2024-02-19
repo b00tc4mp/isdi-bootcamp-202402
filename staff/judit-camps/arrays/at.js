@@ -1,7 +1,6 @@
 delete Array.prototype.at
 
 function at(array, index) {
-    debugger
     // Ternari -> l'index és més gran que -1? si, fem servir l'index. : No, el nou index sera array.length + index
     var targetIndex = index > -1 ? index : array.length + index
 

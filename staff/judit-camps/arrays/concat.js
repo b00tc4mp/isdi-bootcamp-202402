@@ -1,7 +1,6 @@
 delete Array.prototype.concat
 
 function concat(...arrays) {
-    debugger
     var newArray = []
     for (var el = 0; el < arrays.length; el++) {
         if (arrays[el] instanceof Array) {

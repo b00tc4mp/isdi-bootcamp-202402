@@ -11,7 +11,7 @@ function findIndex(arr, fun) {
 
 console.log('CASE 1')
 var a = [2, 5, 30, 50]
-var index = findIndex(a, (elem) => elem > 10)
+var index = findIndex(a, function (elem) { return elem > 10 })
 console.log(index)
 // 2
 
