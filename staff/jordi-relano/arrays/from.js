@@ -1,37 +1,31 @@
-delete Array.prototype.from
-// es una función estática
 
-function from(arrayLike,) {
+function from(arrayLike, mapFn, thisArg) {
+    resultArray = []
 
-
-
-}
-
-
+    if( arguments.length === 1){
+        for (let i = 0; i < arrayLike.length; i++) 
+            for (let j = 0; j < arrayLike[i].length; j++) {
+                debugger
+                resultArray[i] = arrayLike[i][j];
+                
+            }
+    }else if(arguments.length === 2){
+        debugger
+        for (let i = 0; i < arrayLike.length; i++)
+            resultArray[i] = mapFn(arrayLike[i])
+         
+        }
+        return resultArray
+    }
 
 
 
 // CASE 1
+var arrayLike = "foo"
+var result = from(arrayLike);
+console.log(result);
+// Array ["f", "o", "o"]
 
-console.log(from('foo'));
-// Expected output: Array ["f", "o", "o"]
 
-// CASE 2
-
-var set = new Set(["foo", "bar", "baz", "foo"]);
-var arraySet = from(set);
-// [ "foo", "bar", "baz" ]
-
-// CASE 3
-
-console.log(from([1, 2, 3], (x) => x + x));
-// Expected output: Array [2, 4, 6]
-
-// arrayLike
-// Objeto iterable para convertirlo en un array.
-
-// mapFnOpcional
-// Función de mapa para llamar a cada elemento de la matriz.
-
-// thisArgOpcional
-// Valor para usar como this al ejecutar mapFn
+console.log(from([1, 2, 3], (x) => x + x))
+// Array [2, 4, 6]
