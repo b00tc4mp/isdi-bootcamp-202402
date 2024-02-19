@@ -6,7 +6,7 @@ function withArray(array, index, replace){
         if (i === index)
             newArray[i] = replace
         else if (array[i] == null)
-            array[i] = undefined
+            newArray[i] = undefined
         else
             newArray[i] = array[i]
     }
@@ -15,12 +15,16 @@ function withArray(array, index, replace){
 
 //CASE 1
 let arr =['Albus', 'Percival', 'Josefina', 'Bryan', 'Dumbeldore']
-withArray(arr, 2, 'Wulfric')
-console.log(arr)
+let result = withArray(arr, 2, 'Wulfric')
+console.log(result)
 //['Albus', 'Percival', 'Wulfric', 'Bryan', 'Dumbeldore']
+console.log(arr)
+//['Albus', 'Percival', 'Josefina', 'Bryan', 'Dumbeldore']
 
 //CASE 2
 let arr1 = ['Gryffindor', 'Eagleclaw,',,'Slytherin']
-withArray(arr1, 1, 'Ravenclaw')
-console.log(arr1)
+result = withArray(arr1, 1, 'Ravenclaw')
+console.log(result)
 //['Gryffindor', 'Ravenclaw', undefined, 'Slytherin']
+console.log(arr1)
+//['Gryffindor', 'Eagleclaw,',,'Slytherin']
