@@ -21,9 +21,9 @@ console.log(every([12, 54, 18, 130, 44], isBigEnough));
 
 
 console.log('CASE 2')
-console.log(every([1, , 3], function (x) { x !== undefined }));
+console.log(every([1, , 3], function (x) { return x !== undefined }));
 // true
-console.log(every([2, , 2], function (x) { x === 2 }));
+console.log(every([2, , 2], function (x) { return x === 2 }));
 // true
 
 console.log('CASE 3')
@@ -37,4 +37,3 @@ const d = {
 console.log(every(d, function (x) { typeof x === "string" }),);
 // true
 
-console.log('CASE 4')
