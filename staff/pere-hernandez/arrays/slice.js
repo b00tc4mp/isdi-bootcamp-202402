@@ -17,7 +17,7 @@ function sliceArray(array, start, end){
         }
         count = 0
         for (let i = 0; i < start; i++){
-           slicedArray[count] = array[i]
+            slicedArray[count] = array[i]
             count++
         }
         for (let i = end +1; i < array.length; i++){
@@ -26,7 +26,7 @@ function sliceArray(array, start, end){
         }
         array.length = 0
         for (let i = 0; i < slicedArray.length; i++) {
-          array[i] = slicedArray[i]
+            array[i] = slicedArray[i]
         }
     } else if (start < 0 && end === undefined){
         for (let i = array.length + start; i < array.length; i++){
@@ -57,7 +57,7 @@ function sliceArray(array, start, end){
         }
         array.length = 0
         for (let i = 0; i < slicedArray.length; i++) {
-          array[i] = slicedArray[i]
+            array[i] = slicedArray[i]
         }
     } else if (arguments.length < 2){
         newArray = []
