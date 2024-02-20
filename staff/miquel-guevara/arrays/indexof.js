@@ -1,58 +1,81 @@
+// El método indexOf() retorna el primer índice en el que se puede encontrar un elemento dado en el array, ó retorna -1 si el elemento no esta presente.
+//Funcion que toma dos parámetros: array, que es donde se va a buscar, y searchElement, que es el elemento que se va a buscar dentro del array.
+
 delete Array.prototype.indexOf;
-function indexOf(array, searchelement) {
+
+function indexOf(array, searchElement) {
+  //Iniciar un bucle for que recorre el array. La variable i se inicia en 0 y se incrementa en cada iteración hasta que i sea menor que la longitud del array (array.length).
   for (var i = 0; i < array.length; i++) {
-    if (array[i] === searchelement) {
+    //Dentro del bucle for, se verifica si el elemento actual del array principal (array[i]) es igual al elemento que estamos buscando (searchElement).
+    if (array[i] === searchElement) {
+      //Si el elemento actual del array coincide con el elemento que estamos buscando, se devuelve el índice en el que se encuentra ese elemento en el array.
       return i;
     }
   }
+  //Si cuando se completa el bucle for no se encuentra el elemento en el array, se devuelve -1 para indicar que el elemento no está presente dentro del array.
   return -1;
 }
 
-// CASE 1
+console.log("CASE 1");
+var fruits = ["Banana", "Orange", "Apple", "Mango", "Pineapple"];
+var element = "Apple";
+var s = indexOf(fruits, element);
 
-var fruits = ["apple", "banana", 12, "kiwi", "pineapple"];
+console.log(s);
+//OUTPUT 2
 
-var element = 12;
+console.assert(s === 2, '2')
+//'2'
 
-var numero = indexOf(fruits, element);
+console.assert(fruits[0] === 'Banana')
+console.assert(fruits[1] === 'Orange')
+console.assert(fruits[2] === 'Apple')
+console.assert(fruits[3] === 'Mango')
+console.assert(fruits[4] === 'Pineapple')
 
-console.log(numero);
 
-// // CASE 2
+// ["Banana", "Orange", "Apple", "Mango", "Pineapple"]
+console.assert(fruits.length === 5, '5')
+// [5]
 
-// var animals = ["pigs", "goats", "sheep", "cows"];
+console.log("CASE 2");
+var fruits = ["Banana", "Orange", "Apple", "Mango", "Pineapple"];
+var element = "Kiwi";
+var s = indexOf(fruits, element);
 
-// var animal = pop(animals);
+console.log(s);
+//OUTPUT -1
 
-// console.log(animal);
-// // 'cows'
-// console.log(animals.length);
-// // 3
-// console.log(animals);
-// // ['pigs', 'goats', 'sheep']
+console.assert(s === -1, '-1')
+//'-1'
 
-// // CASE 3
+console.assert(fruits[0] === 'Banana')
+console.assert(fruits[1] === 'Orange')
+console.assert(fruits[2] === 'Apple')
+console.assert(fruits[3] === 'Mango')
+console.assert(fruits[4] === 'Pineapple')
+// ["Banana", "Orange", "Apple", "Mango", "Pineapple"]
 
-// var sports = ["soccer", "baseball"];
+console.assert(fruits.length === 5, '5')
+// [5]
 
-// var sport = pop(sports);
+console.log("CASE 3");
+var fruits = ["Banana", "Orange", "Apple", "Mango", "Pineapple"];
+var element = 0;
+var s = indexOf(fruits, element);
 
-// console.log(sport);
-// // 'baseball'
-// console.log(sports.length);
-// // 1
-// console.log(sports);
-// // ['soccer']
+console.log(s);
+//OUTPUT -1
 
-// // CASE 4
+console.assert(s === -1, '-1')
+//'-1'
 
-// var sports = [];
+console.assert(fruits[0] === 'Banana')
+console.assert(fruits[1] === 'Orange')
+console.assert(fruits[2] === 'Apple')
+console.assert(fruits[3] === 'Mango')
+console.assert(fruits[4] === 'Pineapple')
+// ["Banana", "Orange", "Apple", "Mango", "Pineapple"]
 
-// var sport = pop(sports);
-
-// console.log(sport);
-// // undefined
-// console.log(sports.length);
-// // 0
-// console.log(sports);
-// // []
+console.assert(fruits.length === 5, '5')
+// [5]

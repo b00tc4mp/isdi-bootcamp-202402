@@ -1,51 +1,91 @@
-delete Array.prototype.includes;
+function includes(array, value, fromIndex) {
+  var targetIndex = 0
 
-function includes(array, searchElement, fromIndex) {
-  //fromindex es negatiu que no peti el for
-  //fromIndex es menor que 0
-  if (fromIndex < 0) {
-    fromIndex = 0;
+  if (arguments.length > 2)
+      if (fromIndex > -1)
+          targetIndex = fromIndex
+      else
+          targetIndex = array.length + fromIndex
+
+  for (var i = targetIndex; i < array.length; i++) {
+      var element = array[i]
+
+      if (element === value)
+          return true
   }
-  for (var i = fromIndex; i < array.length; i++) {
-    if (searchElement === array[i]) {
-      return true;
-    }
-  }
-  return false;
+
+  return false
 }
 
-//CASE 1
-var number = [10, 20, 30];
-var searchElement = 10;
-var fromIndex = 2;
-var result = includes(number, searchElement, fromIndex);
-console.log(result);
-// Expected output: false
+console.log('CASE 1')
 
-// //CASE 2
-var fruits = ["apple", "kiwi", "pear"];
-var searchElement = "apple";
-var fromIndex = 0;
-var result = includes(fruits, searchElement, fromIndex);
-console.log(result);
-// Expected output: true
+var nums = [100, 200, 300, 400, 500]
 
-// //CASE 3
-var pupurri = ["taza", "tetera", 1, 3];
-var searchElement = 1;
-var fromIndex = 100;
-var result = includes(pupurri, searchElement, fromIndex);
-console.log(result);
-// Expected output: false
+var result = includes(nums, 800)
 
-// //CASE 4
+console.log(result)
+// false
 
-var arr = ["a", "b", "c"];
-var searchElement = "a";
-var fromIndex = -9000;
-var result = includes(arr, searchElement, fromIndex);
-console.log(result);
+console.log('CASE 2')
 
-// arr.includes("a", -100); // true
-// arr.includes("b", -100); // true
-// arr.includes("c", -100); // true
+var animals = ['elephants', 'dogs', 'cats', 'cows']
+
+var result = includes(animals, 'cats')
+
+console.log(result)
+// true
+
+console.log('CASE 3')
+
+var nums = [10, 20, 30]
+
+var result = includes(nums, 20, 4)
+
+console.log(result)
+// false
+
+console.log('CASE 4')
+
+var nums = [10, 20, 30]
+
+var result = includes(nums, 10, 1)
+
+console.log(result)
+// true
+
+console.log('CASE 5')
+
+var animals = ['elephants', 'dogs', 'cats', 'cows']
+
+var result = includes(animals, 'cows', 2)
+
+console.log(result)
+// true
+
+console.log('CASE 6')
+
+var animals = ['elephants', 'dogs', 'cats', 'cows']
+
+var result = includes(animals, 'fox', 2)
+
+console.log(result)
+// false
+
+
+console.log('CASE 7')
+
+var animals = ['elephants', 'dogs', 'cats', 'cows']
+
+var result = includes(animals, 'dogs', -3)
+
+console.log(result)
+// true
+
+console.log('CASE 8')
+
+var animals = ['elephants', 'dogs', 'cats', 'cows']
+
+var result = includes(animals, 'goats', -2)
+
+console.log(result)
+// false

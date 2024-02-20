@@ -1,77 +1,86 @@
-// delete Array.prototype.pop;
+//El método pop() elimina el último elemento de un array y lo devuelve. Este método cambia la longitud del array.
+
+//delete Array.prototype.pop;
 
 function pop(array) {
-  // TODO implement me
-  var newArray = [];
-  for (var i = 0; i < array.length; i++) {
-    if (i > array.length - 2) {
-      var result = array[i];
-      nums = newArray;
-      return result;
-    } else {
-      newArray[i] = array[i];
-    }
+  //TODO implement me
+
+  //Crear una variable para almacenar el resultado en un string
+  var result = "";
+  //
+  if (array.length > 0) {
+    result = array[array.length - 1];
+    array.length = array.length - 1;
+    return result;
+  } else {
+    return undefined;
   }
 }
 
-console.log("CASE 1");
-
+console.log('CASE 1')
 var nums = [100, 200, 300, 400, 500];
-
 var num = pop(nums);
 
 console.log(num);
-// 500
+//OUTPUT 500
 console.log(nums.length);
-// 4
+//OUTPUT 4
 console.log(nums);
-// [100, 200, 300, 400]
+//OUTPUT [100, 200, 300, 400]
 
-// CASE 2
+console.assert(num === 500, '500')
 
-// //var animals = ["pigs", "goats", "sheep", "cows"];
+console.assert(nums.length === 4, '4')
 
-// var animal = pop(animals);
+console.assert(nums === 100, 200, 300, 400,'100, 200, 300, 400')
 
-// console.log(animal);
-// // // 'cows'
-// console.log(animals.length);
-// // // 3
-// console.log(animals);
-// ['pigs', 'goats', 'sheep']
+console.log('CASE 2')
+var animals = ["pigs", "goats", "sheep", "cows"];
+var animal = pop(animals);
 
-// CASE 3
+console.log(animal);
+//OUTPUT "cows"
+console.log(animals.length);
+//OUTPUT 3
+console.log(animals);
+//OUTPUT ["pigs", "goats", "sheep"]
 
-// var sports = ["soccer", "baseball"];
+console.assert(animal === 'cows')
 
-// var sport = pop(sports);
+console.assert(animals.length === 3, '3')
 
-// console.log(sport);
-// // 'baseball'
-// console.log(sports.length);
-// // 1
-// console.log(sports);
-// ['soccer']
+console.assert(animals === 'pigs, goats, sheep')
 
-// CASE 4
+console.log('CASE 3')
+var sports = ["soccer", "baseball"];
+var sport = pop(sports);
 
-// var sports = [];
+console.log(sport);
+//OUTPUT "baseball"
+console.log(sports.length);
+//OUTPUT  1
+console.log(sports);
+//OUTPUT ["soccer"]
 
-// var sport = pop(sports);
+console.assert(sport === 'baseball')
 
-// console.log(sport);
-// // undefined
-// console.log(sports.length);
-// // 0
-// console.log(sports);
-// []
+console.assert(sports.length === 1, '1')
 
-// if (array.length > 0) {
-//   var lastIndex = array.length - 1;
-//   var lastElement = array[lastIndex];
+console.assert(sports === 'soccer')
 
-//   array.length--;
+console.log('CASE 4')
+var sports = [];
+var sport = pop(sports);
 
-//   return lastElement;
-// }
-// }
+console.log(sport);
+//OUTPUT undefined
+console.log(sports.length);
+//OUTPUT  0
+console.log(sports);
+//OUTPUT []
+
+console.assert(num === undefined, 'undefined')
+
+console.assert(nums.length === 0, '0')
+
+console.assert(nums === '[]')
