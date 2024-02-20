@@ -6,14 +6,13 @@ function reduceArray(array, callback, init){
         for (let i = 0; i < array.length; i++){
             acumulator = callback(acumulator, array[i])
         }
-        return acumulator
     } else {
         var acumulator = array[0]
         for (let i = 1; i < array.length; i++){
             acumulator = callback(acumulator, array[i])
         }
-        return acumulator
     }
+    return acumulator
 }
 //CASE 1
 let arr = [1, 2, 3, 4]
