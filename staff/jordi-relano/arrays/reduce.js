@@ -10,8 +10,8 @@ function reduce(array, callback, InitialValue) {
             acc = callback(acc, array[i])
         }
     } else {
-        var acc = 0
-        for (let i = 0; i < array.length; i++) {
+        var acc = array[0]
+        for (let i = 1; i < array.length; i++) {
             acc = callback(acc, array[i])
 
         }
