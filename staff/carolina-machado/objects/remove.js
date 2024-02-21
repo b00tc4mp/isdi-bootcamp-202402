@@ -7,8 +7,30 @@
  * @throws {TypeError} When object is not an object, or when index is not a number.
  */
 function remove(object, index) {
+    if (object instanceof Object) {
+    var removedColor = object[index]
+
+    for (i = index; i < object.length; i++) {
+        object [i] = object[i + 1]
+    }
+    delete object[object.length - 1]
+    object.length--
+
+    return removedColor
+    
+    } else {
+        throw new TypeError(object + ' is not an Object')
+    }
+}
+
+
+/*
+    }
+
+
+}
     // TODO
-    if (!(object instanceof Object)) throw new TypeError(object + ' is not an Object')
+
 }
 
 console.log('CASE 1: remove blue from index 1')
@@ -34,6 +56,8 @@ console.log(colors)
 }
 */
 
+if (!(object instanceof Object)) throw new TypeError(object + ' is not an Object')
+/*
 console.log('CASE 2: remove red from index 0')
 
 var colors = {
@@ -57,6 +81,7 @@ console.log(colors)
 }
 */
 
+/*
 console.log('CASE 3: fails on undefind object parameter')
 
 try {

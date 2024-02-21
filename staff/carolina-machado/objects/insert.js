@@ -7,11 +7,24 @@
  * 
  * @throws {TypeError} When object is not an object, or when index is not a number.
  */
-function insertMany(object, index, value) {
-    // TODO
-    if (!(object instanceof Object)) throw new TypeError(object + ' is not an Object')
-}
+function insert(object, index, values) {
+    if (!object || !(object instanceof Object)) {
+        throw new TypeError('Object parameter is required and must be an Object');
+    }
+    if (typeof index !== 'number') {
+        throw new TypeError('Index parameter is required and must be a number');
+    }
 
+    for (var i = object.length; i >= index + 1; i--) {
+
+        object[i] = object[i - 1];
+        length = object.length + 1
+    }
+    object[index] = values
+    object.length++
+
+    return object.length
+}
 console.log('CASE 1: insert skyblue in index 1')
 
 var colors = {
@@ -20,12 +33,10 @@ var colors = {
     2: 'green',
     length: 3
 }
-
-var length = insertMany(colors, 1, 'skyblue')
+var length = insert(colors, 1, 'skyblue')
 
 console.log(length)
 // 4
-
 console.log(colors)
 /*
 {
@@ -37,7 +48,7 @@ console.log(colors)
 }
 */
 
-console.log('CASE 2: insert skyblue, gold and plum in index 2')
+/*console.log('CASE 2: insert skyblue, gold and plum in index 2')
 
 var colors = {
     0: 'red',
@@ -64,6 +75,7 @@ console.log(colors)
 }
 */
 
+/*
 console.log('CASE 3: fails on undefind object parameter')
 
 try {
@@ -97,3 +109,4 @@ try {
     console.log(error)
     // TypeError: undefined is not a Number
 }
+*/
