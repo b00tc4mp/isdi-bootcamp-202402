@@ -38,7 +38,7 @@ $ git branch develop
 $ git checkout develop
 ```
 
-## git add develop --- Updates the info in the branch named 'develop' to prepare it for commit ---
+## git add develop --- adds new or changed files (in this case, develop) in your working directory to the Git staging area ---
 
 ```sh
 $ git add develop
