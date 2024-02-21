@@ -23,13 +23,13 @@ $ ls -l
 ## touch hola.js--- Creates a new file called 'hola.js'---
 
 ```sh
-$ touch
+$ touch hola.js
 ```
 
 ## mkdir carpeta--- Creates a new repository called 'carpeta'---
 
 ```sh
-$ mkdir
+$ mkdir carpeta
 ```
 
 ## cd staff--- Accesses the staff directory---
