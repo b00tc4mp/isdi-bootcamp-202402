@@ -5,7 +5,7 @@
 ### Functionalities
 - view posts
     - comment
-    - like 
+    - like
 - create a post (with picture and text)
     - take a picture with camera
     - upload a picture from phone
