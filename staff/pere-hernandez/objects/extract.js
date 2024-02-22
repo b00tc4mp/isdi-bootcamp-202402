@@ -66,7 +66,7 @@ result = extract(powerpuff, function (result) {
 })
 
 console.log(result)
-//-1
+//{length:0}
 console.log(powerpuff)
 /*{
     0: {name: 'Blossom', color:'pink'},
