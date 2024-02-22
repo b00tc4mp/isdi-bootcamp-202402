@@ -12,48 +12,35 @@ function extract(object, callback){
     if (object instanceof Object === false)
         throw new TypeError(object + ' is not an Object')
 
-    else if (callback instanceof Function === false)
-        throw new TypeError(callback + ' is not a Function')
+    if (callback instanceof Function === false)
+        throw new TypeError(callback + ' is not a Function')        
+    
+    var extracted = {length: 0}
+    var count = 0
+    
+    for (var i = 0; i < object.length; i++){
+        var elem = callback(object[i])
         
-    else {
-        let arrayObj = []
-        let extracted = []
-        let count = 0
-        let extractedObject= {}
+        if (elem){                
+            extracted[count] = object[i]
+            count++
+            extracted.length = count
+        } else 
+            object[i - count] = object[i]
         
-        for (let i = 0; i < object.length; i++){
-            let elem = callback(object[i])
-            
-            if (elem){                
-                extracted[count] = object[i]
-                count++
-            } else
-                arrayObj[arrayObj.length] = object[i]
-        }
+    }
+    
+    for (var i = count; i < object.length; i++)
+        delete object[i]
 
-        if (count > 0){
-            for (let i = 0; i < arrayObj.length; i++){
-                object[i] = arrayObj[i]
-            }
-            for (let i = count; i < object.length; i++)
-                delete object[i]
-
-            for (let i = 0; i < count; i++)
-                object.length--
-
-            for (let i = 0; i < extracted.length; i++){
-                extractedObject[i] = extracted[i]
-                extractedObject.length = i+1
-            }
-            return extractedObject
-        }
-    } return -1
+    object.length -= count   
+    return extracted
 }
 
 
 console.log('CASE 1')
 
-let cartoons = {
+var cartoons = {
     0: {name: 'Sonic', color: 'blue'},
     1: {name: 'Goku', color:'orange'},
     2: {name: 'Mario', color:'red'},
@@ -63,22 +50,22 @@ let cartoons = {
     length: 6
 }
 
-let result = extract(cartoons, function (result) {
+var result = extract(cartoons, function (result) {
     return result.color === 'orange'
 })
 
 console.log(result)
 /*{
-    0: {name: 'Sonic', color: 'blue'},
-    1: {name: 'Mario', color: 'red'},
-    2: {name: 'Kirby', color: 'pink'},
+    0: {name: 'Goku', color: 'orange'},
+    1: {name: 'Naruto', color: 'orange'},
+    2: {name: 'Charizard', color: 'orange'},
     length: 3
 }*/
 console.log(cartoons)
 /*{
-    0: {name: 'Blossom', color:'pink'},
-    1: {name: 'Bubbles', color:'blue'},
-    2: {name: 'Buttercup', color:'green'},
+    0: {name: 'Sonic', color:'blue'},
+    1: {name: 'Mario', color:'red'},
+    2: {name: 'Kirby', color:'pink'},
     length: 3
 }*/
 
@@ -89,7 +76,7 @@ result = extract(cartoons, function (result) {
     return result.name === 'Yoshi'
 })
 
-let cartoons1 = {
+var cartoons1 = {
     0: {name: 'Sonic', color: 'blue'},
     1: {name: 'Goku', color:'orange'},
     2: {name: 'Mario', color:'red'},
@@ -100,7 +87,7 @@ let cartoons1 = {
 }
 
 console.log(result)
-//-1
+//{length: 0}
 console.log(cartoons1)
 /*{
     0: {name: 'Sonic', color: 'blue'},
@@ -114,7 +101,7 @@ console.log(cartoons1)
 
 
 console.log('CASE 3')
-let str = 'Cartoons'
+var str = 'Cartoons'
 try {
     extract(str, function (result) {
         return result.name === 'Pac-Man'
