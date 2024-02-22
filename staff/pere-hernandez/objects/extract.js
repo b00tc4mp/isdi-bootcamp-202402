@@ -16,25 +16,20 @@ function extract(object, callback){
         throw new TypeError(callback + ' is not a Function')
         
     else {
-        let arrayObj = []
-        let found = -1
+        let found = {length: 0}
         
         for (let i = 0; i < object.length; i++){
             let elem = callback(object[i])
-            
-            if (elem && found === -1){
+            if (elem && found.length < 1){
                 found = object[i]
+                found.length = 1
+                delete object[i]
             } else
-                arrayObj[arrayObj.length] = object[i]
+                object[i - found.length] = object[i]
         }
 
-        if (found !== -1){
-            for (let i = 0; i < arrayObj.length; i++){
-                object[i] = arrayObj[i]
-            } 
-            delete object[object.length -1]
-            object.length--
-        }    
+        delete object[object.length - found.length]
+        object.length -= found.length
         return found
     }
 }
