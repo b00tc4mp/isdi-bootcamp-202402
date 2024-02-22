@@ -14,7 +14,7 @@ function remove(object, index) {
 
     else {
         removed = object[index]
-        for (let i = index; i < object.length; i++){
+        for (var i = index; i < object.length; i++){
             object[i] = object[i+1]
         }
         delete object[object.length - 1]

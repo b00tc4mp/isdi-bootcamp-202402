@@ -14,7 +14,7 @@ function insert(object, index, value) {
         throw new TypeError(index + ' is not a number')
     else {
         object.length++
-        for (let i = object.length - 1; i > index; i--){
+        for (var i = object.length - 1; i > index; i--){
             object[i] = object[i - 1]
         }
         object[index] = value

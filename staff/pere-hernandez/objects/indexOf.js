@@ -16,7 +16,7 @@ function indexOf (object, value){
     }
 
     else {
-        for (let i = 0; i < object.length; i++){
+        for (var i = 0; i < object.length; i++){
             if (object[i] === value)
                 return i
         }
@@ -32,7 +32,7 @@ var colors = {
     2: 'green',
     length: 3
 }
-let result = indexOf(colors, 'blue')
+var result = indexOf(colors, 'blue')
 console.log(result)
 //1
 
@@ -44,7 +44,7 @@ console.log(result)
 
 
 console.log('CASE 3')
-let str = "I'm not an object"
+var str = "I'm not an object"
 try{
     result = indexOf(str, 'yellow')
 } catch (error) {

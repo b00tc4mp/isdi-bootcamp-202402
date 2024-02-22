@@ -13,12 +13,12 @@ function insertMany(object, index, ...values) {
     else if (!(typeof index === 'number'))
         throw new TypeError(index + 'is not a number')
     else {
-        for (let i = 0; i < values.length; i++)
+        for (var i = 0; i < values.length; i++)
             object.length++
-        for (let i = object.length - 1; i > index; i--){
+        for (var i = object.length - 1; i > index; i--){
             object[i] = object[i - values.length]
         }
-        for (let i = 0; i < values.length;i++){
+        for (var i = 0; i < values.length;i++){
             object[i + index] = values[i]
         }
         return object.length

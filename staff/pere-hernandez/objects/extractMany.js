@@ -12,110 +12,86 @@ function extract(object, callback){
     if (object instanceof Object === false)
         throw new TypeError(object + ' is not an Object')
 
-    if (callback instanceof Function === false)
-        throw new TypeError(callback + ' is not a Function')        
-    
-    var extracted = {length: 0}
-    var count = 0
-    
-    for (var i = 0; i < object.length; i++){
-        var elem = callback(object[i])
+    else if (callback instanceof Function === false)
+        throw new TypeError(callback + ' is not a Function')
         
-        if (elem){                
-            extracted[count] = object[i]
-            count++
-            extracted.length = count
-        } else 
-            object[i - count] = object[i]
+    else {
+        var found = {length: 0}
         
+        for (var i = 0; i < object.length; i++){
+            var elem = callback(object[i])
+            if (elem && found.length < 1){
+                found = object[i]
+                found.length = 1
+                delete object[i]
+            } else
+                object[i - found.length] = object[i]
+        }
+
+        delete object[object.length - found.length]
+        object.length -= found.length
+        return found
     }
-    
-    for (var i = count; i < object.length; i++)
-        delete object[i]
-
-    object.length -= count   
-    return extracted
 }
-
 
 console.log('CASE 1')
 
-var cartoons = {
+var powerpuff = {
     0: {name: 'Sonic', color: 'blue'},
-    1: {name: 'Goku', color:'orange'},
-    2: {name: 'Mario', color:'red'},
-    3: {name: 'Kirby', color:'pink'},
-    4: {name: 'Naruto', color: 'orange'},
-    5: {name: 'Charizard', color: 'orange'},
-    length: 6
+    1: {name: 'Blossom', color:'pink'},
+    2: {name: 'Bubbles', color:'blue'},
+    3: {name: 'Buttercup', color:'green'},
+    length: 4
 }
 
-var result = extract(cartoons, function (result) {
-    return result.color === 'orange'
+var result = extract(powerpuff, function (result) {
+    return result.color === 'blue'
 })
 
 console.log(result)
+//{name:'Sonic', color: 'blue'}
+console.log(powerpuff)
 /*{
-    0: {name: 'Goku', color: 'orange'},
-    1: {name: 'Naruto', color: 'orange'},
-    2: {name: 'Charizard', color: 'orange'},
-    length: 3
-}*/
-console.log(cartoons)
-/*{
-    0: {name: 'Sonic', color:'blue'},
-    1: {name: 'Mario', color:'red'},
-    2: {name: 'Kirby', color:'pink'},
+    0: {name: 'Blossom', color:'pink'},
+    1: {name: 'Bubbles', color:'blue'},
+    2: {name: 'Buttercup', color:'green'},
     length: 3
 }*/
 
 
 console.log('CASE 2')
 
-result = extract(cartoons, function (result) {
-    return result.name === 'Yoshi'
+result = extract(powerpuff, function (result) {
+    return result.name === 'Mojo Yoyo'
 })
 
-var cartoons1 = {
-    0: {name: 'Sonic', color: 'blue'},
-    1: {name: 'Goku', color:'orange'},
-    2: {name: 'Mario', color:'red'},
-    3: {name: 'Kirby', color:'pink'},
-    4: {name: 'Naruto', color: 'orange'},
-    5: {name: 'Charizard', color: 'orange'},
-    length: 6
-}
-
 console.log(result)
-//{length: 0}
-console.log(cartoons1)
+//-1
+console.log(powerpuff)
 /*{
-    0: {name: 'Sonic', color: 'blue'},
-    1: {name: 'Goku', color:'orange'},
-    2: {name: 'Mario', color:'red'},
-    3: {name: 'Kirby', color:'pink'},
-    4: {name: 'Naruto', color: 'orange'},
-    5: {name: 'Charizard', color: 'orange'},
-    length: 6
+    0: {name: 'Blossom', color:'pink'},
+    1: {name: 'Bubbles', color:'blue'},
+    2: {name: 'Buttercup', color:'green'},
+    length: 3
 }*/
 
 
 console.log('CASE 3')
-var str = 'Cartoons'
+var str = 'Powerpuff Girls'
 try {
     extract(str, function (result) {
-        return result.name === 'Pac-Man'
+        return result.name === 'Bubbles'
     })
 } catch (error) {
     console.log(error)
-    //Cartoons is not an Object
+    //Powerpuff Girls is not an Object
 }
 
 
 console.log('CASE 4')
 try {
-    extract(cartoons, str) 
+    extract(powerpuff, str) 
 } catch (error) {
     console.log(error)
-    //Cartoons is not a Function
+    //Powerpuff Girls is not a Function
 }
