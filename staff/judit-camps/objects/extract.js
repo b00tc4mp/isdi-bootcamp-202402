@@ -10,13 +10,16 @@ function extract(object, callback) {
         if (callback(object[i])) {
             extracted = object[i]
             indexExtracted = i
+
+            break
         }
     }
-    for (var i = indexExtracted; i < object.length; i++) {
+    for (var i = indexExtracted; i < object.length - 1; i++) {
         object[i] = object[i + 1]
     }
-    delete object[object.length]
     object.length--
+    delete object[object.length]
+
     return extracted
 }
 
