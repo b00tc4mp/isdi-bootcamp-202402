@@ -5,12 +5,17 @@
  */
 function extractMany(object, callback) {
     var extracted = { length: 0 }
-    var indexExtracted = []
+    var indexExtracted = { length: 0 }
+
     for (var i = 0; i < object.length; i++) {
-        if (callback(object[i])) {
-            extracted[extracted.length] = object[i]
+        var element = object[i]
+        var matches = callback(element)
+
+        if (matches) {
+            extracted[extracted.length] = element
             extracted.length++
             indexExtracted[indexExtracted.length] = i
+            indexExtracted.length++
         }
     }
 
@@ -18,7 +23,9 @@ function extractMany(object, callback) {
         index = indexExtracted[i]
         delete object[index]
     }
+
     object.length = object.length - extracted.length
+
     return extracted
 }
 
