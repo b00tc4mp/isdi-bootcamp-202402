@@ -20,15 +20,33 @@ function forEach(array, callback) {
 console.log('CASE 1')
 
 var nums = [10, 20, 30, 40, 50]
+var other = [] // creamos una variable con array vacío, para meter la comprobación
 
 forEach(nums, function (num) {
-    console.log(num)
+    other[other.length] = num // vamos metiendo cada número en el nuevo array
 })
 // 10
 // 20
 // 30
 // 40
 // 50
+
+
+
+console.assert(nums[0] === 10, 10) // tenemos que comprobar que el valor original del array nums está bien
+console.assert(nums[1] === 20, 20) // aquí comprobamos los datos
+console.assert(nums[2] === 30, 30)
+console.assert(nums[3] === 40, 40)
+console.assert(nums[4] === 50, 50)
+console.assert(nums.length === 5, 5)
+
+console.assert(other[0] === nums[0], 0) // aquí comprobamos indices
+console.assert(other[1] === nums[1], 1)
+console.assert(other[2] === nums[2], 2)
+console.assert(other[3] === nums[3], 3)
+console.assert(other[4] === nums[4], 4)
+console.assert(other.length === nums.length, 5)
+
 
 console.log('CASE 2')
 
