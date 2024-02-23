@@ -34,5 +34,3 @@ var colors = {
 }
 var length = add(colors, 23)
 console.log(length)
-
-
