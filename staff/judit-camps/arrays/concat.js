@@ -18,6 +18,7 @@ console.log('CASE 1: Concat 3 arrays into one -> ["a", "b", "c", "d", "e", "f"]'
 var array1 = ['a', 'b', 'c'];
 var array2 = ['d', 'e', 'f'];
 var array3 = ['g', 'h', 'i'];
+var correct = ['a', 'b', 'c', 'd', 'e', 'f']
 var array4 = concat(array1, array2, array3);
 console.assert(array4[0] === 'a', 'a');
 console.assert(array4[1] === 'b', 'b');
