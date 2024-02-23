@@ -17,7 +17,9 @@ function at(array, index) {
 
     }
     
-// TERNARIO
+
+/*
+TERNARIO
 
 function at(array, index) {
 var targetIndex = index > -1? index : array.length + index
@@ -25,43 +27,47 @@ var targetIndex = index > -1? index : array.length + index
 var element = array[targetIndex]
 
 return element
+*/
 
 
+console.log('CASE 1')
 
+var nums = [100, 200, 300, 400, 500]
 
-
-// CASE 1
-
-///var nums = [100, 200, 300, 400, 500]
-
-//var num = at(nums, 3)
+var num = at(nums, 3)
 
 //console.log(num)
 // 400
 
-// CASE 2
+console.assert(num === 400, '400')
 
-//var chars = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o']
+console.log('CASE 2')
 
-//var char = at(chars, 5)
+var chars = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o']
+
+var char = at(chars, 4)
 
 //console.log(char)
 // ' '
 
-// CASE 3
+console.assert(char === ' ')
+
+console.log('CASE 3')
 
 var chars = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o']
 
 var char = at(chars, -3)
 
-console.log(char)
+//console.log(char)
 // 'n'
 
-/* CASE 4
+console.assert(char === 'n')
+
+
+console.log('CASE 4')
 
 var chars = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o']
 
 var char = at(chars, -30)
 
-console.log(char) */
-// undefined
+console.assert(char === undefined)

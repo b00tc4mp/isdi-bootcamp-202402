@@ -17,21 +17,21 @@ function from(element, formula) {
     }
 }
 
-//CASE 1
+console.log('CASE 1')
 
 var str = 'papaya'
 var result = from(str)
 console.log(result)
 //['p', 'a', 'p', 'a', 'y', 'a']
 
-//CASE 2
+console.log('CASE 2')
 
 var arr = [1, 2, 3]
 var result = from(arr, (x) => x + 1)
 console.log(result)
 //[2, 3, 4]
 
-//CASE 3
+console.log('CASE 3')
 var result = from(arr, (x) => x + x)
 console.log(result)
 //[2, 4, 6]

@@ -1,24 +1,54 @@
-function find(array, func) {
-    let newArr = []
+delete Array.prototype.find
 
-    for (let i = 0; i < array.length; i++) {
-        let element = array[i]
+function find(array, callback) {
+    // TODO input validation
 
-        if (func(element)) {
-            
+    // [5, 12, 8, 130, 44]
 
-            newArr[newArr.length] = element
-            break
+    // var elem = array[0]
+    // var matches = callback(elem)
+    // if (matches) return elem
 
+    // var elem = array[1]
+    // var matches = callback(elem)
+    // if (matches) return elem
+
+    // var elem = array[1]
+    // var matches = callback(elem)
+    // if (matches) return elem
+
+    for (var i = 0; i < array.length; i++) {
+        var elem = array[i]
+
+        var matches = callback(elem)
+
+        if (matches) {
+
+            return elem
         }
-
     }
-       return newArr
 }
 
-let arr1 = ['dog', 'cat', 'parrot']
-let evenNumber = function(string) {
-    return string.length > 3
-}
+//console.log('CASE 1: find first number greater than 20')
 
-console.log(find(arr1, evenNumber))
+var nums = [5, 12, 8, 130, 44]
+
+var found = find(nums, function (element) { return element > 20 })
+
+
+console.log(nums)
+
+console.log(found)
+
+
+
+console.assert(found === 131, '130')
+// 130
+
+console.assert(nums[0] === 5, '5')
+console.assert(nums[1] === 12, '12')
+console.assert(nums[2] === 8, '8')
+console.assert(nums[3] === 130, '130')
+console.assert(nums[4] === 44, '44')
+console.assert(nums.length === 5, '5')
+// [5, 12, 8, 130, 44]
