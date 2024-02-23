@@ -6,10 +6,29 @@
  * 
  * @throws {TypeError} When object is not an object, or when index is not a number.
  */
+
 function remove(object, index) {
     
-    if (!(object instanceof Object)) throw new TypeError(object + ' is not an Object')
+    if (object instanceof Object === false) { //si index no es objeto 
+        throw new TypeError (object + ' is not an Object')
+
+    }else if(typeof index !== 'number') { //si index no es número )
+        throw new TypeError (index + ' is not a Number')
+    
+    }else { 
+            var removedObject = object[index] // 'blue'
+
+            for (var i = index; i < object.length; i++) { //i = index (1) índice donde empieza a recorrer
+                object[i] = object[i + 1] // i = 1 --> 'blue' // object[i (1) + index (1)] --> 'green' 
+            }    
+                
+            delete object[object.length - 1] //elimina la última posición del objeto
+            object.length--  // elimina uno la largada del objeto
+
+            return removedObject 
+    }
 }
+
 
 console.log('CASE 1: remove blue from index 1')
 
@@ -76,7 +95,6 @@ try {
 }
 
 console.log('CASE 5: fails on undefined as index parameter')
-
 var colors = {
     0: 'red',
     1: 'blue',

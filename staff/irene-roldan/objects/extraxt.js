@@ -7,14 +7,22 @@
  * @throws {TypeError} When object is not an object, or when index is not a number.
  */
 function extract(object, callback) {
-    for (let i = 0; i < object.length; i++) {
-        
-        if (callback(object[i])) {
-            object[i] = object[object.length-1]
-            object.length--
-            return object[i]
-            
+    if(object instanceof Object){ //si es un objeto 
+    var extracted = {} // variable que guarda el objeto que coincide con la condición de callback
+    
+    for (var i = 0; i < object.length; i++) { //recorre el objeto
+        if (callback(object[i], i, object)) { //callback(pepito, 2, object)
+            extracted = object[i] // extracted = { name: 'Pepito', age: 50 }
+            for (var j = i; j < object.length; j++) { // recorre desde el i de pepito el resto del objeto 
+                object[j] = object[j + 1] //object[2] = object[3] --> copia en la posición de 'Pepito' el siguiente índice. 
+            }
+            object.length-- //resta una a la longitud 
+            delete object[object.length] //elimina el último objeto 
         }
+    }
+    return extracted //devuelve el objeto extraído
+    } else{
+        throw TypeError (object + ' is not an object') // si no error
     }
 }
 
@@ -46,3 +54,12 @@ console.log(users)
     length: 4
 }
 */
+
+console.log('CASE 2: number is not an object')
+
+try {
+    extract(5)
+} catch (error) {
+    console.log(error)
+    // TypeError: 5 is not an Object
+}
