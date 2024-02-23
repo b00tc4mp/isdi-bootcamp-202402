@@ -1,14 +1,14 @@
 delete String.prototype.split
-debugger
+
 
 function split(string, separator) {
-    debugger
+    
     let words = []
     let count = 0
     let word = ''
     for (let i = 0; i < string.length; i++){        
         if (string[i] !== separator){
-            debugger
+            
             word = word + string[i]
         } else {
             words[count] = word

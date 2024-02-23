@@ -1,20 +1,20 @@
-debugger
+
 function slice(string, indexStart, indexEnd){
     var newStr = ''
-    debugger
+    
     if (indexStart >= 0){
-        debugger
+        
         for (var i = indexStart; i < indexEnd; i++){
         newStr = newStr + string[i]
         }
 
     } else if (indexEnd === undefined){
-        debugger
+        
         for (var i = string.length + indexStart; i < string.length; i++){
         newStr = newStr + string[i] 
         }
     } else {
-        debugger
+        
         for (var i = string.length + indexStart; i < (string.length) + indexEnd; i++){
         newStr = newStr + string[i] 
         }

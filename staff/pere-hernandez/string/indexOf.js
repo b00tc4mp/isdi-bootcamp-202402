@@ -1,14 +1,13 @@
 delete String.prototype.indexOf
 
-debugger
 
 function indexOf(string, searchString) {
-    debugger
+    
     let comparativeStr = ''
     for (let i = 0; i < string.length; i++){
-        debugger        
+                
         if (string[i] === searchString[0]){
-            debugger
+            
             comparativeStr = string[i]
             for (let j = 1; j < searchString.length; j++){
                 comparativeStr = comparativeStr + string[i+j]

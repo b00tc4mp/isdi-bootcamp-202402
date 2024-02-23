@@ -1,7 +1,7 @@
 delete String.prototype.startsWith
 
 function startsWith(string, searchString) {
-    debugger
+    
     let newStr = ''
     for (let i = 0; i < searchString.length; i++){
         newStr = newStr + string[i]

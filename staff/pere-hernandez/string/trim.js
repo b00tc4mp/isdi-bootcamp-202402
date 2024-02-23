@@ -2,8 +2,6 @@ delete String.prototype.trim
 
 function trim(string) {
     
-    debugger
-
     let newStr = ''
     let backwardsStr = ''
     let begins = false

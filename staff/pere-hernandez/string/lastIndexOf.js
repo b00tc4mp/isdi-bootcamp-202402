@@ -1,8 +1,7 @@
 delete String.prototype.lastIndexOf
-debugger
 
 function lastIndexOf(string, searchString) {
-    debugger
+    
     let index
     for (let i = 0; i < string.length; i++){
         if (string[i] === searchString[0]){

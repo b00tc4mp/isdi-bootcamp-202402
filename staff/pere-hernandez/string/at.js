@@ -1,6 +1,6 @@
-debugger
+
 function at(string, index){
-    debugger
+    
     if (index >= 0)
         return string[index]
     else if (index < 0)
