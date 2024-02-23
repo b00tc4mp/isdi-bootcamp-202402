@@ -1,44 +1,82 @@
-debugger
-
 delete Array.prototype.concat
 
-function concat(array, ...element){
+function concat(array, ...elements){
+    if (array instanceof Array === false)
+        throw new TypeError(array + ' is not an Array')
     
     var newArray = []
     for (var i = 0; i < array.length; i++){
         newArray[i] = array[i]
     }
 
-    for (var i = 0; i < element.length; i++){
-        if (element[i] instanceof Array){
-            for (var j = 0; j < element[i].length; j++){
-                newArray[newArray.length] = element[i][j]
+    for (var i = 0; i < elements.length; i++){
+        if (elements[i] instanceof Array){
+            for (var j = 0; j < elements[i].length; j++){
+                newArray[newArray.length] = elements[i][j]
             }
         } else {
-            newArray[newArray.length] = element[i]
+            newArray[newArray.length] = elements[i]
         }
     }
     return newArray
 }
 
-//CASE 1
+
+function assert(arrayResult, ...elements){
+    let currentIndex = 0
+    
+    for (let i = 0; i < elements.length; i++){
+        if (elements[i] instanceof Array){
+            for (let j = 0; j < elements[i].length; j++){
+                console.assert(arrayResult[j + currentIndex] === elements[i][j], elements[i][j])
+            }
+            currentIndex += elements[i].length 
+        } else {
+            console.assert(arrayResult[currentIndex] === elements[i], elements[i])
+            currentIndex++
+        }
+           
+    }  
+}
+
+console.log('CASE 1')
 
 let arr1 = ['kill', 'me', 'please']
 let arr2 = ['I', "can't", 'take', 'it', 'anymore']
 let result = concat(arr1, arr2)
-console.log(result)
-//['kill', 'me', 'please','I',"can't", 'take', 'it', 'anymore']
+assert(result, arr1, arr2)
 
-//CASE 2
+
+console.log('CASE 2')
 
 let arr3 = ['make', 'it', 'stop']
 let result1 = concat(arr1, arr2, arr3)
-console.log(result1)
-//['kill', 'me', 'please', 'I', "can't", 'take', 'it', 'anymore', 'make', 'it', 'stop']
+assert(result1, arr1, arr2, arr3)
 
-//CASE 3
+
+console.log('CASE 3')
 
 let str = 'please'
 let result2 = concat(arr1, arr2, arr3, str)
-console.log(result2)
-//['kill', 'me', 'please', 'I', "can't", 'take', 'it', 'anymore', 'make', 'it', 'stop, 'please']
+assert(result2, arr1, arr2, arr3, str)
+
+
+console.log('CASE 4')
+
+let obj = {name: 'Pepito'}
+let result3 = concat(arr1, obj)
+
+for (var i = 0; i < arr1.length; i++){
+    console.assert(result3[i] === arr1[i], arr1[i])
+}
+console.assert(result3[arr1.length].name === obj.name, 'Pepito')
+
+
+console.log('CASE 5')
+
+try {
+    var result4 = concat(obj, arr1)
+} catch(error){
+    console.assert(error.message === "[object Object] is not an Array", 'error')
+    console.assert(result4 === undefined)
+}
