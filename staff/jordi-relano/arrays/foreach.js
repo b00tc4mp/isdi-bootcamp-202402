@@ -14,9 +14,6 @@ function forEach(array, callback) {
     }
 }
 
-
-
-
 console.log('CASE 1')
 
 var nums = [10, 20, 30, 40, 50]
@@ -139,4 +136,26 @@ try {
 } catch (error) {
     console.log(error)
     // TypeError: boolean false is not a function
+}
+
+try {
+    forEach(nums)
+} catch (error) {
+    console.assert(error.name === 'TypeError', 'name')
+    console.assert(error.message === 'undefined is not a function', 'message')
+}
+
+
+try {
+    forEach(nums, {})
+} catch (error) {
+    console.assert(error.name === 'TypeError', 'name')
+    console.assert(error.message === '[object Object] is not a function', 'message')
+}
+
+try {
+    forEach(nums, null)
+} catch (error) {
+    console.assert(error.name === 'TypeError', 'name')
+    console.assert(error.message === '[object Object] is not a function', 'message')
 }
