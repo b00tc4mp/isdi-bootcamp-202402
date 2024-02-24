@@ -14,7 +14,7 @@ function forEach(array, callback) {
     }
 }
 
-console.log('CASE 1')
+console.log('lololololo')
 
 var nums = [10, 20, 30, 40, 50]
 var other = [] // creamos una variable con array vacío, para meter la comprobación
@@ -157,5 +157,5 @@ try {
     forEach(nums, null)
 } catch (error) {
     console.assert(error.name === 'TypeError', 'name')
-    console.assert(error.message === '[object Object] is not a function', 'message')
+    console.assert(error.message === 'null is not a function', 'message')
 }
