@@ -41,25 +41,23 @@ var user = extract(users, function (user) {
     return user.name === 'Pepito'
 })
 
-console.log(user)
-// { name: 'Pepito', age: 50 }
 
-console.log(users)
-/*
-{
-    0: { name: 'Wendy', age: 19 },
-    1: { name: 'Peter', age: 20 },
-    2: { name: 'Campa', age: 30 },
-    3: { name: 'James', age: 40 },
-    length: 4
-}
-*/
+console.assert(user.name === 'Pepito' && user.age === 50, 'Extracted Pepito')
+console.assert(users.length === 4, 4)
+console.assert(users[0].name === 'Wendy' && users[1].name === 'Peter' && users[2].name === 'Campa' && users[3].name === 'James', 'users')
+
 
 console.log('CASE 2: number is not an object')
 
-try {
-    extract(5)
-} catch (error) {
-    console.log(error)
-    // TypeError: 5 is not an Object
-}
+console.assert(
+    function(){
+        try {
+            extract(5)
+            return false
+        } catch (error) {
+            console.log(error)
+            return true
+        }
+    }(),
+    'Adding a number should throw an error'
+)

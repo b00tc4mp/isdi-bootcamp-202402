@@ -7,10 +7,10 @@
  * @throws {TypeError} When object is not an object, or when index is not a number.
  */
 
-function indexOf(object, value) {
+const indexOf = (object, value) => {
     if(object instanceof Object){
-        for (var i = 0; i < object.length; i++) {
-            var element = object[i]
+        for (let i = 0; i < object.length; i++) {
+            let element = object[i]
 
             if (element === value) {
                 return i
@@ -24,46 +24,48 @@ function indexOf(object, value) {
 
 console.log('CASE 1: index of blue in colors')
 
-var colors = {
+const colors = {
     0: 'red',
     1: 'blue',
     2: 'green',
     length: 3
 }
 
-var index = indexOf(colors, 'blue')
+const index = indexOf(colors, 'blue')
 
-console.assert(index === 1, 'index should be 1')
+console.log(index)
+// 1
 
-console.assert(colors[0] === 'red' && colors[1] === 'blue' && colors[2] === 'green', 'colors')
-console.assert(colors.length === 3, 'colors.length should be 3')
-
+console.log(colors)
+/*
+{
+    0: 'red',
+    1: 'blue',
+    2: 'green',
+    length: 3
+}
+*/
 
 console.log('CASE 2: error is not an object')
 
-console.assert(
-    function(){
-        try {
-            indexOf()
-            return false
-        } catch (error) {
-            console.log(error)
-            return true
-        }
-    }(),
-    'CASE 2: error is not an object'
-)
+try {
+    indexOf()
+} catch (error) {
+    console.log(error)
+    // TypeError: undefined is not an Object
+}
 
 
 console.log('CASE 3: index not found')
 
-var colors = {
+const colors2 = {
     0: 'red',
     1: 'blue',
     2: 'green',
     length: 3
 }
 
-var index = indexOf(colors, 'violet')
+const index2 = indexOf(colors2, 'violet')
 
-console.assert(index === -1, 'index not found should be -1')
+console.log(index2)
+// -1
