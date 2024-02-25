@@ -21,10 +21,10 @@ var evenNumber = function (num) {
 
 var result = every(arr1, evenNumber)
 
-console.log(result)
+//console.log(result)
 //true
 
-console.assert(result) === true
+console.assert(result === true)
 
 
 
@@ -38,7 +38,7 @@ var biggerThanTen = function (num) {
 
 var result = every(arr1, biggerThanTen)
 
-console.log(result)
+//console.log(result)
 //true
 
-console.assert(result) === true
+console.assert(result === true) 

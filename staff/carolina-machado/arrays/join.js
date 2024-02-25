@@ -20,36 +20,36 @@ function joinArray(array, separator) {
     return string
 }
 
-//CASE 1
+console.log('CASE 1')
 
 var arr = ['hola', 'caracola', 'venite']
 var result = joinArray(arr,' ')
 console.log(result)
 //'hola caracola venite'
 
-//CASE 2
+console.log('CASE 2')
 var arr1 = [1, 2, 3]
 result  = joinArray(arr1, '-')
 console.log(result)
 //'1-2-3'
 
-//CASE 3
+console.log('CASE 3')
 result = joinArray(arr)
 console.log(result)
 //hola,caracola,venite
 
-//CASE 4
+console.log('CASE 4')
 result  = joinArray(arr1, '')
 console.log(result)
 //'123'
 
-//CASE 5
+console.log('CASE 5')
 let matrix = [[1,2,3],[4,5,6],[7,8,9]]
 result = joinArray(matrix, ';')
 console.log(result)
 //'1,2,3;4,5,6;7,8,9'
 
-//CASE 6
+console.log('CASE 6')
 let arr2 = []
 let arr3 = [1, [3, arr2, 4], 2]
 result = joinArray(arr3, ";")

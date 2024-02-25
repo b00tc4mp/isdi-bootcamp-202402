@@ -13,7 +13,7 @@ function map(array, callback) {
 
     return newArray
 }
-
+/*
 console.log('CASE 1')
 
 var nums = [1, 4, 9, 16]
@@ -42,11 +42,16 @@ var numsX2 = map(nums, function (x) { return x * 2 })
 
 // return newArray
 
-console.log(numsX2)
+//console.log(numsX2)
 // [2, 8, 18, 32]
 
-console.log(nums)
+//console.log(nums)
 // [1, 4, 9, 18]
+
+console.assert(numsX2[0] === 2)
+console.assert(numsX2[1] === 8)
+console.assert(numsX2[2] === 18)
+console.assert(numsX2[3] === 32)
 
 
 console.log('CASE 2')
@@ -57,10 +62,18 @@ var numsX100 = map(nums, function (num) {
     return num * 100
 })
 
-console.log(numsX100)
+//console.log(numsX100)
 // [1000, 2000, 3000, 4000, 5000]
-console.log(nums)
+//console.log(nums)
 // [10, 20, 30, 40, 50]
+
+console.assert(numsX100[0] === 1000)
+console.assert(numsX100[1] === 2000)
+console.assert(numsX100[2] === 3000)
+console.assert(numsX100[3] === 4000)
+console.assert(numsX100[4] === 5000)
+
+
 
 console.log('CASE 3')
 
@@ -70,10 +83,16 @@ var charsInUpper = map(chars, function (char) {
     return char.toUpperCase()
 })
 
-console.log(charsInUpper)
+//console.log(charsInUpper)
 // ['A', 'B', 'C']
-console.log(chars)
+//console.log(chars)
 // ['a', 'b', 'c']
+
+console.assert(charsInUpper[0] === 'A')
+console.assert(charsInUpper[1] === 'B')
+console.assert(charsInUpper[2] === 'C')
+
+
 
 
 console.log('CASE 4')
@@ -84,13 +103,19 @@ var result = map(nums, function (element, index, array) {
     return element + ', ' + index + ', [' + array + ']'
 })
 
-console.log(result)
+//console.log(result)
 //['10, 0, [10,20,30]', '20, 1, [10,20,30]', '30, 2, [10,20,30]']
 
-console.log(nums)
+//console.log(nums)
 // [10, 20, 30]
 
 
+console.assert(result[0] === "10, 0, [10,20,30]")
+console.assert(result[1] === "20, 1, [10,20,30]")
+console.assert(result[2] === "30, 2, [10,20,30]")
+
+
+*/
 console.log('CASE 5')
 
 var data = [
@@ -118,17 +143,17 @@ function calculateCake(element, index, array) {
 
 var cake = map(data, calculateCake)
 
-console.log(cake)
+//console.log(cake)
 /*
 [
-    { name: 'Peter', piece:  },
-    { name: 'Wendy', piece:  },
-    { name: 'Pepito', piece:  },
-    { name: 'Campa', piece:  }
+  { name: 'Peter', piece: 28.48 },
+  { name: 'Wendy', piece: 30.38 },
+  { name: 'Pepito', piece: 18.99 },
+  { name: 'Campa', piece: 22.15 }
 ]
 */
 
-console.log(data)
+//console.log(data)
 /*
 [
     { name: 'Peter', mark: 9 },
@@ -137,3 +162,13 @@ console.log(data)
     { name: 'Campa', mark: 7 }
 ]
 */
+
+
+console.assert(cake[0].name === "Peter");
+console.assert(cake[0].piece === 28.48);
+console.assert(cake[1].name === "Wendy");
+console.assert(cake[1].piece === 30.38);
+console.assert(cake[2].name === "Pepito");
+console.assert(cake[2].piece === 18.99);
+console.assert(cake[3].name === "Campa");
+console.assert(cake[3].piece === 22.15);

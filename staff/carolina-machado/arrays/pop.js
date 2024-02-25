@@ -11,7 +11,7 @@ function pop(array) {
     }
 }
 
-// CASE 1
+console.log('CASE 1')
 
 var nums = [100, 200, 300, 400, 500]
 
@@ -24,11 +24,18 @@ console.log(nums.length)
 console.log(nums)
 // [100, 200, 300, 400]
 
-// CASE 2
+console.assert(num === 500, '500')
+console.assert(nums.length === 4, 'length: 4')
+console.assert(nums[0] === 100, '100')
+console.assert(nums[1] === 200, '200')
+console.assert(nums[2] === 300, '300')
+console.assert(nums[3] === 400, '400')
 
-//var animals = ['pigs', 'goats', 'sheep', 'cows']
+console.log('CASE 2')
 
-//var animal = pop(animals)
+var animals = ['pigs', 'goats', 'sheep', 'cows']
+
+var animal = pop(animals)
 
 //console.log(animal)
 // 'cows'
@@ -37,11 +44,17 @@ console.log(nums)
 //console.log(animals)
 // ['pigs', 'goats', 'sheep']
 
-// CASE 3
+console.assert(animal === 'cows', 'cows')
+console.assert(animals.length === 3, 'length: 3')
+console.assert(animals[0] === 'pigs', 'pigs')
+console.assert(animals[1] === 'goats', 'goats')
+console.assert(animals[2] === 'sheep', 'sheep')
 
-//var sports = ['soccer', 'baseball']
+console.log('CASE 3')
 
-//var sport = pop(sports)
+var sports = ['soccer', 'baseball']
+
+var sport = pop(sports)
 
 //console.log(sport)
 // 'baseball'
@@ -50,11 +63,15 @@ console.log(nums)
 //console.log(sports)
 // ['soccer']
 
-// CASE 4
+console.assert(sport === 'baseball', 'baseball')
+console.assert(sports.length === 1, 'length:1')
+console.assert(sports[0] === 'soccer', 'soccer')
 
-//var sports = []
+console.log('CASE 4')
 
-//var sport = pop(sports)
+var sports = []
+
+var sport = pop(sports)
 
 //console.log(sport)
 // undefined
@@ -62,3 +79,7 @@ console.log(nums)
 // 0
 //console.log(sports)
 // []
+
+console.assert(sport === undefined, 'undefined')
+console.assert(sports.length === 0, '0')
+console.assert(sports[0] === undefined, 'empty array')
