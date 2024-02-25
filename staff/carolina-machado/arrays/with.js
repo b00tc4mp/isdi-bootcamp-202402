@@ -2,8 +2,8 @@
 
 function withFunc(array, index, value) {
 
-        let newArray = []
-        for (let i = 0; i < array.length; i++){
+        var newArray = []
+        for (var i = 0; i < array.length; i++){
             if (i === index)
                 newArray[i] = value
             else if (array[i] == null)
@@ -20,10 +20,12 @@ function withFunc(array, index, value) {
 
 //console.log('CASE 1')
 
-let arr = [1, 2, 3, 4, 5];
+var arr = [1, 2, 3, 4, 5];
 
-console.log(withFunc(arr, 2, 6));
+var console.log(withFunc(arr, 2, 6));
 
 // [1, 2, 6, 4, 5]
 console.log(arr);
 // [1, 2, 3, 4, 5]
+
+console.assert()
