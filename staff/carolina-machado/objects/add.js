@@ -25,10 +25,10 @@ var colors = {
 
 var length = add(colors, 'violet')
 
-console.log(length)
+//console.log(length)
 // 4
 
-console.log(colors)
+//console.log(colors)
 /*
 {
     0: 'red',
@@ -38,3 +38,11 @@ console.log(colors)
     length: 4
 }
 */
+
+console.assert(colors[0] === 'red', 'red')
+console.assert(colors[1] === 'blue', 'blue' )
+console.assert(colors[2] === 'green', 'green')
+console.assert(colors[3] === 'violet', 'violet')
+
+console.assert(length === 4)
+
