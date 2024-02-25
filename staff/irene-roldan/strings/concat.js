@@ -1,9 +1,8 @@
 delete String.prototype.concat
 
-function concat(element1, element2, separator){ //SI SOLO CONCADENA DOS ELEMENTOS
-    var result = element1 + separator + element2
-
-    return result
+function concat(element1, element2, separator) {
+    var result = element1 + separator + element2;
+    return result;
 }
 
 
@@ -34,3 +33,12 @@ var str4 = 'you'
 
 var char = concat([str1, str2, str3, str4], ' ')
 console.assert(char === 'World How are you', 'Expected "World How are you"')
+
+
+console.log('CASE 3')
+
+var str1 = 'Hello'
+var str2 = 'World'
+
+var char = concat([str2, str1, str2], ' ')
+console.assert(char === 'World Hello World', 'World Hello World')
