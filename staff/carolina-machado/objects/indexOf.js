@@ -19,13 +19,11 @@ var colors = {
     2: 'green',
     length: 3
 }
-
 var index = indexOf(colors, 'blue')
 
-console.log(index)
+//console.log(index)
 // 1
-
-console.log(colors)
+//console.log(colors)
 /*
 {
     0: 'red',
@@ -34,3 +32,8 @@ console.log(colors)
     length: 3
 }
 */
+
+console.assert(index === 1, 1)
+
+
+
