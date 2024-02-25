@@ -14,15 +14,28 @@ function concat(...strings) {
     return finalString
 }
 
+
+var results = []
+var expected = []
 // CASE 1
 var s = 'hello'
 var con = concat(s, ' ', 'world')
-console.log(con)
-// hello world
+results[results.length] = con
+expected[expected.length] = 'hello world'
 
 
 // CASE 2
 var n = 4
 var con = concat(n, 5)
-console.log(con)
-// hello world
+results[results.length] = con
+expected[expected.length] = '45'
+
+
+function assertResultsStrings(results, expected) {
+    for (var i = 0; i < results.length; i++) {
+        console.log('CASE ' + (i + 1))
+        console.assert(results[i] === expected[i], expected[i])
+    }
+}
+
+assertResultsStrings(results, expected)

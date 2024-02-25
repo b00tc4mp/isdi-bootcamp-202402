@@ -1,7 +1,6 @@
 delete String.prototype.trim
 
 function trim(string) {
-    debugger
     var reversedString = ''
     var wordStarted = false
     var finalString = ''
@@ -29,20 +28,27 @@ function trim(string) {
 
 }
 
+
+var results = []
+var expected = []
+
 // CASE 1
-
 var s = '  hola mundo   '
+results[results.length] = trim(s)
+expected[expected.length] = 'hola mundo'
 
-var result = trim(s)
-
-console.log(result)
-// 'hola mundo'
 
 // CASE 2
-
 var s = ' \n\s\r hola mundo \n\s\r '
+results[results.length] = trim(s)
+expected[expected.length] = 'hola mundo'
 
-var result = trim(s)
 
-console.log(result)
-// 'hola mundo'
+function assertResultsStrings(results, expected) {
+    for (var i = 0; i < results.length; i++) {
+        console.log('CASE ' + (i + 1))
+        console.assert(results[i] === expected[i], expected[i])
+    }
+}
+
+assertResultsStrings(results, expected)

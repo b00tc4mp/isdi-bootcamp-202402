@@ -10,20 +10,28 @@ function startsWith(string, searchString) {
     return false
 }
 
+
+var results = []
+var expected = []
+
+
 // CASE 1
-
 var s = 'hola mundo'
+results[results.length] = startsWith(s, 'hol')
+expected[expected.length] = true
 
-var result = startsWith(s, 'hol')
-
-console.log(result)
-// true
 
 // CASE 2
-
 var s = 'hola mundo'
+results[results.length] = startsWith(s, 'holo')
+expected[expected.length] = false
 
-var result = startsWith(s, 'holo')
 
-console.log(result)
-// false
+function assertResultsStrings(results, expected) {
+    for (var i = 0; i < results.length; i++) {
+        console.log('CASE ' + (i + 1))
+        console.assert(results[i] === expected[i], expected[i])
+    }
+}
+
+assertResultsStrings(results, expected)
