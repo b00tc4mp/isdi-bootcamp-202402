@@ -15,15 +15,25 @@ function from(arrayLike, formula) {
 }
 
 
-// CASE 1
+var expected = []
+var results = []
+
+function assertArrays(results, expected) {
+    for (var i = 0; i < results.length; i++) {
+        console.assert(results[i] === expected[i], expected[i])
+    }
+}
+
+console.log('CASE 1')
+results = (from('foo'));
+expected = ["f", "o", "o"]
+assertArrays(results, expected)
 
 
-console.log(from('foo'));
-// Expected output: Array ["f", "o", "o"]
+console.log('CASE 2')
+results = (from([1, 2, 3], function (x) { return x + x }));
+expected = [2, 4, 6]
+assertArrays(results, expected)
 
 
-
-// CASE 2
-console.log(from([1, 2, 3], function (x) { return x + x }));
-// Expected output: Array [2, 4, 6]
 

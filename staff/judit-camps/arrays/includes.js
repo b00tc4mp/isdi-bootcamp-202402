@@ -20,27 +20,40 @@ function includes(array, searchElement, fromIndex) {
     return included
 }
 
+function assertArrays(results, expected) {
+    for (var i = 0; i < results.length; i++) {
+        console.log('CASE ' + (i + 1))
+        console.assert(results[i] === expected[i], expected[i])
+    }
+}
+
+var results = []
+var expected = []
 
 // CASE 1
 var array1 = [1, 2, 3];
-console.log(includes(array1, 2));
-// true
+results[results.length] = (includes(array1, 2));
+expected[expected.length] = true
 
 
 // CASE 2
 var pets = ['cat', 'dog', 'bat'];
-console.log(includes(pets, 'cat'));
-// true
-console.log(includes(pets, 'at'));
-// false
-
+results[results.length] = (includes(pets, 'cat'));
+expected[expected.length] = true
 
 // CASE 3
-var arr = ["a", "b", "c"];
-console.log(includes(arr, "c", 3));
-// false
-console.log(includes(arr, "c", 100));
-// false
+results[results.length] = (includes(pets, 'at'));
+expected[expected.length] = false
 
 
 // CASE 4
+var arr = ["a", "b", "c"];
+results[results.length] = (includes(arr, "c", 3));
+expected[expected.length] = false
+
+// CASE 5
+results[results.length] = (includes(arr, "c", 100));
+expected[expected.length] = false
+
+
+assertArrays(results, expected)
