@@ -9,7 +9,7 @@ function pushy(array, element1) {
 
     return array.length
 }
-/*
+
 console.log('CASE 1')
 
 var nums = [100, 200, 300, 400, 500]
@@ -112,7 +112,7 @@ console.assert(nums[9] === nums[9], '110')
 console.assert(nums[10] === nums[10], '120')
 console.assert(nums[11] === nums[11], '130')
 
-*/
+
 
 console.log('CASE 6')
 
@@ -127,7 +127,7 @@ var length = pushy(cart, { brand: 'mango', what: 'gloves' }, { brand: 'sara', wh
 
 //console.log(length)
 // 5
-console.log(cart)
+//console.log(cart)
 /* [
     { brand: 'adidas', what: 'socks' },
     { brand: 'nike', what: 'shoes' },
@@ -136,3 +136,13 @@ console.log(cart)
     { brand: 'sara', what: 'glasses '}
 ] */
 
+console.assert(cart[0].brand === "adidas");
+console.assert(cart[0].what === 'socks');
+console.assert(cart[1].brand === "nike");
+console.assert(cart[1].what === 'shoes');
+console.assert(cart[2].brand === "hat");
+console.assert(cart[2].what === 'skater');
+console.assert(cart[3].brand === "mango");
+console.assert(cart[3].what === 'gloves');
+console.assert(cart[4].brand === "sara");
+console.assert(cart[4].what === 'glasses');

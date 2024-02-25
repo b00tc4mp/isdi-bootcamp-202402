@@ -16,7 +16,7 @@ function shift(array) {
     return first
 }
 
-// CASE 1
+console.log('CASE 1')
 
 var nums = [10, 20, 30]
 
@@ -30,14 +30,21 @@ var firstElement = shift(nums)
 // return first
 // Array { 0: 20, 1: 30, length: 2 }
 
-console.log(nums)
+//console.log(nums)
 // Expected output: Array [20, 30]
 
-console.log(firstElement)
+//console.log(firstElement)
 // Expected output: 10
 
 
-// CASE 2
+console.assert(firstElement === 10, '10')
+
+
+console.assert(nums[0] === 20, '20')
+console.assert(nums[1] === 30, '30')
+
+
+console.log('CASE 2')
 
 var animals = ['elephant', 'sheep', 'cow', 'dog']
 
@@ -50,14 +57,21 @@ var firstElement = shift(animals)
 // array.length-- // Array { 0: sheep, 1: cow, 2: dog, length: 3 }
 // return first
 
-console.log(animals)
+//console.log(animals)
 // ['sheep', 'cow', 'dog']
 
-console.log(firstElement)
+//console.log(firstElement)
 // 'elephant'
 
 
-// CASE 3
+
+console.assert(firstElement === 'elephant', 'elephant')
+
+console.assert(animals[0] === 'sheep', 'sheep')
+console.assert(animals[1] === 'cow', 'cow')
+console.assert(animals[2] === 'dog', 'dog')
+
+console.log('CASE 3')
 
 var cocktails = ['margharita', 'sex on the beach', 'bloody mary', 'gintonic', 'mojito', 'daikiri']
 
@@ -72,14 +86,16 @@ var firstElement = shift(cocktails)
 // array.length-- // Array { 0: 'sex on the beach', 1: 'bloody mary', 2: 'gintonic', 3: 'mojito', 4: 'daikiri', length: 5 }
 // return first
 
-console.log(cocktails)
+//console.log(cocktails)
 // ['sex on the beach', 'bloody mary', 'gintonic', 'mojito', 'daikiri']
 
-console.log(firstElement)
+//console.log(firstElement)
 // 'margharita'
 
 
-// CASE 4
+console.assert(firstElement === 'margharita', 'margharita')
+
+console.log('CASE 4')
 
 var nums = [10, 20]
 
@@ -91,19 +107,25 @@ var firstElement = shift(nums)
 // array.length-- // Array {  0: 20, length: 1 }
 // return first
 
-console.log(nums)
+//console.log(nums)
 // [20]
 
-console.log(firstElement)
+//console.log(firstElement)
 // 10
 
-// CASE 5
+
+console.assert(firstElement === 10, '10')
+
+console.log('CASE 5')
 
 var nums = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
 
 var firstElement = shift(nums)
 
-console.log(firstElement)
+//console.log(firstElement)
 // 100
-console.log(nums)
+//console.log(nums)
 // [200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
+
+
+console.assert(firstElement === 100, '100')

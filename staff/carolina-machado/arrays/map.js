@@ -13,7 +13,7 @@ function map(array, callback) {
 
     return newArray
 }
-/*
+
 console.log('CASE 1')
 
 var nums = [1, 4, 9, 16]
@@ -115,7 +115,7 @@ console.assert(result[1] === "20, 1, [10,20,30]")
 console.assert(result[2] === "30, 2, [10,20,30]")
 
 
-*/
+
 console.log('CASE 5')
 
 var data = [
