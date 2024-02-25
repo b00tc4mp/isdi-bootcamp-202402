@@ -1,5 +1,7 @@
+delete String.prototype.indexOf
+
 function indexOf(string, searchString) {
-    debugger
+
     var searchStringIndex = 0;
     var numOks = 0;
     
@@ -27,11 +29,15 @@ function indexOf(string, searchString) {
 }
 
 
+console.log('Case 1')
+var s = 'hola mundo'
+var index = indexOf(s, 'ola')
 
-var s = 'hola mundo';
+console.assert(index === 1, 'index should be -1')
 
-//var index = indexOf(s, 'ola');
-var index = indexOf(s, 'olaf');
+console.log('Case 2')
+var s = 'hola mundo'
+var index = indexOf(s, 'olaf')
 
-console.log(index)
+console.assert(index === -1, 'index should be -1')
 

@@ -1,3 +1,5 @@
+delete String.prototype.slice
+
 function slice(string, indexStart, indexEnd) {
     var element = "";
     
@@ -19,9 +21,13 @@ function slice(string, indexStart, indexEnd) {
     return element
 }
 
-var s = 'hola mundo';
+console.log('Case 1')
+var s = 'hola mundo'
+var piece = slice(s, -3)
+console.assert(piece === 'ndo', 'ndo')
 
-//var piece = slice(s, 5, 8);
-var piece = slice(s, -3);
 
-console.log(piece);
+console.log('Case 2')
+var piece = slice(s, 5, 8)
+
+console.assert(piece === 'mun','mun')

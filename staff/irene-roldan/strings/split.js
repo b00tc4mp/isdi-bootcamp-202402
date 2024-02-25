@@ -1,12 +1,14 @@
+delete String.prototype.split
+
 function split(string, separator) {
     var result = [];
     var element = "";
     
     for (var i = 0; i < string.length; i++) {
-        debugger
         if (string[i] === separator) {
             
             result[result.length] = element
+            element = ''
             
         }else{ 
             element = element + string[i] 
@@ -18,8 +20,12 @@ function split(string, separator) {
     
 }
 
-var s="hola mundo";
+console.log('Case 1')
+var s='hola mundo'
+var words = split(s, " ")
 
-var words = split(s, " ");
-
-console.log(words)
+console.assert(
+    words[0] === 'hola' &&
+    words[1] === 'mundo',
+    'error'
+)

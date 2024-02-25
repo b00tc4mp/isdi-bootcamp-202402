@@ -9,8 +9,8 @@ function repeat(string, count) {
     return element
 }
 
-var s = 'happy! ';
+console.log('Case 1')
+var s = 'happy!'
+var result = repeat(s, 3)
 
-var result = repeat(s, 3);
-
-console.log(result)
+console.assert(result === 'happy!happy!happy!', 'the result should be happy!happy!happy!')

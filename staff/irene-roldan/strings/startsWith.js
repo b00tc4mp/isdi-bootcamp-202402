@@ -1,4 +1,4 @@
-String.prototype.startsWith;
+delete String.prototype.startsWith
 
 function startsWith(string, searchString) {
     
@@ -10,16 +10,18 @@ function startsWith(string, searchString) {
             return false
         }
     }
-    return true;
+    return true
     
 }
 
 
+console.log('Case 1')
+var s = 'hola mundo'
+var result = startsWith(s, 'hol')
+console.assert(result === true, 'true')
 
+console.log('Case 2')
+var s = 'hola mundo'
+var result = startsWith(s, 'holo')
 
-var s = 'hola mundo';
-
-var result = startsWith(s, 'hol');
-//var result = startsWith(s, 'holo');
-
-console.log(result);
+console.assert(result === false, 'false')

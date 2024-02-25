@@ -1,8 +1,9 @@
+delete String.prototype.lastIndexOf
+
 function lastIndexOf(string, searchString) {
-    debugger
-    var searchStringIndex = 0;
-    var numOks = 0;
-    var element = -1;
+    var searchStringIndex = 0
+    var numOks = 0
+    var element = -1
     
     for (var i = 0; i < string.length; i++) {
 
@@ -30,17 +31,21 @@ function lastIndexOf(string, searchString) {
 
     }
     if (element === -1) {
-        return -1;
+        return -1
         
     }else{
-        return element;
+        return element
     }
 
 }
 
-var s = 'hola mundo';
+console.log('CASE 1')
+var s = 'hola mundo'
+var index = lastIndexOf(s, 'o')
+console.assert(index === 9, 'index should be 9')
 
-var index = lastIndexOf(s, 'o');
-//var index = lastIndexOf(s, 'ol');
+console.log('CASE 2')
+var s = 'hola mundo'
+var index = lastIndexOf(s, 'ol')
 
-console.log(index)
+console.assert(index === 1, 'index should be 1')
