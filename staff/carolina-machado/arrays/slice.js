@@ -1,113 +1,82 @@
 delete Array.prototype.slice
 
-function sliceArray(array, start, end){
-    let newArray = []
-    let count = 0
-    if (end === undefined && start > -1){
-        for (let i = start; i < array.length; i++){
-            newArray[count] = array[i]
-            count++
-        }
-        array.length = start
-    } else if (start > -1 && end > -1) {
-        let slicedArray = []
-        for (let i = start; i < end + 1; i++){
-            newArray[count] = array[i]
-            count++
-        }
-        count = 0
-        for (let i = 0; i < start; i++){
-           slicedArray[count] = array[i]
-            count++
-        }
-        for (let i = end +1; i < array.length; i++){
-            slicedArray[count] = array[i]
-            count++
-        }
-        array.length = 0
-        for (let i = 0; i < slicedArray.length; i++) {
-          array[i] = slicedArray[i]
-        }
-    } else if (start < 0 && end === undefined){
-        for (let i = array.length + start; i < array.length; i++){
-            newArray[count] = array[i]
-            count++
-        }
-        let slicedArray = []
-        count = 0
-        for (let i = 0; i < start; i++){
-            slicedArray[count] = array[i]
-            count++
-        }
-        array.length = array.length + start        
-    } else if (start > -1 && end < 0){
-        for (let i = start; i < (end * -1) +1; i++){
-            newArray[count] = array[i]
-            count++
-        }
-        count = 0
-        let slicedArray = []
-        for (let i = 0; i < start; i++){
-            slicedArray[count] = array[i]
-            count++
-        }
-        for (let i = (end * -1) +1; i < array.length; i++){
-            slicedArray[count] = array[i]
-            count++
-        }
-        array.length = 0
-        for (let i = 0; i < slicedArray.length; i++) {
-          array[i] = slicedArray[i]
-        }
-    } else if (arguments.length < 2){
-        newArray = []
-        for (let i = 0; i < array.length; i++){
-            newArray[i] = array[i]
-        }
-        array.length = 0
-        delete array[0]
-        return newArray
+function slice(arr, start, end) {
+    var result = []
+    if (start < 0) {
+        start = arr.length + start
     }
-    return newArray
+    if (end < 0) {
+        end = arr.length + end
+    }
+    if (start == undefined) {
+        start = 0
+    }
+    if (end == undefined) {
+        end = arr.length
+    }
+
+    if (start >= arr.length || end <= start) {
+        return undefined
+    } else {
+        for (var i = start; i < end; i++) {
+            if (arr[i] != ' ') {
+                result[result.length] = arr[i]
+            } else result[result.length] = ''
+        }
+    }
+
+
+    return result
 }
 
-//CASE 1
+console.log('CASE 1')
+var fruits = ["banana", "orange", "lemon", "apple", "mango"];
+var citrus = slice(fruits, 1, 3);
+//console.log(citrus)
+// citrus contains ['orange','lemon']
 
-let arr = ['azúcar', 'especias', 'muchas cosas bonitas', 'sustancia X']
-let result = sliceArray(arr, 3)
-console.log(result)
-//['sustancia X']
-console.log(arr)
-//['azúcar', 'especias', 'muchas cosas bonitas']
+console.assert(citrus[0] === 'orange')
+console.assert(citrus[1] === 'lemon')
 
-//CASE 2
-let arr1 = ['azúcar', 'especias', 'muchas cosas bonitas', 'sustancia X']
-result = sliceArray(arr1, 1, 2)
-console.log(result)
-//['especias', 'muchas cosas bonitas']
-console.log(arr1)
-//['azúcar', 'sustancia X']
 
-//CASE 3
-let arr2 = ['azúcar', 'especias', 'muchas cosas bonitas', 'sustancia X']
-result = sliceArray(arr2, -3)
-console.log(result)
-//['especias', 'muchas cosas bonitas', 'sustancia X']
-console.log(arr2)
-//['azúcar']
 
-//CASE 4
-let arr3 = ['azúcar', 'especias', 'muchas cosas bonitas', 'sustancia X']
-result = sliceArray(arr3, 1, -2)
-console.log(result)
-//['especias', 'muchas cosas bonitas']
-console.log(arr3)
-//['azúcar', 'sustancia X']
+console.log('CASE 2')
+var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+var result = slice(animals, 2);
+//console.log(result)
+// Expected output: Array ["camel", "duck", "elephant"]
 
-//CASE 5
-let arr4 = ['azúcar', 'especias', 'muchas cosas bonitas', 'sustancia X']
-result = sliceArray(arr4)
-console.log(result)
-//['azúcar', 'especias', 'muchas cosas bonitas', 'sustancia X']
-console.log(arr4)
-//[]
+console.assert(result[0] === 'camel')
+console.assert(result[1] === 'duck')
+console.assert(result[2] === 'elephant')
+
+
+var result = slice(animals, 2, 4);
+//console.log(result)
+// Expected output: Array ["camel", "duck"]
+
+console.assert(result[0] === 'camel')
+console.assert(result[1] === 'duck')
+
+var result = slice(animals, 1, 5);
+//console.log(result)
+// Expected output: Array ["bison", "camel", "duck", "elephant"]
+
+console.assert(result[0] === 'bison')
+console.assert(result[1] === 'camel')
+console.assert(result[2] === 'duck')
+console.assert(result[3] === 'elephant')
+
+var result = slice(animals, -2);
+//console.log(result)
+// Expected output: Array ["duck", "elephant"]
+
+console.assert(result[0] === 'duck')
+console.assert(result[1] === 'elephant')
+
+var result = slice(animals, 2, -1);
+//console.log(result)
+// Expected output: Array ["camel", "duck"]
+
+console.assert(result[0] === 'camel')
+console.assert(result[1] === 'duck')

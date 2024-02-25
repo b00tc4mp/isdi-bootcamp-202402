@@ -12,27 +12,25 @@ function some(array, func) {
     return false
 }
 
-/*CASE 1
-    let arr1 = [3, 3, 3]git ad
-    let evenNumber = function (num) {
-        if (num % 2 === 0) {
-            return true
-        } else {
-            return false
-        }
-    }
+console.log('CASE 1')
 
-    console.log(some(arr1, evenNumber))*/
-
-//CASE 2
-
-let arr1 = [10, 20, 40]
-let biggerThanTen = function (num) {
-    if (num >= 10) {
-        return true
-    } else {
-        return false
-    }
+var arr1 = [10, 20, 40]
+var biggerThanTen = function (num) {
+   return num > 10
 }
 
-console.log(some(arr1, biggerThanTen))
+var result = some(arr1, biggerThanTen)
+//console.log(result)
+
+console.assert(result === true, true)
+
+console.log('CASE 2')
+
+var arr1 = [11, 21, 41]
+var even = function (element) {return element % 2 === 0};
+
+var result = (some(arr1, even))
+
+//console.log(result)
+// Expected output: false
+console.assert(result === false, false)

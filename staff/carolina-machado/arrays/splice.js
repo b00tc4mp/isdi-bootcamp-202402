@@ -1,105 +1,232 @@
 delete Array.prototype.splice
 
-function spliceArray (array, index, number, ...elements){
-    let newArray = []
-    if (number === 0){
-        for (let i = 0; i < index; i++){
-            newArray[i] = array[i]
+function splice(array, start, deleteCount, item) {
+    if (deleteCount === 0) {
+        for (var i = array.length - 1; i > start - 1; i--) {
+            var elem = array[i]
+
+            array[i + 1] = elem
         }
-        newArray[index] = elements[0]
-        for (let i = index; i < array.length; i++){
-            newArray[i + 1] = array[i]
-        }
-        for (let i = 0; i < newArray.length; i++){
-            array[i] = newArray[i]
-        }
+
+        array[start] = item
+
         return []
-    } else if (number > 0 && index > -1) {
-        let deleted = []
-        for (let i = index; i < index + number; i++){
-            deleted[deleted.length] = array[i]
+    } else if (deleteCount === 1) {
+        var removed = []
+
+        removed[removed.length] = array[start]
+
+        array[start] = item
+
+        return removed
+    } else if (deleteCount >= 2) {
+        var removed = []
+
+        for (var i = 0; i < deleteCount; i++)
+            removed[removed.length] = array[start + i]
+
+        for (var i = 0; i < array.length - (start + deleteCount - 1); i++) {
+            var elem = array[start + deleteCount + i]
+            array[start + 1 + i] = elem
         }
-        for (let i = 0; i < index; i++){
-            newArray[i] = array[i]
-        }
-        for (let i = 0; i < elements.length; i++){
-            newArray[newArray.length] = elements[i]            
-        }
-        for (let i = index; i < array.length - number; i++){
-            newArray[newArray.length] = array[i+number]
-        }
-        array.length = 0
-        for (let i = 0; i < newArray.length; i++){
-            array[i] = newArray[i]
-        }
-        return deleted
-    } else if (index < 0){
-        let deleted = []
-        for (let i = array.length + index; i < array.length + index + number; i++){
-            deleted[deleted.length] = array[i]
-        }
-        for (let i = 0; i < array.length + index; i++){
-            newArray[i] = array[i]
-        }
-        for (let i = 0; i < elements.length; i++){
-            newArray[newArray.length] = elements[i]
-        }
-        for (let i = array.length + index + number; i < array.length; i++){
-            newArray[newArray.length] = array[i]
-        }
-        array.length = 0
-        for (let i = 0; i < newArray.length; i++){
-            array[i] = newArray[i]
-        }
-        return deleted
-    }         
+
+        array.length -= deleteCount - 1
+
+        array[start] = item
+
+        return removed
+    }
 }
 
-//CASE 1
+console.log('CASE 1')
 
-let arr = ['Jan', 'Feb', 'Apr', 'May']
-let result = spliceArray(arr, 2, 0, 'Mar')
-console.log(arr)
-//['Jan', 'Feb', 'Mar', 'Apr', 'May']
-console.log(result)
-//[]
+var months = ['Jan', 'March', 'April', 'June']
 
-//CASE 2
-let arr1 = ['Jan', 'Feb', 'Dec', 'Apr']
-result = spliceArray(arr1, 2, 1, 'Mar')
-console.log(arr1)
-//['Jan', 'Feb', 'Mar', 'Apr']
-console.log(result)
-//['Dec']
+var extracted = splice(months, 1, 0, 'Feb')
+// array // ['Jan', 'March', 'April', 'June']
+// start // 1
+// deleteCount // 0
+// item // 'Feb'
 
-//CASE 3
-let arr2 = ['Jan', 'Feb', 'Nov', 'Dec', 'Apr']
-result = spliceArray(arr2, 2, 2, 'Mar')
-console.log(arr2)
-//['Jan', 'Feb', 'Mar', 'Apr']
-console.log(result)
-//['Nov', 'Dec']
+// ['Jan', 'March', 'April', 'June', 'June']
+// ['Jan', 'March', 'April', 'April', 'June']
+// ['Jan', 'March', 'March', 'April', 'June']
 
-//CASE 4
-let arr3 = ['Jan', 'Nov', 'Dec', 'May', 'Jun']
-result = spliceArray(arr3, 1, 2, 'Feb', 'Mar', 'Apr')
-console.log(arr3)
-//['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
-console.log(result)
-//['Nov', 'Dec']
+// ['Jan', 'Feb', 'March', 'April', 'June']
 
-//CASE 5
-let arr4 = ['Jan', 'Nov', 'Dec', 'Feb']
-result = spliceArray(arr4, 1, 2)
-console.log(arr4)
-//['Jan', 'Feb']
-console.log(result)
-//['Nov', 'Dec']
+//console.log(extracted)
+// []
 
-//CASE 6
-let arr5 = ['Jan', 'Feb', 'Dec', 'Mar']
-result = spliceArray(arr5, -2, 1)
-console.log(arr5)
-//['Jan', 'Feb', 'Mar']
-console.log(result)
-//['Dec']
+//console.log(months)
+// ["Jan", "Feb", "March", "April", "June"]
+
+console.assert(months[0] === "Jan")
+console.assert(months[1] === "Feb")
+console.assert(months[2] === "March")
+console.assert(months[3] === "April")
+console.assert(months[4] === "June")
+
+console.assert(extracted[0] === undefined)
+
+
+console.log('CASE 2')
+
+var months = ['Jan', 'Feb', 'March', 'April', 'June']
+
+var extracted = splice(months, 4, 1, 'May')
+
+// ['Jan', 'Feb', 'March', 'April', 'June']
+// var removed = []
+// removed[removed.length] = array[start]
+// array[start] = item
+// return removed
+
+//console.log(extracted)
+// ['June']
+
+//console.log(months)
+// ["Jan", "Feb", "March", "April", "May"]
+
+console.assert(months[0] === "Jan")
+console.assert(months[1] === "Feb")
+console.assert(months[2] === "March")
+console.assert(months[3] === "April")
+console.assert(months[4] === "May")
+
+console.assert(extracted[0] === 'June')
+
+console.log('CASE 3')
+
+var months = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October']
+
+var extracted = splice(months, 3, 4, 'X')
+
+// ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October']
+
+// var removed = []
+// removed[removed.length] = array[start]
+// removed[removed.length] = array[start + 1]
+// removed[removed.length] = array[start + 2]
+// removed[removed.length] = array[start + 3]
+
+// var elem = array[start + deleteCount]
+// array[start + deleteCount - (deleteCount - 1)] = elem
+// equal to: array[start + 1] = elem
+
+// var elem = array[start + deleteCount + 1]
+// array[start + deleteCount + 1 - (deleteCount - 1)] = elem
+// equal to: array[start + 2)] = elem
+
+// var elem = array[start + deleteCount + 2]
+// array[start + deleteCount + 2 - (deleteCount - 1)] = elem
+// equal to: array[start + 3)] = elem
+
+// array.length -= deleteCount - 1
+
+// array[start] = item
+
+// return removed
+
+//console.log(extracted)
+// [April', 'May', 'June', 'July']
+
+//console.log(months)
+// ['Jan', 'Feb', 'March', 'X', 'August', 'September', 'October']
+
+console.assert(months[0] === "Jan")
+console.assert(months[1] === "Feb")
+console.assert(months[2] === "March")
+console.assert(months[3] === "X")
+console.assert(months[4] === "August")
+console.assert(months[5] === "September")
+console.assert(months[6] === "October")
+
+
+console.assert(extracted[0] === 'April')
+console.assert(extracted[1] === 'May')
+console.assert(extracted[2] === 'June')
+console.assert(extracted[3] === 'July')
+
+
+console.log('CASE 4')
+
+var months = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October']
+
+var extracted = splice(months, 3, 3, 'X')
+
+//console.log(extracted)
+// [April', 'May', 'June']
+
+//console.log(months)
+// ['Jan', 'Feb', 'March', 'X', 'July', 'August', 'September', 'October']
+
+console.assert(months[0] === "Jan")
+console.assert(months[1] === "Feb")
+console.assert(months[2] === "March")
+console.assert(months[3] === "X")
+console.assert(months[4] === "July")
+console.assert(months[5] === "August")
+console.assert(months[6] === "September")
+console.assert(months[7] === "October")
+
+
+console.assert(extracted[0] === 'April')
+console.assert(extracted[1] === 'May')
+console.assert(extracted[2] === 'June')
+
+
+
+
+console.log('CASE 5')
+
+var months = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October']
+
+var extracted = splice(months, 3, 2, 'X')
+
+//console.log(extracted)
+// [April', 'May']
+
+//console.log(months)
+// ['Jan', 'Feb', 'March', 'X', 'June', 'July', 'August', 'September', 'October']
+
+
+console.assert(months[0] === "Jan")
+console.assert(months[1] === "Feb")
+console.assert(months[2] === "March")
+console.assert(months[3] === "X")
+console.assert(months[4] === "June")
+console.assert(months[5] === "July")
+console.assert(months[6] === "August")
+console.assert(months[7] === "September")
+console.assert(months[8] === "October")
+
+console.assert(extracted[0] === 'April')
+console.assert(extracted[1] === 'May')
+
+
+
+console.log('CASE 6')
+
+var months = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October']
+
+var extracted = splice(months, 3, 1, 'X')
+
+//console.log(extracted)
+// [April']
+
+//console.log(months)
+// ['Jan', 'Feb', 'March', 'X', 'May', 'June', 'July', 'August', 'September', 'October']
+
+console.assert(months[0] === "Jan")
+console.assert(months[1] === "Feb")
+console.assert(months[2] === "March")
+console.assert(months[3] === "X")
+console.assert(months[4] === "May")
+console.assert(months[5] === "June")
+console.assert(months[6] === "July")
+console.assert(months[7] === "August")
+console.assert(months[8] === "September")
+console.assert(months[9] === "October")
+
+console.assert(extracted[0] === 'April')
+
