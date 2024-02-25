@@ -1,73 +1,54 @@
 .background {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+}
+.background__box {
   height: 400px;
   width: 400px;
   background-color: black;
-  position: relative;
   display: grid;
-  grid-template-columns: 185px 209px;
-  grid-template-rows: 149px 100px 130px;
-  gap: 10px 5px;
+  gap: 13px;
+  padding: 13px;
 }
-.background__square1 {
-  height: 150px;
-  width: 185px;
-  position: absolute;
-  background-color: red;
-}
-.background__square2 {
-  height: 75px;
-  width: 75px;
-  position: absolute;
-  background-color: white;
-}
-.background__square3 {
-  height: 43px;
-  width: 75px;
-  position: relative;
-  display: grid;
-  grid-template-columns: 35px 140px;
-  column-gap: 5px;
-  grid-row-end: 4;
-  grid-template-rows: 129px;
-}
-.background__square3--rectangleYellow {
-  position: absolute;
+.background__box--yellow {
+  height: 217px;
+  width: 95px;
   background-color: yellow;
-  height: 131px;
-  width: 36px;
+  grid-row: 1;
 }
-.background__square3--squareWhite {
-  position: absolute;
+.background__box--white {
+  height: 95px;
+  width: 95px;
   background-color: white;
-  height: 50px;
-  width: 50px;
+  grid-row: 2;
 }
-.background__square4 {
-  display: grid;
-  position: absolute;
-  height: 227px;
-  width: 194px;
-}
-.background__square5 {
-  height: 43px;
-  width: 135px;
-  position: absolute;
-}
-.background__square6 {
-  position: relative;
-  display: grid;
-}
-.background__square6--squareBlue {
-  position: absolute;
+.background__box--blue {
+  height: 60px;
+  width: 95px;
   background-color: blue;
+  grid-row: 3;
 }
-.background__square6--white1 {
-  position: absolute;
-  background-color: white;
+.background__box--red {
+  height: 326px;
+  width: 293px;
+  background-color: red;
+  grid-row: span 2;
+  grid-column: span 2;
 }
-.background__square6--white2 {
-  position: absolute;
+.background__box--white2 {
+  height: 60px;
+  width: 215px;
   background-color: white;
+  grid-row: span 1;
+  grid-column: 2;
+}
+.background__box--white3 {
+  height: 60px;
+  width: 60px;
+  background-color: white;
+  grid-row: span 1;
+  grid-column: 3;
 }
 
 /*# sourceMappingURL=style.css.map */

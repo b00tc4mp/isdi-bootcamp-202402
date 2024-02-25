@@ -1,27 +1,52 @@
 .background {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
-  width: 400px;
+  align-items: center;
+}
+.background__box {
   height: 400px;
-  background-image: black;
+  width: 400px;
+  background-color: black;
+  display: grid;
+  gap: 13px;
+  padding: 13px;
+  grid-template-areas: "yellow red red" "white red red" "blue white2 white3";
 }
-.background__bloque-rojo {
-  grid-area: 1/1/3/2;
-  background-color: #e60000;
+.background__box--yellow {
+  height: 217px;
+  width: 95px;
+  background-color: yellow;
+  grid-area: yellow;
 }
-.background__bloque-amarillo {
-  grid-area: 1/2/2/3;
-  background-color: #ffd700;
+.background__box--white {
+  height: 95px;
+  width: 95px;
+  background-color: white;
+  background-color: white;
+  grid-area: white;
 }
-.background__bloque-azul {
-  grid-area: 1/3/3/4;
-  background-color: #0000ff;
+.background__box--blue {
+  height: 60px;
+  width: 95px;
+  background-color: blue;
+  grid-area: blue;
 }
-.background__bloque-blanco {
-  grid-area: 2/2/3/3;
-  background-color: #ffffff;
+.background__box--red {
+  height: 326px;
+  width: 293px;
+  background-color: red;
+  grid-area: red;
+}
+.background__box--white2 {
+  height: 60px;
+  width: 215px;
+  background-color: white;
+  grid-area: white2;
+}
+.background__box--white3 {
+  height: 60px;
+  width: 60px;
+  background-color: white;
+  grid-area: white3;
 }
 
 /*# sourceMappingURL=style.css.map */

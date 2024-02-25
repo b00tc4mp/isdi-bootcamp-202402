@@ -5,8 +5,8 @@
   background-color: pink;
   top: -267px;
   left: 48px;
-  border: grey 2px solid;
   border-radius: 20px;
+  border: 2px grey solid;
 }
 
 .pig__ear--right {
@@ -14,10 +14,10 @@
   height: 60px;
   width: 60px;
   background-color: pink;
-  border: grey 2px solid;
   border-radius: 20px;
   top: -331px;
   left: 175px;
+  border: 2px grey solid;
 }
 
 .pig__head {
@@ -28,7 +28,7 @@
   position: absolute;
   top: 43px;
   left: 50px;
-  border: grey 2px solid;
+  border: 2px grey solid;
 }
 
 .pig__eye--right {
@@ -39,8 +39,6 @@
   position: relative;
   top: 50px;
   left: 40px;
-  animation-duration: 3s;
-  animation-name: slidein;
 }
 
 .pig__eye--left {
@@ -101,7 +99,7 @@
   border-radius: 140px;
   top: 100px;
   left: 0px;
-  border: grey 2px solid;
+  border: 2px grey solid;
 }
 
 .pig__paws--left {
@@ -111,8 +109,8 @@
   width: 100px;
   top: -1px;
   left: 113px;
-  border: grey 2px solid;
   border-radius: 50px;
+  border: 2px grey solid;
 }
 
 .pig__paws--right {
@@ -122,8 +120,8 @@
   width: 100px;
   top: 100px;
   left: 0px;
-  border: grey 2px solid;
   border-radius: 50px;
+  border: 2px grey solid;
 }
 
 .pig__tail {
@@ -132,9 +130,9 @@
   width: 40px;
   top: 151px;
   left: 300px;
-  border: grey 2px solid;
   background-color: pink;
   border-bottom-right-radius: 30px;
+  border: 2px grey solid;
 }
 
 /*# sourceMappingURL=styles.css.map */
