@@ -13,9 +13,7 @@ function push(array, element1) {
 
 // CASE 1
 var nums = [100, 200, 300, 400, 500]
-
 var length = push(nums, 600)
-
 console.log(length)
 // 6
 console.log(nums)
@@ -24,12 +22,12 @@ console.log(nums)
 
 // CASE 2
 var animals = ['pigs', 'goats', 'sheep'];
-
 var count = push(animals, 'cows');
 console.log(count);
 // 4
 console.log(animals);
 // ["pigs", "goats", "sheep", "cows"]
+
 
 // CASE 3
 var sports = ['soccer', 'baseball']
@@ -40,10 +38,9 @@ console.log(sports)
 // ['soccer', 'baseball']
 
 
-// CASE 4
+console.log('CASE 4')
 var food = ['apple', 'banana']
 var count = push(food)
-
 console.log(count)
 // 2
 console.log(food)

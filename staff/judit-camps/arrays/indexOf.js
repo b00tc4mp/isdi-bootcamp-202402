@@ -26,23 +26,35 @@ function indexOf(array, searchElement, indexFrom) {
 }
 
 
+var expected = []
+var results = []
+
 var array = [2, 9, 9];
 // CASE 1
-console.log(indexOf(array, 2));
-// 0
+results[results.length] = (indexOf(array, 2));
+expected[expected.length] = 0
 
 // CASE 2
-console.log(indexOf(array, 7));
-// -1
+results[results.length] = (indexOf(array, 7));
+expected[expected.length] = -1
 
 // CASE 3
-console.log(indexOf(array, 9, 2));
-// 2
+results[results.length] = (indexOf(array, 9, 2));
+expected[expected.length] = 2
 
 // CASE 4
-console.log(indexOf(array, 2, -1));
-// -1
+results[results.length] = (indexOf(array, 2, -1));
+expected[expected.length] = -1
 
 // CASE 5
-console.log(indexOf(array, 2, -3));
-// 0
+results[results.length] = (indexOf(array, 2, -3));
+expected[expected.length] = 0
+
+function assertArrays(results, expected) {
+    for (var i = 0; i < results.length; i++) {
+        console.log('CASE ' + (i + 1))
+        console.assert(results[i] === expected[i], expected[i])
+    }
+}
+
+assertArrays(results, expected)
