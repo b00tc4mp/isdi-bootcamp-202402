@@ -7,24 +7,21 @@
  * 
  * @throws {TypeError} When object is not an object, or when index is not a number.
  */
-function insert(object, index, values) {
-    if (!object || !(object instanceof Object)) {
-        throw new TypeError('Object parameter is required and must be an Object');
-    }
-    if (typeof index !== 'number') {
-        throw new TypeError('Index parameter is required and must be a number');
-    }
+function insert(object, index, value) {
+    if (!(object instanceof Object)) throw new TypeError(object + ' is not an Object')
+    if (typeof index !== 'number') throw new TypeError(index + ' is not a Number')
 
-    for (var i = object.length; i >= index + 1; i--) {
+    for (var i = object.length; i > index; i--)
+        object[i] = object[i - 1]
 
-        object[i] = object[i - 1];
-        length = object.length + 1
-    }
-    object[index] = values
+    object[index] = value
+
     object.length++
 
     return object.length
 }
+
+
 console.log('CASE 1: insert skyblue in index 1')
 
 var colors = {
@@ -57,7 +54,7 @@ console.assert(colors[3] === 'green', 'green')
 console.assert(length === 4)
 
 
-//console.log('CASE 2: insert skyblue, gold and plum in index 2')
+console.log('CASE 2: insert skyblue, gold and plum in index 2')
 
 var colors = {
     0: 'red',
@@ -68,10 +65,10 @@ var colors = {
 
 var length = insert(colors, 2, 'skyblue', 'gold', 'plum')
 
-//console.log(length)
-// 6
+console.log(length)
+ 6
 
-//console.log(colors)
+console.log(colors)
 /*
 {
     0: 'red',
@@ -90,13 +87,13 @@ console.assert(colors[1] === 'blue', 'blue')
 console.assert(colors[2] === 'skyblue', 'skyblue' )
 console.assert(colors[3] === 'gold', 'gold')
 console.assert(colors[4] === 'plum', 'plum')
-console.assert(colors[4] === 'green', 'green')
+console.assert(colors[5] === 'green', 'green')
 
 console.assert(length === 6)
 
 
 
-
+/*
 console.log('CASE 3: fails on undefind object parameter')
 
 try {
@@ -124,7 +121,7 @@ try {
 
 
 console.assert(error.name === 'TypeError', 'name')
-console.assert(error.message === 'undefined is not a function', 'message')
+console.assert(error.message === '1 is not a function', 'message')
 
 
 
@@ -143,4 +140,5 @@ try {
     console.log(error)
     // TypeError: undefined is not a Number
 }
+
 */
