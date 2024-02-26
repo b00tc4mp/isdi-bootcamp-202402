@@ -1,4 +1,4 @@
-delete Array.prototype.concat();
+delete Array.prototype.concat
 
 function concat (arrays){
     var result=[]
@@ -85,7 +85,7 @@ var a = ["a", "b", "c"];
 var b = [1, 2, 3]
 
 var char = concat([a, b])
-console.log(char);
+console.assert(char[0] === 'a' && char[1] === 'b' && char[2] === 'c' && char[3] === 1 && char[4] === 2 && char[5] === 3, 'a, b, c, 1, 2, 3')
 
 
 console.log ('Case 2')
@@ -95,4 +95,4 @@ var b = [1, 2, 3];
 var c = ["hola", "Mundo"]
 
 var char = concat([a, b, c])
-console.log(char)
+console.assert(char[0] === 'a' && char[1] === 'b' && char[2] === 'c' && char[3] === 1 && char[4] === 2 && char[5] === 3, 'a, b, c, 1, 2, 3')

@@ -17,8 +17,7 @@ function find(array, callback) {
 console.log('Case 1')
 var nums = [5, 12, 8, 130, 44];
 var numIndex = find(nums, function (element) {return element > 10})
-console.log(numIndex)
-// 12
+console.assert(numIndex === 12, '12')
 
 
 console.log('Case 2')
