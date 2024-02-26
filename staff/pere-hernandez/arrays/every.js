@@ -1,8 +1,14 @@
 delete Array.prototype.every
 
 function arrayEvery(array, index, callback) {
-    if (array.length === 0){
+    if (array instanceof Array === false)
+        throw new TypeError(array + ' is not an Array')
+    if (typeof index !== 'number')
+        throw new TypeError(index + ' is not a number')
+    if (callback instanceof Function === false)
+        throw new TypeError(callback + ' is not a Function')
 
+    if (array.length === 0){
     } else if (arguments.length < 3){
         callback = index
         for (let i = 0; i < array.length; i++){
@@ -32,6 +38,11 @@ function copyArray(array){
 
 
 function assert(array1, array2){
+    if (array1 instanceof Array === false)
+        throw new TypeError(array1 + ' is not an Array')
+    if (array2 instanceof Array === false)
+        throw new TypeError(array2 + ' is not an Array')
+    
     for (var i = 0; i < array1.length; i++){
         console.assert(array1[i] === array2[i], array1[i])
     }

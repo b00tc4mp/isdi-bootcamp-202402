@@ -23,6 +23,11 @@ function copyArray(array){
 
 
 function assert(array1, array2){
+    if (array1 instanceof Array === false)
+        throw new TypeError(array1 + ' is not an Array')
+    if (array2 instanceof Array === false)
+        throw new TypeError(array2 + ' is not an Array')
+    
     for (var i = 0; i < array1.length; i++){
         console.assert(array1[i] === array2[i], array1[i])
     }

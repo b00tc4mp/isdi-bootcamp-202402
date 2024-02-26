@@ -17,14 +17,14 @@ function arrayFilter(array, index, callback) {
     return newArray
 }
 
-//CASE 1
+console.log('CASE 1')
 
 let arr = ['yellow', 'red', 'blue', 'green']
 let result = arrayFilter(arr, (x) => x.length > 3)
-console.log(result)
+console.assert(result === "['yellow, 'blue', 'green']")
 //['yellow', 'blue', 'green']
 
-//CASE 2
+console.log('CASE 2')
 result = arrayFilter(arr, 1, (x) => x.length > 3)
 console.log(result)
 //['blue', 'green']

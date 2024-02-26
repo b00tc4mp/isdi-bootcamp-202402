@@ -23,19 +23,21 @@ function concat(array, ...elements){
 
 
 function assert(arrayResult, ...elements){
+    if (arrayResult instanceof Array === false)
+        throw new TypeError(arrayResult + ' is not an Array')
+
     let currentIndex = 0
     
     for (let i = 0; i < elements.length; i++){
         if (elements[i] instanceof Array){
             for (let j = 0; j < elements[i].length; j++){
-                console.assert(arrayResult[j + currentIndex] === elements[i][j], elements[i][j])
+                console.assert(arrayResult[j + currentIndex] === elements[i][j], arrayResult[j + currentIndex])
             }
             currentIndex += elements[i].length 
         } else {
-            console.assert(arrayResult[currentIndex] === elements[i], elements[i])
+            console.assert(arrayResult[currentIndex] === elements[i], arrayResult[currentIndex])
             currentIndex++
-        }
-           
+        } 
     }  
 }
 
