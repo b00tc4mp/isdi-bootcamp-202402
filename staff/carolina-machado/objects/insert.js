@@ -35,9 +35,9 @@ var colors = {
 }
 var length = insert(colors, 1, 'skyblue')
 
-console.log(length)
+//console.log(length)
 // 4
-console.log(colors)
+//console.log(colors)
 /*
 {
     0: 'red',
@@ -48,7 +48,16 @@ console.log(colors)
 }
 */
 
-/*console.log('CASE 2: insert skyblue, gold and plum in index 2')
+
+console.assert(colors[0] === 'red', 'red')
+console.assert(colors[1] === 'skyblue', 'skyblue' )
+console.assert(colors[2] === 'blue', 'blue')
+console.assert(colors[3] === 'green', 'green')
+
+console.assert(length === 4)
+
+
+//console.log('CASE 2: insert skyblue, gold and plum in index 2')
 
 var colors = {
     0: 'red',
@@ -57,12 +66,12 @@ var colors = {
     length: 3
 }
 
-var length = insertMany(colors, 2, 'skyblue', 'gold', 'plum')
+var length = insert(colors, 2, 'skyblue', 'gold', 'plum')
 
-console.log(length)
+//console.log(length)
 // 6
 
-console.log(colors)
+//console.log(colors)
 /*
 {
     0: 'red',
@@ -75,24 +84,49 @@ console.log(colors)
 }
 */
 
-/*
+
+console.assert(colors[0] === 'red', 'red')
+console.assert(colors[1] === 'blue', 'blue')
+console.assert(colors[2] === 'skyblue', 'skyblue' )
+console.assert(colors[3] === 'gold', 'gold')
+console.assert(colors[4] === 'plum', 'plum')
+console.assert(colors[4] === 'green', 'green')
+
+console.assert(length === 6)
+
+
+
+
 console.log('CASE 3: fails on undefind object parameter')
 
 try {
-    insertMany()
+    insert()
 } catch (error) {
     console.log(error)
     // TypeError: undefined is not an Object
 }
 
+console.assert(error.name === 'TypeError', 'name')
+console.assert(error.message === 'undefined is not a function', 'message')
+
+
+
+
+
 console.log('CASE 4: fails on 1 as an object parameter')
 
 try {
-    insertMany(1)
+    insert(1)
 } catch (error) {
     console.log(error)
     // TypeError: 1 is not an Object
 }
+
+
+console.assert(error.name === 'TypeError', 'name')
+console.assert(error.message === 'undefined is not a function', 'message')
+
+
 
 console.log('CASE 5: fails on undefined as index parameter')
 
