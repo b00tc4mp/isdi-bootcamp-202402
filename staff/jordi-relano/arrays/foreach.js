@@ -1,26 +1,22 @@
 delete Array.prototype.forEach
 
 function forEach(array, callback) {
-    var callbackType = typeof callback
-    if (callbackType !== 'function') {
-        for (var i = 0; i < array.length; i++) {
-            var element = array[i]
-            callback(element, i, array)
-        }
-        throw new TypeError(callbackType + " " + callback + " " + ' is not a function');
-    }
-    else if (callback !== true || callback === true) {
-        throw new TypeError(callbackType + " " + callback + " " + 'is not a function');
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
+
+    for (var i = 0; i < array.length; i++) {
+        var element = array[i]
+
+        callback(element, i, array)
     }
 }
 
-console.log('lololololo')
+console.log('CASE 1: copy nums [10, 20, 30, 40, 50] into other')
 
 var nums = [10, 20, 30, 40, 50]
-var other = [] // creamos una variable con array vacío, para meter la comprobación
+var other = []
 
 forEach(nums, function (num) {
-    other[other.length] = num // vamos metiendo cada número en el nuevo array
+    other[other.length] = num
 })
 // 10
 // 20
@@ -28,22 +24,19 @@ forEach(nums, function (num) {
 // 40
 // 50
 
-
-
-console.assert(nums[0] === 10, 10) // tenemos que comprobar que el valor original del array nums está bien
-console.assert(nums[1] === 20, 20) // aquí comprobamos los datos
+console.assert(nums[0] === 10, 10)
+console.assert(nums[1] === 20, 20)
 console.assert(nums[2] === 30, 30)
 console.assert(nums[3] === 40, 40)
 console.assert(nums[4] === 50, 50)
 console.assert(nums.length === 5, 5)
 
-console.assert(other[0] === nums[0], 0) // aquí comprobamos indices
+console.assert(other[0] === nums[0], 0)
 console.assert(other[1] === nums[1], 1)
 console.assert(other[2] === nums[2], 2)
 console.assert(other[3] === nums[3], 3)
 console.assert(other[4] === nums[4], 4)
-console.assert(other.length === nums.length, 5)
-
+console.assert(other.length === nums.length, 'length')
 
 console.log('CASE 2')
 
@@ -83,26 +76,26 @@ forEach(nums, function (num, index, array) {
 // 48
 // 59
 
-console.log('CASE 5')
+console.log('CASE 5: callback is undefined')
 
 var nums = [10, 20, 30, 40, 50]
 
 try {
     forEach(nums)
 } catch (error) {
-    console.log(error)
-    // TypeError: undefined is not a function
+    console.assert(error.name === 'TypeError', 'name')
+    console.assert(error.message === 'undefined is not a function', 'message')
 }
 
-console.log('CASE 6')
+console.log('CASE 6: callback is a plain object')
 
 var nums = [10, 20, 30, 40, 50]
 
 try {
     forEach(nums, {})
 } catch (error) {
-    console.log(error)
-    // TypeError: object is not a function
+    console.assert(error.name === 'TypeError', 'name')
+    console.assert(error.message === '[object Object] is not a function', 'message')
 }
 
 console.log('CASE 7')
@@ -136,26 +129,4 @@ try {
 } catch (error) {
     console.log(error)
     // TypeError: boolean false is not a function
-}
-
-try {
-    forEach(nums)
-} catch (error) {
-    console.assert(error.name === 'TypeError', 'name')
-    console.assert(error.message === 'undefined is not a function', 'message')
-}
-
-
-try {
-    forEach(nums, {})
-} catch (error) {
-    console.assert(error.name === 'TypeError', 'name')
-    console.assert(error.message === '[object Object] is not a function', 'message')
-}
-
-try {
-    forEach(nums, null)
-} catch (error) {
-    console.assert(error.name === 'TypeError', 'name')
-    console.assert(error.message === 'null is not a function', 'message')
 }
