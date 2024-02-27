@@ -14,7 +14,6 @@ function Car(brand, model, year, color, doors, fuelType, transmission, gears) {
   this.speed = 0;
   this.acceleration = 0;
   this.direction = "";
-  this.steering = 0;
 }
 
 Car.prototype.fuel = function (load) {

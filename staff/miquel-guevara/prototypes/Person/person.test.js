@@ -4,7 +4,7 @@ console.log('TEST Person')
 
 console.log('CASE aparence')
 
-var person = new Person('Willie', 'Tanner', 185, 70, 50, 'thin', 'white', 'blue', 'omnivore')
+var person = new Person('Willie', 'Tanner', 185, 70, 80, 'thin', 'white', 'blue', 'omnivore')
 
 //nombre, apellido, altura, peso, edad, complexion, color piel, color de ojos, alimentacion
 
@@ -17,31 +17,52 @@ console.assert(person.complexion === 'thin', 'complexion is thin')
 console.assert(person.skinColor === 'white', 'skin color white ')
 console.assert(person.eyesColor === 'blue', 'eyes color')
 console.assert(person.favoriteFood === 'omnivore', 'is omnivore')
-console.assert(person.status === '', 'who knows')
+console.assert(person.biologic === '', 'who knows')
+console.assert(person.maxspeed === 10, 'max speed is 10')
+console.assert(person.maxJump === 10, 'max jump is 10')
+console.assert(person.maxlife === 110, 'max life is 110')
+
+console.log('CASE jump method')
+
+var person = new Person('Willie', 'Tanner', 185, 70, 80, 'thin', 'white', 'blue', 'omnivore')
+
+person.jumpUp(10)
+
+console.assert(person.jump === 10, 'jump 10 cm for the floor')
+console.assert(person.direction === 'up', 'direction is up')
+
+
+person.crouch(-10)
+
+console.assert(person.jump === -10, 'crouch from the ground')
+console.assert(person.direction === 'down', 'direction is down')
+
 
 console.log('CASE kind of food')
 
-var person = new Person('Willie', 'Tanner')
+var person = new Person('Willie', 'Tanner', 185, 70, 80, 'thin', 'white', 'blue', 'omnivore')
 
-person.foodPreference(omnivore)
+person.foodPreference('omnivore')
 
 console.assert(person.favoriteFood === 'omnivore', 'omnivore is your preference')
 
+
 console.log('CASE life')
 
-var person = new Person('Willie', 'Tanner')
+var person = new Person('Willie', 'Tanner', 185, 70, 80, 'thin', 'white', 'blue', 'omnivore')
 
-person.life(50)
+person.life(80)
 
-console.assert(person.status === 'alive', 'person is alive')
+console.assert(person.biologic === 'alive', 'person is alive')
 
 person.life(110)
 
-console.assert(car.status === 'dead', 'person is alive')
+console.assert(person.biologic === 'dead', 'person is alive')
+
 
 console.log('CASE method walk')
 
-var person = new Person('Willie', 'Tanner', 4)
+var person = new Person('Willie', 'Tanner', 185, 70, 80, 'thin', 'white', 'blue', 'omnivore')
 
 person.walking(0)
 
@@ -51,34 +72,41 @@ car.walking(1)
 
 console.assert(person.speed === 1, 'walking level 1')
 
+car.walking(4)
+
+console.assert(car.speed === 4, 'maxspeed')
+
+person.walking(-1)
+
+console.assert(person.speed === -1, 'walk backwards')
+
 try {
     person.walking(5)
 } catch (error) {
     console.assert(error.name, 'RangeError')
+
     console.assert(error.message, 'running speed')
 }
 
-person.walking(-1)
 
-console.assert(person.walking === -1, 'walk backwards')
+console.log('CASE method dance')
 
-console.log('CASE jump method')
+var person = new Person('Willie', 'Tanner', 5)
 
-var person = new Person('Willie', 'Tanner', 40)
+car.gear = 1
 
-person.speed = 10
+car.speedUp(20)
 
-person.jumpUp(10)
+console.assert(car.acceleration === 20, 'acceleration is at 20')
+console.assert(car.direction === 'forward', 'direction is forward')
 
-console.assert(person.jump === 10, 'jump 10 cm for the floor')
-console.assert(car.direction === 'up', 'direction is up')
+car.gear = -1
 
-car.speed = -10
+car.speedUp(100)
 
-person.jumpUp(10)
+console.assert(car.acceleration === 100, 'acceleration is at 100')
+console.assert(car.direction === 'backward', 'direction is backward')
 
-console.assert(person.jump === 10, 'crouch 10 cm from the ground')
-console.assert(car.direction === 'down', 'direction is down')
 
 console.log('CASE method turnSteering')
 
