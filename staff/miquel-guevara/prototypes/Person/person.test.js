@@ -2,7 +2,7 @@ var Person = require('./person')
 
 console.log('TEST Person')
 
-console.log('CASE aparence')
+console.log('CASE constructor')
 
 var person = new Person('Willie', 'Tanner', 185, 70, 80, 'thin', 'white', 'blue', 'omnivore')
 
@@ -68,13 +68,13 @@ person.walking(0)
 
 console.assert(person.stopped === 0, 'still person')
 
-car.walking(1)
+person.walking(1)
 
 console.assert(person.speed === 1, 'walking level 1')
 
-car.walking(4)
+person.walking(4)
 
-console.assert(car.speed === 4, 'maxspeed')
+console.assert(person.speed === 4, 'maxspeed')
 
 person.walking(-1)
 

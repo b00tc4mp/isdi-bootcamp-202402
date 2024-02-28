@@ -29,10 +29,9 @@ Car.prototype.stop = function () {
 };
 
 Car.prototype.changeGear = function (gear) {
-  this.gear = gear;
-  if (gear > this.gears) {
+    if (gear > this.gears) 
     throw new RangeError("gear greater than the given gear");
-  }
+    this.gear = gear;
 };
 
 Car.prototype.speedUp = function (speed) {

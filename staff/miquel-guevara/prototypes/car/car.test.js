@@ -59,12 +59,16 @@ car.changeGear(2)
 
 console.assert(car.gear === 2, 'gear is 2')
 
+var errorThrow
+
 try {
     car.changeGear(5)
 } catch (error) {
-    console.assert(error.name, 'RangeError')
-    console.assert(error.message, 'gear greater than the given gear')
+    errorThrow = error
 }
+
+console.assert(error.name, 'RangeError')
+console.assert(error.message, 'gear greater than the given gear')
 
 car.changeGear(-1)
 
