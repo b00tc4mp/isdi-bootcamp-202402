@@ -1,6 +1,6 @@
 var assert = require("./assert");
 
-var Cat = require("./Cat");
+var Cat = require("./cat");
 
 console.log("TEST Cat");
 
