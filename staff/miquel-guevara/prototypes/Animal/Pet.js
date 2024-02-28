@@ -1,3 +1,5 @@
+var Animal = require('./Animal')
+
 function Pet(name, birthdate, country, weight) {
     this.name = name
     this.birthdate = birthdate
