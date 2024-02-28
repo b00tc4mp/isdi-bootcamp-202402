@@ -60,17 +60,18 @@ Car.prototype.changeSteering = function (rotation) {
         if (this.steering > 0) {
             this.direction = 'forward-right'
         }
-        if (this.steering < 0) {
+        else if (this.steering < 0) {
             this.direction = 'forward-left'
-        }
+        } else this.direction = 'forward'
     }
-    if (this.direction === 'backward' || this.gear < 0) {
+    if (this.direction === 'backward' || this.gear === -1) {
         if (this.steering > 0) {
             this.direction = 'backward-right'
         }
-        if (this.steering < 0) {
+        else if (this.steering < 0) {
             this.direction = 'backward-left'
         }
+        else this.direction = 'backward'
     }
 }
 
