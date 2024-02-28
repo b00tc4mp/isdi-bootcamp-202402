@@ -1,51 +1,42 @@
-function Person(name, lastname, height, weight, age, complexion, skinColor, eyesColor, favoriteFood, ) {
-    
-    this.name = name;
-    this.lastname = lastname;
-    this.height = height;
-    this.weight = weight;
-    this.age = age;
-    this.complexion = complexion;
-    this.skinColor = skinColor;
-    this.eyesColor = eyesColor;
-    this.favoriteFood = favoriteFood;
-    
-    this.biologic = '';
-    this.stopped = 0;
-    this.speed = 0;
-    this.acceleration = 0;
-    this.direction = '';
-    this.jump = 0;
-    this.maxspeed = 10;
-    this.maxJump = 10
-    this.maxlife = 110
-  }
-
-Person.prototype.jumpUp = function(distance){
-  if(distance > 0 && distance <= this.maxJump){
-    this.jump = distance;
-    this.direction = 'up';
-  } else {throw new RangeError("distance must be between 1 and 10")}
-} 
-
-Person.prototype.crouch = function(distance){
-  if(distance < 0 && distance >= -10){
-    this.jump = distance;
-    this.direction = 'down';
-  } else {throw new RangeError("distance must be between -1 and -10")}
+function Person(name, surname, birthdate, country, height, weight) {
+  this.name = name
+  this.surname = surname
+  this.birthdate = birthdate
+  this.country = country
+  this.height = height
+  this.weight = weight
+  this.sleeping = false
+  this.eating = ''
+  this.legsSpeed = Person.NOT_WALK
 }
 
-Person.prototype.foodPreference = function(omnivore){
-    this.favoriteFood = 'omnivore';
+Person.NOT_WALK = 0
+Person.WALK_VERY_SLOW = 1
+Person.WALK_SLOW = 2
+Person.WALK_NORMAL = 4
+Person.WALK_FAST = 5
+Person.RUN = 6
+
+Person.prototype.sleep = function () {
+  this.sleeping = true
 }
 
-Person.prototype.life = function(age){
-  if(this.maxlife <= age){
-    this.biologic = 'alive';
-} else if(age > this.maxlife){
-    this.biologic = 'dead';}
-} 
+Person.prototype.awake = function () {
+  this.sleeping = false
+}
 
+Person.prototype.eat = function (food) {
+  if (this.sleeping) throw new Error('try to eat on sleeping')
 
+  this.eating = food
+}
 
-  module.exports = Person;
+Person.prototype.moveLegs = function (speed) {
+  this.legsSpeed = speed === undefined ? 4 : speed
+}
+
+Person.prototype.talk = function () {
+  this.talking = true
+}
+
+module.exports = Person

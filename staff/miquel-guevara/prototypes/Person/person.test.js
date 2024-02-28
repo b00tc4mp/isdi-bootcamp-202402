@@ -1,129 +1,126 @@
-var Person = require('./person')
+var assert = require('./assert')
+
+var Person = require('./Person')
 
 console.log('TEST Person')
 
 console.log('CASE constructor')
 
-var person = new Person('Willie', 'Tanner', 185, 70, 80, 'thin', 'white', 'blue', 'omnivore')
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 31, 16, 45), 'GB', 140, 50)
 
-//nombre, apellido, altura, peso, edad, complexion, color piel, color de ojos, alimentacion
+assert.equalsValue(person.name, 'Peter')
+assert.equalsValue(person.surname, 'Pan')
+//assert.equalsValue(person.birthdate instanceof Date, true)
+assert.instanceOf(person.birthdate, Date)
+assert.equalsValue(person.birthdate.getFullYear(), 2000)
+assert.equalsValue(person.birthdate.getMonth(), 0)
+assert.equalsValue(person.birthdate.getDate(), 31)
+assert.equalsValue(person.birthdate.getHours(), 16)
+assert.equalsValue(person.birthdate.getMinutes(), 45)
+assert.equalsValue(person.country, 'GB')
+assert.equalsValue(person.height, 140)
+assert.equalsValue(person.weight, 50)
+assert.equalsValue(person.sleeping, false)
+assert.equalsValue(person.eating, '')
+assert.equalsValue(person.legsSpeed, Person.NOT_WALK)
 
-console.assert(person.name === 'Willie', 'name is Willie')
-console.assert(person.lastname === 'Tanner', 'lastname is Tanner')
-console.assert(person.height === 185, 'height is 185')
-console.assert(person.weight === 70, 'weight is 70')
-console.assert(person.age === 80, 'age is 80')
-console.assert(person.complexion === 'thin', 'complexion is thin')
-console.assert(person.skinColor === 'white', 'skin color white ')
-console.assert(person.eyesColor === 'blue', 'eyes color')
-console.assert(person.favoriteFood === 'omnivore', 'is omnivore')
-console.assert(person.biologic === '', 'who knows')
-console.assert(person.maxspeed === 10, 'max speed is 10')
-console.assert(person.maxJump === 10, 'max jump is 10')
-console.assert(person.maxlife === 110, 'max life is 110')
+console.log('CASE sleep')
 
-console.log('CASE jump method')
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 1, 16, 45), 'GB', 140, 50)
 
-var person = new Person('Willie', 'Tanner', 185, 70, 80, 'thin', 'white', 'blue', 'omnivore')
+person.sleep()
 
-person.jumpUp(10)
+assert.equalsValue(person.sleeping, true)
 
-console.assert(person.jump === 10, 'jump 10 cm for the floor')
-console.assert(person.direction === 'up', 'direction is up')
+console.log('CASE awake')
 
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 1, 16, 45), 'GB', 140, 50)
 
-person.crouch(-10)
+person.sleeping = true
 
-console.assert(person.jump === -10, 'crouch from the ground')
-console.assert(person.direction === 'down', 'direction is down')
+person.awake()
 
+assert.equalsValue(person.sleeping, false)
 
-console.log('CASE kind of food')
+console.log('CASE eat')
 
-var person = new Person('Willie', 'Tanner', 185, 70, 80, 'thin', 'white', 'blue', 'omnivore')
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 1, 16, 45), 'GB', 140, 50)
 
-person.foodPreference('omnivore')
+person.eat('🍌')
 
-console.assert(person.favoriteFood === 'omnivore', 'omnivore is your preference')
+assert.equalsValue(person.eating, '🍌')
 
+console.log('CASE eat on sleeping (unhappy)')
 
-console.log('CASE life')
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 1, 16, 45), 'GB', 140, 50)
 
-var person = new Person('Willie', 'Tanner', 185, 70, 80, 'thin', 'white', 'blue', 'omnivore')
+person.sleeping = true
 
-person.life(80)
-
-console.assert(person.biologic === 'alive', 'person is alive')
-
-person.life(110)
-
-console.assert(person.biologic === 'dead', 'person is alive')
-
-
-console.log('CASE method walk')
-
-var person = new Person('Willie', 'Tanner', 185, 70, 80, 'thin', 'white', 'blue', 'omnivore')
-
-person.walking(0)
-
-console.assert(person.stopped === 0, 'still person')
-
-person.walking(1)
-
-console.assert(person.speed === 1, 'walking level 1')
-
-person.walking(4)
-
-console.assert(person.speed === 4, 'maxspeed')
-
-person.walking(-1)
-
-console.assert(person.speed === -1, 'walk backwards')
+var errorThrown
 
 try {
-    person.walking(5)
+    person.eat('🍌')
 } catch (error) {
-    console.assert(error.name, 'RangeError')
-
-    console.assert(error.message, 'running speed')
+    errorThrown = error
 }
 
-
-console.log('CASE method dance')
-
-var person = new Person('Willie', 'Tanner', 5)
-
-car.gear = 1
-
-car.speedUp(20)
-
-console.assert(car.acceleration === 20, 'acceleration is at 20')
-console.assert(car.direction === 'forward', 'direction is forward')
-
-car.gear = -1
-
-car.speedUp(100)
-
-console.assert(car.acceleration === 100, 'acceleration is at 100')
-console.assert(car.direction === 'backward', 'direction is backward')
+assert.error(errorThrown, 'Error', 'try to eat on sleeping')
 
 
-console.log('CASE method turnSteering')
+console.log('CASE walk')
 
-var car = new Car('Citroen', 'CV')
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 1, 16, 45), 'GB', 140, 50)
 
-car.gear = 1
-car.acceleration = 10
+person.moveLegs()
 
-car.changeSteering(20)
+assert.equalsValue(person.legsSpeed, Person.WALK_NORMAL)
 
-console.assert(car.steering === 20, 'steering is at 20')
-console.assert(car.direction === 'forward-right', 'direction is forward and right')
+console.log('CASE walk fast')
 
-car.gear = -1
-car.acceleration = 10
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 1, 16, 45), 'GB', 140, 50)
 
-car.changeSteering(-30)
+person.moveLegs(Person.WALK_FAST)
 
-console.assert(car.steering === -30, 'steering is at -30')
-console.assert(car.direction === 'backward-left', 'direction is backward and left')
+assert.equalsValue(person.legsSpeed, Person.WALK_FAST)
+
+console.log('CASE walk slow')
+
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 1, 16, 45), 'GB', 140, 50)
+
+person.moveLegs(Person.WALK_SLOW)
+
+assert.equalsValue(person.legsSpeed, Person.WALK_SLOW)
+
+console.log('CASE walk normal')
+
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 1, 16, 45), 'GB', 140, 50)
+
+person.moveLegs(Person.WALK_NORMAL)
+
+assert.equalsValue(person.legsSpeed, Person.WALK_NORMAL)
+
+console.log('CASE walk very slow')
+
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 1, 16, 45), 'GB', 140, 50)
+
+person.moveLegs(Person.WALK_VERY_SLOW)
+
+assert.equalsValue(person.legsSpeed, Person.WALK_VERY_SLOW)
+
+console.log('CASE talk')
+
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 1, 16, 45), 'GB', 140, 50)
+
+person.talk()
+
+assert.equalsValue(person.talking, true)
+
+console.log('CASE walk & talk')
+
+var person = new Person('Peter', 'Pan', new Date(2000, 0, 1, 16, 45), 'GB', 140, 50)
+
+person.moveLegs()
+person.talk()
+
+assert.equalsValue(person.talking, true)
+assert.equalsValue(person.legsSpeed, Person.WALK_NORMAL)
