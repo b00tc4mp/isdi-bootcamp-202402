@@ -1,27 +1,26 @@
-function Person(name, age, hairColor,) {
-    this.name = name
-    this.age = age
-    this.status = 'awake'
+var Animal = require('./Animal')
 
+function Person(name, birthDate, weight, gender) {
+    Animal.call(this, name, birthDate, weight, gender)
+
+    this.talking = false
+    this.say = ''
 }
 
-Person.prototype.walk = function (where) {
-    console.log("I'm walking to the " + where)
-}
+Person.prototype = Object.create(Animal.prototype)
+Person.prototype.constructor = Person
 
-Person.prototype.speak = function (str) {
-    console.log(str)
-}
+Person.NOT_WALK = 0
+Person.WALK_SLOW = 2
+Person.WALK_NORMAL = 4
+Person.WALK_FAST = 6
+Person.WALK_VERY_FAST = 8
 
-Person.prototype.sleep = function () {
-    this.status = 'asleep'
-    console.log('ZzzZzz')
+Person.prototype.talk = function () {
+    this.talking = true
+    if (this.sleeping) {
+        this.say = 'sleep talking'
+    } else this.say = 'bla bla bla'
 }
-
-Person.prototype.wakeUp = function () {
-    this.status = 'awake'
-    console.log('Good Morning!')
-}
-
 
 module.exports = Person
