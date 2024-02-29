@@ -18,8 +18,8 @@ assert.assert(animal.eats, '')
 assert.assert(animal.awake, true)
 assert.assert(animal.speed, 0)
 assert.assert(animal.alive, true)
-assert.assert(animal.silent, 'is silent')
-assert.assert(animal.message, 'is saying nothing')
+assert.assert(animal.silent, true)
+assert.assert(animal.message, '')
 
 
 console.log('CASE Animal constructor birthday unhappy')
@@ -110,6 +110,8 @@ console.log('CASE sleep() happy')
 
 animal.sleep()
 assert.assert(animal.awake, false)
+assert.assert(animal.silent, true)
+assert.assert(animal.message, '')
 
 
 

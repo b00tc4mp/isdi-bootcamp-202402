@@ -29,10 +29,11 @@ function Animal (birthday, weight, height, legs){
 Animal.prototype.eat = function(food){
     if (typeof food !== 'string')
         throw new TypeError(food + ' is not a String')
-    if (this.awake === false)
-        throw new Error('tries to eat on awake false')
     if (this.alive === false)
         throw new Error ('tries to eat on alive false')
+    if (this.awake === false)
+        throw new Error('tries to eat on awake false')
+
 
     this.eats = food
 }
@@ -41,6 +42,8 @@ Animal.prototype.sleep = function(){
     if (this.alive === false)
         throw new Error('tries to sleep on alive false')
     this.awake = false
+    this.silent = true
+    this.message = ''
 }
 
 Animal.prototype.wakeUp = function(){
@@ -54,10 +57,11 @@ Animal.prototype.move = function(speed){
         throw new TypeError(speed + ' is not a number')
     if (speed < 0)
         throw new RangeError('speed must be positive')
+    if (this.alive === false)
+        throw new Error('tries to move on alive false')
     if (this.awake === false)
         throw new Error('try to move on awake false')
-    if (this.alive === false)
-    throw new Error('tries to move on alive false')
+
 
     this.speed = speed
 }
