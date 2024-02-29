@@ -1,122 +1,53 @@
 var assert = require('./assert')
 
-var Dog = require('./dog')
+var pinkie = require('./Dog')
+var person = require('./Person')
+var pet = require('./Pet')
+var animal = require('./Animal')
 
 
 console.log('TEST Dog')
 
 console.log('CASE constructor')
 
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
+var peter = new Person('Peter', 'Griffin', new Date(1984, 5, 31, 18, 45), 'EUA', 170, 110)
+var pinkie = new Dog('Pinkie', new Date(2017, 1, 9, 12, 30), 'FR', 12)
 
-assert.equalsValue(dog.name, 'Bartolo')
-assert.instanceOf(dog.birthdate, Date)
-assert.equalsValue(dog.birthdate.getFullYear(), 2017)
-assert.equalsValue(dog.birthdate.getMonth(), 1)
-assert.equalsValue(dog.birthdate.getDate(), 9)
-assert.equalsValue(dog.birthdate.getHours(), 12)
-assert.equalsValue(dog.birthdate.getMinutes(), 30)
-assert.equalsValue(dog.country, 'FR')
-assert.equalsValue(dog.weight, 6)
-assert.equalsValue(dog.sleeping, false)
-assert.equalsValue(dog.eating, '')
-assert.equalsValue(dog.legsSpeed, 0)
+assert.equalsValue(pinkie.constructor, Dog)
+assert.instanceOf(pinkie, Dog)
+assert.instanceOf(pinkie, Pet)
+assert.instanceOf(pinkie, Animal)
 
-console.log('CASE sleep')
+assert.equalsValue(pinkie.name, 'Pinkie')
+assert.instanceOf(pinkie.birthdate, Date)
+assert.equalsValue(pinkie.birthdate.getFullYear(), 2017)
+assert.equalsValue(pinkie.birthdate.getMounth(), 1)
+assert.equalsValue(pinkie.birthdate.getDate(), 9)
+assert.equalsValue(pinkie.birthdate.getHours(), 12)
+assert.equalsValue(pinkie.birthdate.getminutes(), 30)
+assert.equalsValue(pinkie.country, 'FR')
+assert.equalsValue(pinkie.weight, 12)
+assert.equalsValue(pinkie.sleeping, false)
+assert.equalsValue(pinkie.eating, '')
+assert.equalsValue(pinkie.legsSpeed, 0)
+assert.equalsValue(pinkie.barking, false)
 
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
+console.log('CASE bark')
 
-dog.sleep()
+var peter = new Person('Peter', 'Pan', new Date(2000, 0, 31, 16, 45), 'GB', 140, 50)
+var sultan = new Dog(peter, 'Sultan', new Date(2000, 0, 31, 16, 45), 'GB', 50)
 
-assert.equalsValue(dog.sleeping, true)
+sultan.bark()
 
-console.log('CASE awake')
+assert.equalsValue(sultan.barking, true)
 
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
+console.log('CASE tsssh')
 
-dog.sleeping = true
+var peter = new Person('Peter', 'Pan', new Date(2000, 0, 31, 16, 45), 'GB', 140, 50)
+var sultan = new Dog(peter, 'Sultan', new Date(2000, 0, 31, 16, 45), 'GB', 50)
 
-dog.awake()
+sultan.barking = true
 
-assert.equalsValue(dog.sleeping, false)
+sultan.tsssh()
 
-console.log('CASE eat')
-
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
-
-dog.eat('meat')
-
-assert.equalsValue(dog.eating, 'meat')
-
-console.log('CASE eat on sleeping (unhappy)')
-
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
-
-dog.sleeping = true
-
-var errorThrown
-
-try {
-    dog.eat('dog food')
-} catch (error) {
-    errorThrown = error
-}
-
-assert.error(errorThrown, 'Error', 'try to eat on sleeping')
-
-
-console.log('CASE not walk')
-
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
-
-dog.moveLegs(Dog.NOT_WALK)
-
-assert.equalsValue(dog.legsSpeed, Dog.NOT_WALK)
-
-console.log('CASE walk')
-
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
-
-dog.moveLegs()
-
-assert.equalsValue(dog.legsSpeed, Dog.WALK_NORMAL)
-
-console.log('CASE walk fast')
-
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
-
-dog.moveLegs(Dog.WALK_FAST)
-
-assert.equalsValue(dog.legsSpeed, Dog.WALK_FAST)
-
-console.log('CASE walk slow')
-
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
-
-dog.moveLegs(Dog.WALK_SLOW)
-
-assert.equalsValue(dog.legsSpeed, Dog.WALK_SLOW)
-
-console.log('CASE walk normal')
-
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
-
-dog.moveLegs(Dog.WALK_NORMAL)
-
-assert.equalsValue(dog.legsSpeed, Dog.WALK_NORMAL)
-
-console.log('CASE walk very slow')
-
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
-
-dog.moveLegs(Dog.WALK_VERY_SLOW)
-
-assert.equalsValue(dog.legsSpeed, Dog.WALK_VERY_SLOW)
-
-console.log('CASE run')
-
-var dog = new Dog('Bartolo', new Date(2017, 1, 9, 12, 30), 'FR', 6)
-
-dog.moveLegs(Dog.RUN)
-
-assert.equalsValue(dog.legsSpeed, Dog.RUN)
+assert.equalsValue(sultan.barking, false)

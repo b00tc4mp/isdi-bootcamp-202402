@@ -1,28 +1,25 @@
-var Animal = require('./Animal')
+var Animal = require("./Animal");
 
 function Person(name, surname, birthdate, country, height, weight) {
-  this.name = name
-  this.surname = surname
-  this.birthdate = birthdate
-  this.country = country
-  this.height = height
-  this.weight = weight
-  this.sleeping = false
-  this.eating = ''
-  this.legsSpeed = Person.NOT_WALK
+  Animal.call(this, name, birthdate, country, weight);
+
+  this.surname = surname;
+  this.height = height;
+  this.talking = false;
 }
 
-Person.NOT_WALK = 0
-Person.WALK_VERY_SLOW = 1
-Person.WALK_SLOW = 2
-Person.WALK_NORMAL = 4
-Person.WALK_FAST = 5
-Person.RUN = 6
+Person.prototype = Object.create(Animal.prototype);
+Person.prototype.constructor = Person;
 
-Person.prototype = new Animal
+Person.NOT_WALK = 0;
+Person.WALK_VERY_SLOW = 1;
+Person.WALK_SLOW = 2;
+Person.WALK_NORMAL = 4;
+Person.WALK_FAST = 5;
+Person.RUN = 6;
 
 Person.prototype.talk = function () {
-  this.talking = true
-}
+  this.talking = true;
+};
 
-module.exports = Person
+module.exports = Person;

@@ -6,121 +6,33 @@ console.log('TEST Person')
 
 console.log('CASE constructor')
 
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
+var peter = new Person('Peter', 'Griffin', new Date(1984, 5, 31, 18, 45), 'EUA', 170, 110)
 
-assert.equalsValue(person.name, 'Peter')
-assert.equalsValue(person.surname, 'Griffin')
+assert.instanceOf(peter, Person)
+assert.equalsValue(peter.constructor, Person)
+assert.equalsValue(peter.name, 'Peter')
+assert.equalsValue(peter.surname, 'Griffin')
 //assert.equalsValue(person.birthdate instanceof Date, true)
-assert.instanceOf(person.birthdate, Date)
-assert.equalsValue(person.birthdate.getFullYear(), 1984)
-assert.equalsValue(person.birthdate.getMonth(), 2)
-assert.equalsValue(person.birthdate.getDate(), 8)
-assert.equalsValue(person.birthdate.getHours(), 10)
-assert.equalsValue(person.birthdate.getMinutes(), 20)
-assert.equalsValue(person.country, 'EUA')
-assert.equalsValue(person.height, 170)
-assert.equalsValue(person.weight, 110)
-assert.equalsValue(person.sleeping, false)
-assert.equalsValue(person.eating, '')
-assert.equalsValue(person.legsSpeed, Person.NOT_WALK)
-
-console.log('CASE sleep')
-
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
-
-person.sleep()
-
-assert.equalsValue(person.sleeping, true)
-
-console.log('CASE awake')
-
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
-
-person.sleeping = true
-
-person.awake()
-
-assert.equalsValue(person.sleeping, false)
-
-console.log('CASE eat')
-
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
-
-person.eat('meat')
-
-assert.equalsValue(person.eating, 'meat')
-
-console.log('CASE eat on sleeping (unhappy)')
-
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
-
-person.sleeping = true
-
-var errorThrown
-
-try {
-    person.eat('meat')
-} catch (error) {
-    errorThrown = error
-}
-
-assert.error(errorThrown, 'Error', 'try to eat on sleeping')
-
-
-console.log('CASE walk')
-
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
-
-person.moveLegs()
-
-assert.equalsValue(person.legsSpeed, Person.WALK_NORMAL)
-
-console.log('CASE walk fast')
-
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
-
-person.moveLegs(Person.WALK_FAST)
-
-assert.equalsValue(person.legsSpeed, Person.WALK_FAST)
-
-console.log('CASE walk slow')
-
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
-
-person.moveLegs(Person.WALK_SLOW)
-
-assert.equalsValue(person.legsSpeed, Person.WALK_SLOW)
-
-console.log('CASE walk normal')
-
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
-
-person.moveLegs(Person.WALK_NORMAL)
-
-assert.equalsValue(person.legsSpeed, Person.WALK_NORMAL)
-
-console.log('CASE walk very slow')
-
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
-
-person.moveLegs(Person.WALK_VERY_SLOW)
-
-assert.equalsValue(person.legsSpeed, Person.WALK_VERY_SLOW)
-
-console.log('CASE talk')
-
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
-
-person.talk()
-
-assert.equalsValue(person.talking, true)
+assert.instanceOf(peter.birthdate, Date)
+assert.equalsValue(peter.birthdate.getFullYear(), 1984)
+assert.equalsValue(peter.birthdate.getMonth(), 5)
+assert.equalsValue(peter.birthdate.getDate(), 31)
+assert.equalsValue(peter.birthdate.getHours(), 18)
+assert.equalsValue(peter.birthdate.getMinutes(), 45)
+assert.equalsValue(peter.country, 'EUA')
+assert.equalsValue(peter.height, 170)
+assert.equalsValue(peter.weight, 110)
+assert.equalsValue(peter.sleeping, false)
+assert.equalsValue(peter.eating, '')
+assert.equalsValue(peter.legsSpeed, Person.NOT_WALK)
+assert.equalsValue(peter.talking, false)
 
 console.log('CASE walk & talk')
 
-var person = new Person('Peter', 'Griffin', new Date(1984, 2, 8, 10, 20), 'EUA', 170, 110)
+var peter = new Person('Peter', 'Griffin', new Date(1984, 5, 31, 18, 45), 'EUA', 170, 110)
 
-person.moveLegs()
-person.talk()
+peter.moveLegs()
+peter.talk()
 
-assert.equalsValue(person.talking, true)
-assert.equalsValue(person.legsSpeed, Person.WALK_NORMAL)
+assert.equalsValue(peter.talking, true)
+assert.equalsValue(peter.legsSpeed, Person.WALK_NORMAL)
