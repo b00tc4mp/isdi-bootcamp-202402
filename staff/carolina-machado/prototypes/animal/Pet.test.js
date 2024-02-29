@@ -1,121 +1,49 @@
 var assert = require('./assert')
 
+var Animal = require('./Animal')
 var Pet = require('./Pet')
+var Person = require('./Person')
 
 console.log('TEST Pet')
 
 console.log('CASE constructor')
 
-var pet = new Pet('Sultan', new Date(2000, 0, 31, 16, 45), 'GB', 50)
+var peter = new Person('Peter', 'Pan', new Date(2000, 0, 31, 16, 45), 'GB', 140, 50)
+var sultan = new Pet(peter, 'Sultan', new Date(2000, 0, 31, 16, 45), 'GB', 50)
 
-assert.equalsValue(pet.name, 'Sultan')
-assert.instanceOf(pet.birthdate, Date)
-assert.equalsValue(pet.birthdate.getFullYear(), 2000)
-assert.equalsValue(pet.birthdate.getMonth(), 0)
-assert.equalsValue(pet.birthdate.getDate(), 31)
-assert.equalsValue(pet.birthdate.getHours(), 16)
-assert.equalsValue(pet.birthdate.getMinutes(), 45)
-assert.equalsValue(pet.country, 'GB')
-assert.equalsValue(pet.weight, 50)
-assert.equalsValue(pet.sleeping, false)
-assert.equalsValue(pet.eating, '')
-assert.equalsValue(pet.legsSpeed, 0)
+assert.instanceOf(sultan, Pet)
+assert.equalsValue(sultan.constructor, Pet)
+assert.equalsValue(sultan.name, 'Sultan')
+assert.instanceOf(sultan.birthdate, Date)
+assert.equalsValue(sultan.birthdate.getFullYear(), 2000)
+assert.equalsValue(sultan.birthdate.getMonth(), 0)
+assert.equalsValue(sultan.birthdate.getDate(), 31)
+assert.equalsValue(sultan.birthdate.getHours(), 16)
+assert.equalsValue(sultan.birthdate.getMinutes(), 45)
+assert.equalsValue(sultan.country, 'GB')
+assert.equalsValue(sultan.weight, 50)
+assert.equalsValue(sultan.sleeping, false)
+assert.equalsValue(sultan.eating, '')
+assert.equalsValue(sultan.legsSpeed, 0)
 
-console.log('CASE sleep')
+assert.instanceOf(sultan, Pet)
+assert.instanceOf(sultan, Animal)
 
-var pet = new Pet('Sultan', new Date(2000, 0, 1, 16, 45), 'GB', 50)
+console.log('CASE toString')
 
-pet.sleep()
+var peter = new Person('Peter', 'Pan', new Date(2000, 0, 31, 16, 45), 'GB', 140, 50)
+var sultan = new Pet(peter, 'Sultan', new Date(2000, 0, 31, 16, 45), 'GB', 50)
 
-assert.equalsValue(pet.sleeping, true)
+assert.equalsValue(sultan.toString(), 'Pet (Sultan, 2000-01-31, GB)')
 
-console.log('CASE awake')
-
-var pet = new Pet('Sultan', new Date(2000, 0, 1, 16, 45), 'GB', 50)
-
-pet.sleeping = true
-
-pet.awake()
-
-assert.equalsValue(pet.sleeping, false)
-
-console.log('CASE eat')
-
-var pet = new Pet('Sultan', new Date(2000, 0, 1, 16, 45), 'GB', 50)
-
-pet.eat('🍌')
-
-assert.equalsValue(pet.eating, '🍌')
-
-console.log('CASE eat on sleeping (unhappy)')
-
-var pet = new Pet('Sultan', new Date(2000, 0, 1, 16, 45), 'GB', 50)
-
-pet.sleeping = true
+console.log('CASE constructor fails on non-Person owner')
 
 var errorThrown
 
 try {
-    pet.eat('🍌')
+    new Pet(undefined, 'Sultan', new Date(2000, 0, 31, 16, 45), 'GB', 50)
 } catch (error) {
     errorThrown = error
 }
 
-assert.error(errorThrown, 'Error', 'try to eat on sleeping')
-
-
-console.log('CASE not walk')
-
-var pet = new Pet('Sultan', new Date(2000, 0, 1, 16, 45), 'GB', 50)
-
-pet.moveLegs(Pet.NOT_WALK)
-
-assert.equalsValue(pet.legsSpeed, Pet.NOT_WALK)
-
-console.log('CASE walk')
-
-var pet = new Pet('Sultan', new Date(2000, 0, 1, 16, 45), 'GB', 50)
-
-pet.moveLegs()
-
-assert.equalsValue(pet.legsSpeed, Pet.WALK_NORMAL)
-
-console.log('CASE walk fast')
-
-var pet = new Pet('Sultan', new Date(2000, 0, 1, 16, 45), 'GB', 50)
-
-pet.moveLegs(Pet.WALK_FAST)
-
-assert.equalsValue(pet.legsSpeed, Pet.WALK_FAST)
-
-console.log('CASE walk slow')
-
-var pet = new Pet('Sultan', new Date(2000, 0, 1, 16, 45), 'GB', 50)
-
-pet.moveLegs(Pet.WALK_SLOW)
-
-assert.equalsValue(pet.legsSpeed, Pet.WALK_SLOW)
-
-console.log('CASE walk normal')
-
-var pet = new Pet('Sultan', new Date(2000, 0, 1, 16, 45), 'GB', 50)
-
-pet.moveLegs(Pet.WALK_NORMAL)
-
-assert.equalsValue(pet.legsSpeed, Pet.WALK_NORMAL)
-
-console.log('CASE walk very slow')
-
-var pet = new Pet('Sultan', new Date(2000, 0, 1, 16, 45), 'GB', 50)
-
-pet.moveLegs(Pet.WALK_VERY_SLOW)
-
-assert.equalsValue(pet.legsSpeed, Pet.WALK_VERY_SLOW)
-
-console.log('CASE run')
-
-var pet = new Pet('Sultan', new Date(2000, 0, 1, 16, 45), 'GB', 50)
-
-pet.moveLegs(Pet.RUN)
-
-assert.equalsValue(pet.legsSpeed, Pet.RUN)
+assert.error(errorThrown, 'TypeError', 'owner is not a Person')
