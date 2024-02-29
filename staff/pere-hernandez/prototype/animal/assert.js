@@ -7,7 +7,12 @@ function error(error, type, message){
     console.assert(error.message === message, 'message')
 }
 
+function instanceOf(value, type) {
+    console.assert(value instanceof type === true, value + ' is instance of ' +  type)
+}
+
 module.exports = {
     assert: assert,
-    error: error
+    error: error,
+    instanceOf: instanceOf
 }

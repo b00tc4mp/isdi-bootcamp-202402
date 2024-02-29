@@ -6,6 +6,8 @@ console.log('CASE Animal constructor happy')
 
 var animal = new Animal(new Date(2020, 1, 8), 2.5, 0.3, 2)
 
+assert.instanceOf(animal, Animal)
+
 assert.assert(animal.birthday.getFullYear(), 2020)
 assert.assert(animal.birthday.getMonth(), 1)
 assert.assert(animal.birthday.getDate(), 8)
@@ -13,9 +15,11 @@ assert.assert(animal.weight, 2.5)
 assert.assert(animal.height, 0.3)
 assert.assert(animal.legs, 2)
 assert.assert(animal.eats, '')
-assert.assert(animal.awake, false)
+assert.assert(animal.awake, true)
 assert.assert(animal.speed, 0)
 assert.assert(animal.alive, true)
+assert.assert(animal.silent, 'is silent')
+assert.assert(animal.message, 'is saying nothing')
 
 
 console.log('CASE Animal constructor birthday unhappy')

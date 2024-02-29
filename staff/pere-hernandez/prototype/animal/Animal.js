@@ -22,6 +22,8 @@ function Animal (birthday, weight, height, legs){
     this.awake = true
     this.speed = 0
     this.alive = true
+    this.silent = true
+    this.message = ''
 }
 
 Animal.prototype.eat = function(food){
