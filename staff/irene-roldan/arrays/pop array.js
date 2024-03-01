@@ -1,14 +1,12 @@
-delete Array.prototype.pop();
+delete Array.prototype.pop
 
-function pop (array) {
-    
-    if (array.length === 0) {
-      
-    }else{
+function pop(array) {
+    if (array.length > 0) {
         var lastIndex = array.length - 1
-        var lastElement = array[array.length-1]
-        array.length = lastIndex; // array.length--
-    
+        var lastElement = array[lastIndex]
+
+        array.length--
+
         return lastElement
     }
 }
