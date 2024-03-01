@@ -35,19 +35,19 @@ assert.equalsValue(pinkie.barking, false)
 console.log('CASE bark')
 
 var peter = new Person('Peter', 'Pan', new Date(2000, 0, 31, 16, 45), 'GB', 140, 50)
-var sultan = new Dog(peter, 'Sultan', new Date(2000, 0, 31, 16, 45), 'GB', 50)
+var sultan = new Dog(peter, 'Pinkie', new Date(2000, 0, 31, 16, 45), 'GB', 50)
 
-sultan.bark()
+pinkie.bark()
 
-assert.equalsValue(sultan.barking, true)
+assert.equalsValue(pinkie.barking, true)
 
 console.log('CASE tsssh')
 
 var peter = new Person('Peter', 'Pan', new Date(2000, 0, 31, 16, 45), 'GB', 140, 50)
-var sultan = new Dog(peter, 'Sultan', new Date(2000, 0, 31, 16, 45), 'GB', 50)
+var sultan = new Dog(peter, 'Pinkie', new Date(2000, 0, 31, 16, 45), 'GB', 50)
 
-sultan.barking = true
+pinkie.barking = true
 
 sultan.tsssh()
 
-assert.equalsValue(sultan.barking, false)
+assert.equalsValue(pinkie.barking, false)
