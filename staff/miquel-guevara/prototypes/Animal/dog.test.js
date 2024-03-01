@@ -1,6 +1,6 @@
 var assert = require('./assert')
 
-var pinkie = require('./Dog')
+//var pinkie = require('./Dog')
 var person = require('./Person')
 var pet = require('./Pet')
 var animal = require('./Animal')
