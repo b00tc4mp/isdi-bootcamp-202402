@@ -1,0 +1,17 @@
+var assert = require('./assert')
+
+var Alien = require('./Alien')
+var Actor = require('./Actor')
+
+console.log('TEST Alien')
+console.log('* constructor')
+var alien = new Alien(100, 100)
+assert.instanceOf(alien, Alien)
+assert.instanceOf(alien, Actor)
+assert.equalValue(alien.constructor, Alien)
+assert.equalValue(alien.x, 0)
+assert.equalValue(alien.y, 0)
+assert.equalValue(alien.z, 0)
+assert.equalValue(alien.step, 1)
+assert.equalValue(alien.width, 100)
+assert.equalValue(alien.height, 100)
