@@ -103,14 +103,14 @@ console.log('CASE METHOD DEFECATE (FAIL)')
 var errorThrown 
 try {
     animal.rectum = 'Hi'
-    animal.defecate()
+    animal.defecate() 
 } catch (error) {
     errorThrown = error
 }
 
 assert.error(errorThrown, 'TypeError', 'is not a number');
 
-
+console.log('CASE METHOD PISS')
 console.log('CASE METHOD GET ENERGY')
 
 

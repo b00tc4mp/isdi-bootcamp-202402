@@ -91,7 +91,7 @@ person.drunk('vodka', 'water')
 assert.equalsValue(person.sobriety, 'drunk')
 
 console.log('CASE METHOD TALK')
-
+console.log('CASE METHOD PISS')
 
 
 console.log('CASE METHOD WALK')
