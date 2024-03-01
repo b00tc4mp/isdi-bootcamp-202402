@@ -95,7 +95,7 @@ matcha.describe('Arroz', function(){
             matcha.expect(value).toBe(2)
         })
 
-        matcha.it('should return value stored on position index, starting from the start when index is negative', function(){
+        matcha.it('should return value stored on position index, starting from the end when index is negative', function(){
             var newArroz = new Arroz(1, 2, 3)
 
             var value = newArroz.at(-1)
