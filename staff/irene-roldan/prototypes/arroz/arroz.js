@@ -45,7 +45,7 @@ Arroz.prototype.pop = function(){
 }
 
 Arroz.prototype.toString = function(){
-    var String = 'Arroz ['
+    var string = 'Arroz ['
 
     for (var i = 0; i < this.length; i++) {
         var element = this[i]
@@ -66,7 +66,7 @@ Arroz.prototype.concat = function(){
     for (var i = 0; i < arguments.length; i++) {
         var element = arguments[i]
         
-        var String = 'Arroz ['
+        var string = 'Arroz ['
 
         string = string + element
 
@@ -75,6 +75,18 @@ Arroz.prototype.concat = function(){
     string += ']'
 
     return string
+}
+
+Arroz.prototype.at = function(index){
+    for (var i = 0; i < this.length; i++) {
+        var element = this[i] 
+
+        if(i === index)
+
+        element = i
+        
+        return element
+    } 
 }
 
 module.exports = Arroz 

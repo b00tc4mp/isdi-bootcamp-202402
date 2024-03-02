@@ -25,7 +25,7 @@ matcha.describe('Arroz', function(){
             
             matcha.expect(a).toBeInstanceOf(Arroz)
             matcha.expect(a.length).toBe(1)
-            matcha.expect(a[0].toBe(true))
+            matcha.expect(a[0]).toBe(true)
         })
 
         matcha.it('should construct with one numeric value', function(){
@@ -103,6 +103,22 @@ matcha.describe('Arroz', function(){
 
             matcha.expect(string).toBe('Arroz [1, 2, 3, 4]')
 
+        })
+    })
+
+    matcha.describe('> at', function () {
+        matcha.it ('takes an integer value and returns the item at that index', function () {
+            var a = new Arroz('apple', 'banana', 'pear')
+
+            var string = a.at(1)
+
+            matcha.expect(string).toBe('banana')
+        })
+    })
+
+    matcha.describe('> with', function () {
+        matcha.it ('returns a new array with the element at the given index replaced with the given value', function () {
+            var a = new Arroz ()
         })
     })
 

@@ -1,5 +1,6 @@
 var assert = require('./assert')
-var matcha = require('./matcha') 
+
+var matcha = require('./matcha')
 
 console.log('matcha')
 
@@ -11,7 +12,7 @@ var run = false
 
 assert.equalsValue(!!matcha.describe, true)
 
-matcha.describe('describe title', function (){
+matcha.describe('describe title', function () {
     run = true
 })
 
@@ -44,7 +45,7 @@ var result = matcha.expect(10).toBe(10)
 assert.equalsValue(result, true)
 assert.equalsValue(matcha.logs[0], '✅ 10 to be 10')
 
-console.log('> expect toBe(unhappy path)')
+console.log('> expect toBe (unhappy path)')
 
 assert.equalsValue(!!matcha.expect, true)
 

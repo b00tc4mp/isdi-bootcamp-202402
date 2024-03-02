@@ -1,9 +1,10 @@
 console.log('MATCHA 🍵 v0.1')
 
 var matcha = {}
+
 var logs = []
 
-function describe(title, callback){
+function describe(title, callback) {
     logs[logs.length] = title
     console.log(title)
 
@@ -11,34 +12,34 @@ function describe(title, callback){
 }
 
 function it(title, callback) {
-    logs[logs.length] = title
-    console.log(title)
+    var log = '* ' + title
+
+    logs[logs.length] = log
+    console.log(log)
 
     callback()
 }
 
-function expect(value){
-    return{
-        toBe: function (expected){
+function expect(value) {
+    return {
+        toBe: function (expected) {
             var matches = value === expected
-            if(!matches) {
+
+            if (!matches) {
                 var log = '❌ ' + value + ' to be ' + expected
-                
+
                 logs[logs.length] = log
                 console.error(log)
-                
-                return false
 
+                return false
             }
-            
+
             var log = '✅ ' + value + ' to be ' + expected
 
             logs[logs.length] = log
-
             console.info(log)
 
             return true
-
         },
 
         toBeInstanceOf: function (expected) {
@@ -49,6 +50,8 @@ function expect(value){
 
                 logs[logs.length] = log
                 console.error(log)
+
+                return false
             }
 
             var log = '✅ ' + value + ' to be instance of ' + expected.name
@@ -66,4 +69,4 @@ matcha.describe = describe
 matcha.it = it
 matcha.expect = expect
 
-module.exports = matcha 
+module.exports = matcha
