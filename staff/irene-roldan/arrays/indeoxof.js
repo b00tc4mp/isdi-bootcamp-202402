@@ -39,19 +39,25 @@ function indexOf(array, searchIndex, fromIndex) {
 }
 
 
-console.log('CASE 1')
-var arr = [2, 9, 9];
-var char = indexOf(arr, 2)
-console.log(char)
-//0
-
-
-console.log('CASE 2')
+console.log('CASE 1');
 
 var arr = [2, 9, 9];
-var char = indexOf(arr, 7)
-console.log(char)
-//-1 
+var index = indexOf(arr, 2);
+
+console.assert(index === 0, 'Assertion failed: Unexpected result');
+
+console.log(index);
+// 0
+
+console.log('CASE 2');
+
+var arr = [2, 9, 9];
+var index = indexOf(arr, 7);
+
+console.assert(index === -1, 'Assertion failed: Unexpected result');
+
+console.log(index);
+// -1
 
 
 

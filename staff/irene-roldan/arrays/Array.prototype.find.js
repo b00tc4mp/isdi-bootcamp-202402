@@ -27,7 +27,18 @@ var inventario = [
     { nombre: "cerezas", cantidad: 5 },
 ];
 
-var result = find(inventario, function (fruta) {return fruta.nombre === "cerezas"})
+console.log('Case 2')
+var inventario = [
+    { nombre: "manzanas", cantidad: 2 },
+    { nombre: "bananas", cantidad: 0 },
+    { nombre: "cerezas", cantidad: 5 },
+]
 
-console.log(result);
+var result = find(inventario, function (fruta) { return fruta.nombre === "cerezas"; });
+
+console.assert(
+    result && result.nombre === 'cerezas' && result.cantidad === 5,
+    'Assertion failed: Unexpected result'
+)
+
 // { nombre: 'cerezas', cantidad: 5 }

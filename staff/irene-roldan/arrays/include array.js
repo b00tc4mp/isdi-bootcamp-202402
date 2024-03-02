@@ -19,77 +19,91 @@ function includes(array, value, fromIndex) {
     return false
 }
 
-console.log('CASE 1')
+console.log('CASE 1');
 
-var nums = [100, 200, 300, 400, 500]
+var nums = [100, 200, 300, 400, 500];
 
-var result = includes(nums, 600)
+var result = includes(nums, 600);
 
-console.log(result)
+console.assert(!result, 'Assertion failed: Unexpected result');
+
+console.log(result);
 // false
 
-console.log('CASE 2')
+console.log('CASE 2');
 
-var animals = ['pigs', 'goats', 'sheep', 'cows']
+var animals = ['pigs', 'goats', 'sheep', 'cows'];
 
-var result = includes(animals, 'sheep')
+var result = includes(animals, 'sheep');
 
-console.log(result)
+console.assert(result, 'Assertion failed: Unexpected result');
+
+console.log(result);
 // true
 
-console.log('CASE 3')
+console.log('CASE 3');
 
-var nums = [10, 20, 30]
+var nums = [10, 20, 30];
 
-var result = includes(nums, 30, 3)
+var result = includes(nums, 30, 3);
 
-console.log(result)
+console.assert(!result, 'Assertion failed: Unexpected result');
+
+console.log(result);
 // false
 
-console.log('CASE 4')
+console.log('CASE 4');
 
-var nums = [10, 20, 30]
+var nums = [10, 20, 30];
 
-var result = includes(nums, 30, 1)
+var result = includes(nums, 30, 1);
 
-console.log(result)
+console.assert(result, 'Assertion failed: Unexpected result');
+
+console.log(result);
 // true
 
-console.log('CASE 5')
+console.log('CASE 5');
 
-var animals = ['pigs', 'goats', 'sheep', 'cows']
+var animals = ['pigs', 'goats', 'sheep', 'cows'];
 
-var result = includes(animals, 'cows', 2)
+var result = includes(animals, 'cows', 2);
 
-console.log(result)
+console.assert(result, 'Assertion failed: Unexpected result');
+
+console.log(result);
 // true
 
-console.log('CASE 6')
+console.log('CASE 6');
 
-var animals = ['pigs', 'goats', 'sheep', 'cows']
+var animals = ['pigs', 'goats', 'sheep', 'cows'];
 
-var result = includes(animals, 'goats', 2)
+var result = includes(animals, 'goats', 2);
 
-console.log(result)
+console.assert(!result, 'Assertion failed: Unexpected result');
+
+console.log(result);
 // false
 
+console.log('CASE 7');
 
-console.log('CASE 7')
+var animals = ['pigs', 'goats', 'sheep', 'cows'];
 
-var animals = ['pigs', 'goats', 'sheep', 'cows']
+var result = includes(animals, 'goats', -3);
 
-var result = includes(animals, 'goats', -3)
+console.assert(result, 'Assertion failed: Unexpected result');
 
-console.log(result)
+console.log(result);
 // true
 
-console.log('CASE 8')
+console.log('CASE 8');
 
-var animals = ['pigs', 'goats', 'sheep', 'cows']
+var animals = ['pigs', 'goats', 'sheep', 'cows'];
 
-var result = includes(animals, 'goats', -2)
+var result = includes(animals, 'goats', -2);
 
-console.log(result)
+console.assert(!result, 'Assertion failed: Unexpected result');
+
+console.log(result);
 // false
-
 

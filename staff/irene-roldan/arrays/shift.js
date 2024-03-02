@@ -30,10 +30,11 @@ var firstElement = shift(nums)
 // return first
 // Array { 0: 20, 1: 30, length: 2 }
 
-console.log(nums)
+console.assert(nums[0] === 20 &&
+    nums[1] === 30,)
 // Expected output: Array [20, 30]
 
-console.log(firstElement)
+console.assert(firstElement=== 10,'Assertion failed: Unexpected firstElement result')
 // Expected output: 10
 
 
@@ -50,10 +51,12 @@ var firstElement = shift(animals)
 // array.length-- // Array { 0: sheep, 1: cow, 2: dog, length: 3 }
 // return first
 
-console.log(animals)
+console.assert(animals[0] === 'sheep', 'sheep')
+console.assert(animals[1] === 'cow', 'cow')
+console.assert(animals[2] === 'dog', 'dog')
 // ['sheep', 'cow', 'dog']
 
-console.log(firstElement)
+console.assert(firstElement === 'elephant', 'elephant')
 // 'elephant'
 
 
@@ -72,10 +75,14 @@ var firstElement = shift(cocktails)
 // array.length-- // Array { 0: 'sex on the beach', 1: 'bloody mary', 2: 'gintonic', 3: 'mojito', 4: 'daikiri', length: 5 }
 // return first
 
-console.log(cocktails)
+console.assert(cocktails[0] === 'sex on the beach')
+console.assert(cocktails[1] === 'bloody mary')
+console.assert(cocktails[2] === 'gintonic')
+console.assert(cocktails[3] === 'mojito')
+console.assert(cocktails[4] === 'daikiri')
 // ['sex on the beach', 'bloody mary', 'gintonic', 'mojito', 'daikiri']
 
-console.log(firstElement)
+console.assert(firstElement === 'margharita')
 // 'margharita'
 
 

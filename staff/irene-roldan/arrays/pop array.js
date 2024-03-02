@@ -16,51 +16,58 @@ console.log('Case  1')
 var nums = [100, 200, 300, 400, 500];
 var num = pop(nums);
 
-console.log(num)
+console.assert(num === 500, 'num is not 500')
 // 500
-console.log(nums.length)
+console.assert(nums.length === 4, 'num length is 4')
 // 4
-console.log(nums)
+console.assert(nums[0] === 100, 100)
+console.assert(nums[1] === 200, 200)
+console.assert(nums[2] === 300, 300)
+console.assert(nums[3] === 400, 400)
 // [100, 200, 300, 400]
 
 
-/*
-CASE 2
+
+console.log('Case  2')
 var animals = ['pigs', 'goats', 'sheep', 'cows']
 
 var animal = pop(animals)
 
-console.log(animal)
+console.assert(animal === 'cows', 'cows')
 // 'cows'
-console.log(animals.length)
+console.assert(animals.length === 3, 3)
 // 3
-console.log(animals)
+console.assert(animals[0] === 'pigs')
+console.assert(animals[1] === 'goats')
+console.assert(animals[2] === 'sheep')
 // ['pigs', 'goats', 'sheep']
-*/
 
-/*
-CASE 3
+
+
+console.log('Case  3')
 
 var sports = ['soccer', 'baseball']
 
 var sport = pop(sports)
 
-console.log(sport)
+console.assert(sport === 'baseball', 'baseball')
 // 'baseball'
-console.log(sports.length)
+console.assert(sports.length === 1, 1)
 // 1
-console.log(sports)
+console.assert(sports[0] === 'soccer', 'soccer')
 // ['soccer']
-*/
 
-// CASE 4
+
+console.log('Case  4')
 
 var sports = []
 var sport = pop(sports)
 
-console.log(sport)
+console.log(sport === undefined, 'undefined')
 // undefined
-console.log(sports.length)
+console.log(sports.length === 0, 0)
 // 0
-console.log(sports)
-// []
+console.assert(
+    sports instanceof Array && sports.length === 0,
+    'Assertion failed: Unexpected result'
+);

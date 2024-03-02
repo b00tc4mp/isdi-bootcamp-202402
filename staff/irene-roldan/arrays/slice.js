@@ -14,5 +14,6 @@ function slice(array, start, end) {
 console.log('Case 1')
 var names = ["Rita", "Pedro", "Miguel", "Ana", "Vanesa"];
 var male = slice(1, 3);
-console.log(male)
+console.assert( male[0] === 'Pedro') 
+console.assert( male[1] === 'Miguel') 
 // ['Pedro','Miguel']
