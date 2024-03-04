@@ -1,13 +1,14 @@
 //presentation 
 
-var form = document.querySelector('form')
-var loginLink = document.querySelector('a')
+var form = document.querySelector('form') // selecciona el primer formulario en el documento HTML y guarda una referencia a él en la variable 'form' 
+var loginLink = document.querySelector('a') // selecciona el primer enlace (<a>) en documento HTML y guarda una referencia a él en la variable 'loginLink 
 
-form.addEventListener('submit', function(event){
+form.addEventListener('submit', function(event){ // registra un evento a un objeto para console.log('form submit). Cuando el formulario se envía se ejecuta. 
     console.log('form submit')
 
-    event.preventDefault()
+    event.preventDefault() //evita el comportamiento predeterminado del formulario, que es enviar una solicitud al servidor y recargar la página
 
+    //Se obtienen los valores de los campos del formulario utilizando document.getElementById('nombreCampo').value. Estos valores se guardan en variables como name, birthdate, email, etc.
     var nameInput = document.getElementById('name')
     var name = nameInput.value
 
@@ -26,6 +27,7 @@ form.addEventListener('submit', function(event){
     var surnameInput = document.getElementById('surname')
     var surname = surnameInput.value
 
+    //Si se produce un error durante la ejecución de registerUser, se captura y se muestra un mensaje de alerta.
     try{
 
         registerUser(name, surname, birthdate, email, username, password)
