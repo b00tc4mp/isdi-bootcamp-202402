@@ -188,7 +188,7 @@ matcha.describe('Arroz', function () {
     })
     
     matcha.describe('> find', function () {
-        matcha.it('should return the first element in the provided array that satisfies the provided testing function.', function () {
+        matcha.it('should return the first element in the arroz that satisfies the testing function.', function () {
     
             var a = new Arroz(5, 10, 15, 20)
     
