@@ -12,6 +12,19 @@ function registerUser(name, birthdate, email, username, password) {
         username: username,
         password: password
     }
-
     users.push(user)
+
+    localStorage.users = JSON.stringify(users)
+}
+
+
+function loginUser(username, password) {
+    var matched = users.some(function (user) {
+        return user.username === username && user.password === password
+    })
+    if (!matched) {
+        throw new Error('wrong credentials')
+    }
+
+    sessionStorage.username = username
 }
