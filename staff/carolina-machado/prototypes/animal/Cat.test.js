@@ -79,6 +79,6 @@ assert.error(errorThrown, 'Error', 'cant snore when awake')
 console.log('CASE shower')
 
 
-mia.shower()
+mia.shower('dirty')
 
 console.log(mia)
