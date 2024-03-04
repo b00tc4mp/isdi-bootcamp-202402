@@ -23,76 +23,38 @@ function Person(name, surname, specie, birthdate, country, height, weight, sex){
     this.status = 'living'
     this.energy = 100
     this.rectum = 50
-    this.legsSpeed = Animal.NOT_WALK
+    this.bladder = 50
+    this.legsSpeed = Person.NOT_WALK
     this.talking = false
     this.sobriety = 'sober'
 }
 
-Animal.NOT_WALK = 0
-Animal.WALK_VERY_SLOW = 1
-Animal.WALK_SLOW = 2
-Animal.WALK_NORMAL = 4
-Animal.WALK_FAST = 5
-Animal.RUN = 6
-
-Animal.prototype.sleep = function () {
-    this.sleeping = true
-}
-
-Animal.prototype.awake = function () {
-    this.sleeping = false
-}
-
-Animal.prototype.eat = function (food) {
-    if(this.sleeping === true) throw new Error('try to eat on sleeping')
-
-    this.eating = food
-
-}
-
-Animal.prototype.drink = function (liquid) {
-    if(this.sleeping === true) throw new Error ('try to drink on sleeping')
-
-    this.drinking = liquid
-}
+Person.NOT_WALK = 0
+Person.WALK_VERY_SLOW = 1
+Person.WALK_SLOW = 2
+Person.WALK_NORMAL = 4
+Person.WALK_FAST = 5
+Person.RUN = 6
 
 
-Animal.prototype.die = function () {
-    if (this.thirsty === true && this.hungry === true && this.sick === true) {
-        this.status = 'dead'
-    }
-}
-
-Animal.prototype.defecate = function(){
-    if(typeof this.rectum !== 'number') throw new TypeError(this.rectum + 'is not a number.')
-    
-    if (this.rectum > 70) {
-        this.rectum = 0
-    } else{
-        this.rectum 
-    }
-}
-
-Animal.prototype.getEnergy = function (food) {
-    
-    for (var i = 0; i < arguments.length; i++) {
-        
-        if(typeof arguments[i] !== 'string') throw new TypeError(arguments[i] + 'is not a string.')
-        
-        this.energy = this.energy + 10
-    }
-}
-
-Animal.prototype.moveLegs = function (speed) {
+Person.prototype.moveLegs = function (speed) {
     this.legsSpeed = speed === undefined ? 4 : speed
 }
 
-Animal.prototype.drunk = function (drink, drink2) {
-    if(drink){
-        this.sobriety = 'sober'
-    } else if(drink2){
+Person.prototype.drunk = function (drink) {
+    if(drink === 'vodka'){
         this.sobriety = 'drunk'
+    } else if(drink === 'water'){
+        this.sobriety = 'sober'
     }
+}
+
+Person.prototype.talk = function(){
+    this.talking = true
+}
+
+Person.prototype.shout = function () {
+    this.talking = false
 }
 
 

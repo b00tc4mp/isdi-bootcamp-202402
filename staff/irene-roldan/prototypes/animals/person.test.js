@@ -1,5 +1,5 @@
-var Person = require ('./person')
 var assert = require ('./assert')
+var Person = require ('./person')
 var Animal = require('./animal')
 
 console.log('Test Person')
@@ -65,6 +65,7 @@ assert.error(errorThrown, 'Error', 'try to eat on sleeping')
 
 console.log('CASE METHOD DRINK')
 
+person.sleeping = false
 person.drink('water')
 assert.equalsValue(person.drinking, 'water')
 
@@ -74,31 +75,69 @@ person.sleeping = true
 
 var errorThrown 
 try {
-    person.drink('vodka')
+    person.drink('water')
 } catch (error) {
     errorThrown = error
 }
 assert.error(errorThrown, 'Error', 'try to drink on sleeping')
 
+
 console.log('CASE METHOD DRUNK')
 
-person.drunk('vodka', 'water')
+person.drunk('water')
 assert.equalsValue(person.sobriety, 'sober')
 
 console.log('CASE METHOD DRUNK')
 
-person.drunk('vodka', 'water')
+person.drunk('vodka')
 assert.equalsValue(person.sobriety, 'drunk')
 
+
 console.log('CASE METHOD TALK')
-console.log('CASE METHOD PISS')
+
+person.talk()
+
+assert.equalsValue(person.talking, true)
+
+
+console.log('CASE METHOD SHOUT')
+
+person.shout()
+assert.equalsValue(person.talking, false)
 
 
 console.log('CASE METHOD WALK')
+
+person.moveLegs()
+assert.equalsValue(person.legsSpeed, Person.WALK_NORMAL)
+
 console.log('CASE METHOD NOT WALK')
+
+person.moveLegs(Person.NOT_WALK)
+assert.equalsValue(person.legsSpeed, Person.NOT_WALK)
+
 console.log('CASE METHOD WALK FAST')
+
+person.moveLegs(Person.WALK_FAST)
+assert.equalsValue(person.legsSpeed, Person.WALK_FAST)
+
 console.log('CASE METHOD WALK SLOW')
+
+person.moveLegs(Person.WALK_SLOW)
+assert.equalsValue(person.legsSpeed, Person.WALK_SLOW)
+
 console.log('CASE METHOD WALK VERY SLOW')
+
+person.moveLegs(Person.WALK_VERY_SLOW)
+assert.equalsValue(person.legsSpeed, Person.WALK_VERY_SLOW)
+
 console.log('CASE METHOD WALK NORMAL')
+
+person.moveLegs(Person.WALK_NORMAL)
+assert.equalsValue(person.legsSpeed, Person.WALK_NORMAL)
+
 console.log('CASE METHOD RUN')
+
+person.moveLegs(Person.RUN)
+assert.equalsValue(person.legsSpeed, Person.RUN)
 

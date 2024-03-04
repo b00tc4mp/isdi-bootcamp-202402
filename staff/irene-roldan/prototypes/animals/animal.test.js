@@ -15,11 +15,9 @@ assert.equalsValue(animal.birthdate.getDate(), 24)
 assert.equalsValue(animal.birthdate.getHours(), 12)
 assert.equalsValue(animal.birthdate.getMinutes(), 12)
 assert.equalsValue(animal.country, 'Colombia', 'Colombia')
-assert.equalsValue(animal.habitat, 'forest tropical')
 assert.equalsValue(animal.diet = 'omnivorous', 'omnivorous')
 assert.equalsValue(animal.height, 85)
 assert.equalsValue(animal.weight, 1.2)
-assert.equalsValue(animal.reproduction, 'oviparous')
 assert.equalsValue(animal.sex,'male')
 assert.equalsValue(animal.sleeping, false)
 assert.equalsValue(animal.eating, '')
@@ -64,6 +62,8 @@ assert.error(errorThrown, 'Error', 'try to eat on sleeping')
 
 console.log('CASE METHOD DRINK')
 
+animal.sleeping = false
+
 animal.drink('water')
 assert.equalsValue(animal.drinking, 'water')
 
@@ -71,7 +71,7 @@ console.log('CASE METHOD FAIL - DRINK ON SLEEPING')
 
 animal.sleeping = true
 
-var errorThrown = ''
+var errorThrown 
 try {
     animal.drink('water')
 } catch (error) {
@@ -111,8 +111,24 @@ try {
 assert.error(errorThrown, 'TypeError', 'is not a number');
 
 console.log('CASE METHOD PISS')
-console.log('CASE METHOD GET ENERGY')
 
+animal.bladder = 70
+animal.piss()
+assert.equalsValue(animal.bladder, 0)
+
+console.log('CASE METHOD PISS (Fail)')
+
+var errorThrown 
+try {
+    animal.bladder = 'Hi'
+    animal.piss() 
+} catch (error) {
+    errorThrown = error
+}
+
+assert.error(errorThrown, 'TypeError', 'is not a number');
+
+console.log('CASE METHOD GET ENERGY')
 
 animal.energy = 30
 animal.getEnergy('almond', 'grape')

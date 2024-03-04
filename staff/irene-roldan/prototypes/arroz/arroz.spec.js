@@ -118,7 +118,11 @@ matcha.describe('Arroz', function(){
 
     matcha.describe('> with', function () {
         matcha.it ('returns a new array with the element at the given index replaced with the given value', function () {
-            var a = new Arroz ()
+            var a = new Arroz (1, 2, 3, 4, 5)
+
+            var string = a.with(2, 6)
+
+            matcha.expect(string).toBe('Arroz [1, 2, 3, 4, 5]')
         })
     })
 

@@ -89,4 +89,26 @@ Arroz.prototype.at = function(index){
     } 
 }
 
+Arroz.prototype.with = function (index, value) {
+    var newArray = []
+
+    if(index > -1){
+        for (var i = 0; i < this.length; i++) {
+            newArray = this[i]
+            if (i === index) {
+                newArray[i] = value
+            } else{
+                newArray[i] = this[i]
+            }
+            
+        }
+    } else if (index < 0){
+        for (var i = 0; i < this.length-1; i++) {
+            newArray[i] = this[i+1];
+        }
+        newArray[this.length-1] = value
+    }
+    return newArray
+}
+
 module.exports = Arroz 

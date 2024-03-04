@@ -15,6 +15,7 @@ function Animal(name, specie, birthdate, country, height, weight, sex){
     this.status = 'living'
     this.energy = 100
     this.rectum = 50
+    this.bladder = 50
     this.legsSpeed = Animal.NOT_WALK
 }
 
@@ -53,7 +54,7 @@ Animal.prototype.die = function () {
 }
 
 Animal.prototype.defecate = function(){
-    if(typeof this.rectum !== 'number') throw new TypeError(this.rectum + 'is not a number.')
+    if(typeof this.rectum !== 'number') throw new TypeError('is not a number')
     
     if (this.rectum > 70) {
         this.rectum = 0
@@ -66,7 +67,7 @@ Animal.prototype.getEnergy = function (food) {
     
     for (var i = 0; i < arguments.length; i++) {
         
-        if(typeof arguments[i] !== 'string') throw new TypeError(arguments[i] + 'is not a string.')
+        if(typeof arguments[i] !== 'string') throw new TypeError('is not a string')
         
         this.energy = this.energy + 10
     }
@@ -80,4 +81,13 @@ Animal.prototype.toString = function () {
     return Animal.name + ' (' + this.name + ')'
 }
 
+Animal.prototype.piss = function () {
+    if(typeof this.bladder !== 'number') throw new TypeError('is not a number')
+
+    if (this.bladder >= 70) {
+        this.bladder = 0
+    } else{
+        this.bladder 
+    }
+}
 module.exports = Animal
