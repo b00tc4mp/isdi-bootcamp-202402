@@ -332,5 +332,69 @@ Arroz.prototype.some = function (callback) {
     return false
 }
 
+Arroz.prototype.splice = function (start, deleteCount, item) {
+    if (deleteCount === 0) {
+        for (var i = array.length - 1; i > start - 1; i--) {
+            var elem = array[i]
+
+            array[i + 1] = elem
+        }
+
+        array[start] = item
+
+        return []
+    } else if (deleteCount === 1) {
+        var removed = []
+
+        removed[removed.length] = array[start]
+
+        array[start] = item
+
+        return removed
+    } else if (deleteCount >= 2) {
+        var removed = []
+
+        for (var i = 0; i < deleteCount; i++)
+            removed[removed.length] = array[start + i]
+
+        for (var i = 0; i < array.length - (start + deleteCount - 1); i++) {
+            var elem = array[start + deleteCount + i]
+            array[start + 1 + i] = elem
+        }
+
+        array.length -= deleteCount - 1
+
+        array[start] = item
+
+        return removed
+    }
+}
+
+Arroz.prototype.unshift = function () {
+    var argLen = arguments.length
+    var newLen = argLen + this.length
+    for (var i = newLen - 1; i > 0; i--) {
+        this[i] = this[i - arguments.length]
+    }
+    for (var i = 0; i < argLen; i++) {
+        this[i] = arguments[i]
+    }
+    this.length = newLen
+
+    return this.length
+}
+
+Arroz.prototype.with = function (index, value) {
+    if (index >= this.length || index < -this.length) {
+        throw new RangeError('Invalid index : ' + index)
+    }
+    if (index < 0) {
+        index = this.length + index
+    }
+    var newArr = this
+    newArr[index] = value
+    return newArr
+}
+
 
 module.exports = Arroz

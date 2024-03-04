@@ -379,6 +379,79 @@ matcha.describe('Arroz', function () {
         })
     })
 
+    matcha.describe('> unshift', function () {
+        matcha.it('Should add element in the first position of array and return the new length', function () {
+            var a = new Arroz(10, 20, 30)
+
+            matcha.expect(a).toBeInstanceOf(Arroz)
+            matcha.expect(!!a.unshift).toBe(true)
+
+            var length = a.unshift(0)
+            var expect = new Arroz(0, 10, 20, 30)
+            matcha.expect(length).toBe(4)
+            for (var i = 0; i < a.length; i++) {
+                matcha.expect(a[i]).toBe(expect[i])
+            }
+        })
+
+        matcha.it('Should add more than one element in the first position of array and return the new length', function () {
+            var a = new Arroz(10, 20, 30)
+
+            matcha.expect(a).toBeInstanceOf(Arroz)
+            matcha.expect(!!a.unshift).toBe(true)
+
+            var length = a.unshift(0, 5)
+            var expect = new Arroz(0, 5, 10, 20, 30)
+            matcha.expect(length).toBe(5)
+            for (var i = 0; i < a.length; i++) {
+                matcha.expect(a[i]).toBe(expect[i])
+            }
+        })
+    })
+
+    matcha.describe('> with', function () {
+        matcha.it('Should return a new array with a changed element in a said position', function () {
+            var a = new Arroz('a', 'b', 'c', 'd')
+            matcha.expect(a).toBeInstanceOf(Arroz)
+            matcha.expect(!!a.with).toBe(true)
+
+            var result = a.with(1, 'z')
+            var expect = new Arroz('a', 'z', 'c', 'd')
+            for (var i = 0; i < result.length; i++) {
+                matcha.expect(result[i]).toBe(expect[i])
+            }
+        })
+
+        matcha.it('Should return a new array with a changed element in a negative index', function () {
+            var a = new Arroz('a', 'b', 'c', 'd')
+            matcha.expect(a).toBeInstanceOf(Arroz)
+            matcha.expect(!!a.with).toBe(true)
+
+            var result = a.with(-2, 'z')
+            var expect = new Arroz('a', 'b', 'z', 'd')
+            for (var i = 0; i < result.length; i++) {
+                matcha.expect(result[i]).toBe(expect[i])
+            }
+        })
+
+        matcha.it('Should return an error if index is out of range', function () {
+            var a = new Arroz('a', 'b', 'c', 'd')
+            matcha.expect(a).toBeInstanceOf(Arroz)
+            matcha.expect(!!a.with).toBe(true)
+
+
+            var thrownError
+            try {
+                var result = a.with(7, 'z')
+            } catch (error) {
+                thrownError = error
+            }
+            matcha.expect(thrownError.name).toBe('RangeError')
+            matcha.expect(thrownError.message).toBe('Invalid index : 7')
+        })
+    })
+})
+
 })
 
 
