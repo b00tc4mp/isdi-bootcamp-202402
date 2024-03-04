@@ -18,21 +18,6 @@ function Arroz() {
     }    
 }
 
-Arroz.prototype.push = function(){
-    for (var i = 0; i < arguments.length; i++){
-        this[this.length] = arguments[i]
-        this.length++
-    }
-    return this.length
-}
-
-Arroz.prototype.pop = function(){
-    var popped = this[this.length - 1]
-    delete this[this.length - 1]
-    this.length--
-    return popped
-}
-
 Arroz.prototype.at = function(index){
     if (index > -1 && index < this.length){
         return this[index]
@@ -111,13 +96,14 @@ Arroz.prototype.findIndex = function(callback){
 
 // from WIP
 
-/*Arroz.prototype.from = function(element){
+Arroz.from = function(element){
     var returnedArroz = new Arroz()
     for (var i = 0; i < element.length; i++){
-        newArroz.push(element[i])
+        returnedArroz[returnedArroz.length] = (element[i])
+        returnedArroz.length++
     }
     return returnedArroz
-}*/
+}
 
 Arroz.prototype.includes = function(){
     if (arguments.length === 1){
@@ -196,6 +182,31 @@ Arroz.prototype.lastIndexOf = function(value, index){
     }
     
     return -1
+}
+
+Arroz.prototype.map = function(callback) {
+    var returnedArroz = new Arroz()
+    for (var i = 0; i < this.length; i++){
+        returnedArroz[returnedArroz.length] = (callback(this[i]))
+        returnedArroz.length++
+    }
+        
+    return returnedArroz
+}
+
+Arroz.prototype.pop = function(){
+    var popped = this[this.length - 1]
+    delete this[this.length - 1]
+    this.length--
+    return popped
+}
+
+Arroz.prototype.push = function(){
+    for (var i = 0; i < arguments.length; i++){
+        this[this.length] = arguments[i]
+        this.length++
+    }
+    return this.length
 }
 
 Arroz.prototype.toString = function() {
