@@ -94,14 +94,23 @@ Arroz.prototype.findIndex = function(callback){
     return index
 }
 
-// from WIP
 
-Arroz.from = function(element){
+
+Arroz.from = function(element, callback){
     var returnedArroz = new Arroz()
-    for (var i = 0; i < element.length; i++){
-        returnedArroz[returnedArroz.length] = (element[i])
-        returnedArroz.length++
+
+    if (!callback){        
+        for (var i = 0; i < element.length; i++){
+            returnedArroz[returnedArroz.length] = element[i]
+            returnedArroz.length++
+        }
+    } else {
+        for (var i = 0; i < element.length; i++){
+            returnedArroz[returnedArroz.length] = callback(element[i])
+            returnedArroz.length++
+        }
     }
+    
     return returnedArroz
 }
 
@@ -209,6 +218,21 @@ Arroz.prototype.push = function(){
     return this.length
 }
 
+Arroz.prototype.reduce = function(callabck, init){
+    if (init === undefined){
+        var accumulator = this[0]
+        for (let i = 1; i < this.length; i++){
+            accumulator = callabck(accumulator, this[i])
+        }
+    } else {
+        var accumulator = init
+        for (let i = 0; i < this.length; i++){
+            accumulator = callabck(accumulator, this[i])
+        }
+    }
+    return accumulator     
+}
+
 Arroz.prototype.toString = function() {
     var string = 'Arroz ['
 
@@ -223,5 +247,31 @@ Arroz.prototype.toString = function() {
     return string
 }
 
+Arroz.prototype.shift = function(){
+    var first = this[0]
+
+    for (var i = 0; i < this.length; i++){
+        this[i] = this[i + 1]
+    }
+    if (this.length > 0)
+        this.length--
+    return first
+}
+
+//WIP slice
+
+Arroz.prototype.slice = function(indexStart, indexEnd){
+    var slicedArroz = []
+    for (var i = indexStart; i <= indexEnd; i++){
+        slicedArroz[slicedArroz.length] = this[i]
+        this.slice.length++
+        this[i] = this[i + indexEnd]
+    }
+    this.length = this.length - (indexEnd - indexStart) -1
+    return slicedArroz
+}
+
+
+//WIP some, splice, unshift, with
 
 module.exports = Arroz

@@ -1,5 +1,5 @@
 var matcha = require('./matcha')
-var Arroz = require('./Arroz')
+var Arroz = require('../arroz/Arroz')
 
 
 matcha.describe('Arroz', function(){
@@ -298,7 +298,6 @@ matcha.describe('Arroz', function(){
 
 
 
-    //Arroz.from WIP
 
     matcha.describe('> from', function(){
         matcha.it('should generate new Arroz from a string', function(){    
@@ -312,8 +311,36 @@ matcha.describe('Arroz', function(){
             matcha.expect(str).toBe('Arroz')
         })
 
-        matcha.it('should return a new Arroz from Arroz')
-        
+        matcha.it('should return a new Arroz from Arroz', function(){
+            var arroz = new Arroz(1, 2, 3)
+            var result = Arroz.from(arroz)
+
+            matcha.expect(result.length).toBe(3)
+            for (var i = 0; i < result.length; i++){
+                matcha.expect(result[i]).toBe(arroz[i])
+            }
+
+            matcha.expect(arroz.length).toBe(3)
+            for (var i = 0; i < arroz.length; i++){
+                matcha.expect(arroz[i]).toBe(i + 1)
+            }
+        })
+
+        matcha.it('should apply callback to resulted array if provided', function(){
+            var arroz = new Arroz (1, 2, 3)
+            var result = Arroz.from(arroz, function (x){
+                return x + x
+            })
+
+            matcha.expect(result.length).toBe(3)
+            for (var i = 0; i < result.length; i++){
+                matcha.expect(result[i]).toBe((i + 1) + (i + 1))
+            }
+            matcha.expect(arroz.length).toBe(3)
+            for (var i = 0; i < arroz.length; i++){
+                matcha.expect(arroz[i]).toBe(i + 1)
+            }
+        })        
     })
 
 
@@ -515,6 +542,40 @@ matcha.describe('Arroz', function(){
 
 
 
+    matcha.describe('> reduce', function(){
+        matcha.it('should execute a callback on Arroz and return it reduced to one single value', function(){
+            var testedArroz = new Arroz (1, 2, 3)
+            
+            matcha.expect(!!testedArroz.reduce).toBe(true)
+
+            var result = testedArroz.reduce(function (x, y){
+                return x + y
+            })
+
+            matcha.expect(result).toBe(6)
+            matcha.expect(testedArroz.length).toBe(3)
+            for (let i = 0; i < testedArroz.length; i++){
+                matcha.expect(testedArroz[i]).toBe(i + 1)
+            }
+        })
+
+        matcha.it('should also work when provided a value upon which we start reducing', function(){
+            var testedArroz = new Arroz(1, 2, 3)
+
+            var result = testedArroz.reduce(function (x, y){
+                return x + y
+            }, 10)
+
+            matcha.expect(result).toBe(16)
+            matcha.expect(testedArroz.length).toBe(3)
+            for (let i = 0; i < testedArroz.length; i++){
+                matcha.expect(testedArroz[i]).toBe(i + 1)
+            }
+        })
+    })
+
+
+
     matcha.describe('> toString', function(){
         matcha.it('should convert to string', function(){
             var testedArroz = new Arroz(1, 2, 3)
@@ -528,7 +589,52 @@ matcha.describe('Arroz', function(){
             for (let i = 0; i < testedArroz.length; i++){
                 matcha.expect(testedArroz[i]).toBe(i + 1)
             }
+        })
+    })
+    
 
+
+    matcha.describe('> shift', function(){
+        matcha.it('should remove the first element of an Arroz and return it', function(){
+            var testedArroz = new Arroz(1, 2, 3)
+
+            matcha.expect(!!testedArroz.shift).toBe(true)
+
+            var result = testedArroz.shift()
+
+            matcha.expect(result).toBe(1)
+            matcha.expect(testedArroz.length).toBe(2)
+            for (var i = 0; i < testedArroz.length; i++){
+                matcha.expect(testedArroz[i]).toBe(i + 2)
+            }
+        })
+
+        matcha.it('should return undefined if applied on empty Arroz', function(){
+            var testedArroz = new Arroz()
+            var result = testedArroz.shift()
+
+            matcha.expect(result).toBe(undefined)
+            matcha.expect(testedArroz.length).toBe(0)
+        })
+    })
+
+
+
+    matcha.describe('> slice', function(){
+        matcha.it('should extract a new Arroz starting from indexStart and finishing in indexEnd', function(){
+            var testedArroz = new Arroz (1, 2, 3, 4, 5)
+
+            matcha.expect(!!testedArroz.slice).toBe(true)
+
+            var result = testedArroz.slice(1, 3)
+
+            matcha.expect(result.length).toBe(3)
+            matcha.expect(testedArroz.length).toBe(2)
+            for (var i = 0; i < result.length; i++){
+                matcha.expect(result[i]).toBe(i + 2)
+            }
+            matcha.expect(testedArroz[0]).toBe(1)
+            matcha.expect(testedArroz[1]).toBe(5)
         })
     })
 })
