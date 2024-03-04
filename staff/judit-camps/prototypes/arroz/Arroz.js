@@ -62,7 +62,7 @@ Arroz.prototype.find = function (callback) {
     for (var i = 0; i < this.length; i++) {
         var elem = this[i]
         if (callback(elem, i, this)) {
-            return this[i]
+            return elem
         }
     }
 }
