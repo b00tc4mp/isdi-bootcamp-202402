@@ -1,0 +1,102 @@
+@keyframes roll {
+  0% {
+    top: 20px;
+  }
+  25% {
+    left: 20px;
+  }
+  50% {
+    right: 40px;
+  }
+  75% {
+    right: 0px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+.pig {
+  display: flex;
+}
+.pig__head {
+  background-color: pink;
+  width: 201px;
+  height: 176px;
+  position: relative;
+  top: 100px;
+  border-radius: 107%;
+  border: 2px solid #662e2e;
+}
+.pig__eye {
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid #662e2e;
+}
+.pig__eye--left {
+  left: 26px;
+  top: 38px;
+}
+.pig__eye--right {
+  left: 143px;
+  top: 38px;
+}
+.pig__pupil {
+  background-color: black;
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 8px;
+  top: 1px;
+  border-radius: 50%;
+  animation-duration: 3s;
+  animation-name: roll;
+}
+.pig__nose {
+  background-color: rgb(205, 79, 79);
+  width: 115px;
+  height: 81px;
+  position: absolute;
+  left: 43px;
+  top: 70px;
+  border-radius: 80%;
+  border: 2px solid #662e2e;
+}
+.pig__ear {
+  background-color: rgb(205, 79, 79);
+  width: 29px;
+  height: 38px;
+  position: absolute;
+  border-radius: 58%;
+  border: 2px solid #662e2e;
+}
+.pig__ear--left {
+  left: 6px;
+  top: -15px;
+}
+.pig__ear--right {
+  left: 161px;
+  top: -15px;
+}
+
+.nose__whole {
+  background-color: #5c0e0e;
+  width: 20px;
+  height: 32px;
+  width: 20px;
+  height: 32px;
+  position: absolute;
+  border-radius: 50%;
+}
+.nose__whole--right {
+  left: 70px;
+  top: 24px;
+}
+.nose__whole--left {
+  left: 31px;
+  top: 24px;
+}
+
+/*# sourceMappingURL=style.css.map */

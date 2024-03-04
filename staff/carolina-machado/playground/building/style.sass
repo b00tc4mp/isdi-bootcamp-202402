@@ -1,0 +1,61 @@
+@mixin size ($width, $height)
+    width: $width
+    height: $height
+
+.main
+    display: flex
+    background-color: black
+    @include size(384px, 634px)
+    top: 33px
+    left: 149px
+    border-radius: 2% s
+    border: 10px solid black
+    flex-direction: column-reverse
+    align-items: center
+    background-image: url("blackwall.jpg")
+    background-size: contain
+    
+.building__entrance
+    display: flex
+    @include size(64px, 378px)
+    border-radius: 2%
+    border: 4px solid #140606
+    background: url("door2.jpg")
+    //background-size: 100px 50px
+    background-size: contain
+
+.floors
+    display: flex
+    @include size(100%, 200px)
+    border-radius: 2%
+    border: 1px solid #9E9E9E
+    justify-content: space-around
+    align-items: center
+
+
+
+.window
+    display: flex
+    @include size(35px, 29px)
+    border-radius: 37%
+    border: 3px solid #131313
+    justify-content: space-around
+    align-items: center
+    background: url("windowcolor.jpg")
+    background-size: contain
+
+.floor__window--1
+    background-color: blue 
+
+.floor__window--2
+    background-color: green
+
+.floor__window--3
+    background-color: red
+
+.floor__window--4
+    background-color: yellow
+
+.floor__window--5
+    background-color: brown
+

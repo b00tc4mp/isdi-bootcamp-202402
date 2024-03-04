@@ -1,0 +1,68 @@
+.main {
+  display: flex;
+  background-color: black;
+  width: 384px;
+  height: 634px;
+  top: 33px;
+  left: 149px;
+  border-radius: 2% s;
+  border: 10px solid black;
+  flex-direction: column-reverse;
+  align-items: center;
+  background-image: url("blackwall.jpg");
+  background-size: contain;
+}
+
+.building__entrance {
+  display: flex;
+  width: 64px;
+  height: 378px;
+  border-radius: 2%;
+  border: 4px solid #140606;
+  background: url("door2.jpg");
+  background-size: contain;
+}
+
+.floors {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  border-radius: 2%;
+  border: 1px solid #9E9E9E;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.window {
+  display: flex;
+  width: 35px;
+  height: 29px;
+  border-radius: 37%;
+  border: 3px solid #131313;
+  justify-content: space-around;
+  align-items: center;
+  background: url("windowcolor.jpg");
+  background-size: contain;
+}
+
+.floor__window--1 {
+  background-color: blue;
+}
+
+.floor__window--2 {
+  background-color: green;
+}
+
+.floor__window--3 {
+  background-color: red;
+}
+
+.floor__window--4 {
+  background-color: yellow;
+}
+
+.floor__window--5 {
+  background-color: brown;
+}
+
+/*# sourceMappingURL=style.css.map */
