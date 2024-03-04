@@ -22,9 +22,19 @@ function loginUser(username, password) {
     var matched = users.some(function (user) {
         return user.username === username && user.password === password
     })
-    if (!matched) {
-        throw new Error('wrong credentials')
-    }
+
+    if (!matched) throw new Error('wrong credentials')
 
     sessionStorage.username = username
+}
+
+
+function getUser(username) {
+    var user = users.find(function (user) {
+        return user.username === username
+    })
+
+    if (!user) throw new Error('user not found')
+
+    return user
 }
