@@ -4,6 +4,7 @@ var form = document.querySelector('form')
 var loginLink = document.querySelector('a')
 
 form.addEventListener('submit', function (event) {
+    console.log('form submit register')
     // prevent web from reloading itsef when clicking on submit button
     event.preventDefault()
 

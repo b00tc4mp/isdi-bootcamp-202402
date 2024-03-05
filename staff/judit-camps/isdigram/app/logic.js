@@ -1,3 +1,5 @@
+// bussiness (logic)
+
 function registerUser(name, birthdate, email, username, password) {
     var exists = users.some(function (user) {
         return user.email === email || user.username === username
@@ -20,11 +22,12 @@ function registerUser(name, birthdate, email, username, password) {
 
 function loginUser(username, password) {
     var matches = users.some(function (user) {
-        return (user.username === username && user.password === password)
+        return user.username === username && user.password === password
     })
 
     if (!matches) throw new Error('wrong credentials')
 
+    console.log('saving username session')
     sessionStorage.username = username
 }
 

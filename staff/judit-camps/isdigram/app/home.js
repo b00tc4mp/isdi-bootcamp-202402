@@ -1,3 +1,4 @@
+// PRESENTATION
 var title = document.querySelector('h1')
 var logoutButton = document.querySelector('button')
 
