@@ -636,5 +636,107 @@ matcha.describe('Arroz', function(){
             matcha.expect(testedArroz[0]).toBe(1)
             matcha.expect(testedArroz[1]).toBe(5)
         })
+
+        matcha.it('should extract untill the end if no indexEnd provided', function(){
+            var testedArroz = new Arroz (1, 2, 3, 4, 5)
+            var result = testedArroz.slice(2)
+
+            matcha.expect(testedArroz.length).toBe(2)
+            matcha.expect(result.length).toBe(3)
+            for (var i = 0; i < testedArroz.length; i++){
+                matcha.expect(testedArroz[i]).toBe(i + 1)
+            }
+            for (var i = 0; i < result.length; i++){
+                matcha.expect(result[i]).toBe(i + 3)
+            }
+        })
+
+        matcha.it('should start counting from the end when indexStart is negative', function(){
+            var testedArroz = new Arroz(1, 2, 3, 4, 5)
+            var result = testedArroz.slice(-3)
+
+            matcha.expect(testedArroz.length).toBe(2)
+            matcha.expect(result.length).toBe(3)
+            for (var i = 0; i < testedArroz.length; i++){
+                matcha.expect(testedArroz[i]).toBe(i + 1)
+            }
+            for (var i = 0; i < result.length; i++){
+                matcha.expect(result[i]).toBe(i + 3)
+            }
+        })
+
+        matcha.it('should start counting from the end on indexEnd negative', function(){
+            var testedArroz = new Arroz(1, 2, 3, 4, 5)
+            var result = testedArroz.slice(1, -2)
+
+            matcha.expect(testedArroz.length).toBe(2)
+            matcha.expect(result.length).toBe(3)
+            matcha.expect(testedArroz[0]).toBe(1)
+            matcha.expect(testedArroz[1]).toBe(5)
+            for (var i = 0; i < result.length; i++){
+                matcha.expect(result[i]).toBe(i + 2)
+            }
+        })
+    })
+
+
+
+    matcha.describe('> some', function(){
+        matcha.it('should return true if some elements return true upon callback', function(){
+            var testedArroz = new Arroz (1, 2, 3)
+
+            matcha.expect(!!testedArroz.some).toBe(true)
+
+            var result = testedArroz.some(function (x){
+                return x > 2
+            })
+
+            matcha.expect(result).toBe(true)
+            for (var i = 0; i < testedArroz.length; i++){
+                matcha.expect(testedArroz[i]).toBe(i + 1)
+            }
+        })
+
+        matcha.it('should return false when no matches', function(){
+            var testedArroz = new Arroz (1, 2, 3)
+            var result = testedArroz.some(function (x){
+                return x > 5
+            })
+
+            matcha.expect(result).toBe(false)
+            for (var i = 0; i < testedArroz.length; i++){
+                matcha.expect(testedArroz[i]).toBe(i + 1)
+            }
+        })
+    })
+
+
+
+    matcha.describe('> splice', function(){
+        matcha.it('should injecta value on start when deleteCount is 0', function(){
+            var testedArroz = new Arroz (1, 3, 4)
+
+            matcha.expect(!!testedArroz.splice).toBe(true)
+
+            var result = testedArroz.splice(1, 0, 2)
+            matcha.expect(result).toBe(undefined)
+            matcha.expect(testedArroz.length).toBe(4)
+            for (var i = 0; i < testedArroz.length; i++){
+                matcha.expect(testedArroz[i]).toBe(i + 1)
+            }
+        })
+
+        matcha.it('should delete as many values as deleteCount and return them', function(){
+            var testedArroz = new Arroz(1, 5, 5, 3, 4)
+            var result = testedArroz.splice(1, 2, 2)
+            matcha.expect(result.length).toBe(2)
+            for (var i = 0; i < result.length; i++){
+                matcha.expect(result[i]).toBe(5)
+            }
+            matcha.expect(testedArroz.length).toBe(4)
+            for (var i = 0; i < testedArroz.length; i++){
+                matcha.expect(testedArroz[i]).toBe(i + 1)
+            }
+        })
     })
 })

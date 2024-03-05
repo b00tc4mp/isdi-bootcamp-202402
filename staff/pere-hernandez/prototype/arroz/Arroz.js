@@ -258,20 +258,67 @@ Arroz.prototype.shift = function(){
     return first
 }
 
-//WIP slice
 
 Arroz.prototype.slice = function(indexStart, indexEnd){
-    var slicedArroz = []
-    for (var i = indexStart; i <= indexEnd; i++){
-        slicedArroz[slicedArroz.length] = this[i]
-        this.slice.length++
-        this[i] = this[i + indexEnd]
+    var slicedArroz = new Arroz()
+    if (indexEnd !== undefined){
+        if (indexStart > -1)
+            var start = indexStart
+        else
+            var start = this.length + start
+
+        if (indexEnd > -1)
+            var end = indexEnd
+        else
+            var end = this.length + indexEnd
+
+        for (var i = start; i <= end; i++){
+            slicedArroz[slicedArroz.length] = this[i]
+            slicedArroz.length++
+            this[i] = this[i + end]
+        }
+        for (let i = this.length - 1; i > (end - start - 1); i--){
+            delete this[i]
+        }
+        this.length = this.length - (end - start) -1            
+
+    } else {
+        if (indexStart > -1)
+            var start = indexStart
+        else 
+            var start = this.length + indexStart
+
+        for (var i = start; i < this.length; i++){
+            slicedArroz[slicedArroz.length] = this[i]
+            slicedArroz.length++
+            delete this[i]
+        }
+        this.length = start
     }
-    this.length = this.length - (indexEnd - indexStart) -1
+    
     return slicedArroz
 }
 
+Arroz.prototype.some = function(callabck){
+    for (var i = 0; i < this.length; i++){
+        if (callabck(this[i]) === true)
+            return true
+    }
+    return false
+}
 
-//WIP some, splice, unshift, with
+//WIP splice
+
+Arroz.prototype.splice = function(start, deleteCount, value){
+    this.length = this.length - deleteCount + 1
+    for (var i = this.length - 1; i > start; i--){
+        this[i] = this[i - 1]
+    }
+    this[start] = value
+    return undefined
+}
+
+
+//WIP unshift, with
 
 module.exports = Arroz
