@@ -321,4 +321,32 @@ matcha.describe('Arroz', function () {
             matcha.expect(thrownError.message).toBe('Invalid index : 7')
         })
     })
+
+    matcha.describe('> map', function () {
+        matcha.it('Should return a new array with numbers mapped to power of 2', function () {
+            var a = new Arroz(10, 20, 30)
+            matcha.expect(!!a.map).toBe(true)
+
+            var i = 0
+
+            var mapPow2 = a.map(function (element, index, arroz) {
+                matcha.expect(index).toBe(i++)
+                matcha.expect(arroz).toBe(a)
+                matcha.expect(element).toBe(10 * (index + 1))
+
+                return element ** 2
+            })
+
+            matcha.expect(mapPow2).toBeInstanceOf(Arroz)
+            matcha.expect(a.length).toBe(3)
+            for (var i = 0; i < a.length; i++) {
+                matcha.expect(a[i]).toBe(10 * (i + 1))
+            }
+
+            matcha.expect(mapPow2.length).toBe(a.length)
+            for (var i = 0; i < mapPow2.length; i++) {
+                matcha.expect(mapPow2[i]).toBe((10 * (i + 1)) ** 2)
+            }
+        })
+    })
 })

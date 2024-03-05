@@ -144,4 +144,14 @@ Arroz.prototype.with = function (index, value) {
     return newArr
 }
 
+Arroz.prototype.map = function (callback) {
+    var mapped = new Arroz
+    for (var i = 0; i < this.length; i++) {
+        var elem = this[i]
+        var mappedEl = callback(elem, i, this)
+        mapped[mapped.length++] = mappedEl
+    }
+    return mapped
+}
+
 module.exports = Arroz
