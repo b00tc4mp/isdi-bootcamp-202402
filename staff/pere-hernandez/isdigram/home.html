@@ -10,12 +10,25 @@
 <body>
     <header>
         <img src="logo.png">
-        <h1>Isdirgram.</h1>
-        <button>Logout</button>
+        <h1>Isdigram.</h1>
+        <button id="logout">Logout</button>
         <img>Notification image
     </header>
-    <div class="stories">
-        <p id="greeting">Hello, username!</p>
+
+    <p id="greeting">Hello, username!</p>
+    <button id = 'createPost'>New Post</button>      
+    <form id="newPostForm" action="">
+        <label for="image">Paste your photo link here</label>
+        <input type="text" id="image" required>
+
+        <label for="comment">Write a comment</label>
+        <input type="text" id="comment">
+
+        <button type="submit" id="postFormButton">Post</button>
+    </form>
+    <!-- 
+
+    <div class="stories">        
         <div class="add-story">Add story</div>
         <img class="story">Story
         <img class="story">Story
@@ -52,7 +65,7 @@
         <img class="post-icon">Post
         <img class="send-icon">Send
         <img class="search-icon">Search
-    </footer>
+    </footer>-->
 
     <link rel="stylesheet" href="styles.css">
 

@@ -1,45 +1,68 @@
 // business (logic)
 
-function registerUser(username, email, password, confirmedPassword){
-    if (password !== confirmedPassword) throw new Error("Passwords don't match")
+var logic = (function () {
+    
+    function registerUser(username, email, password, confirmedPassword){
+        var foundUser = data.findUser(function (user) {
+            return (user.email === email || user.username === username)
+        })
 
-    var userExists = users.some(function (user) {
-        return user.email === email || user.username === username
-    })
+        if (foundUser) throw new Error ('user already exists')
+        if (password !== confirmedPassword) throw new Error ("passwords don't match")
 
-    if (userExists) throw new Error('user already exists')
+        var user = {
+            email: email,
+            username: username,
+            password: password
+        }
 
-    var user = {
-        email: email,
-        username: username,
-        password: password
+        data.insertUser(user)
+    } 
+
+
+    function loginUser (username, password){
+        var match = data.findUser(function (user){
+            return user.username === username && user.password === password
+        })
+
+        if (!match) throw new Error ('wrong credentials')
+
+        sessionStorage.username = username
     }
 
-    users.push(user)
 
-    localStorage.users = JSON.stringify(users)
-}
+    function retrieveUser (username){
+        var user = data.findUser(function(user){
+            return user.username === sessionStorage.username
+        })
 
+        if (!user) throw new Error('user not found')
 
-
-function loginUser (username, password){
-    var match = users.some(function (user){
-        return user.username === username && user.password === password
-    })
-
-    if (!match) throw new Error ('wrong credentials')
-
-    sessionStorage.username = username
-}
+        return user
+    }
 
 
+    function logoutUser(){
+        sessionStorage.clear()
+    }
+    
 
-function retrieveUser (username){
-    var user = users.find(function(user){
-        return user.username === username
-    })
+    function createPost (photo, comment){
+        var post = {
+            username: sessionStorage.username,
+            photo: photo,
+            comment: comment,
+            date: new Date().toLocaleDateString('en-CA')
+        }
 
-    if (!user) throw new Error('user not found')
+        data.insertPost(post)
+    }
 
-    return user
-}
+    return {
+        registerUser: registerUser,
+        loginUser: loginUser,
+        retrieveUser: retrieveUser,
+        logoutUser: logoutUser,
+        createPost: createPost
+    }
+}) ()
