@@ -1,8 +1,8 @@
-const assert = require('./assert')
-const Animal = require('./Animal')
+var assert = require('./assert')
+var Animal = require('./Animal')
 
 console.log('CASE constructor')
-const animal = new Animal('a', new Date(2007, 5, 23), 17)
+var animal = new Animal('a', new Date(2007, 5, 23), 17)
 assert.equalValue(animal.name, 'a')
 assert.instanceOf(animal.birthDate, Date)
 assert.equalValue(animal.birthDate.getFullYear(), 2007)
@@ -60,35 +60,32 @@ assert.equalValue(animal.energy, 10)
 console.log('CASE errors')
 
 console.log('CASE error - name is not string')
-{
-    let errorThrown
-    try {
-        const animal = new Animal(undefined, new Date(2007, 5, 23), 17)
-    } catch (error) {
-        errorThrown = error
-    }
-    assert.error(errorThrown, 'TypeError', 'name is not a string')
+var errorThrown
+try {
+    var animal = new Animal(undefined, new Date(2007, 5, 23), 17)
+} catch (error) {
+    errorThrown = error
 }
+assert.error(errorThrown, 'TypeError', 'name is not a string')
+
 
 console.log('CASE error - birthdate is not a Date')
-{
-    let errorThrown
-    try {
-        const animal = new Animal('a', undefined, 17)
-    } catch (error) {
-        errorThrown = error
-    }
-    assert.error(errorThrown, 'TypeError', 'birthdate is not a Date')
+var errorThrown
+try {
+    var animal = new Animal('a', undefined, 17)
+} catch (error) {
+    errorThrown = error
 }
+assert.error(errorThrown, 'TypeError', 'birthdate is not a Date')
+
 
 console.log('CASE error - weight is not a number')
-{
-    let errorThrown
-    try {
-        const animal = new Animal('a', new Date(2007, 5, 23), undefined)
-    } catch (error) {
-        errorThrown = error
-    }
-    assert.error(errorThrown, 'TypeError', 'weight is not a number')
+var errorThrown
+try {
+    var animal = new Animal('a', new Date(2007, 5, 23), undefined)
+} catch (error) {
+    errorThrown = error
 }
+assert.error(errorThrown, 'TypeError', 'weight is not a number')
+
 
