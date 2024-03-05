@@ -19,11 +19,11 @@ function registerUser(name, birthdate, email, username, password) {
 
 
 function loginUser(username, password) {
-    var matched = users.some(function (user) {
-        return user.username === username && user.password === password
+    var matches = users.some(function (user) {
+        return (user.username === username && user.password === password)
     })
 
-    if (!matched) throw new Error('wrong credentials')
+    if (!matches) throw new Error('wrong credentials')
 
     sessionStorage.username = username
 }

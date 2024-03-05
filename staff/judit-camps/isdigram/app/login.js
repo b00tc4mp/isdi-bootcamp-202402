@@ -11,8 +11,8 @@ form.addEventListener('submit', function (event) {
 
     try {
         loginUser(username, password)
-        form.reset()
 
+        form.reset()
         var homeAddress = location.href.replace('login', 'home')
         location.href = homeAddress
     } catch (error) {
