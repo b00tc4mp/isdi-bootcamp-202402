@@ -165,16 +165,16 @@ Arroz.prototype.reduce = function (callback, initialValue) {
 
     var accumulator = initialValue;
     if (initialValue === undefined) {
+        accumulator = 0
         for (var i = 0; i < this.length; i++) {
-            this.length--
+
             var elem = this[i];
             accumulator = callback(accumulator, elem);
 
         }
     } else {
-        accumulator = 0
         for (var i = 0; i < this.length; i++) {
-            this.length--
+
             var elem = this[i];
             accumulator = callback(accumulator, elem);
         }

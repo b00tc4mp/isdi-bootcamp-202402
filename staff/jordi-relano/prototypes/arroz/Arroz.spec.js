@@ -226,16 +226,23 @@ matcha.describe('Arroz', function () {
             matcha.expect(!!a.reduce).toBe(true);
             matcha.expect(a).toBeInstanceOf(Arroz);
 
-
-
             var result = a.reduce(function (accumulator, currentValue) { return accumulator + currentValue }, 10);
 
-            matcha.expect(a.length).toBe(1);
-
-            matcha.expect(result).toBe(15);
+            matcha.expect(result).toBe(25);
 
         })
-        matcha.it('should return a result of running the reducer across all elements of the array in a single value, this case starting with a initialValue')
+        matcha.it('should return a result of running the reducer across all elements of the array in a single value, this case starting with a initialValue', function () {
+            var a = new Arroz(1, 2, 3, 4, 5);
+
+            matcha.expect(!!a.reduce).toBe(true);
+            matcha.expect(a).toBeInstanceOf(Arroz);
+
+            var result = a.reduce(function (accumulator, currentValue) { return accumulator + currentValue });
+
+            matcha.expect(result).toBe(15);
+        })
+
+
     })
     matcha.describe('> includes', function () {
         matcha.it('should return true or false if the element included for search is in or not  ', function () {
