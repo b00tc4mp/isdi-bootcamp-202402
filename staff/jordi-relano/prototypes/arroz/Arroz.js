@@ -163,20 +163,36 @@ Arroz.prototype.map = function (callback) {
 
 Arroz.prototype.reduce = function (callback, initialValue) {
 
-    var accumulator = initialValue
+    var accumulator = initialValue;
     if (initialValue === undefined) {
         for (var i = 0; i < this.length; i++) {
-            var elem = this[i]
-            accumulator = callback(accumulator, elem)
+            this.length--
+            var elem = this[i];
+            accumulator = callback(accumulator, elem);
 
         }
+    } else {
+        accumulator = 0
         for (var i = 0; i < this.length; i++) {
-            var elem = this[i]
-            accumulator = callback(accumulator, elem)
+            this.length--
+            var elem = this[i];
+            accumulator = callback(accumulator, elem);
         }
-        return accumulator
     }
+    return accumulator
 }
+
+Arroz.prototype.includes = function (searchElement) {
+
+    for (var i = 0; i < this.length; i++) {
+        if (searchElement === true) {
+            return true
+        }
+    }
+    return false
+}
+
+
 
 
 
