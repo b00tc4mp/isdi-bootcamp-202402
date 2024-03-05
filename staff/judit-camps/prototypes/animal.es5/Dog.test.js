@@ -1,0 +1,37 @@
+const Animal = require('./Animal')
+var assert = require('./assert')
+var Dog = require('./Dog')
+var Person = require('./Person')
+var Pet = require('./Pet')
+
+console.log('TEST Dog')
+
+console.log('CASE constructor')
+var owner = new Person('Judit', new Date(1999, 10, 27), 50, 'F')
+var dog = new Dog(owner, 'Trufa', new Date(2007, 2, 7), 15, 'F')
+assert.equalValue(dog.name, 'Trufa')
+assert.instanceOf(dog.birthDate, Date)
+assert.equalValue(dog.birthDate.getFullYear(), 2007)
+assert.equalValue(dog.birthDate.getMonth(), 2)
+assert.equalValue(dog.birthDate.getDate(), 7)
+assert.equalValue(dog.weight, 15)
+assert.equalValue(dog.sleeping, false)
+assert.equalValue(dog.eating, '')
+assert.equalValue(dog.legsSpeed, Dog.NOT_WALK)
+assert.equalValue(dog.energy, 10)
+
+assert.instanceOf(dog, Dog)
+assert.instanceOf(dog, Pet)
+assert.instanceOf(dog, Animal)
+
+
+console.log('CASE bark')
+dog.wakeUp()
+dog.bark()
+assert.equalValue(dog.say, 'woof woof')
+assert.equalValue(dog.talking, true)
+
+console.log('CASE shut up')
+dog.shutUp()
+assert.equalValue(dog.say, '')
+assert.equalValue(dog.talking, false)
