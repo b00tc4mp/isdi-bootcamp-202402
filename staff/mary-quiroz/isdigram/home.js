@@ -1,23 +1,22 @@
-//presenation
+// presentation
 
-var title = document.querySelector('h1')
-var logoutButton = document.querySelector('button')
+(function () {
+    var title = document.querySelector('h1')
+    var logoutButton = document.querySelector('button')
 
-try{
-    var user = retrieveUser(sessionStorage.username)
+    try {
+        var user = logic.retrieveUser()
 
-    title.innerText = 'Hello ' + user.name + '!'
+        title.innerText = 'Hello, ' + user.name + '!'
+    } catch (error) {
+        alert(error.message)
+    }
 
-} catch (error) {
-    alert(error.message)
-}
+    logoutButton.addEventListener('click', function () {
+        logic.logoutUser()
 
+        var loginAddress = location.href.replace('home', 'login')
 
-logoutButton.addEventListener('click', function() {
-    sessionStorage.clear()
-
-    var loginAddress = location.href.replace('home', 'login')
-
-    location.href = loginAddress
-})
-
+        location.href = loginAddress
+    })
+})()
