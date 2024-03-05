@@ -13,12 +13,22 @@
     <main>
         <h1>Hello World!</h1>
 
-        <button>LogOut</button>
+        <button id="logoutBtn">LogOut</button>
 
-        <div style="width: 200px; height: 200px; background-color: bisque;">Post 1</div>
-        <div style="width: 200px; height: 200px; background-color: cadetblue;">Post 2</div>
+        <form id="postForm" action="">
 
-        <footer style="height: 50px; background-color: gainsboro;"></footer>
+            <label for="image"></label>
+            <input type="url" name="" id="image">
+
+            <label for="caption"></label>
+            <input type="text" name="" id="caption">
+
+            <button id="createBtn">post</button>
+        </form>
+
+        <footer style="height: 50px; background-color: gainsboro;">
+            <button>+</button>
+        </footer>
 
     </main>
     <script src="data.js"></script>
