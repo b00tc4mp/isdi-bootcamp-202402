@@ -4,16 +4,30 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>
+
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <section>
+        <main>
             <h1>Login</h1>
-            <br>
-        </section>
-        <p>User <input type="text"></p>
-        <p>Password <input type="text"></p>
-        <p><button> Login </button></p>
-        <a>Register</a>
+
+            <form action>
+                <label for="username">Username</label>
+                <input type="username" name id="username">
+
+                <label for="password">Password</label>
+                <input type="password" name id="password">
+
+                <button type="submit">Login</button>
+
+            </form>
+            <a href="register.html">Register</a>
+
+        </main>
+
+        <script src="data.js"></script>
+        <script src="logic.js"></script>
+        <script src="login.js"></script>
 
     </body>
 </html>
