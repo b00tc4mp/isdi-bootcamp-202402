@@ -2,8 +2,10 @@
 (function () {
     var title = document.querySelector('h1')
     var logoutButton = document.getElementById('logoutBtn')
-    var form = document.getElementById('postForm')
-    var createButton = document.getElementById('createBtn')
+    var newPostBtn = document.getElementById('newPostBtn')
+    var postForm = document.getElementById('postForm')
+    var formDiv = document.getElementById('formDiv')
+
 
     try {
         var user = logic.getUser(sessionStorage.username)
@@ -20,7 +22,18 @@
         location.href = loginAddress
     })
 
-    form.addEventListener('submit', function () {
+
+    newPostBtn.addEventListener('click', function (event) {
+        event.preventDefault()
+
+        formDiv.style.display = 'block'
+
+        newPostBtn.style.display = 'none'
+    })
+
+
+    postForm.addEventListener('submit', function (event) {
+        event.preventDefault()
         // call function to save form info into new array of posts in local storage
 
         var imageInput = document.getElementById('image')
@@ -31,17 +44,13 @@
 
         try {
             logic.savePostInfo(image, caption)
-            form.reset()
+            formDiv.style.display = 'none'
         } catch (error) {
             alert(error.message)
         }
 
-    })
+        newPostBtn.style.display = 'block'
 
-    // createButton.addEventListener('click', function () {
-    //     // show form when clicking create button
-    //     if (form.style.display === 'none')
-    //         form.style.display = 'block'
-    // })
+    })
 
 })()

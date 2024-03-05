@@ -11,23 +11,28 @@
 
 <body>
     <main>
+        <h3>Isdigram</h3>
         <h1>Hello World!</h1>
 
         <button id="logoutBtn">LogOut</button>
 
-        <form id="postForm" action="">
+        <p>Create a new post!</p>
 
-            <label for="image"></label>
-            <input type="url" name="" id="image">
+        <div id="formDiv">
+            <form id="postForm" action="">
 
-            <label for="caption"></label>
-            <input type="text" name="" id="caption">
+                <label for="image"></label>
+                <input type="url" name="" id="image">
 
-            <button id="createBtn">post</button>
-        </form>
+                <label for="caption"></label>
+                <input type="text" name="" id="caption">
+
+                <button id="createBtn">post</button>
+            </form>
+        </div>
 
         <footer style="height: 50px; background-color: gainsboro;">
-            <button>+</button>
+            <button id="newPostBtn">+</button>
         </footer>
 
     </main>

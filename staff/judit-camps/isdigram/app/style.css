@@ -7,6 +7,6 @@ form {
     flex-direction: column;
 }
 
-/* #postForm {
+#formDiv {
     display: none;
-} */
+}
