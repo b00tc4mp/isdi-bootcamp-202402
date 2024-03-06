@@ -29,8 +29,6 @@
         event.preventDefault()
 
         formDiv.style.display = 'block'
-
-        newPostBtn.style.display = 'none'
     })
 
 
@@ -76,6 +74,10 @@
                 var authorHeading = document.createElement('h3')
                 authorHeading.innerText = post.username
 
+                if (post.username === sessionStorage.username) {
+                    var editPostButton = document.createElement('button')
+                    editPostButton.innerText = '...'
+                }
                 var image = document.createElement('img')
                 image.src = post.image
 
@@ -85,7 +87,7 @@
                 var dateTime = document.createElement('time')
                 dateTime.innerText = post.date
 
-                article.append(authorHeading, image, caption, dateTime)
+                article.append(authorHeading, editPostButton, image, caption, dateTime)
 
                 postsSection.appendChild(article)
             })
@@ -95,7 +97,6 @@
         }
     }
     renderPost()
-
 
 
 })()

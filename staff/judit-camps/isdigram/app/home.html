@@ -10,15 +10,16 @@
 </head>
 
 <body>
-    <main>
+    <header>
         <h3>Isdigram</h3>
-        <h1>Hello World!</h1>
-
         <button id="logout-button">Log out</button>
+    </header>
+    <main>
 
-        <p>Create a new post!</p>
+        <h1 id="home-title">Hello World!</h1>
 
         <section id="form-div">
+            <p>Create a new post!</p>
             <form id="post-form" action="">
 
                 <label for="image"></label>
@@ -31,14 +32,13 @@
             </form>
             <button id="cancel-post-button">cancel</button>
         </section>
-
         <section id="posts-section"></section>
-
-        <footer style="height: 50px; background-color: gainsboro;">
-            <button id="new-post-button">+</button>
-        </footer>
-
     </main>
+
+    <footer>
+        <button id="new-post-button">+</button>
+    </footer>
+
     <script src="data.js"></script>
     <script src="logic.js"></script>
     <script src="home.js"></script>
