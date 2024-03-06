@@ -1,13 +1,36 @@
 //data
 
-var users = localStorage.users ? JSON.parse(localStorage.users) : []
+var data = (function(){
+    function findUser(callback){
+        var users = JSON.parse(localStorage.users || '[]')
+        var user = users.find(callback)
 
-/*
-var users = []
+        return user
+    }
 
-if (localStorage.users) {
-    JSON.parse(localStorage.users);
-}else{
-    return users = []
-}
-*/
+    function insertUser(user){
+
+        var users = JSON.parse(localStorage.users || '[]')
+
+        users.push(user)
+
+        localStorage.users = JSON.stringify(users)
+    }
+
+    function insertPost (post) {
+        var posts = JSON.parse(localStorage.posts || '[]')
+
+        posts.push(post)
+
+        localStorage.posts = JSON.stringify(posts)
+    }
+
+    return {
+        findUser: findUser,
+        insertUser: insertUser,
+        insertPost: insertPost
+    }
+
+})()
+
+

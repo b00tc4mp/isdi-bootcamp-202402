@@ -1,8 +1,14 @@
 main {
-    margin: 0 20vw;
+    margin: 0 0vw;
 }
 
 form {
     display: flex;
     flex-direction: column;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+
 }

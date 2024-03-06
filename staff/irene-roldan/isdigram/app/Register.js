@@ -1,41 +1,44 @@
 //presentation 
 
-var form = document.querySelector('form') // selecciona el primer formulario en el documento HTML y guarda una referencia a él en la variable 'form' 
-var loginLink = document.querySelector('a') // selecciona el primer enlace (<a>) en documento HTML y guarda una referencia a él en la variable 'loginLink 
+(function(){
 
-form.addEventListener('submit', function(event){ // registra un evento a un objeto para console.log('form submit). Cuando el formulario se envía se ejecuta. 
-    console.log('form submit')
+    var form = document.querySelector('form') // selecciona el primer formulario en el documento HTML y guarda una referencia a él en la variable 'form' 
+    var loginLink = document.querySelector('a') // selecciona el primer enlace (<a>) en documento HTML y guarda una referencia a él en la variable 'loginLink 
 
-    event.preventDefault() //evita el comportamiento predeterminado del formulario, que es enviar una solicitud al servidor y recargar la página
+    form.addEventListener('submit', function(event){ // registra un evento a un objeto para console.log('form submit). Cuando el formulario se envía se ejecuta. 
+        console.log('form submit')
 
-    //Se obtienen los valores de los campos del formulario utilizando document.getElementById('nombreCampo').value. Estos valores se guardan en variables como name, birthdate, email, etc.
-    var nameInput = document.getElementById('name')
-    var name = nameInput.value
+        event.preventDefault() //evita el comportamiento predeterminado del formulario, que es enviar una solicitud al servidor y recargar la página
 
-    var birthdateInput = document.getElementById('birthdate')
-    var birthdate = birthdateInput.value
+        //Se obtienen los valores de los campos del formulario utilizando document.getElementById('nombreCampo').value. Estos valores se guardan en variables como name, birthdate, email, etc.
+        var nameInput = document.getElementById('name')
+        var name = nameInput.value
 
-    var emailInput = document.getElementById('email')
-    var email = emailInput.value
+        var birthdateInput = document.getElementById('birthdate')
+        var birthdate = birthdateInput.value
 
-    var usernameInput = document.getElementById('username')
-    var username = usernameInput.value
+        var emailInput = document.getElementById('email')
+        var email = emailInput.value
 
-    var passwordInput = document.getElementById('password')
-    var password = passwordInput.value
+        var usernameInput = document.getElementById('username')
+        var username = usernameInput.value
 
-    var surnameInput = document.getElementById('surname')
-    var surname = surnameInput.value
+        var passwordInput = document.getElementById('password')
+        var password = passwordInput.value
 
-    //Si se produce un error durante la ejecución de registerUser, se captura y se muestra un mensaje de alerta.
-    try{
+        var surnameInput = document.getElementById('surname')
+        var surname = surnameInput.value
 
-        registerUser(name, surname, birthdate, email, username, password)
+        //Si se produce un error durante la ejecución de registerUser, se captura y se muestra un mensaje de alerta.
+        try{
 
-        form.reset()
+            logic.registerUser(name, surname, birthdate, email, username, password)
 
-        loginLink.click()
-    }catch(error){
-        alert(error.message)
-    }
-})
+            form.reset()
+
+            loginLink.click()
+        }catch(error){
+            alert(error.message)
+        }
+    })
+})()

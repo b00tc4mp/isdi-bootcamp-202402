@@ -4,65 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello, World</h1>
-    <button>Logout</button>
-    <header>
-        <img src="" alt="" id="logo">
-        <img src="" alt="" id="search">
-        <img src="" alt="" id="Configuration">
-    </header>
-    <br>
-    <div id="historyFeed">
-        <img src="" alt="" id="addHistory">
-        <img src="" alt="" id="friend1History">
-        <img src="" alt="" id="friend2History">
-        <img src="" alt="" id="friend3History">
-        <img src="" alt="" id="friend4History">
-    </div>
-    <br>
-    <div id="publication1">
-        <object data="" type="" data="img or video"></object>
-        <div class="separator"></div>
-        <div class="reactions">
-            <img src="" alt="" class="like">
-            <b class="likesNumber"></b>
-            <img src="" alt="" class="share">
-            <img src="" alt="" class="comment">
-            <b class="comments"></b>
-            <img src="" alt="" class="emojis">
-        </div>
-        <img src="" alt="" class="user">
-        <b class="userName"></b>
-    </div>
-    <div id="publication2">
-        <object data="" type="" data="img or video"></object>
-        <div class="separator"></div>
-        <div class="reactions">
-            <img src="" alt="" class="like">
-            <b class="likesNumber"></b>
-            <img src="" alt="" class="share">
-            <img src="" alt="" class="comment">
-            <b class="comments"></b>
-            <img src="" alt="" class="emojis">
-        </div>
-        <img src="" alt="" class="user">
-        <b class="userName"></b>
-    </div>
-
+    <main>
+        <h1>Hello, World</h1>
+        <button type="submit">Logout</button>
+        
+    </main>
     <footer>
-        <img src="" alt="" id="home">
-        <img src="" alt="" id="notifications">
-        <img src="" alt="" id="addPublication">
-        <img src="" alt="" id="chats">
-        <img src="" alt="" id="user">
-        <p>CopyRight 2024 Isdigram</p>
+        <form action="">
+            <label for="img">Select a image</label>
+            <input type="file" value="" id="img">
+
+            <label for="txt">Write a description</label>
+            <input type="text" value="" id="txt">
+
+            <button type="submit" id="post">Post</button>
+        </form>
+        
     </footer>
-
-
-    <script src="Data.js"></script>
-    <script src="Logic.js"></script>
-    <script src="Home.js"></script>
+    
+    <script src="data.js"></script>
+    <script src="logic.js"></script>
+    <script src="home.js"></script>
 </body>
 </html>
