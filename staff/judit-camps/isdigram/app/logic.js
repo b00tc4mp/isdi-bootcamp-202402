@@ -48,6 +48,7 @@ var logic = (function () {
     function savePostInfo(image, caption) {
 
         var post = {
+            id: Date.now(),
             username: sessionStorage.username,
             image: image,
             caption: caption,
@@ -62,13 +63,18 @@ var logic = (function () {
         return posts.slice().reverse()
     }
 
+    function deletePost(postId) {
+        data.deletePost(postId)
+    }
+
     return {
         registerUser: registerUser,
         loginUser: loginUser,
         getUser: getUser,
         logoutUser: logoutUser,
         savePostInfo: savePostInfo,
-        retrievePostsLatestFirst: retrievePostsLatestFirst
+        retrievePostsLatestFirst: retrievePostsLatestFirst,
+        deletePost: deletePost
     }
 
 })()

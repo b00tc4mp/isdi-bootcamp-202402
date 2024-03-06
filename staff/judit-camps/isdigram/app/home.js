@@ -7,6 +7,7 @@
     var formDiv = document.getElementById('form-div')
     var cancelBtn = document.getElementById('cancel-post-button')
     var postsSection = document.querySelector('#posts-section')
+    var buttons = document.querySelector('button')
 
 
     try {
@@ -70,14 +71,11 @@
 
             postsLatestFirst.forEach(function (post) {
                 var article = document.createElement('article')
+                article.id = post.id
 
                 var authorHeading = document.createElement('h3')
                 authorHeading.innerText = post.username
 
-                if (post.username === sessionStorage.username) {
-                    var editPostButton = document.createElement('button')
-                    editPostButton.innerText = '...'
-                }
                 var image = document.createElement('img')
                 image.src = post.image
 
@@ -87,9 +85,27 @@
                 var dateTime = document.createElement('time')
                 dateTime.innerText = post.date
 
-                article.append(authorHeading, editPostButton, image, caption, dateTime)
+                if (post.username === sessionStorage.username) {
+                    var editPostButton = document.createElement('button')
+                    editPostButton.id = post.id
+                    editPostButton.innerText = 'delete'
+
+                    article.append(authorHeading, editPostButton, image, caption, dateTime)
+                } else {
+                    article.append(authorHeading, image, caption, dateTime)
+                }
 
                 postsSection.appendChild(article)
+
+                if (editPostButton) {
+                    editPostButton.addEventListener('click', function (event) {
+                        event.preventDefault()
+                        var postId = editPostButton.id
+
+                        logic.deletePost(postId)
+                        renderPost()
+                    })
+                }
             })
 
         } catch (error) {

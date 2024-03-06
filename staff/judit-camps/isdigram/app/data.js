@@ -36,11 +36,29 @@ var data = (function () {
         return posts
     }
 
+    function deletePost(idToDelete) {
+        var posts = JSON.parse(localStorage.posts || '[]')
+
+        var arrayIds = posts.map(function (x) {
+            return x.id
+        })
+        var indexToDelete = arrayIds.indexOf(parseInt(idToDelete))
+        console.log(indexToDelete)
+
+        posts.splice(indexToDelete, 1)
+
+
+        localStorage.posts = JSON.stringify(posts)
+    }
+
+
+
     return {
         findUser: findUser,
         insertUser: insertUser,
         insertPost: insertPost,
-        getAllPosts: getAllPosts
+        getAllPosts: getAllPosts,
+        deletePost: deletePost
     }
 
 })()
