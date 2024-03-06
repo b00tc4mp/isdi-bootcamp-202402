@@ -56,12 +56,19 @@ var logic = (function () {
         data.insertPost(post)
     }
 
+    function retrievePostsLatestFirst() {
+        var posts = data.getAllPosts()
+
+        return posts.slice().reverse()
+    }
+
     return {
         registerUser: registerUser,
         loginUser: loginUser,
         getUser: getUser,
         logoutUser: logoutUser,
-        savePostInfo: savePostInfo
+        savePostInfo: savePostInfo,
+        retrievePostsLatestFirst: retrievePostsLatestFirst
     }
 
 })()

@@ -30,10 +30,17 @@ var data = (function () {
         localStorage.posts = JSON.stringify(posts)
     }
 
+    function getAllPosts() {
+        var posts = JSON.parse(localStorage.posts || '[]')
+
+        return posts
+    }
+
     return {
         findUser: findUser,
         insertUser: insertUser,
-        insertPost: insertPost
+        insertPost: insertPost,
+        getAllPosts: getAllPosts
     }
 
 })()
