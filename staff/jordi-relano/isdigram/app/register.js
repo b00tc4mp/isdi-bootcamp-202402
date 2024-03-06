@@ -1,38 +1,43 @@
-var form = document.querySelector('form');
 
-var loginLink = document.querySelector('a')
+(function () {
+    var form = document.querySelector('form');
 
-// this is an event, when you put 'submit', you're saying that everything inside is going to do an action(an event), so it is going to submit everything you put inside the brackets of name, birthdate, etc
-form.addEventListener('submit', function (event) {
-    console.log('form submit');
+    var loginLink = document.querySelector('a');
 
-    // we just want to focus on our server, not others
-    event.preventDefault();
+    // this is an event, when you put 'submit', you're saying that everything inside is going to do an action(an event), so it is going to submit everything you put inside the brackets of name, birthdate, etc
 
-    // giving value to the body elements
-    var nameInput = document.getElementById('name');
-    var name = nameInput.value;
+    //cuando se ejecuta submit según cada event hacen una acción ( en este caso submit)
+    form.addEventListener('submit', function (event) {
+        console.log('form submit');
 
-    var birthdateInput = document.getElementById('birthdate');
-    var birthdate = birthdateInput.value;
+        // we just want to focus on our server, not others
+        event.preventDefault();
 
-    var usernameInput = document.getElementById('username');
-    var username = usernameInput.value;
+        // giving value to the body elements
+        var nameInput = document.getElementById('name');
+        var name = nameInput.value;
 
-    var emailInput = document.getElementById('email');
-    var email = emailInput.value;
+        var birthdateInput = document.getElementById('birthdate');
+        var birthdate = birthdateInput.value;
 
-    var passwordInput = document.getElementById('password');
-    var password = passwordInput.value;
+        var usernameInput = document.getElementById('username');
+        var username = usernameInput.value;
 
-    try {
-        registerUser(name, birthdate, email, username, password)
+        var emailInput = document.getElementById('email');
+        var email = emailInput.value;
 
-        form.reset()
+        var passwordInput = document.getElementById('password');
+        var password = passwordInput.value;
 
-        loginLink.click()
-    } catch (error) {
-        alert(error.message)
-    }
+        try {
+            logic.registerUser(name, birthdate, email, username, password);
+            form.reset();
 
-})
+            loginLink.click();
+        } catch (error) {
+            alert(error.message);
+        }
+
+    })
+
+})()

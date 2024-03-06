@@ -24,63 +24,61 @@
             </div>
         </div>
     </nav>
-    <header class="header" id="inicio">
-        <i class='bx bxs-building-house'></i>
-        <i class='bx bx-heart'></i>
-        <i class='bx bx-search'></i>
-        <i class='bx bx-save'></i>
-        <div class="contenedor-cabezera">
-            <div class="cabezera1">
-                <h1>ISDIGRAMERS</h1>
-                <button type="submit">Buscador de historias</button>
-                <i class='bx bxs-circle'></i>
-                <i class='bx bxs-circle'></i>
-                <i class='bx bxs-circle'></i>
-                <i class='bx bxs-circle'></i>
-                <i class='bx bxs-circle'></i>
-                <i class='bx bxs-circle'></i>
-            </div>
-            <div class="maintCont__grid">
-                <div><img src="" alt=""></div>
-                <div><img src="" alt=""></div>
-                <div><img src="" alt=""></div>
-                <div><img src="" alt=""></div>
+    <form>
+        <header class="header" id="inicio">
+            <i class='bx bxs-building-house'></i>
+            <i class='bx bx-heart'></i>
+            <i class='bx bx-search'></i>
+            <i class='bx bx-save'></i>
+            <div class="contenedor-cabezera">
+                <div class="cabezera1">
+                    <h1>ISDIGRAMERS</h1>
 
-                <a href="">
-                    <p><b>1</b>publicaciones</p>
-                    <p><b>395</b>me gusta</p>
-                    <p><b>10</b>comentarios</p>
-                </a>
-                <a href="">
-                    <p><b>1</b>publicaciones</p>
-                    <p><b>395</b>me gusta</p>
-                    <p><b>10</b>comentarios</p>
-                </a>
+                    <input type="text" id="image" placeholder="image" alt="text">
+                    <input type="text" id="post" placeholder="text" alt="text">
 
-            </div>
-            <div class="footpage">
-                <i class='bx bxs-building-house'></i>
-                <i class='bx bx-heart'></i>
-                <i class='bx bx-search'></i>
-                <i class='bx bx-save'></i>
-            </div>
+                    <button id="createPost" type="submit">Post</button>
 
-        </div>
+
+
+                </div>
+                <div class="maintCont__grid">
+                    <div><img src="" alt=""></div>
+                    <div><img src="" alt=""></div>
+                    <div><img src="" alt=""></div>
+                    <div><img src="" alt=""></div>
+
+                    <a href="">
+                        <p><b>1</b>publicaciones</p>
+                        <p><b>395</b>me gusta</p>
+                        <p><b>10</b>comentarios</p>
+                    </a>
+                    <a href="">
+                        <p><b>1</b>publicaciones</p>
+                        <p><b>395</b>me gusta</p>
+                        <p><b>10</b>comentarios</p>
+                    </a>
+
+                </div>
+                <div class="footpage">
+                    <i class='bx bxs-building-house'></i>
+                    <i class='bx bx-heart'></i>
+                    <i class='bx bx-search'></i>
+                    <i class='bx bx-save'></i>
+                </div>
+    </form>
+
+
+    </div>
 
 
     </header>
-
-    <label for="email">E-mail</label>
-    <input type="email" name="" id="email">
-
-    <label for="password">Password</label>
-    <input type="password" name="" id="password">
 
     <button type="submit">Login</button>
 
     <a href="">Register</a>
 
-    <button>Logout</button>
+    <button id="logout-button">Logout</button>
 
 
     <script src="data.js"></script>
