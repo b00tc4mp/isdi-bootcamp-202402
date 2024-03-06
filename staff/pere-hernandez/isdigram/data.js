@@ -39,10 +39,44 @@ var data = (function () {
     }*/
 
 
+    function getAllPosts(){
+        var posts = JSON.parse(localStorage.posts || '[')
+
+        return posts
+    }
+
+
+    function getPostId () {
+        var postCount = JSON.parse(localStorage.postCount || '-1')
+
+        postCount++
+
+        localStorage.postCount = JSON.stringify(postCount)
+
+        return postCount
+    }
+
+
+    function deletePost (post) {
+        var posts = JSON.parse(localStorage.posts || '[]')
+
+        var index = posts.findIndex(function (x) {
+            return parseInt(x.id) === post.id
+        })
+
+        posts.splice(index, 1)
+
+        localStorage.posts = JSON.stringify(posts)
+    }
+
+
     return {
         findUser: findUser,
         insertUser: insertUser,
-        insertPost: insertPost
+        insertPost: insertPost,
+        getAllPosts: getAllPosts,
+        getPostId: getPostId,
+        deletePost: deletePost
     }
     
 })()

@@ -9,23 +9,37 @@
 </head>
 <body>
     <header>
-        <img src="logo.png">
-        <h1>Isdigram.</h1>
+        <div id>
+            <img src="logo.png" id="header-img">
+            <h1 id="header-title">Isdigram.</h1>
+        </div>        
         <button id="logout">Logout</button>
-        <img>Notification image
+        <!--<img>Notification image-->
     </header>
 
-    <p id="greeting">Hello, username!</p>
-    <button id = 'createPost'>New Post</button>      
-    <form id="newPostForm" action="">
-        <label for="image">Paste your photo link here</label>
-        <input type="text" id="image" required>
+    <h2 id="greeting">Hello, username!</h2>
 
-        <label for="comment">Write a comment</label>
-        <input type="text" id="comment">
+    <section id="post-list-section"></section>
 
-        <button type="submit" id="postFormButton">Post</button>
-    </form>
+    <section id="post-form-section">
+        <form id="newPostForm" action="">
+            <label for="image">Paste your photo link here</label>
+            <input type="text" id="image" required>
+    
+            <label for="comment">Write a comment</label>
+            <input type="text" id="comment">
+    
+            <button type="submit" id="postFormButton">Post</button>
+        </form>
+        <button id="return">Return</button>
+    </section>
+    
+    
+
+    <footer>
+        <button id = 'createPost'>New Post</button> 
+    </footer>
+    
     <!-- 
 
     <div class="stories">        

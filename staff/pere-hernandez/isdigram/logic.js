@@ -47,22 +47,36 @@ var logic = (function () {
     }
     
 
-    function createPost (photo, comment){
+    function createPost (photo, comment){       
+
         var post = {
-            username: sessionStorage.username,
+            author: sessionStorage.username,
             photo: photo,
             comment: comment,
-            date: new Date().toLocaleDateString('en-CA')
+            date: new Date().toLocaleDateString('en-CA'),
+            id: data.getPostId()
         }
 
         data.insertPost(post)
     }
+
+
+    function retrievePosts(){
+        var posts = data.getAllPosts()
+        return posts
+    }
+
+    function deletePost (post) {
+        data.deletePost(post)
+    }    
 
     return {
         registerUser: registerUser,
         loginUser: loginUser,
         retrieveUser: retrieveUser,
         logoutUser: logoutUser,
-        createPost: createPost
+        createPost: createPost,
+        retrievePosts: retrievePosts,
+        deletePost: deletePost
     }
 }) ()
