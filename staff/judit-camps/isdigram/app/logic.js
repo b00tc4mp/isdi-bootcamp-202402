@@ -1,5 +1,6 @@
 // bussiness (logic)
 var logic = (function () {
+
     function registerUser(name, birthdate, email, username, password) {
         var user = data.findUser(function (user) {
             return user.email === email || user.username === username

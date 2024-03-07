@@ -1,6 +1,11 @@
 // PRESENTATION
 
 (function () {
+    if (logic.isUserLoggedIn) {
+        location.href = '../home'
+        return
+    }
+
     var form = document.querySelector('form')
     var loginLink = document.querySelector('a')
 
