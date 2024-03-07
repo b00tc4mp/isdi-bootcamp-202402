@@ -26,13 +26,13 @@ var logic = (function () {
 
         if (!user) throw new Error('wrong credentials')
 
-        sessionStorage.username = username
+        sessionStorage.userId = user.id
     }
 
 
-    function getUser(username) {
+    function getUser() {
         var user = data.findUser(function (user) {
-            return user.username === username
+            return user.id === sessionStorage.userId
         })
 
         if (!user) throw new Error('user not found')
@@ -45,11 +45,17 @@ var logic = (function () {
         sessionStorage.clear()
     }
 
-    function savePostInfo(image, caption) {
+    function getLoggedInUser() {
+        return sessionStorage.userId
+    }
 
+    function isUserLoggedIn() {
+        return !!sessionStorage.userId
+    }
+
+    function savePostInfo(image, caption) {
         var post = {
-            id: Date.now(),
-            username: sessionStorage.username,
+            author: sessionStorage.userId,
             image: image,
             caption: caption,
             date: new Date().toLocaleDateString('en-CA')
@@ -60,11 +66,28 @@ var logic = (function () {
     function retrievePostsLatestFirst() {
         var posts = data.getAllPosts()
 
+        posts.forEach(function (post) {
+            var user = findUser(function (user) {
+                return user.id === post.author
+            })
+            post.author = { id: user.id, username: user.username }
+        })
+
         return posts.slice().reverse()
     }
 
     function deletePost(postId) {
-        data.deletePost(postId)
+        var post = data.findPost(function (post) {
+            return post.id === postId
+        })
+
+        if (!post) throw new Error('post not found')
+
+        if (post.author !== sessionStorage.userId) throw new Error('post does not belong to user')
+
+        data.deletePost(function (post) {
+            return post.id === postID
+        })
     }
 
     return {
@@ -72,6 +95,8 @@ var logic = (function () {
         loginUser: loginUser,
         getUser: getUser,
         logoutUser: logoutUser,
+        getLoggedInUser: getLoggedInUser,
+        isUserLoggedIn: isUserLoggedIn,
         savePostInfo: savePostInfo,
         retrievePostsLatestFirst: retrievePostsLatestFirst,
         deletePost: deletePost
