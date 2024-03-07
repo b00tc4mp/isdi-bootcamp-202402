@@ -26,8 +26,7 @@
         // calling the function to logout the user and going back to the login page
         logic.logoutUser()
 
-        var loginAddress = location.href.replace('home', 'login')
-        location.href = loginAddress
+        location.href = '../login'
     })
 
     newPostBtn.addEventListener('click', function (event) {
