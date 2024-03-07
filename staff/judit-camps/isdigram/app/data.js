@@ -1,9 +1,31 @@
 // DATA
 var data = (function () {
+    // helper
+    function generateId() {
+        return (+((parseInt(Math.random() * 10 ** 17)).toString())).toString(16)
+    }
+
+    function loadUsers() {
+        return JSON.parse(localStorage.users || '[]')
+    }
+
+    function loadPosts() {
+        return JSON.parse(localStorage.posts || '[]')
+    }
+
+    function saveUsers() {
+        localStorage.users = JSON.stringify(users)
+    }
+
+    function savePosts() {
+        localStorage.posts = JSON.stringify(posts)
+    }
+
+
     function findUser(callback) {
         // save the actual users passing them from string to an array. 
         // if there are still no users => []
-        var users = JSON.parse(localStorage.users || '[]')
+        var users = loadUsers()
 
         // get the user that we are looking for
         var user = users.find(callback)
@@ -13,31 +35,31 @@ var data = (function () {
 
     function insertUser(user) {
         // get the users we have now as an array
-        var users = JSON.parse(localStorage.users || '[]')
+        var users = loadUsers()
 
         // push the new user into the array
         users.push(user)
 
         // convert users array to string and save it in the localStorage
-        localStorage.users = JSON.stringify(users)
+        saveUsers()
     }
 
     function insertPost(post) {
-        var posts = JSON.parse(localStorage.posts || '[]')
+        var posts = loadPosts()
 
         posts.push(post)
 
-        localStorage.posts = JSON.stringify(posts)
+        savePosts()
     }
 
     function getAllPosts() {
-        var posts = JSON.parse(localStorage.posts || '[]')
+        var posts = loadPosts()
 
         return posts
     }
 
     function deletePost(idToDelete) {
-        var posts = JSON.parse(localStorage.posts || '[]')
+        var posts = loadPosts()
 
         var arrayIds = posts.map(function (x) {
             return x.id
@@ -48,7 +70,7 @@ var data = (function () {
         posts.splice(indexToDelete, 1)
 
 
-        localStorage.posts = JSON.stringify(posts)
+        savePosts()
     }
 
 
