@@ -1,9 +1,15 @@
 //presentation
 
 (function () {
+    if (!logic.checkLoggedInStatus()) {
+        location.href = '../login'
+
+        return
+    }
+
     var greeting = document.getElementById('greeting')
     var logoutButton = document.getElementById('logout')
-    var createPostForm = document.getElementById('createPost')
+    var createPostForm = document.getElementById('create-post')
     var postForm = document.getElementById('newPostForm')
     var postListSection = document.getElementById('post-list-section')
     var postFormSection = document.getElementById('post-form-section')
@@ -14,6 +20,7 @@
         var user = logic.retrieveUser()
 
         greeting.innerText = 'Hello, ' + user.username + '!'
+
     } catch (error) {
         alert(error.message)
     }
@@ -22,9 +29,7 @@
     logoutButton.onclick =  function () {
         logic.logoutUser()
 
-        var loginAdress = location.href.replace('home', 'login')
-
-        location.href = loginAdress
+        location.href = '../login'
     }
 
 
@@ -35,6 +40,13 @@
             createPostForm.style.display = 'block'
         else
             createPostForm.style.display = 'none' 
+    }
+
+
+    returnButton.onclick = function (){
+        postFormSection.style.display = 'none'
+        createPostForm.style.display = 'block'
+        postForm.reset()
     }
 
 
@@ -56,14 +68,9 @@
             renderPosts()
             
         } catch (error) {
-            error.message
+            console.error(error)
+            alert(error.message)
         }
-    }
-
-    returnButton.onclick = function (){
-        postFormSection.style.display = 'none'
-        createPostForm.style.display = 'block'
-        postForm.reset()
     }
 
 
@@ -77,7 +84,7 @@
                 var article = document.createElement('article')
 
                 var authorHeading = document.createElement('h3')
-                authorHeading.innerText = post.author
+                authorHeading.innerText = post.author.username
 
                 var image = document.createElement('img')
                 image.src = post.photo
@@ -88,20 +95,31 @@
                 var dateTime = document.createElement('time')
                 dateTime.innerText = post.date
 
-                var deleteButton = document.createElement('button')
-                deleteButton.innerText = 'Delete'
-                deleteButton.classList.add('delete-post-button')
-                
 
-                article.append(authorHeading, image, paragraph, dateTime, deleteButton)
-                
+                article.append(authorHeading, image, paragraph, dateTime)
+
+                if (post.author.id === logic.getLoggedInUserId()){
+                    var deleteButton = document.createElement('button')
+                    deleteButton.innerText = 'Delete'
+                    deleteButton.classList.add('delete-post-button')
+
+                    article.append(deleteButton)
+
+                    deleteButton.onclick = function () {
+                        if (confirm('Delete post?')){
+                            try {
+                                logic.deletePost(post.id)
+
+                                renderPosts()
+                            } catch (error) {
+                                console.error(error)
+                                alert(error.message)
+                            }
+                        }
+                    }
+                }              
+                    
                 postListSection.appendChild(article)
-
-                deleteButton.addEventListener('click', function(){
-                    logic.deletePost(post)
-
-                    renderPosts()
-                })
             })
         } catch (error) {
             alert(error.message)
@@ -109,6 +127,6 @@
         
     }
 
-        renderPosts()
+    renderPosts()
 })()
 

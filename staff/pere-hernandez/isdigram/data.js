@@ -1,8 +1,35 @@
-// data
+// data layer
 
 var data = (function () {
+    //helper
+
+    function generateId() {
+        return (+((parseInt(Math.random() * 10 ** 17)).toString())).toString(36)
+    }
+
+    function loadUsers(){
+        return JSON.parse(localStorage.users || '[]')
+    }
+
+    function saveUsers(users){
+        localStorage.users = JSON.stringify(users)
+    }
+
+    function loadPosts(){
+        return JSON.parse(localStorage.posts || '[]')
+    }
+
+    function savePosts(posts){
+        localStorage.posts = JSON.stringify(posts)
+    }
+
+
+
+    //data
+    //User-related data
+
     function findUser(callback) {
-        var users = JSON.parse(localStorage.users || '[]')
+        var users = loadUsers()
 
         var user = users.find(callback)
 
@@ -11,20 +38,13 @@ var data = (function () {
 
 
     function insertUser(user) {
-        var users = JSON.parse(localStorage.users || '[]')
+        var users = loadUsers()
+
+        user.id = generateId()
 
         users.push(user)
 
-        localStorage.users = JSON.stringify(users)
-    }
-
-
-    function insertPost(post) {
-        var posts = JSON.parse(localStorage.posts || '[]')
-
-        posts.push(post)
-
-        localStorage.posts = JSON.stringify(posts)
+        saveUsers(users)
     }
 
 
@@ -39,34 +59,43 @@ var data = (function () {
     }*/
 
 
+
+    //Post-related data
+
+    function findPost(callback) {
+        var posts = loadPosts()
+
+        var post = posts.find(callback)
+
+        return post
+    }
+
+
+    function insertPost(post) {
+        var posts = loadPosts()
+
+        post.id = generateId()
+
+        posts.push(post)
+
+        savePosts(posts)
+    }
+
+
     function getAllPosts(){
-        var posts = JSON.parse(localStorage.posts || '[')
+        var posts = loadPosts()
 
         return posts
     }
 
 
-    function getPostId () {
-        var postCount = JSON.parse(localStorage.postCount || '-1')
-
-        postCount++
-
-        localStorage.postCount = JSON.stringify(postCount)
-
-        return postCount
-    }
-
-
-    function deletePost (post) {
-        var posts = JSON.parse(localStorage.posts || '[]')
-
-        var index = posts.findIndex(function (x) {
-            return parseInt(x.id) === post.id
-        })
+    function deletePost (callback) {
+        var posts = loadPosts()
+        var index = posts.findIndex(callback)
 
         posts.splice(index, 1)
 
-        localStorage.posts = JSON.stringify(posts)
+        savePosts(posts)
     }
 
 
@@ -74,8 +103,8 @@ var data = (function () {
         findUser: findUser,
         insertUser: insertUser,
         insertPost: insertPost,
+        findPost: findPost,
         getAllPosts: getAllPosts,
-        getPostId: getPostId,
         deletePost: deletePost
     }
     

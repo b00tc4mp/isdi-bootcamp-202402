@@ -24,7 +24,7 @@
 
             form.reset()
 
-            loginLink.click()
+            location.href = '../login'
         } catch (error) {
             alert(error.message)
         }

@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 
-    <link rel = 'shortcut icon' href="logo.png">
+    <link rel = 'shortcut icon' href="../logo.png">
 </head>
 <body>
     <div id="title">
-        <img id = 'title-logo' src='logo.png'></img>    
+        <img id = 'title-logo' src='../logo.png'></img>    
         <h1>Isdigram.</h1>
     </div>
 
@@ -27,20 +27,23 @@
             <label for = 'confirm'>Confirm password</label>
             <input type="password" id="confirm" required>
     
-            <input type="checkbox" id="terms">
-            <label for="terms" required>I accept the terms and conditions</label>
+            <div id="termsDiv">
+                <input type="checkbox" id="terms" required>
+                <label for="terms" id="terms-text">I accept the terms and conditions</label>
+            </div>
     
-            <button type="submit">Register</button>    
+            <button type="submit" id="register-button">Register</button>    
         </form>
     
-        <a href="login.html"><button>Log in</button></a>
+        <a href="../login"><button id="login-button">Log in</button></a>
     </div>
     
     
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
 
-    <script src="data.js"></script>
-    <script src="logic.js"></script>
-    <script src="register.js"></script>
+    <script src="../data.js"></script>
+    <script src="../logic.js"></script>
+    <script src="index.js"></script>
 </body>

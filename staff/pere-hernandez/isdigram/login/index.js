@@ -1,6 +1,13 @@
 //presentation 
 
 (function () {
+    if (logic.checkLoggedInStatus()){
+        location.href = '../home'
+
+        return
+    }
+
+    
     var form = document.querySelector('form')
 
     form.addEventListener('submit', function (event){
@@ -14,9 +21,7 @@
 
         try {
             logic.loginUser(username, password)
-
-            var homeAdress = location.href.replace('login', 'home')
-            location.href = homeAdress
+            location.href = '../home'
         } catch (error) {
             alert(error.message)
         }

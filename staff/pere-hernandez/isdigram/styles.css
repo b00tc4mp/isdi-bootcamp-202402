@@ -3,7 +3,7 @@ body, form, #interactive-content {
     flex-direction: column;
     margin: 0;
     font-size: 2vh;
-    margin-top: 6vh;
+    font-family: 'Open-sans', sans-serif;
 }
 
 body {
@@ -13,16 +13,14 @@ body {
 h1{
     font-size: 7vh;
     margin-top: 0;
-    text-shadow: 0vh 1vh 1vh rgba(0, 0, 0, 0.697);
-    -webkit-text-stroke: 0.2vw #696CBA;
 }
 
 input {
     background-color: #AFCDEF;
     border: none;
     width: 100%;
-    height: 5vh;
-    margin-bottom: 3vh;
+    height: 4vh;
+    margin-bottom: 2vh;
     box-sizing: border-box;
 }
 
@@ -56,15 +54,6 @@ footer {
     background-color:  #AFCDEF;
 }
 
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    background-color:  #AFCDEF;
-}
 
 #header-title{
     font-size: 3vh;
@@ -75,11 +64,6 @@ header {
 
 #header-img {
     max-width: 4vw;
-}
-
-#logout {
-    margin-top: 4vh;   
-    margin-bottom: 1vh;
 }
 
 h2 {

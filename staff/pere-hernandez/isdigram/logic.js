@@ -1,8 +1,19 @@
 // business (logic)
 
 var logic = (function () {
+
+    //USER-related functions
     
     function registerUser(username, email, password, confirmedPassword){
+        if (typeof username !== 'string')
+            throw new TypeError (username + ' is not a string')
+        if (typeof username.length < 1)
+            throw new RangeError (username + ' must have more characters')
+
+        //TODO email validation
+
+        //
+
         var foundUser = data.findUser(function (user) {
             return (user.email === email || user.username === username)
         })
@@ -21,19 +32,19 @@ var logic = (function () {
 
 
     function loginUser (username, password){
-        var match = data.findUser(function (user){
+        var user = data.findUser(function (user){
             return user.username === username && user.password === password
         })
 
-        if (!match) throw new Error ('wrong credentials')
+        if (!user) throw new Error ('wrong credentials')
 
-        sessionStorage.username = username
+        sessionStorage.userId = user.id
     }
 
 
-    function retrieveUser (username){
+    function retrieveUser (){
         var user = data.findUser(function(user){
-            return user.username === sessionStorage.username
+            return user.id === sessionStorage.userId
         })
 
         if (!user) throw new Error('user not found')
@@ -45,16 +56,26 @@ var logic = (function () {
     function logoutUser(){
         sessionStorage.clear()
     }
-    
+
+    function getLoggedInUserId () {
+        return sessionStorage.userId
+    }
+
+    function checkLoggedInStatus(){
+        return !!sessionStorage.userId
+    }
+
+
+
+    //POST-related functions    
 
     function createPost (photo, comment){       
 
         var post = {
-            author: sessionStorage.username,
+            author: sessionStorage.userId,
             photo: photo,
             comment: comment,
             date: new Date().toLocaleDateString('en-CA'),
-            id: data.getPostId()
         }
 
         data.insertPost(post)
@@ -63,11 +84,30 @@ var logic = (function () {
 
     function retrievePosts(){
         var posts = data.getAllPosts()
+        
+        posts.forEach(function (post) {
+            var user = data.findUser(function (user) {
+                return user.id === post.author
+            })
+
+            post.author = {id: user.id, username: user.username}
+        })
         return posts
     }
 
-    function deletePost (post) {
-        data.deletePost(post)
+
+    function deletePost (postId) {
+        var post = data.findPost(function (post) {
+            return post.id === postId
+        })
+
+        if (!post) throw new Error ('post not found')
+
+        if (post.author !== sessionStorage.userId) throw new Error ("can't delete somebody else's post")
+
+        data.deletePost(function (post) {
+            return post.id === postId
+        })
     }    
 
     return {
@@ -75,6 +115,8 @@ var logic = (function () {
         loginUser: loginUser,
         retrieveUser: retrieveUser,
         logoutUser: logoutUser,
+        getLoggedInUserId: getLoggedInUserId,
+        checkLoggedInStatus: checkLoggedInStatus,
         createPost: createPost,
         retrievePosts: retrievePosts,
         deletePost: deletePost
