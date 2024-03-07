@@ -56,7 +56,7 @@ var data = (function () {
 
         posts.push(post)
 
-        savePosts()
+        savePosts(posts)
     }
 
     function getAllPosts() {
@@ -80,7 +80,7 @@ var data = (function () {
 
         posts.splice(indexToDelete, 1)
 
-        savePosts()
+        savePosts(posts)
     }
 
     return {

@@ -90,8 +90,6 @@
                 var dateTime = document.createElement('time')
                 dateTime.innerText = post.date
 
-                article.append(authorHeading, image, caption, dateTime)
-
                 if (post.author.id === logic.getLoggedInUser()) {
                     var deletePostButton = document.createElement('button')
                     deletePostButton.id = post.id
@@ -102,7 +100,7 @@
                     deletePostButton.addEventListener('click', function () {
                         if (confirm('delete post?'))
                             try {
-                                logic.deletePost()
+                                logic.removePost(post.id)
                                 renderPost()
                             } catch (error) {
                                 console.error(error)
@@ -110,9 +108,14 @@
                             }
                     })
                 } else {
+                    article.append(authorHeading, image, caption, dateTime)
 
-                    postsSection.appendChild(article)
+
+
                 }
+                postsSection.appendChild(article)
+
+
             })
 
         } catch (error) {

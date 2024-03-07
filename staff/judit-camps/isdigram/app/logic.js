@@ -67,7 +67,7 @@ var logic = (function () {
         var posts = data.getAllPosts()
 
         posts.forEach(function (post) {
-            var user = findUser(function (user) {
+            var user = data.findUser(function (user) {
                 return user.id === post.author
             })
             post.author = { id: user.id, username: user.username }
@@ -76,7 +76,7 @@ var logic = (function () {
         return posts.slice().reverse()
     }
 
-    function deletePost(postId) {
+    function removePost(postId) {
         var post = data.findPost(function (post) {
             return post.id === postId
         })
@@ -86,7 +86,7 @@ var logic = (function () {
         if (post.author !== sessionStorage.userId) throw new Error('post does not belong to user')
 
         data.deletePost(function (post) {
-            return post.id === postID
+            return post.id === postId
         })
     }
 
@@ -99,7 +99,7 @@ var logic = (function () {
         isUserLoggedIn: isUserLoggedIn,
         savePostInfo: savePostInfo,
         retrievePostsLatestFirst: retrievePostsLatestFirst,
-        deletePost: deletePost
+        removePost: removePost
     }
 
 })()
