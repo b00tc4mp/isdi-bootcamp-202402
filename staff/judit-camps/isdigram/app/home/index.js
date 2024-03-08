@@ -5,6 +5,7 @@
         return
     }
 
+    var header = document.querySelector('header')
     var title = document.querySelector('h1')
     var logoutButton = document.getElementById('logout-button')
     var newPostBtn = document.getElementById('new-post-button')
@@ -12,6 +13,9 @@
     var formDiv = document.getElementById('form-div')
     var cancelBtn = document.getElementById('cancel-post-button')
     var postsSection = document.querySelector('#posts-section')
+    var homeButton = document.querySelector('#home-button')
+    var messageButton = document.querySelector('#message-button')
+    var footer = document.querySelector('footer')
 
     try {
         var user = logic.getUser()
@@ -28,6 +32,15 @@
 
         location.href = '../login'
     })
+
+    homeButton.addEventListener('click', function () {
+        postsSection.style.display = 'block'
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    })
+
 
     newPostBtn.addEventListener('click', function (event) {
         event.preventDefault()
@@ -77,6 +90,9 @@
                 var article = document.createElement('article')
                 article.id = post.id
 
+                var postHeading = document.createElement('div')
+                postHeading.classList = 'post-heading'
+
                 var authorHeading = document.createElement('h3')
                 authorHeading.innerText = post.author.username
 
@@ -92,9 +108,10 @@
                 if (post.author.id === logic.getLoggedInUser()) {
                     var deletePostButton = document.createElement('button')
                     deletePostButton.id = post.id
-                    deletePostButton.innerText = 'delete'
+                    deletePostButton.innerText = '...'
 
-                    article.append(authorHeading, deletePostButton, image, caption, dateTime)
+                    postHeading.append(authorHeading, deletePostButton)
+                    article.append(postHeading, image, caption, dateTime)
 
                     deletePostButton.addEventListener('click', function () {
                         if (confirm('delete post?'))
@@ -108,13 +125,13 @@
                     })
                 } else {
                     article.append(authorHeading, image, caption, dateTime)
-
-
-
                 }
                 postsSection.appendChild(article)
 
-
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                })
             })
 
         } catch (error) {
@@ -123,6 +140,10 @@
         }
     }
     renderPost()
+
+    messageButton.onclick = function () {
+        postsSection.style.display = 'none'
+    }
 
 
 })()
