@@ -14,6 +14,12 @@
     var postListSection = document.getElementById('post-list-section')
     var postFormSection = document.getElementById('post-form-section')
     var returnButton = document.getElementById('return')
+    var body = document.querySelector('body')
+    var chatButton = document.getElementById('chat-icon-button')
+    var homeButton = document.getElementById('home-icon-button')
+    var footer = document.querySelector('footer')
+    var userList = document.getElementById('user-list')
+    var chatSection = document.getElementById('chat-section')
 
 
     try {
@@ -34,10 +40,12 @@
 
 
     createPostForm.onclick =  function (){     
-        postFormSection.style.display = 'block'      
+        postFormSection.style.display = 'flex'
+        body.style.overflow = 'hidden'
+
         
         if (createPostForm.style.display === 'none')
-            createPostForm.style.display = 'block'
+            createPostForm.style.display = 'flex'
         else
             createPostForm.style.display = 'none' 
     }
@@ -45,13 +53,15 @@
 
     returnButton.onclick = function (){
         postFormSection.style.display = 'none'
-        createPostForm.style.display = 'block'
+        createPostForm.style.display = 'flex'
         postForm.reset()
+        body.style.overflow = 'scroll'    
     }
 
 
     postForm.onsubmit =  function (event){
-        event.preventDefault()        
+        event.preventDefault()
+        body.style.overflow = 'scroll'      
 
         var photoImput = document.getElementById('image')
         var photo = photoImput.value
@@ -86,8 +96,13 @@
                 var authorHeading = document.createElement('h3')
                 authorHeading.innerText = post.author.username
 
+                var imageDiv = document.createElement('div')
+                imageDiv.classList.add('image-div')
+
                 var image = document.createElement('img')
                 image.src = post.photo
+
+                imageDiv.appendChild(image)
 
                 var paragraph = document.createElement('p')
                 paragraph.innerText = post.comment
@@ -96,7 +111,7 @@
                 dateTime.innerText = post.date
 
 
-                article.append(authorHeading, image, paragraph, dateTime)
+                article.append(authorHeading, imageDiv, paragraph, dateTime)
 
                 if (post.author.id === logic.getLoggedInUserId()){
                     var deleteButton = document.createElement('button')
@@ -125,6 +140,85 @@
             alert(error.message)
         }
         
+    }
+
+
+    function renderUserList () {
+        try {
+            var users = logic.retrieveUsers()
+
+            userList.innerHTML = ''
+
+            users.forEach(function (user) {
+                var userLi = document.createElement('li')
+
+                if (user.status === 'online'){
+                    userLi.classList.add('user-list-online')
+                } else if (user.status === 'offline'){
+                    userLi.classList.add('user-list-offline')
+                }
+
+                userLi.innerHTML = user.username
+
+                userLi.addEventListener('click',  function () {
+                    userList.style.display = 'none'
+                    chatButton.style.display = ''
+
+                    var chatTitle = document.createElement('div')
+                    chatTitle.classList.add('chat-title')
+                    chatTitle.innerHTML = user.username
+
+                    var chatForm = document.createElement('form')
+                    chatForm.classList.add('chat-form')
+
+                    var chatInputText = document.createElement('input')
+                    chatInputText.type = 'text'
+                    chatInputText.classList.add('chat-text-input')
+
+                    var sendMessageButton = document.createElement('button')
+                    sendMessageButton.type = 'submit'
+                    sendMessageButton.classList.add('send-message-button')
+
+                    var messageIcon = document.createElement('img')
+                    messageIcon.src = '../mail.png'
+                    messageIcon.classList.add('message-icon')
+
+                    sendMessageButton.appendChild(messageIcon)
+
+                    chatForm.append(chatInputText, sendMessageButton)
+
+                    chatSection.append(chatTitle, chatForm)
+                    chatSection.style.display = 'flex'
+                })
+
+                userList.appendChild(userLi)
+            })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+
+    chatButton.onclick = function (){
+        footer.style.display = 'none'
+        postListSection.style.display = 'none'
+        chatButton.style.display = 'none'
+        homeButton.style.display = 'block'
+        userList.style.display = 'block'
+        chatSection.style.display = 'none'
+        chatButton.style.display = 'none'
+
+        renderUserList()
+    }
+
+
+    homeButton.onclick = function (){
+        footer.style.display = ''
+        postListSection.style.display = 'flex'
+        chatButton.style.display = 'flex'
+        homeButton.style.display = ''
+        userList.style.display = 'none'
+        chatSection.style.display = 'none'
     }
 
     renderPosts()

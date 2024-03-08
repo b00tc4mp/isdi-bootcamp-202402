@@ -47,6 +47,28 @@ var data = (function () {
         saveUsers(users)
     }
 
+    function updateUser(user) {
+        var users = loadUsers()
+
+        var index = users.findIndex(function (user2) {
+            return user2.id === user.id
+        })
+
+
+        if (index > -1){
+            users. splice(index, 1, user)
+        }
+
+        saveUsers(users)
+    }
+    
+
+    function getAllUsers(){
+        var users = loadUsers()
+
+        return users
+    }
+
 
     /*function deleteUser(user) {
         var users = JSON.parse(localStorage.users)
@@ -103,6 +125,8 @@ var data = (function () {
         findUser: findUser,
         insertUser: insertUser,
         insertPost: insertPost,
+        updateUser: updateUser,
+        getAllUsers: getAllUsers,
         findPost: findPost,
         getAllPosts: getAllPosts,
         deletePost: deletePost

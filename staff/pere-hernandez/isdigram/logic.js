@@ -5,26 +5,38 @@ var logic = (function () {
     //USER-related functions
     
     function registerUser(username, email, password, confirmedPassword){
+        //errors
         if (typeof username !== 'string')
             throw new TypeError (username + ' is not a string')
         if (typeof username.length < 1)
-            throw new RangeError (username + ' must have more characters')
+            throw new RangeError ('username must have more characters')
 
         //TODO email validation
 
-        //
+        if (typeof password !== 'string')
+            throw new TypeError (password + ' is not a string')
+        if (typeof password.length < 1)
+            throw new RangeError ('password must have more characters')
+        if (typeof confirmedPassword !== 'string')
+            throw new TypeError (confirmedPassword + ' is not a string')
+        if (typeof confirmedPassword.length < 1)
+            throw new RangeError ('confirmedPassword must have more characters')
+        if (password !== confirmedPassword)
+            throw new Error ("passwords don't match")
+
+        //logic
 
         var foundUser = data.findUser(function (user) {
             return (user.email === email || user.username === username)
         })
 
         if (foundUser) throw new Error ('user already exists')
-        if (password !== confirmedPassword) throw new Error ("passwords don't match")
 
         var user = {
             email: email,
             username: username,
-            password: password
+            password: password,
+            statusbar: 'offline'
         }
 
         data.insertUser(user)
@@ -37,6 +49,10 @@ var logic = (function () {
         })
 
         if (!user) throw new Error ('wrong credentials')
+
+        user.status = 'online'
+
+        data.updateUser(user)
 
         sessionStorage.userId = user.id
     }
@@ -52,10 +68,47 @@ var logic = (function () {
         return user
     }
 
+    
+    function retrieveUsers(){
+        var users = data.getAllUsers()
+
+        var index = users.findIndex(function (user) {
+            return user.id === sessionStorage.userId
+        })
+
+        users.splice(index, 1)
+
+        users.forEach(function (user) {
+            delete user.email
+            delete user.password
+        })
+
+        users.sort(function (x, y) {
+            return x.username < y.username ? -1 : 1
+        }).sort(function(x, y) {
+            return x.status > y.status ? -1 : 1
+        })
+
+        return users
+    }
+
 
     function logoutUser(){
-        sessionStorage.clear()
+        var user = data.findUser(function (user) {
+            return user.id === sessionStorage.userId
+        })
+
+        if (!user){
+            throw new Error('wrong credentials')
+        }
+
+        user.status = 'offline'
+
+        data.updateUser(user)
+
+        delete sessionStorage.userId
     }
+
 
     function getLoggedInUserId () {
         return sessionStorage.userId
@@ -92,7 +145,7 @@ var logic = (function () {
 
             post.author = {id: user.id, username: user.username}
         })
-        return posts
+        return posts.reverse()
     }
 
 
@@ -114,6 +167,7 @@ var logic = (function () {
         registerUser: registerUser,
         loginUser: loginUser,
         retrieveUser: retrieveUser,
+        retrieveUsers, retrieveUsers,
         logoutUser: logoutUser,
         getLoggedInUserId: getLoggedInUserId,
         checkLoggedInStatus: checkLoggedInStatus,
