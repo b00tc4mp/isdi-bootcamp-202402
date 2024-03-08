@@ -1,0 +1,37 @@
+@mixin size($width, $height)
+    width: $width
+    height: $height
+@mixin position($align-items, $justify-content)
+    align-items: $align-items
+    justify-content: $justify-content
+@mixin detail($border, $display)
+    //border: $border
+    display: $display
+
+.estructure
+    background-color: blue
+    @include size(150px ,200px)
+    flex-direction: column
+    @include detail(2px solid black, flex)
+    justify-content: space-around
+    background-image: url("https://img.freepik.com/foto-gratis/fondo-hecho-ladrillos_23-2148742475.jpg")
+
+.floor
+
+    @include detail (5px solid black, flex)
+    @include position(center, space-around)
+
+.main
+    @include detail(5px solid black, flex)
+    @include position(center, center)
+
+.windows
+    background-color: green
+    @include size(10px ,10px)
+    @include detail(5px solid black, inline-flex)
+
+.door
+    background-color: white
+    @include size(10px, 20px)
+    @include detail(3px solid black, flex)
+    @include position(center, center)

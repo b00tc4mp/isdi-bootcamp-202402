@@ -1,0 +1,76 @@
+.container {
+  background-color: black;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+
+.container__box1 {
+  width: 100%;
+  height: 83.33%;
+  display: flex;
+  background-color: black;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.quadrate__one {
+  background-color: yellow;
+  width: 100%;
+  height: 60%;
+}
+
+.quadrate__two {
+  background-color: grey;
+  width: 100%;
+  height: 40%;
+}
+
+.container__box2 {
+  width: 100%;
+  height: 16.66%;
+  display: flex;
+  background-color: black;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: space-around;
+}
+
+.quadrate__four {
+  width: 33.33%;
+  height: 100%;
+  background-color: blue;
+}
+
+.quadrate__five {
+  width: 50%;
+  height: 100%;
+  background-color: grey;
+}
+
+.quadrate__six {
+  width: 16.66%;
+  height: 100%;
+  background-color: grey;
+}
+
+.container__box3 {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quadrate__three {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  background-color: red;
+}
+
+/*# sourceMappingURL=style.css.map */

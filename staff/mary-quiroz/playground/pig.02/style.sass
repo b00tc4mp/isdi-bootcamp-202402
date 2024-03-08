@@ -1,0 +1,147 @@
+
+@mixin size($height, $width)
+    width: $width
+    height: $height
+@mixin position($left, $top)
+    left: $left
+    top: $top
+.pig
+    &__head
+        background-color: pink
+        @include size(150px, 150px)
+        position: relative
+        border-radius: 50%
+        z-index: 1
+        @include position(100px, 0px)
+        border: 2px solid
+
+    &__ears
+        &--left
+            background-color: brown
+            @include size(30px, 30px)
+            position: absolute
+            @include position(120px, 10px)
+            border-radius: 50%
+            border: 2px solid
+
+        &--right
+            background-color: brown
+            @include size(30px,30px)
+            position: absolute
+            @include position(205px, 5px)
+            border-radius: 50%
+            border: 2px solid
+
+    &__eye
+        &--left
+            background-color: white
+            @include size(40px, 40px)
+            position: absolute
+            border-radius: 50%
+            @include position(30px, 40px)
+            border: 2px solid
+
+        &--right
+            background-color: white
+            @include size (40px, 40px)
+            position: absolute
+            border-radius: 50%
+            @include position (85px, 40px)
+            border: 2px solid
+
+    &__pupil
+        background-color: black
+        @include size (10px, 10px)
+        position: absolute
+        border-radius: 50%
+        @include position(15px, 15px)
+        transform: translate(-50%, -50%)
+        animation: movePupil 2s infinite alternate
+
+    &__nose
+        background-color: brown
+        @include size (40px, 40px)
+        position: absolute
+        border-radius: 50%
+        @include position(55px, 80px)
+        border: 2px solid
+
+    &__gap
+        &--nose--left
+            background-color: black
+            @include size (10px, 10px)
+            position: absolute
+            border-radius: 50%
+            @include position (65px, 95px)
+        &--nose--right
+            background-color: black
+            @include size (10px, 10px)
+            position: absolute
+            border-radius: 50%
+            @include position(80px, 95px)
+    &__leg
+        &--left
+            background-color: brown
+            @include size (40px, 40px)
+            position: absolute
+            border-radius: 50%
+            @include position (50px, 115px)
+            border: 2px solid
+
+        &--right
+            background-color: brown
+            @include size (40px, 40px)
+            position: absolute
+            border-radius: 50%
+            @include position (110px, 115px)
+            border: 2px solid
+
+    &__body
+        background-color: pink
+        @include size (200px, 200px)
+        position: relative
+        border-radius: 50%
+        @include position (70px, -80px)
+        border: 2px solid
+
+    &__shade
+        background-color: black
+        @include size (10px, 200px)
+        position: relative
+        border-radius: 50%
+        @include position (70px, -80px)
+        border: 2px solid
+
+    &__hooves
+        &--left
+            background-color: black
+            @include size (10px, 20px)
+            position: absolute
+            border-radius: 50%
+            @include position (140px, 200px)
+            border: 2px solid
+
+        &--right
+            background-color: black
+            @include size (10px, 20px)
+            position: absolute
+            border-radius: 50%
+            @include position (200px, 200px)
+            border: 2px solid
+
+    &__tail
+        background-color: pink
+        @include size(8px, 20px)
+        border: 2px solid black
+        border-radius: 50%
+        border-top-left-radius: 30%
+        border-bottom-left-radius: 30%
+        position: absolute
+        @include position(280px, 180px)
+
+@keyframes movePupil
+    0%
+        left: 50% /* Posición inicial */
+
+    100%
+        left: 70% /* Posición final */
