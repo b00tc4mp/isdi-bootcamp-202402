@@ -1,5 +1,3 @@
-var assert = require('./assert')
-
 /**
  * Adds an element in an iterable object.
  *
@@ -27,5 +25,24 @@ var colors = {
 
 var length = add(colors, 'violet')
 
-assert.equalsValue(length, 4)
-assert.hasValues(colors, 'red', 'blue', 'green', 'violet')
+//console.log(length)
+// 4
+
+//console.log(colors)
+/*
+{
+    0: 'red',
+    1: 'blue',
+    2: 'green',
+    3: 'violet',
+    length: 4
+}
+*/
+
+console.assert(colors[0] === 'red', 'red')
+console.assert(colors[1] === 'blue', 'blue' )
+console.assert(colors[2] === 'green', 'green')
+console.assert(colors[3] === 'violet', 'violet')
+
+console.assert(length === 4)
+
