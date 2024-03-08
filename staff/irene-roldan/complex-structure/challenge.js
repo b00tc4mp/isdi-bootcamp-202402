@@ -1,17 +1,37 @@
-var a = {
-    animal: "dog",
-    size: "medium",
-    gender: "female",
-    esterilized: true,
-    birthday: 2017,
-    calculateAge: function (){
-        this.age = 2024 - this.birthday
+const car = {
+    color: "black",
+    wheels: 3,
+    engine: { 
+        cylinders: 4, 
+        size: 20
     },
-    family: ["Maria", "Andreu", "Aina"],
-}
+    start: function() {
+        console.log("Motor ...");
+    },
+    stop: function() {
+        console.log("Motor ...");
+    },
+};
 
-1.  Cambiar a macho el género.
-2. Añadir a familia otra persona.
-3. Restar de la familia la 2ª persona.
-4. Calcular la edad del perro y sumarle 5 años más. 
-5. Si el perro es mayor de 15 años mostrar un mensaje de "Soy mayor de 15 años". 
+/*
+Cambiar el color del coche a Rojo
+Súmale 1 rueda
+Multiplica por 10 las cilindradas
+El tamaño divídelo entre 5.
+Cambia el estado del motor según este encendido o apagado.
+ 
+car.color = "red";
+
+car.wheels = car.wheels + 1
+
+car.engine.cylinders = car.engine.cylinders * 10
+
+car.engine.size = car.engine.size / 5
+
+start: function() {
+console.log("Motor encendido");
+}
+stop: function() {
+console.log("Motor apagado");
+}
+*/
