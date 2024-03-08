@@ -1,7 +1,7 @@
 // PRESENTATION
 (function () {
     if (!logic.isUserLoggedIn()) {
-        location.href = 'login.html'
+        location.href = '../login'
         return
     }
 

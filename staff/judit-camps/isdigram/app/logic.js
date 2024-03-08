@@ -1,7 +1,46 @@
 // bussiness (logic)
 var logic = (function () {
 
+    // constants
+    var DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
+    var PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[A-Za-z])[A-Za-z0-9]+$/
+    var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    var URL_REGEX = /^(http|https):\/\//
+
+    // helpers
+    function validateDate(date, explanation) {
+        if (!DATE_REGEX.test(date)) throw new Error(explanation + ' ' + date + ' is not a valid date')
+    }
+
+    function validateText(text, explanation, checkEmptyInside) {
+        if (typeof text !== 'string') throw new Error(explanation + ' ' + text) + ' is not a string'
+        if (!text.trim().length) throw new Error(explanation + ' >' + text + '< is empty or blank')
+
+        if (checkEmptyInside) {
+            if (text.includes(' ')) throw new Error(explanation + ' ' + text + 'has empty spaces')
+        }
+    }
+
+    function validateEmail(email, explanation) {
+        if (!EMAIL_REGEX.test(email)) throw new Error(explanation + ' ' + email + ' is not a correct email')
+    }
+
+    function validateUrl(url, explanation) {
+        if (!URL_REGEX.test(url)) throw new Error(explanation + ' ' + url + ' is not a correct url path')
+    }
+
+    function validatePassword(password, explanation) {
+        if (!PASSWORD_REGEX.test(password)) throw new Error(explanation + ' ' + password + ' is not acceptable')
+    }
+
+    // logic
     function registerUser(name, birthdate, email, username, password) {
+        validateText(name, 'the name')
+        validateDate(birthdate)
+        validateEmail(email, 'the email')
+        validateText(username, 'the username', true)
+        validatePassword(password, 'the password')
+
         var user = data.findUser(function (user) {
             return user.email === email || user.username === username
         })
@@ -55,6 +94,7 @@ var logic = (function () {
     }
 
     function savePostInfo(image, caption) {
+        validateUrl(image, 'the url')
         var post = {
             author: sessionStorage.userId,
             image: image,
