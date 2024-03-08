@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <main>
+      <h1>Hello, World!</h1>
+      <nav id="menu-nav">
+        <button id="home-button">
+          <img src="https://img.icons8.com/fluency/48/exterior.png" />
+        </button>
+        <button id="chat-button">
+          <img
+            src="https://img.icons8.com/ios/50/filled-speech-bubble-with-dots--v1.png"
+          />
+        </button>
+        <button id="logout-button">
+          <img src="https://img.icons8.com/plasticine/100/door.png" />
+        </button>
+      </nav>
+
+      <section id="post-list-section"></section>
+
+      <section id="chat-section">
+        <ul id="user-list"></ul>
+      </section>
+
+      <section id="create-post-section">
+        <h2>Create Post</h2>
+
+        <form>
+          <input type="text" id="image" placeholder="url image" />
+          <br />
+          <input type="text" id="text" placeholder="text Post" />
+          <br />
+          <button id="submit-post" type="submit">Create</button>
+        </form>
+        <button id="create-post-cancel-button">Cancel</button>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <button id="create-post-button">+</button>
+    </footer>
+    <script src="../data.js"></script>
+    <script src="../logic.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

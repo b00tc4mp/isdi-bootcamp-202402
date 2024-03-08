@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+}
+
+main {
+  margin: 0;
+  padding: 0 5vw;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+}
+
+/*# sourceMappingURL=index.css.map */

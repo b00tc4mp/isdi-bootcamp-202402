@@ -1,41 +1,117 @@
-//DATA
-
-//var users = localStorage.users ? JSON.parse(localStorage.users) : []
-
-// if (localStorage.users) {
-//   var users = JSON.parse(localStorage.users);
-// } else {
-//   users = [];
-// }
+// data layer
 
 var data = (function () {
+  // helper
+
+  function generateId() {
+    return (+parseInt(Math.random() * 10 ** 17).toString()).toString(36);
+  }
+
+  function loadUsers() {
+    return JSON.parse(localStorage.users || "[]");
+  }
+
+  function loadPosts() {
+    return JSON.parse(localStorage.posts || "[]");
+  }
+
+  function saveUsers(users) {
+    localStorage.users = JSON.stringify(users);
+  }
+
+  function savePosts(posts) {
+    localStorage.posts = JSON.stringify(posts);
+  }
+
+  // data
+
   function findUser(callback) {
-      var users = JSON.parse(localStorage.users || '[]')
+    var users = loadUsers();
 
-      var user = users.find(callback)
+    var user = users.find(callback);
 
-      return user
+    return user;
   }
 
   function insertUser(user) {
-      var users = JSON.parse(localStorage.users || '[]')
+    var users = loadUsers();
 
-      users.push(user)
+    user.id = generateId();
 
-      localStorage.users = JSON.stringify(users)
+    users.push(user);
+
+    saveUsers(users);
+  }
+
+  function printUsers() {
+    var users = loadUsers();
+
+    console.table(users);
+  }
+
+  function updateUser(user) {
+    var users = loadUsers();
+
+    var index = users.findIndex(function (user2) {
+      return user2.id === user.id;
+    });
+
+    if (index > -1) {
+      users.splice(index, 1, user);
+
+      saveUsers(users);
+    }
+  }
+
+  function getAllUsers() {
+    var users = loadUsers();
+
+    return users;
   }
 
   function insertPost(post) {
-      var posts = JSON.parse(localStorage.posts || '[]')
+    var posts = loadPosts();
 
-      posts.push(post)
+    post.id = generateId();
 
-      localStorage.posts = JSON.stringify(posts)
+    posts.push(post);
+
+    savePosts(posts);
+  }
+
+  function getAllPosts() {
+    var posts = loadPosts();
+
+    return posts;
+  }
+
+  function findPost(callback) {
+    var posts = loadPosts();
+
+    var post = posts.find(callback);
+
+    return post;
+  }
+
+  function deletePost(callback) {
+    var posts = loadPosts();
+
+    var index = posts.findIndex(callback);
+
+    posts.splice(index, 1);
+
+    savePosts(posts);
   }
 
   return {
-      findUser: findUser,
-      insertUser: insertUser,
-      insertPost: insertPost
-  }
-})()
+    findUser: findUser,
+    insertUser: insertUser,
+    printUsers: printUsers,
+    updateUser: updateUser,
+    getAllUsers: getAllUsers,
+    insertPost: insertPost,
+    getAllPosts: getAllPosts,
+    findPost: findPost,
+    deletePost: deletePost,
+  };
+})();
