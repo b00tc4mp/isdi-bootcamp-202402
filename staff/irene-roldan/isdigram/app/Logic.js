@@ -1,53 +1,64 @@
-//business logic
+//business (logic)
 
-var logic = (function() {
-    function registerUser(name, surname, birthdate, email, username, password){
-        //RegisterUser verifica si ya existe un usuario con el mismo nombre de usuario o correo electrónico. 
-        var user = data.findUser (function(user){
+var logic = (function () {
+    
+    function registerUser(name, birthdate, email, username, password) {
+
+        if (typeof name !== 'string') throw new Error ('name is not a string') 
+        if(!name.length) throw new Error ('name is not a string')
+
+        var user = data.findUser(function (user) {
             return user.email === email || user.username === username
         })
-        //En caso que exista se lanza error. 
-        if(user) throw new Error ('user already exists')
 
-        user = { // Crea un nuevo objeto de usuario 
+        if (user) throw new Error('user already exists')
+
+        user = {
             name: name,
-            surname: surname,
             birthdate: birthdate,
             email: email,
             username: username,
             password: password
         }
-        
+
         data.insertUser(user)
     }
 
-    function loginUser(username, password) { //La función verifica si hay un usuario que coincida con el nombre de usuario y la contraseña 
-        var user = data.findUser(function(user){
-            return user.username === username && user.password === password 
+    function loginUser(username, password) {
+        var user = data.findUser(function (user) {
+            return user.username === username && user.password === password
         })
-        //Si no hay coincidencia, se lanza un error.
-        if(!user) throw new Error ('wrong credentials')
-        //El nombre de usuario se almacena en la sesión
-        sessionStorage.username = username
+
+        if (!user) throw new Error('wrong credentials')
+
+        sessionStorage.userId = user.id
     }
 
-    function retrieveUser(){ //La función busca un usuario por nombre de usuario.
-        var user = data.findUser(function(user){
-            return user.username === sessionStorage.username
+    function retrieveUser() {
+        var user = data.findUser(function (user) {
+            return user.id === sessionStorage.userId
         })
-        //Si no se encuentra el usuario, se lanza un error.
-        if (!user) throw new Error ('user not found')
-        //Devolver el objeto de usuario encontrado
+
+        if (!user) throw new Error('user not found')
+
         return user
     }
 
-    function logoutUser(){
+    function logoutUser() {
         sessionStorage.clear()
     }
 
-    function createPost(image, text){
+    function getLoggedInUserId(){
+        return sessionStorage.userId
+    }
+
+    function isUserLoggedIn(){
+        return !!sessionStorage.userId
+    }
+
+    function createPost(image, text) {
         var post = {
-            username: sessionStorage.username,
+            author: sessionStorage.userId,
             image: image,
             text: text,
             date: new Date().toLocaleDateString('en-CA')
@@ -56,12 +67,44 @@ var logic = (function() {
         data.insertPost(post)
     }
 
-    return{
+    function retrievePosts() {
+        var posts = data.getAllPosts()
+
+        posts.forEach(function(post) {
+            var user = data.findUser(function(user){
+                return user.id === post.author
+            })
+
+            post.author = {id:user.id, username: user.username}
+        })
+
+        return posts
+    }
+
+    function removePost (postId){
+        var post = data.findPost(function(post){
+            return post.id === postId
+        })
+
+        if(!post) throw new Error ('post not found')
+
+        if(post.author !== sessionStorage.userId) throw new Error ('post does not belong to user')
+
+        data.deletePost(function(post){
+            return post.id === postId
+        })
+    }
+    
+
+    return {
         registerUser: registerUser,
         loginUser: loginUser,
         retrieveUser: retrieveUser,
         logoutUser: logoutUser,
-        createPost: createPost
+        createPost: createPost,
+        retrievePosts: retrievePosts,
+        getLoggedInUserId: getLoggedInUserId,
+        isUserLoggedIn: isUserLoggedIn,
+        removePost: removePost,
     }
-
 })()

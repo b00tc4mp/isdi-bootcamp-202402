@@ -2,6 +2,12 @@
 
 (function(){
 
+    if(logic.isUserLoggedIn()) {
+        location.href = '../home'
+
+        return
+    }
+    
     var form = document.querySelector('form') // selecciona el primer formulario en el documento HTML y guarda una referencia a él en la variable 'form' 
     var loginLink = document.querySelector('a') // selecciona el primer enlace (<a>) en documento HTML y guarda una referencia a él en la variable 'loginLink 
 
@@ -26,17 +32,15 @@
         var passwordInput = document.getElementById('password')
         var password = passwordInput.value
 
-        var surnameInput = document.getElementById('surname')
-        var surname = surnameInput.value
 
         //Si se produce un error durante la ejecución de registerUser, se captura y se muestra un mensaje de alerta.
         try{
 
-            logic.registerUser(name, surname, birthdate, email, username, password)
+            logic.registerUser(name, birthdate, email, username, password)
 
             form.reset()
 
-            loginLink.click()
+            location.href = '../login'
         }catch(error){
             alert(error.message)
         }
