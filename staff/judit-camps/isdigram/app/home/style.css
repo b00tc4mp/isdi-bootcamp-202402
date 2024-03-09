@@ -14,6 +14,10 @@ body {
 
 main {
   margin: 0 2vw 32px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 #register-main {
@@ -115,29 +119,28 @@ input {
 }
 
 #form-div {
+  background-color: grey;
+  border-radius: 20px;
   z-index: 1;
   display: none;
   position: fixed;
-  background-color: grey;
-  margin-left: -5px;
+  align-self: center;
+  top: 25%;
   max-width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
-  justify-self: center;
 }
 
 form {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  justify-items: center;
 }
 
 form p {
   margin-top: 0;
-  text-align: center;
-  align-content: center;
   font-size: small;
 }
 
@@ -177,6 +180,29 @@ img {
 time {
   font-size: 12px;
   color: grey;
+}
+
+#chat-section {
+  margin: 0;
+  text-align: left;
+}
+
+li {
+  padding: 15px 0;
+  margin-left: 0;
+  font-size: larger;
+}
+
+li span {
+  font-size: large;
+}
+
+.user-list__item--online::marker {
+  color: limegreen;
+}
+
+.user-list__item--offline::marker {
+  color: red;
 }
 
 footer {
