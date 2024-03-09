@@ -1,39 +1,51 @@
 delete String.prototype.trim;
-var result;
 
 function trim(string) {
-  // TODO implement me
   var startIndex = 0;
-  for (var i = startIndex; i < string.lenght - 1; i++)
-    if (string[i] !== " ") {
+
+  for (var i = startIndex; i < string.length; i++) {
+    var char = string[i];
+
+    if (char !== " " && char !== "\t" && char !== "\n" && char !== "\r") {
       startIndex = i;
 
       break;
     }
+  }
+
   var endIndex = string.length - 1;
 
-  for (var i = endIndex; i < -1; i--)
-    if (string[i] !== " ") {
-      startIndex = i;
+  for (var i = endIndex; i > -1; i--) {
+    var char = string[i];
+
+    if (char !== " " && char !== "\t" && char !== "\n" && char !== "\r") {
+      endIndex = i;
 
       break;
     }
+  }
+
+  var trimed = "";
+
+  for (var i = startIndex; i < endIndex + 1; i++) {
+    var char = string[i];
+
+    trimed += char;
+  }
+
+  return trimed;
 }
 
-// CASE 1
+var greeting = "   Hola, Miky!   ";
 
-var s = "  hola mundo  ";
+var trimed = trim(greeting);
 
-var result = trim(s);
+console.log(">" + trimed + "<");
+// '>Hola, Miky!<'
 
-console.log(result);
-// 'hola mundo'
+var greeting = " \n\t\r Pol y Jan \n\t\r ";
 
-// CASE 2
+var trimed = trim(greeting);
 
-var s = " \ns\r hola mundo \ns\r ";
-
-var result = trim(s);
-
-console.log(result);
-// 'hola mundo'
+console.log(">" + trimed + "<");
+// '>Pol y Jan<'

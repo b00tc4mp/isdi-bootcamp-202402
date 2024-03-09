@@ -1,38 +1,41 @@
 delete String.prototype.indexOf;
 
 function indexOf(string, searchString) {
-  // TODO implement me
-  var count = 0;
-  var resultposition;
-
+  debugger;
+  var len = searchString.length;
+  var quote = "";
+  var start = 0;
   for (var i = 0; i < string.length; i++) {
-    for (var j = 0; j < searchString.lenght; j++)
-      if (string[i] === searchString[j]) {
-        count++;
-        if (count === 1) resultposition = i;
+    if (string[i] === searchString[0] && len === 1) {
+      return i;
+    } else if (string[i] === searchString[0] && len > 1) {
+      start = i;
+      quote = string[i];
+      for (var j = 1; j < len; j++) {
+        quote += string[i + j];
       }
-  }
-  if ((count = searchString.length)) {
-    return resultposition;
-  } else {
-    return -1;
+      if (quote === searchString) {
+        return start;
+      }
+      return -1;
+    }
   }
 }
 
 // CASE 1
 
-// var s = "hola mundo";
+var s = "hola mundo";
 
-// var index = indexOf(s, "ola");
+var index = indexOf(s, "ola");
 
-// console.log(index);
+console.log(index);
 // 1
 
 // CASE 2
 
-// var s = "hola mundo";
+var s = "hola mundo";
 
-// var index = indexOf(s, "olaf");
+var index = indexOf(s, "olaf");
 
-// console.log(index);
+console.log(index);
 // -1

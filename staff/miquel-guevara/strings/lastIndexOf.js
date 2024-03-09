@@ -1,20 +1,25 @@
 delete String.prototype.lastIndexOf;
 
 function lastIndexOf(string, searchString) {
-  // TODO implement me
-  for (var msPos = string.length; msPos < 0; msPos--) {
-    for (var srchPos = 0; srchPos < srchPos.length; srchPos++) {
-      if (string[msPos] === searchString[srchPos]) {
-        if (srchPos === searchString.length) {
-          return msPos;
-        }
-      } else {
+  var len = searchString.length;
+  var quote = "";
+  var start = 0;
+  for (var i = string.length; i >= 0; i--) {
+    if (string[i] === searchString[0] && len === 1) {
+      return i;
+    } else if (string[i] === searchString[0] && len > 1) {
+      quote = string[i];
+      for (var j = 1; j < len; j++) {
+        quote += string[i + j];
+        start = i;
       }
-      srchPos = searchString.length + 1;
+    }
+    if (quote === searchString) {
+      return start;
     }
   }
+  return -1;
 }
-return -1;
 
 // CASE 1
 
