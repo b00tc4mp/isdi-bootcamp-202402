@@ -23,6 +23,14 @@ var data = (function () {
         localStorage.posts = JSON.stringify(posts)
     }
 
+    function loadChats(){
+        return JSON.parse(localStorage.chats || '[]')
+    }
+
+    function saveChats(chats){
+        localStorage.chats = JSON.stringify(chats)
+    }
+
 
 
     //data
@@ -121,6 +129,46 @@ var data = (function () {
     }
 
 
+
+    //Chat-related data
+
+    function findChat(callback) {
+        var chats = loadChats()
+
+        var chat = chats.find(callback)
+
+        return chat
+    }
+
+
+    function insertChat(chat) {
+        var chats = loadChats()
+
+        chat.id = generateId()
+
+        chats.push(chat)
+
+        saveChats(chats)
+    }
+
+
+    function updateChat(chat) {
+        var chats = loadChats()
+
+        var index = chats.findIndex(function (chat2) {
+            return chat2.id === chat.id
+        })
+
+
+        if (index > -1){
+            chats.splice(index, 1, chat)
+        }
+
+        saveChats(chats)
+    }
+
+
+
     return {
         findUser: findUser,
         insertUser: insertUser,
@@ -129,7 +177,10 @@ var data = (function () {
         getAllUsers: getAllUsers,
         findPost: findPost,
         getAllPosts: getAllPosts,
-        deletePost: deletePost
+        deletePost: deletePost,
+        findChat: findChat,
+        insertChat: insertChat,
+        updateChat: updateChat
     }
     
 })()

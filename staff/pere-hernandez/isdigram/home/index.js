@@ -161,6 +161,9 @@
                 userLi.innerHTML = user.username
 
                 userLi.addEventListener('click',  function () {
+
+                    var chat = logic.createChat(user)
+                    chatSection.innerHTML = ''
                     userList.style.display = 'none'
                     chatButton.style.display = ''
 
@@ -168,12 +171,16 @@
                     chatTitle.classList.add('chat-title')
                     chatTitle.innerHTML = user.username
 
+                    var messageSection = document.createElement('section')
+                    messageSection.classList.add('message-section')
+                    messageSection.innerHTML = 'ijhvk,'
+
                     var chatForm = document.createElement('form')
                     chatForm.classList.add('chat-form')
 
                     var chatInputText = document.createElement('input')
                     chatInputText.type = 'text'
-                    chatInputText.classList.add('chat-text-input')
+                    chatInputText.setAttribute('id', 'chat-text-input')
 
                     var sendMessageButton = document.createElement('button')
                     sendMessageButton.type = 'submit'
@@ -187,8 +194,21 @@
 
                     chatForm.append(chatInputText, sendMessageButton)
 
-                    chatSection.append(chatTitle, chatForm)
+                    chatSection.append(chatTitle, messageSection, chatForm)
                     chatSection.style.display = 'flex'
+
+                    chatForm.onsubmit = function (){
+                        var messageImput = document.getElementById('chat-text-input')
+                        var messageText = messageImput.value
+                        
+                        try {
+                            var message = logic.createMessage(messageText, user.username)
+
+                            logic.addMessageToChat(message, chat)
+                        } catch (error) {
+                            
+                        }
+                    }
                 })
 
                 userList.appendChild(userLi)

@@ -128,7 +128,7 @@ var logic = (function () {
             author: sessionStorage.userId,
             photo: photo,
             comment: comment,
-            date: new Date().toLocaleDateString('en-CA'),
+            date: new Date().toLocaleDateString('en-CA')
         }
 
         data.insertPost(post)
@@ -161,7 +161,46 @@ var logic = (function () {
         data.deletePost(function (post) {
             return post.id === postId
         })
-    }    
+    }
+
+
+    //CHAT-related functions
+
+    function createChat(user){
+        var chat = {
+            users: [sessionStorage.userId, user.id],
+            messages: [],
+            date: new Date().toLocaleDateString('en-CA')
+        }
+
+        data.insertChat(chat)
+
+        return chat
+    }
+
+    function addMessageToChat (message, chat){
+        var chat = data.findChat(function (chat1){
+            return chat1.id === chat.id
+        })
+
+        chat.messages.push(message)
+
+        data.updateChat(chat)
+    }
+    
+    
+
+    //MESSAGE-related functions
+
+    function createMessage(message, reciever){
+        var message = {
+            text: message,
+            author: sessionStorage.userId,
+            reciever: reciever,
+            time: new Date().toLocaleDateString('en-CA')
+        }
+        return message
+    }
 
     return {
         registerUser: registerUser,
@@ -173,6 +212,9 @@ var logic = (function () {
         checkLoggedInStatus: checkLoggedInStatus,
         createPost: createPost,
         retrievePosts: retrievePosts,
-        deletePost: deletePost
+        deletePost: deletePost,
+        createChat: createChat,
+        addMessageToChat: addMessageToChat,
+        createMessage: createMessage
     }
 }) ()
