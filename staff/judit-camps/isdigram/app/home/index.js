@@ -6,20 +6,26 @@
     }
 
     var header = document.querySelector('header')
-    var title = document.querySelector('h1')
+    var homeTitle = document.querySelector('#home-title')
+
     var logoutButton = document.getElementById('logout-button')
     var newPostBtn = document.getElementById('new-post-button')
-    var postForm = document.getElementById('post-form')
-    var formDiv = document.getElementById('form-div')
     var cancelBtn = document.getElementById('cancel-post-button')
-    var postsSection = document.querySelector('#posts-section')
     var homeButton = document.querySelector('#home-button')
     var messageButton = document.querySelector('#message-button')
-    var footer = document.querySelector('footer')
+
+    var postForm = document.getElementById('post-form')
+    var formDiv = document.getElementById('form-div')
+    // var editPostForm = document.querySelector('')
+
+    var postsSection = document.querySelector('#posts-section')
+    var chatSection = document.querySelector('#chat-section')
+    var userList = document.querySelector('#user-list')
+
 
     try {
         var user = logic.getUser()
-        title.innerText = 'Hello ' + user.name + '!'
+        homeTitle.innerText = 'Hello ' + user.name + '!'
 
     } catch (error) {
         console.error(error)
@@ -34,7 +40,11 @@
     })
 
     homeButton.addEventListener('click', function () {
-        postsSection.style.display = 'block'
+        postsSection.style.display = ''
+        chatSection.style.display = 'none'
+        newPostBtn.style.display = ''
+        messageButton.style.display = ''
+
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -45,7 +55,7 @@
     newPostBtn.addEventListener('click', function (event) {
         event.preventDefault()
 
-        formDiv.style.display = 'block'
+        formDiv.style.display = ''
     })
 
     postForm.addEventListener('submit', function (event) {
@@ -69,7 +79,7 @@
             alert(error.message)
         }
 
-        newPostBtn.style.display = 'block'
+        newPostBtn.style.display = ''
         var imageElem = document.createElement('img')
         imageElem.src = image
 
@@ -77,11 +87,13 @@
 
     cancelBtn.addEventListener('click', function () {
         formDiv.style.display = 'none'
-        newPostBtn.style.display = 'block'
+        newPostBtn.style.display = ''
     })
 
     function renderPost() {
         try {
+            formDiv.style.display = 'none'
+            chatSection.style.display = 'none'
             var postsLatestFirst = logic.retrievePostsLatestFirst()
 
             postsSection.innerHTML = ''
@@ -99,8 +111,13 @@
                 var image = document.createElement('img')
                 image.src = post.image
 
-                var caption = document.createElement('p')
-                caption.innerText = post.caption
+                var caption = document.createElement('div')
+                caption.classList = 'caption-div'
+
+                var captionText = document.createElement('p')
+                captionText.innerText = post.caption
+
+                caption.appendChild(captionText)
 
                 var dateTime = document.createElement('time')
                 dateTime.innerText = post.date
@@ -111,6 +128,12 @@
                     deletePostButton.innerText = '...'
 
                     postHeading.append(authorHeading, deletePostButton)
+
+                    var editPostButton = document.createElement('button')
+                    editPostButton.innerText = 'edit'
+
+                    caption.appendChild(editPostButton)
+
                     article.append(postHeading, image, caption, dateTime)
 
                     deletePostButton.addEventListener('click', function () {
@@ -123,6 +146,16 @@
                                 alert(error.message)
                             }
                     })
+
+                    editPostButton.addEventListener('click', function () {
+                        if (confirm('do you want to edit the text?'))
+                            try {
+                                logic.editPostText(post.id)
+                            } catch (error) {
+                                console.log(error)
+                            }
+                    })
+
                 } else {
                     article.append(authorHeading, image, caption, dateTime)
                 }
@@ -141,8 +174,43 @@
     }
     renderPost()
 
+
+    // editPostForm.addEventListener('submit', function () {
+    //     var newText = document.querySelector('#new-caption-text')
+
+    // })
+
+
     messageButton.onclick = function () {
         postsSection.style.display = 'none'
+        newPostBtn.style.display = 'none'
+        messageButton.style.display = 'none'
+        formDiv.style.display = 'none'
+
+        chatSection.style.display = ''
+
+        var listUsers = document.querySelector('#user-list')
+
+        listUsers.innerHTML = ''
+
+        try {
+            var users = logic.retrieveUsers()
+
+            users.forEach(function (user) {
+                var item = document.createElement('li')
+
+                if (user.status === 'online')
+                    item.classList.add('user-list__item--online')
+                else if (user.status === 'offline')
+                    item.classList.add('user-list__item--offline')
+
+                item.innerText = user.username
+                userList.appendChild(item)
+            })
+        } catch (error) {
+            console.log(error)
+            alert(error.message)
+        }
     }
 
 

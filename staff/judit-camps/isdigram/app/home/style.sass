@@ -1,12 +1,25 @@
 @use '../style.sass'
 
+header
+    z-index: 1
+    top: 0
+    position: fixed
+    background-color: grey
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 0 8px
+    box-sizing: border-box
+
 label
     font-size: small
     margin-top: 8px
 
 button
-    background-color: transparent
+    background-color: #fff
     border: none
+    border-radius: 10px
     font-size: 20px
 
 .form-header
@@ -17,39 +30,38 @@ input
     padding: 4px
 
 #home-title
-    margin-top: 80px
-
-header
-    width: 100%
-    top: 0
-    position: fixed
-    background-color: grey
-    display: flex
-    justify-content: space-between
-    padding: 8px
-    box-sizing: border-box
+    margin-top: 72px
+    text-align: center
 
 #form-div
     z-index: 1
     display: none
     position: fixed
     background-color: grey
+    margin-left: -5px
     max-width: 90%
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-content: center
+    justify-self: center
 
 form
     display: flex
     flex-direction: column
+    padding: 20px
 
-form button
-    margin: 32px 80px
-
-form p, a
+form p
     margin-top: 0
     text-align: center
+    align-content: center
     font-size: small
 
 form p
     margin-bottom: 4px
+
+#cancel-post-button
+    margin: 50px
 
 article
     margin: 0 0 40px 0
