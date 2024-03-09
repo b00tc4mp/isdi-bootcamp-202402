@@ -1,0 +1,98 @@
+.srpatata {
+    position: absolute;
+    top: 100px;
+}
+  
+.srpatata__head {
+    background-color: rgb(167, 14, 14);
+    width: 200px;
+    height: 300px;
+    border: 6px solid black;
+}
+  
+.srpatata__eye {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+}
+  
+.eye--right {
+    left: 40px;
+    top: 40px;
+}
+  
+.eye--left {
+    left: 120px;
+    top: 40px;
+}
+  
+.srpatata__pupil {
+    position: absolute;
+    background-color: black;
+    width: 10px;
+    height: 10px;
+    left: 15px;
+    top: 15px;
+}
+  
+  
+.srpatata__nose {
+    position: absolute;
+    background-color: white;
+    width: 50px;
+    height: 150px;
+    top: 80px;
+    left: 75px;
+}
+
+  
+.nose__hole {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background-color: white;
+    top: 100px;
+}
+  
+.hole--left {
+    left: 28px;
+}
+  
+  
+.hole--right {
+    left: 15.5px;
+}
+  
+  
+.srpatata__mouth {
+    position: absolute;
+    background-color: rgb(243, 220, 220);
+    width: 60px;
+    height: 10px;
+    top: 250px;
+    left: 65px;
+    border: 6px solid black;
+}
+  
+.ear--left {
+    position: absolute;
+    background-color: rgb(167, 14, 14);
+    border: 6px solid black;
+    top: 5px;
+    left: 5px;
+    width: 15px;
+    height: 40px;
+}
+  
+  
+.ear--right {
+    position: absolute;
+    background-color: rgb(167, 14, 14);
+    border: 6px solid black;
+    top: 5px;
+    right: 5px;
+    width: 15px;
+    height: 40px;
+}
+  
