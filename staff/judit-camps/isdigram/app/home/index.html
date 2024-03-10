@@ -19,6 +19,11 @@
 
         <h1 id="home-title">Hello World!</h1>
 
+        <section id="user-section">
+            <button id="change-password-button"></button>
+            <button id="logout-button">Log out</button>
+        </section>
+
         <section id="chat-section">
             <h1>Chats</h1>
             <ul id="user-list"></ul>
@@ -39,13 +44,24 @@
         </section>
         <section id="posts-section"></section>
 
+
+        <section id="change-post-text">
+            <form id="change-caption-form" action="">
+                <label for="text">new caption</label>
+                <input type="text" id="new-caption">
+
+                <button id="change-caption-button">change caption</button>
+            </form>
+            <button id="cancel-caption-change-button">cancel</button>
+        </section>
+
         <section id="chat-section"></section>
     </main>
 
     <footer>
         <button id="home-button">home</button>
         <button id="new-post-button">+</button>
-        <button id="logout-button">Log out</button>
+        <button id="user-button">user</button>
     </footer>
 
     <script src="../data.js"></script>

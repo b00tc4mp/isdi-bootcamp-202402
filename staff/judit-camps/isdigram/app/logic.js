@@ -170,6 +170,23 @@ var logic = (function () {
         })
     }
 
+    function editPostText(postId, newCaption) {
+        console.log("Received postId:", postId);
+        var post = data.findPost(function (post) {
+            return post.id === postId
+        })
+        console.log('Post found: ', post)
+        if (!post) throw new Error('post not found')
+
+        if (post.author !== sessionStorage.userId) throw new Error('post does not belong to user')
+
+        post.caption = newCaption
+
+        data.updatePost(post)
+
+
+    }
+
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -180,7 +197,8 @@ var logic = (function () {
         isUserLoggedIn: isUserLoggedIn,
         savePostInfo: savePostInfo,
         retrievePostsLatestFirst: retrievePostsLatestFirst,
-        removePost: removePost
+        removePost: removePost,
+        editPostText: editPostText
     }
 
 })()

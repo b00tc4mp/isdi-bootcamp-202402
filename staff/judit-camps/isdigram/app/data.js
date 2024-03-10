@@ -59,7 +59,7 @@ var data = (function () {
         var users = loadUsers()
 
         var indexToUpdate = users.findIndex(function (user2) {
-            return user2.id = user.id
+            return user2.id === user.id
         })
 
         if (indexToUpdate > -1) {
@@ -108,6 +108,19 @@ var data = (function () {
         savePosts(posts)
     }
 
+    function updatePost(newPost) {
+        var posts = loadPosts()
+
+        var indexToUpdate = posts.findIndex(function (post) {
+            return post.id === newPost.id
+        })
+
+        if (indexToUpdate > -1) {
+            posts.splice(indexToUpdate, 1, newPost)
+            savePosts(posts)
+        }
+    }
+
     return {
         findUser: findUser,
         insertUser: insertUser,
@@ -117,7 +130,8 @@ var data = (function () {
         insertPost: insertPost,
         getAllPosts: getAllPosts,
         findPost: findPost,
-        deletePost: deletePost
+        deletePost: deletePost,
+        updatePost: updatePost
     }
 
 })()

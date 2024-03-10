@@ -5,9 +5,9 @@
         return
     }
 
-    var header = document.querySelector('header')
     var homeTitle = document.querySelector('#home-title')
 
+    var userButton = document.getElementById('#user-button')
     var logoutButton = document.getElementById('logout-button')
     var newPostBtn = document.getElementById('new-post-button')
     var cancelBtn = document.getElementById('cancel-post-button')
@@ -22,6 +22,9 @@
     var chatSection = document.querySelector('#chat-section')
     var userList = document.querySelector('#user-list')
 
+    var changePostTextSection = document.querySelector('#change-post-text')
+    var cancelCaptionChangeButton = document.querySelector('#cancel-caption-change-button')
+
 
     try {
         var user = logic.getUser()
@@ -31,13 +34,6 @@
         console.error(error)
         alert(error.message)
     }
-
-    logoutButton.addEventListener('click', function () {
-        // calling the function to logout the user and going back to the login page
-        logic.logoutUser()
-
-        location.href = '../login'
-    })
 
     homeButton.addEventListener('click', function () {
         postsSection.style.display = ''
@@ -88,6 +84,10 @@
     cancelBtn.addEventListener('click', function () {
         formDiv.style.display = 'none'
         newPostBtn.style.display = ''
+    })
+
+    cancelCaptionChangeButton.addEventListener('click', function () {
+        changePostTextSection.style.display = 'none'
     })
 
     function renderPost() {
@@ -148,12 +148,23 @@
                     })
 
                     editPostButton.addEventListener('click', function () {
-                        if (confirm('do you want to edit the text?'))
+                        changePostTextSection.style.display = 'block'
+                        var changeCaptionButton = document.querySelector('#change-caption-button')
+
+                        changeCaptionButton.addEventListener('click', function () {
                             try {
-                                logic.editPostText(post.id)
+                                var newCaptionInput = document.querySelector('#new-caption')
+                                var newCaption = newCaptionInput.value
+
+                                logic.editPostText(post.id, newCaption)
+
+                                renderPost()
                             } catch (error) {
                                 console.log(error)
+                                alert(error.message)
                             }
+
+                        })
                     })
 
                 } else {
@@ -174,12 +185,16 @@
     }
     renderPost()
 
+    userButton.addEventListener('click', function () {
+        console.log('user page')
+        logoutButton.style.display = 'flex'
+        logoutButton.addEventListener('click', function () {
+            // calling the function to logout the user and going back to the login page
+            logic.logoutUser()
 
-    // editPostForm.addEventListener('submit', function () {
-    //     var newText = document.querySelector('#new-caption-text')
-
-    // })
-
+            location.href = '../login'
+        })
+    })
 
     messageButton.onclick = function () {
         postsSection.style.display = 'none'

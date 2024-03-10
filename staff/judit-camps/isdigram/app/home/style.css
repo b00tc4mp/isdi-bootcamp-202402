@@ -92,6 +92,10 @@ header {
   box-sizing: border-box;
 }
 
+#logout-button {
+  display: none;
+}
+
 label {
   font-size: small;
   margin-top: 8px;
@@ -203,6 +207,13 @@ li span {
 
 .user-list__item--offline::marker {
   color: red;
+}
+
+#change-post-text {
+  background-color: #d6bbbb;
+  display: none;
+  position: fixed;
+  top: 25%;
 }
 
 footer {
