@@ -1,91 +1,66 @@
-//El método push() añade uno o más elementos al final de un array y devuelve la nueva longitud del array.
+//agrega los elementos especificados al final de una matriz y devuelve la nueva longitud de la matriz.
 
 delete Array.prototype.push;
 
 function push(array, element1) {
   // TODO implement me
 
-  if (arguments.length > 1)
-      array[array.length] = element1
+  if (arguments.length > 1) array[array.length] = element1;
 
-  return array.length
+  return array.length;
 }
 
+console.log("CASE 1");
 
+var nums = [100, 200, 300, 400, 500];
 
-console.log('CASE 1')
+var length = push(nums, 600);
 
-var nums = [100, 200, 300, 400, 500]
-
-var length = push(nums, 600)
-
-console.log(length)
+console.log(length);
 // 6
-console.log(nums)
+console.log(nums);
 // [100, 200, 300, 400, 500, 600]
 
-console.assert(length === 6, '6')
+console.log("CASE 2");
 
-console.assert(nums === 100, 200, 300, 400, 500, 600, '100', '200', '300', '400', '500', '600')
+var animals = ["pigs", "goats", "sheep"];
 
+var length = push(animals, "cows");
 
-console.log('CASE 2')
-
-var animals = ['pigs', 'goats', 'sheep']
-
-var length = push(animals, 'cows')
-
-console.log(length)
+console.log(length);
 // 4
-console.log(animals)
+console.log(animals);
 // ['pigs', 'goats', 'sheep', 'cows']
 
-console.assert(length === 4, '4')
+console.log("CASE 3");
 
-console.assert(animals === 'pigs', 'goats', 'sheep', 'cows')
+var sports = ["soccer", "baseball"];
 
-console.log('CASE 3')
+var length = push(sports);
 
-var sports = ['soccer', 'baseball']
-
-var length = push(sports)
-
-console.log(length)
+console.log(length);
 // 2
-console.log(sports)
+console.log(sports);
 // ['soccer', 'baseball']
 
-console.assert(length === 2, '2')
+console.log("CASE 4");
 
-console.assert(sports === 'soccer', 'baseball')
+var sports = ["soccer", "baseball"];
 
+var length = push(sports, undefined);
 
-console.log('CASE 4')
-
-var sports = ['soccer', 'baseball']
-
-var length = push(sports, undefined)
-
-console.log(length)
+console.log(length);
 // 3
-console.log(sports)
+console.log(sports);
 // ['soccer', 'baseball', undefined]
 
-console.assert(length === 3, '3')
+console.log("CASE 5");
 
-console.assert(sports === 'soccer', 'baseball', undefined)
+var nums = [10, 20, 30];
 
-console.log('CASE 5')
+var length = nums.push(40, 50, 60);
 
-var nums = [10, 20, 30]
-
-var length = nums.push(40, 50, 60)
-
-console.log(length)
+console.log(length);
 // 6
-console.log(nums)
+console.log(nums);
 // [10, 20, 30, 40, 50, 60]
-
-console.assert(length === 6, '6')
-
-console.assert(sports === 10, 20, 30, 40, 50, 60, '10', '20', '30', '40', '50', '60')

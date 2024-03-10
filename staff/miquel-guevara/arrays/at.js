@@ -1,3 +1,5 @@
+// recibe un valor numérico entero y devuelve el elemento en esa posición, permitiendo valores positivos y negativos. Los valores negativos contarán desde el último elemento del array.
+
 delete Array.prototype.at;
 function at(array, index) {
   //TODO implement me
@@ -20,23 +22,23 @@ function at(array, index) {
 var nums = [100, 200, 300, 400, 500];
 var num = at(nums, 3);
 
-console.log(num);
+// console.log(num);
 //OUTPUT 400
 
-console.assert(num === 400, "400")
+// console.assert(num === 400, "400");
 
-console.assert(nums[0] === 100, "100")
-console.assert(nums[1] === 200, "200")
-console.assert(nums[2] === 300, "300")
-console.assert(nums[3] === 400, "400")
-console.assert(nums[4] === 500, "500")
-console.assert(nums.length === 5, "5")
+console.assert(nums[0] === 100, "100");
+console.assert(nums[1] === 200, "200");
+console.assert(nums[2] === 300, "300");
+console.assert(nums[3] === 400, "400");
+console.assert(nums[4] === 500, "500");
+console.assert(nums.length === 5, "5");
 
 // CASE 2
 var chars = ["h", "o", "l", "a", " ", "m", "u", "n", "d", "o"];
 var char = at(chars, 4);
 
-console.log(char);
+// console.log(char);
 //OUTPUT " "
 
 console.assert(char === " ", " ");
@@ -57,7 +59,7 @@ console.assert(chars.length === 10, "10");
 var chars = ["h", "o", "l", "a", " ", "m", "u", "n", "d", "o"];
 var char = at(chars, -3);
 
-console.log(char);
+// console.log(char);
 //OUTPUT "n"
 
 console.assert(char === "n", "n");
@@ -78,7 +80,7 @@ console.assert(chars.length === 10, "10");
 var chars = ["h", "o", "l", "a", " ", "m", "u", "n", "d", "o"];
 var char = at(chars, -30);
 
-console.log(char);
+// console.log(char);
 //OUTPUT undefined
 
 console.assert(char === undefined, "undefined");

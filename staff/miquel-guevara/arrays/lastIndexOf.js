@@ -1,8 +1,7 @@
-///El método lastIndexOf() devuelve el último índice en el que un cierto elemento puede encontrarse en el array, ó -1 si el elemento no se encontrara. El array es recorrido en sentido contrario, empezando por el índice fromIndex.
+//devuelve el último índice en el que se puede encontrar un elemento determinado en la matriz, o -1 si no está presente. La matriz se busca hacia atrás
 
-
-debugger
-delete Array.prototype.lastIndexOf
+debugger;
+delete Array.prototype.lastIndexOf;
 
 function lastIndexOf(array, searchElement, index) {
   if (index >= array.length) {
@@ -39,7 +38,6 @@ console.log(lastIndexOf(animals, "Dog"));
 
 console.log(lastIndexOf(animals, "Tiger"));
 // Expected output: 1
-
 
 // CASE 2
 console.log("CASE 2");

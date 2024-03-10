@@ -1,72 +1,38 @@
-// El método from() crea una nueva instancia de Array a partir de un objeto iterable.
+//El método estático crea una nueva instancia Array.from()con copia superficial a partir de un objeto iterable o similar a una matriz
 
 delete Array.prototype.from;
 
-function from(element, formula) {
-  let newArray = [];
-
-  if (formula === undefined) {
-    for (var i = 0; i < element.length; i++) {
-      newArray[i] = element[i];
+function from(arrayLike, formula) {
+  var newArray = [];
+  if (formula == undefined) {
+    for (var el = 0; el < arrayLike.length; el++) {
+      newArray[newArray.length] = arrayLike[el];
     }
-    return newArray;
   } else {
-    for (var i = 0; i < element.length; i++) {
-      newArray[i] = formula(element[i]);
+    for (var el = 0; el < arrayLike.length; el++) {
+      newArray[newArray.length] = formula(arrayLike[el]);
     }
-    return newArray;
+  }
+  return newArray;
+}
+
+var expected = [];
+var results = [];
+
+function assertArrays(results, expected) {
+  for (var i = 0; i < results.length; i++) {
+    console.assert(results[i] === expected[i], expected[i]);
   }
 }
 
 console.log("CASE 1");
-
-var str = "papaya";
-var result = from(str);
-console.log(result);
-//['p', 'a', 'p', 'a', 'y', 'a']
-
-console.assert(result === 'p', 'a', 'p', 'a', 'y', 'a')
-//['p', 'a', 'p', 'a', 'y', 'a']
-
-console.assert(array[0] === 'papaya', 'papaya')
-
-// ['papaya']
-console.assert(array.length === 1, '1')
-// [6]
+results = from("foo");
+expected = ["f", "o", "o"];
+assertArrays(results, expected);
 
 console.log("CASE 2");
-
-var arr = [1, 2, 3];
-var result = from(arr, (x) => x + 1);
-console.log(result);
-//[2, 3, 4]
-
-console.assert(result === 2, 3, 4, '2','3','4')
-//[2, 3, 4]
-
-console.assert(arr[0] === 1, '1')
-console.assert(arr[1] === 2, '2')
-console.assert(arr[2] === 3, '3')
-
-
-// ['1,2,3']
-console.assert(arr.length === 3, '3')
-// [3]
-
-
-console.log("CASE 3");
-var result = from(arr, (x) => x + x);
-console.log(result);
-//[2, 4, 6]
-
-console.assert(result === 2, 4, 6, '2','4','6')
-//[2, 4, 6]
-
-console.assert(arr[0] === 1, '1')
-console.assert(arr[1] === 2, '2')
-console.assert(arr[2] === 3, '3')
-
-
-// ['1,2,3']
-console.assert(arr.length === 3, '3')
-// [3]
+results = from([1, 2, 3], function (x) {
+  return x + x;
+});
+expected = [2, 4, 6];
+assertArrays(results, expected);

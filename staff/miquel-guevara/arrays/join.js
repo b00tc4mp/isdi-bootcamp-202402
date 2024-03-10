@@ -1,59 +1,52 @@
-/*El método join() une todos los elementos de una matriz (o un objeto similar a una matriz) en una cadena y devuelve esta cadena.
-Si el separador se omite, los elementos del array son separados por defecto con una coma (","). Si el separador es una cadena vacía, todos los elementos son unidos sin ningún carácter entre ellos.
-Si arr.length es 0, se devuelve la cadena vacía.*/
+// crea y devuelve una nueva cadena concatenando todos los elementos de esta matriz, separados por comas o una cadena separadora especificada. Si la matriz tiene solo un elemento, ese elemento se devolverá sin utilizar el separador.
 
 delete Array.prototype.join;
 
-function join(array, separator) {
-  //TODO implement me
-  var result = "";
-  if (separator === undefined) {
-    separator = ",";
+function join(arr, separator) {
+  var str = arr[0];
+  if (separator == undefined) {
+    for (var i = 1; i < arr.length; i++) {
+      if (arr[i] == undefined) {
+        str = str + "," + "";
+      } else str = str + "," + arr[i];
+    }
+  } else {
+    for (var i = 1; i < arr.length; i++) {
+      if (arr[i] == undefined) {
+        str = str + separator + "";
+      } else str = str + separator + arr[i];
+    }
   }
-
-  if (array.length === 0) {
-    return result;
-  }
-  for (var i = 0; i < array.length - 1; i++) {
-    result += array[i] + separator;
-  }
-  result += array[array.length - 1];
-  return result;
+  return str;
 }
 
 console.log("CASE 1");
-var elements = ["Fire", "Air", "Water"];
-var result = join(elements);
-console.log(result);
-// Expected output: "Fire,Air,Water"
+var a = ["Wind", "Water", "Fire"];
+var res = join(a);
+console.assert(res === "Wind,Water,Fire", "Wind,Water,Fire");
+// 'Wind,Water,Fire'
 
-console.assert(result === 'Fire,Air,Water')
+console.log("CASE 2");
+var res = join(a, ", ");
+console.assert(res === "Wind, Water, Fire", "Wind, Water, Fire");
+// 'Wind, Water, Fire'
 
-console.assert(elements[0] === 'Fire')
-console.assert(elements[1] === 'Air')
-console.assert(elements[2] === 'Water')
+console.log("CASE 3");
+var res = join(a, " + ");
+console.assert(res === "Wind + Water + Fire", "Wind + Water + Fire");
+// 'Wind + Water + Fire'
 
+console.log("CASE 4");
+var res = join(a, "");
+console.assert(res === "WindWaterFire", "WindWaterFire");
+// 'WindWaterFire'
 
-var result = join(elements, "");
-console.log(result);
-// Expected output: "FireAirWater"
+console.log("CASE 5");
+var res = join([1, , 3]);
+console.assert(res === "1,,3", "1,,3");
+// '1,,3'
 
-console.assert(result === "FireAirWater")
-
-var result = join(elements, " ");
-console.log(result);
-// Expected output: "Fire Air Water"
-
-console.assert(result === 'Fire Air Water')
-
-var result = join(elements, "-");
-console.log(result);
-// Expected output: "Fire-Air-Water"
-
-console.assert(result === 'Fire-Air-Water')
-
-var result = join(elements, "+");
-console.log(result);
-// Expected output: "Fire+Air+Water"
-
-console.assert(result === 'Fire+Air+Water')
+console.log("CASE 6");
+var res = join([1, undefined, 3]);
+console.assert(res === "1,,3", "1,,3");
+// '1,,3'

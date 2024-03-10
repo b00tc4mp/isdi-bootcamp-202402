@@ -1,86 +1,44 @@
-//El método pop() elimina el último elemento de un array y lo devuelve. Este método cambia la longitud del array.
+//elimina el último elemento de una matriz y devuelve ese elemento. Este método cambia la longitud de la matriz.
 
-//delete Array.prototype.pop;
+delete Array.prototype.pop;
 
 function pop(array) {
-  //TODO implement me
-
-  //Crear una variable para almacenar el resultado en un string
-  var result = "";
-  //
   if (array.length > 0) {
-    result = array[array.length - 1];
+    var last = array[array.length - 1];
     array.length = array.length - 1;
-    return result;
-  } else {
-    return undefined;
+    return last;
   }
 }
 
-console.log('CASE 1')
+console.log("CASE 1: pop 500 out of [100, 200, 300, 400, 500]");
 var nums = [100, 200, 300, 400, 500];
 var num = pop(nums);
+console.assert(num === 500, "500");
+console.assert(nums.length === 4, "length: 4");
+console.assert(nums[0] === 100, "100");
+console.assert(nums[1] === 200, "200");
+console.assert(nums[2] === 300, "300");
+console.assert(nums[3] === 400, "400");
 
-console.log(num);
-//OUTPUT 500
-console.log(nums.length);
-//OUTPUT 4
-console.log(nums);
-//OUTPUT [100, 200, 300, 400]
-
-console.assert(num === 500, '500')
-
-console.assert(nums.length === 4, '4')
-
-console.assert(nums === 100, 200, 300, 400,'100, 200, 300, 400')
-
-console.log('CASE 2')
+console.log("CASE 2: pop 'cows' out of ['pigs', 'goats', 'sheep', 'cows']");
 var animals = ["pigs", "goats", "sheep", "cows"];
 var animal = pop(animals);
+console.assert(animal === "cows", "popped: cows");
+console.assert(animals.length === 3, "length: 3");
+console.assert(animals[0] === "pigs", "pigs");
+console.assert(animals[1] === "goats", "goats");
+console.assert(animals[2] === "sheep", "sheep");
 
-console.log(animal);
-//OUTPUT "cows"
-console.log(animals.length);
-//OUTPUT 3
-console.log(animals);
-//OUTPUT ["pigs", "goats", "sheep"]
-
-console.assert(animal === 'cows')
-
-console.assert(animals.length === 3, '3')
-
-console.assert(animals === 'pigs, goats, sheep')
-
-console.log('CASE 3')
+console.log("CASE 3: pop 'baseball' out of ['soccer', 'baseball']");
 var sports = ["soccer", "baseball"];
 var sport = pop(sports);
+console.assert(sport === "baseball", "popped: baseball");
+console.assert(sports.length === 1, "length:1");
+console.assert(sports[0] === "soccer", "soccer");
 
-console.log(sport);
-//OUTPUT "baseball"
-console.log(sports.length);
-//OUTPUT  1
-console.log(sports);
-//OUTPUT ["soccer"]
-
-console.assert(sport === 'baseball')
-
-console.assert(sports.length === 1, '1')
-
-console.assert(sports === 'soccer')
-
-console.log('CASE 4')
+console.log("CASE 4: pop an empty array -> undefined");
 var sports = [];
 var sport = pop(sports);
-
-console.log(sport);
-//OUTPUT undefined
-console.log(sports.length);
-//OUTPUT  0
-console.log(sports);
-//OUTPUT []
-
-console.assert(num === undefined, 'undefined')
-
-console.assert(nums.length === 0, '0')
-
-console.assert(nums === '[]')
+console.assert(sport === undefined, "popped: undefined");
+console.assert(sports.length === 0, "length: 0");
+console.assert(sports[0] === undefined, "empty array");

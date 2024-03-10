@@ -1,46 +1,44 @@
-//El método concat() se usa para unir dos o más arrays. Este método no cambia los arrays existentes, sino que devuelve un nuevo array.
+//se utiliza para fusionar dos o más matrices. Este método no cambia las matrices existentes, sino que devuelve una nueva matriz.
 
 delete Array.prototype.concat;
-//var separator = " ";
+
 function concat(arr1, arr2) {
   // TODO implement
-  //crear una variable vacia para almacenar el nuevo array concatenado
+
   var concatenatedArray = [];
-  //iterar a través de cada elemento del primer array
+
   for (var i = 0; i < arr1.length; i++) {
-    //Agregar el elemento actual de arr1 al final del array concatenatedArray
     concatenatedArray[concatenatedArray.length] = arr1[i];
   }
-  //iterar a través de cada elemento del segundo array
+
   for (var j = 0; j < arr2.length; j++) {
-    //Agregar el elemento actual de arr2 al final del array concatenatedArray
     concatenatedArray[concatenatedArray.length] = arr2[j];
   }
-  //devolver el resultado para que saque los arrays concatenados en un mismo array
+
   return concatenatedArray;
 }
 
 console.log("CASE 1");
-var arr1 = ["Perico"];
-var arr2 = ["Manolo"];
+var arr1 = ["Miky"];
+var arr2 = ["Guevara"];
 
 var arr = concat(arr1, arr2);
 //console.log(arr);
-//OUTPUT ["Perico", "Manolo"]
+//OUTPUT ["Miky", "Guevara"]
 
-console.assert(arr[0] === arr1[0], "Perico");
-console.assert(arr[1] === arr2[0], "Manolo");
+console.assert(arr[0] === arr1[0], "Miky");
+console.assert(arr[1] === arr2[0], "Guevara");
 
 console.log("CASE 2");
 var num = [1];
-var arr1 = ["Pepe"];
+var arr1 = ["Miquel"];
 
 var arr = concat(num, arr1);
 // console.log(arr);
 console.assert(arr[0] === num[0], 1);
-console.assert(arr[1] === arr1[0], "Pepe");
+console.assert(arr[1] === arr1[0], "Miquel");
 
-//OUTPUT [1, "Pepe"]
+//OUTPUT [1, "Miquel"]
 
 console.log("CASE 3");
 
@@ -49,8 +47,8 @@ var arr2 = ["Jan"];
 
 var arr = concat(arr2, arr1);
 //console.log(arr);
-console.assert(arr[0] === arr1[0], "Pol");
-console.assert(arr[1] === arr2[0], "Jan");
+console.assert(arr[0] === arr2[0], "Pol");
+console.assert(arr[1] === arr1[0], "Jan");
 //OUTPUT ["Pol", "Jan"]
 
 //var separator = " ";
@@ -95,8 +93,8 @@ var arr2 = ["Guevara"];
 
 var arr = concat(arr2, arr1);
 //console.log(arr);
-console.assert(arr[0] === arr1[0], "Guevara");
-console.assert(arr[1] === arr2[0], "Jan");
+console.assert(arr[0] === arr2[0], "Guevara");
+console.assert(arr[1] === arr1[0], "Jan");
 //OUTPUT "Guevara", "Jan"
 
 console.log("CASE 4");
@@ -118,24 +116,23 @@ console.assert(arr[6] === arr2[3], "r");
 function concat(arr1, arr2) {
   // TODO implement
   var newArray = [];
-  var concatenatedArrays = []
-  for (var i = 1; i < arguments.length; i++){
-    concatenatedArrays[i -1] = arguments[i]
+  var concatenatedArrays = [];
+  for (var i = 1; i < arguments.length; i++) {
+    concatenatedArrays[i - 1] = arguments[i];
   }
   for (var i = 0; i < arr1.length; i++) {
     var element = arr1[i];
 
     newArray[i] = element;
   }
-  for (var i= 0; i < concatenatedArrays.length; i++){
-    var currentArray =  concatenatedArrays[i]
+  for (var i = 0; i < concatenatedArrays.length; i++) {
+    var currentArray = concatenatedArrays[i];
     for (var j = 0; j < currentArray.length; j++) {
       var element = currentArray[j];
-      
+
       newArray[newArray.length] = element;
     }
   }
-  
 
   return newArray;
 }

@@ -1,4 +1,4 @@
-//El método splice() cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos.
+//cambia el contenido de una matriz eliminando o reemplazando elementos existentes y/o agregando nuevos elementos en su lugar
 
 delete Array.prototype.splice;
 
