@@ -244,20 +244,108 @@ matcha.describe('Arroz', function () {
 
 
     })
-    matcha.describe('> includes', function () {
-        matcha.it('should return true or false if the element included for search is in or not  ', function () {
-            var a = new Arroz(1, 2, 3, 4, 10);
+    matcha.describe("> includes", function () {
+        matcha.it(
+            "Includes a certain value among its entries, returning true or false as appropriate.",
+            function () {
+                var a = new Arroz("cat", "dog", "donkey", "horse");
+                matcha.expect(a).toBeInstanceOf(Arroz);
 
-            matcha.expect(!!a.includes).toBe(true);
-            matcha.expect(a).toBeInstanceOf(Arroz);
+                var value = a.includes("donkey");
+                matcha.expect(!!a.includes).toBe(true);
 
-            var result = a.includes(10);
+                matcha.expect(value).toBe(true);
 
-            matcha.expect(a.length).toBe(5);
+                var value2 = a.includes("maria");
+                matcha.expect(value2).toBe(false);
 
-            matcha.expect(result).toBe(true);
+                matcha.expect(a[0]).toBe("cat");
+                matcha.expect(a[1]).toBe("dog");
+                matcha.expect(a[2]).toBe("donkey");
+                matcha.expect(a[3]).toBe("horse");
+            })
+        matcha.it(
+            "Zero-based index at which to start searching, converted to an integer.",
+            function () {
+                var a = new Arroz("cat", "dog", "donkey", "horse");
+                matcha.expect(a).toBeInstanceOf(Arroz);
 
+                var value = a.includes("donkey", 1);
+                matcha.expect(!!a.includes).toBe(true);
+
+                matcha.expect(value).toBe(true);
+
+                var value2 = a.includes("maria");
+                matcha.expect(value2).toBe(false);
+
+                matcha.expect(a[0]).toBe("cat");
+                matcha.expect(a[1]).toBe("dog");
+                matcha.expect(a[2]).toBe("donkey");
+                matcha.expect(a[3]).toBe("horse");
+            })
+    })
+    matcha.describe("> join", function () {
+        matcha.it("", function () {
+            var a = new Arroz("fire", "air", "water")
+            matcha.expect(a).toBeInstanceOf(Arroz)
+
+            var result = a.join(", ")
+            matcha.expect(!!a.join).toBe(true)
+            matcha.expect(result).toBe("fire, air, water")
+            for (var i = 0; i < a.length; i++) matcha.expect(a[i]).toBe(a[i])
         })
     })
+    matcha.describe("> findIndex", function () {
+        matcha.it(
+            "returns the index of the first element in an array if not find anyone -1 is returned.",
+            function () {
+                var a = new Arroz(2, 4, 14, 16)
+
+                matcha.expect(a).toBeInstanceOf(Arroz);
+                var result = a.findIndex(function (elem) {
+                    return elem > 13
+                });
+                matcha.expect(!!a.findIndex).toBe(true)
+                matcha.expect(result).toBe(2)
+            }
+        )
+    })
+    matcha.describe("> shift", function () {
+        matcha.it(
+            "removes the first element from an array and returns that removed element. This method changes the length of the array.",
+            function () {
+                var a = new Arroz("Argentine", "Chile", "Brazil", "Peru")
+                matcha.expect(a).toBeInstanceOf(Arroz);
+
+                var value = a.shift();
+                matcha.expect(!!a.shift).toBe(true);
+
+                matcha.expect(value).toBe("Argentine");
+                matcha.expect(a.length).toBe(3);
+                matcha.expect(a[0]).toBe("Chile");
+                matcha.expect(a[1]).toBe("Brazil");
+                matcha.expect(a[2]).toBe("Peru");
+            }
+        );
+    });
+    matcha.describe("> unshift", function () {
+        matcha.it(
+            "adds the specified elements to the beginning of an array and returns the new length of the array.",
+            function () {
+                var a = new Arroz("c", "d", "e");
+                matcha.expect(a).toBeInstanceOf(Arroz);
+
+                var value = a.unShift("a", "b");
+                matcha.expect(!!a.unShift).toBe(true);
+
+                matcha.expect(value).toBe(5);
+                matcha.expect(a[0]).toBe("a");
+                matcha.expect(a[1]).toBe("b");
+                matcha.expect(a[2]).toBe("c");
+                matcha.expect(a[3]).toBe("d");
+                matcha.expect(a[4]).toBe("e");
+            }
+        );
+    });
 
 })

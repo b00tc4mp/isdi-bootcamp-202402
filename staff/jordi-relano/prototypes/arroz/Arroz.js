@@ -182,18 +182,71 @@ Arroz.prototype.reduce = function (callback, initialValue) {
     return accumulator
 }
 
-Arroz.prototype.includes = function (searchElement) {
+Arroz.prototype.includes = function (searchElement, indexFrom) {
+    var indexFrom = indexFrom < 0 ? indexFrom + this.length : indexFrom;
+
+    if (indexFrom < this.length || indexFrom < -this.length || !indexFrom)
+        for (var i = 0; i < this.length; i++) {
+            var elem = this[i];
+            if (elem === searchElement) {
+                return true;
+            }
+        }
+    return false;
+};
+
+
+Arroz.prototype.join = function (separator) {
+    var separator = separator;
+    var string = "";
 
     for (var i = 0; i < this.length; i++) {
-        if (searchElement === true) {
-            return true
-        }
+        var elem = this[i];
+        string += elem;
+        if (i < this.length - 1) string += separator;
     }
-    return false
+
+    return string;
 }
 
 
+Arroz.prototype.findIndex = function (callback) {
+    if (typeof callback !== "function") {
+        throw new TypeError("undefined is not a function");
+    }
 
+    for (var i = 0; i < this.length; i++) {
+        var elem = this[i];
+        var match = callback(elem);
+        if (match) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+Arroz.prototype.shift = function () {
+    var shifted = this[0];
+    for (var i = 0; i < this.length; i++) {
+        this[i] = this[i + 1];
+    }
+    delete this[this.length];
+    this.length--;
+
+    return shifted;
+};
+
+Arroz.prototype.unShift = function () {
+    var length = arguments.length + this.length;
+    for (var i = length - 1; i > -1; i--) {
+        this[i] = this[i - arguments.length];
+    }
+    for (var i = 0; i < arguments.length; i++) {
+        this[i] = arguments[i];
+    }
+    return (this.length = length);
+};
 
 
 
