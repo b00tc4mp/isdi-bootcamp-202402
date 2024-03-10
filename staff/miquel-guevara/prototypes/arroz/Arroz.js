@@ -82,98 +82,156 @@ Arroz.prototype.concat = function () {
     resultArroz[resultArroz.length] = this[i];
     resultArroz.length++;
   }
-  
-  for (var i = 0; i < arguments.length; i++){
-    if (arguments[i] instanceof Arroz){ 
-      
+
+  for (var i = 0; i < arguments.length; i++) {
+    if (arguments[i] instanceof Arroz) {
       var elem = arguments[i];
-      
-      for (var j = 0; j < elem.length; j++){
+
+      for (var j = 0; j < elem.length; j++) {
         resultArroz[resultArroz.length] = elem[j];
         resultArroz.length++;
       }
-    
-    }else {
-      
+    } else {
       resultArroz[resultArroz.length] = arguments[i];
-      resultArroz.length++; 
+      resultArroz.length++;
     }
   }
-  
+
   return resultArroz;
 };
 
-Arroz.prototype.find = function (callback) {
-  var result = undefined;
-
-  for(var i = 0; i < this.length; i++){
-    if (callback(this[i])) {
-      return this[i]
-    }
-  }
-  return result 
-}
-
 Arroz.prototype.forEach = function (callback) {
   for (var i = 0; i < this.length; i++) {
-      var elem = this[i]
+    var elem = this[i];
 
-      callback(elem, i, this)
+    callback(elem, i, this);
   }
-}
-
+};
 
 Arroz.prototype.includes = function (callback) {
-  
   for (var i = 0; i < this.length; i++) {
-      
-    var element = this[i]
-     
-    if (element !== undefined) {
-         
-        if (callback(element) === true)
-             
-        return true
-     }
-  }
-  return false
-}
+    var element = this[i];
 
+    if (element !== undefined) {
+      if (callback(element) === true) return true;
+    }
+  }
+  return false;
+};
 
 Arroz.prototype.map = function (callback) {
+  var value = new Arroz();
 
-  var value = new Arroz ()
-
-
-  for(var i = 0; i < this.length; i++){
-
-    value[value.length] = callback(this[i])
-    value.length++
+  for (var i = 0; i < this.length; i++) {
+    value[value.length] = callback(this[i]);
+    value.length++;
   }
-  return value
-}
+  return value;
+};
 
 Arroz.prototype.find = function (callback) {
   for (var i = 0; i < this.length; i++) {
-      var elem = this[i]
+    var elem = this[i];
 
-      var matches = callback(elem, i, this)
+    var matches = callback(elem, i, this);
 
-      if (matches) return elem
+    if (matches) return elem;
   }
-}
+};
 
 Arroz.from = function (arroz) {
-  var instance = new Arroz
+  var instance = new Arroz();
 
   for (var i = 0; i < arroz.length; i++) {
-      var elem = arroz[i]
+    var elem = arroz[i];
 
-      instance[instance.length++] = elem
+    instance[instance.length++] = elem;
   }
 
-  return instance
-}
+  return instance;
+};
 
+Arroz.prototype.indexOf = function (searchElement) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] === searchElement) {
+      return i;
+    }
+  }
+  return -1;
+};
+
+Arroz.prototype.lastIndexOf = function (searchElement, index) {
+  if (index >= this.length) {
+    return -1;
+  } else if ((index < 0 && this.length + index < 0) || index === undefined) {
+    for (var i = this.length - 1; i >= 0; i--) {
+      if (searchElement === this[i]) {
+        return i;
+      }
+    }
+  } else if (index < 0 && this.length + index > 0) {
+    for (var i = this.length + index; i >= 0; i--) {
+      if (searchElement === this[i]) {
+        return i;
+      }
+    }
+  } else {
+    for (var i = index; i >= 0; i--) {
+      if (searchElement === this[i]) {
+        return i;
+      }
+    }
+  }
+  return -1;
+};
+
+Arroz.prototype.every = function (callback) {
+  for (var i = 0; i < this.length; i++) {
+    var element = this[i];
+    if (callback(element) === false) {
+      //if (callback(this[i]) === false) {
+      return false;
+    }
+  }
+  return true;
+};
+
+Arroz.prototype.some = function (callback) {
+  for (var i = 0; i < this.length; i++) {
+    var element = this[i];
+    if (callback(element) === true) {
+      //if (callback(this[i]) === true) {
+      return true;
+    }
+  }
+  return false;
+};
+
+Arroz.prototype.unshift = function () {
+  var length = arguments.length + this.length;
+  for (var i = length - 1; i > -1; i--) {
+    this[i] = this[i - arguments.length];
+  }
+  for (var i = 0; i < arguments.length; i++) {
+    this[i] = arguments[i];
+  }
+  return (this.length = length);
+};
+
+Arroz.prototype.with = function (index, value) {
+  var newArroz = new Arroz();
+
+  for (var i = 0; i < this.length; i++) {
+    var elem = this[i];
+    if (i === index) {
+      newArroz[newArroz.length] = value;
+      newArroz.length++;
+    } else {
+      newArroz[newArroz.length] = elem;
+      newArroz.length++;
+    }
+  }
+  return newArroz;
+};
 
 module.exports = Arroz;
