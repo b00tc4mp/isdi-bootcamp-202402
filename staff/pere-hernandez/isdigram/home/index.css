@@ -56,7 +56,7 @@ p {
     padding-left: 2vw;
 }
 
-.delete-post-button {
+.delete-post-button, .update-post-button {
     margin-top: 1vh ;
 }
 
@@ -199,4 +199,32 @@ ul {
     width: 16vw;
     padding: 0;
     padding-right: 2vw;
+}
+
+.chat-message-sent, .chat-message-recieved {
+    background-color: #AFCDEF;
+    padding: 1.5vw;
+    margin: 2vh 2vw 0  16vw;
+    border-radius: 5px;
+    width: fit-content;
+    align-self: flex-end;
+    margin-left: 8vw;
+}
+
+.chat-message-recieved {
+    background-color: #D9D9D9;
+    align-self: flex-start;
+    margin: 2vh 16vw 0 2vw;
+}
+
+.message-section {
+    width: 100%;
+}
+
+.post-buttons-bar {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 2vw 0 2vw;
 }

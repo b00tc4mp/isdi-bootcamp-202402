@@ -114,11 +114,20 @@
                 article.append(authorHeading, imageDiv, paragraph, dateTime)
 
                 if (post.author.id === logic.getLoggedInUserId()){
+                    var postButtonsDiv = document.createElement('div')
+                    postButtonsDiv.classList.add('post-buttons-bar')
+
                     var deleteButton = document.createElement('button')
                     deleteButton.innerText = 'Delete'
                     deleteButton.classList.add('delete-post-button')
 
-                    article.append(deleteButton)
+                    var updatePostButton = document.createElement('button')
+                    updatePostButton.innerText = 'Update'
+                    updatePostButton.classList.add('update-post-button')
+
+                    postButtonsDiv.append(deleteButton, updatePostButton)
+
+                    article.appendChild(postButtonsDiv)
 
                     deleteButton.onclick = function () {
                         if (confirm('Delete post?')){
@@ -131,6 +140,10 @@
                                 alert(error.message)
                             }
                         }
+                    }
+
+                    updatePostButton.onclick = function () {
+                        
                     }
                 }              
                     
@@ -160,9 +173,15 @@
 
                 userLi.innerHTML = user.username
 
-                userLi.addEventListener('click',  function () {
+                userLi.addEventListener('click',  function showChat() {
 
-                    var chat = logic.createChat(user)
+                    var foundChat = logic.retrieveChatWith(user)
+
+                    if (!foundChat)
+                        var chat = logic.createChat(user)
+                    else 
+                        var chat = foundChat
+                    
                     chatSection.innerHTML = ''
                     userList.style.display = 'none'
                     chatButton.style.display = ''
@@ -173,7 +192,21 @@
 
                     var messageSection = document.createElement('section')
                     messageSection.classList.add('message-section')
-                    messageSection.innerHTML = 'ijhvk,'
+                    for (var i = 0; i < chat.messages.length; i++){
+                        var message = chat.messages[i].text
+                        if (!!message){
+                            var messageP = document.createElement('p')
+                            messageP.innerText = message
+
+                            if (chat.messages[i].author === sessionStorage.userId)
+                                messageP.classList.add('chat-message-sent')
+                            else
+                                messageP.classList.add('chat-message-recieved')
+                            
+                            messageSection.appendChild(messageP)
+                        }
+
+                    }
 
                     var chatForm = document.createElement('form')
                     chatForm.classList.add('chat-form')
@@ -198,16 +231,22 @@
                     chatSection.style.display = 'flex'
 
                     chatForm.onsubmit = function (){
+                        event.preventDefault()
+
                         var messageImput = document.getElementById('chat-text-input')
                         var messageText = messageImput.value
                         
                         try {
-                            var message = logic.createMessage(messageText, user.username)
+                            var message = logic.createMessage(messageText)
 
                             logic.addMessageToChat(message, chat)
                         } catch (error) {
-                            
+                            console.alert(error.message)
                         }
+
+                        chatForm.reset()
+
+                        showChat()
                     }
                 })
 
@@ -243,4 +282,3 @@
 
     renderPosts()
 })()
-

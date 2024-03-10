@@ -187,16 +187,30 @@ var logic = (function () {
 
         data.updateChat(chat)
     }
+
+    function retrieveChatWith(user){
+        var chat = data.findChat(function (chat){
+            var foundUser1 = (chat.users.some(function (user1){
+                return (user1 === user.id)
+            }))
+            var foundUser2 = (chat.users.some(function (user2){
+                return (user2 === sessionStorage.userId)
+            }))
+
+            return (foundUser1 && foundUser2)
+        })
+
+        return chat
+    }
     
     
 
     //MESSAGE-related functions
 
-    function createMessage(message, reciever){
+    function createMessage(message){
         var message = {
             text: message,
             author: sessionStorage.userId,
-            reciever: reciever,
             time: new Date().toLocaleDateString('en-CA')
         }
         return message
@@ -215,6 +229,7 @@ var logic = (function () {
         deletePost: deletePost,
         createChat: createChat,
         addMessageToChat: addMessageToChat,
+        retrieveChatWith: retrieveChatWith,
         createMessage: createMessage
     }
 }) ()
