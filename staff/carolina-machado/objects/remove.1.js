@@ -1,5 +1,3 @@
-var assert = require('./assert')
-
 /**
  * Removes an element in iterable object at specfified index.
  *
@@ -15,7 +13,7 @@ function remove(object, index) {
         throw new TypeError(index + ' is not an number')
 
     else {
-        var removed = object[index]
+        removed = object[index]
         for (let i = index; i < object.length; i++){
             object[i] = object[i+1]
         }
@@ -34,9 +32,9 @@ var colors = {
     length: 3
 }
 
-var result = remove(colors, 1)
+var removed = remove(colors, 1)
 
-console.log(result)
+console.log(removed)
 // 'blue'
 
 console.log(colors)
@@ -48,11 +46,6 @@ console.log(colors)
 }
 */
 
-
-assert.hasValues(colors, 'red', 'green')
-
-
-/*
 console.log('CASE 2: remove red from index 0')
 
 var colors = {
@@ -75,10 +68,6 @@ console.log(colors)
     length: 2
 }
 */
-/*
-assert.hasValues(removed, 'red')
-assert.hasValues(colors, 'blue', 'green')
-
 
 console.log('CASE 3: fails on undefind object parameter')
 
@@ -113,4 +102,3 @@ try {
     console.log(error)
     // TypeError: undefined is not a Number
 }
-*/

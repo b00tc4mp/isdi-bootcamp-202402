@@ -1,5 +1,3 @@
-var assert = require('./assert')
-
 /**
  * 
  * @param {*} object 
@@ -36,14 +34,11 @@ var users = {
     length: 5
 }
 
-var callback = function (user) {
-    return user.name === 'Pepito'}
+var user = extract(users, function (user) {
+    return user.name === 'Pepito'
+})
 
-var user = extract(users, callback)
-
-
-
-//console.log(user)
+console.log(user)
 // { name: 'Pepito', age: 50 }
 
 //console.log(users)
@@ -56,7 +51,7 @@ var user = extract(users, callback)
     length: 4
 }
 */
-/*
+
 console.assert(user.name === 'Pepito')
 console.assert(user.age === 50)
 
@@ -68,8 +63,3 @@ console.assert(users[2].name === 'Campa')
 console.assert(users[2].age === 30)
 console.assert(users[3].name === 'James')
 console.assert(users[3].age === 40)
-
-*/
-/*
-assert.valuesPropertiesMatch(user, 'Pepito', 50, callback)
-*/
