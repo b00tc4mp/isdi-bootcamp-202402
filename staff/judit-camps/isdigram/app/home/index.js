@@ -47,7 +47,6 @@
         })
     })
 
-
     newPostBtn.addEventListener('click', function (event) {
         event.preventDefault()
 
@@ -185,17 +184,6 @@
     }
     renderPost()
 
-    userButton.addEventListener('click', function () {
-        console.log('user page')
-        logoutButton.style.display = 'flex'
-        logoutButton.addEventListener('click', function () {
-            // calling the function to logout the user and going back to the login page
-            logic.logoutUser()
-
-            location.href = '../login'
-        })
-    })
-
     messageButton.onclick = function () {
         postsSection.style.display = 'none'
         newPostBtn.style.display = 'none'
@@ -227,6 +215,19 @@
             alert(error.message)
         }
     }
+
+    userButton.addEventListener('click', function () {
+        console.log('user page')
+        newPostBtn.style.display = 'none'
+        logoutButton.style.display = 'flex'
+
+        logoutButton.addEventListener('click', function () {
+            // calling the function to logout the user and going back to the login page
+            logic.logoutUser()
+
+            location.href = '../login'
+        })
+    })
 
 
 })()
