@@ -5,7 +5,11 @@
         return
     }
 
+    var footer = document.querySelector('footer')
+
     var homeTitle = document.querySelector('#home-title')
+    var chatTitle = document.querySelector('#chat-user-title')
+
 
     var userButton = document.getElementById('#user-button')
     var logoutButton = document.getElementById('logout-button')
@@ -13,14 +17,19 @@
     var cancelBtn = document.getElementById('cancel-post-button')
     var homeButton = document.querySelector('#home-button')
     var messageButton = document.querySelector('#message-button')
+    var backToChatsButton = document.querySelector('#back-to-chats-btn')
+    var chatDiv = document.querySelector('#chat-bubbles-div')
+
 
     var postForm = document.getElementById('post-form')
     var formDiv = document.getElementById('form-div')
     // var editPostForm = document.querySelector('')
+    var sendMessageForm = document.querySelector('#send-message-form')
 
     var postsSection = document.querySelector('#posts-section')
     var chatSection = document.querySelector('#chat-section')
     var userList = document.querySelector('#user-list')
+    var messageSection = document.querySelector('#message-section')
 
     var changePostTextSection = document.querySelector('#change-post-text')
     var cancelCaptionChangeButton = document.querySelector('#cancel-caption-change-button')
@@ -184,7 +193,33 @@
     }
     renderPost()
 
+
+    function renderMessages(userId) {
+        chatDiv.innerHTML = ''
+        var messages = logic.retrieveMessagesWith(userId)
+
+        try {
+            messages.forEach(function (message) {
+                var textBubble = document.createElement('div')
+                textBubble.innerText = message.text
+                if (message.from === sessionStorage.userId)
+                    textBubble.classList.add('right-side')
+                else
+                    textBubble.classList.add('left-side')
+
+                chatDiv.appendChild(textBubble)
+                chatDiv.id = messages.id
+            })
+
+
+        } catch (error) {
+            console.log(error)
+            alert(error.message)
+        }
+    }
+
     messageButton.onclick = function () {
+        sendMessageForm.style.display = 'none'
         postsSection.style.display = 'none'
         newPostBtn.style.display = 'none'
         messageButton.style.display = 'none'
@@ -209,6 +244,39 @@
 
                 item.innerText = user.username
                 userList.appendChild(item)
+
+                item.onclick = function () {
+                    messageSection.style.display = 'block'
+                    footer.style.display = 'none'
+                    console.log('clicked ' + user.username + ' ' + user.id)
+                    userList.style.display = 'none'
+
+                    backToChatsButton.style.display = 'flex'
+                    chatTitle.style.display = 'flex'
+                    chatTitle.innerText = user.username
+                    sendMessageForm.style.display = 'flex'
+
+                    var hasChat = logic.retrieveMessagesWith(user.id)
+                    if (!!hasChat)
+                        renderMessages(user.id)
+
+                    sendMessageForm.onsubmit = function (event) {
+                        event.preventDefault()
+                        try {
+                            var textInput = document.querySelector('#input-text')
+                            var text = textInput.value
+
+                            logic.sendMessageTo(user.id, text)
+                            sendMessageForm.reset()
+
+                            renderMessages(user.id)
+
+                        } catch (error) {
+                            console.error(error)
+                            alert(error.message)
+                        }
+                    }
+                }
             })
         } catch (error) {
             console.log(error)
@@ -216,6 +284,15 @@
         }
     }
 
+    backToChatsButton.onclick = function () {
+        footer.style.display = ''
+        userList.style.display = ''
+        messageSection.style.display = 'none'
+        sendMessageForm.style.display = 'none'
+        chatTitle.style.display = 'none'
+        backToChatsButton.style.display = 'none'
+
+    }
     userButton.addEventListener('click', function () {
         console.log('user page')
         newPostBtn.style.display = 'none'

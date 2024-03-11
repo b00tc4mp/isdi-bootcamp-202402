@@ -185,6 +185,48 @@ var logic = (function () {
         data.posts.updateOne(post)
     }
 
+    function sendMessageTo(userId, text) {
+        validateText(userId, 'userId', true)
+        validateText(text, 'text')
+
+        var chat = data.chats.findOne(function (chat) {
+            return chat.users.includes(userId) && chat.users.includes(sessionStorage.userId)
+        })
+
+        if (!chat) {
+            chat = {
+                users: [sessionStorage.userId, userId],
+                messages: []
+            }
+        }
+
+        var message = {
+            from: sessionStorage.userId,
+            text: text,
+            date: new Date().toISOString()
+        }
+
+        chat.messages.push(message)
+
+        if (!chat.id)
+            data.chats.insertOne(chat)
+        else
+            data.chats.updateOne(chat)
+    }
+
+    function retrieveMessagesWith(userId) {
+        validateText(userId, 'userId', true)
+
+        var chat = data.chats.findOne(function (chat) {
+            return chat.users.includes(userId) && chat.users.includes(sessionStorage.userId)
+        })
+
+        if (chat)
+            return chat.messages
+        else
+            return []
+    }
+
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -193,10 +235,14 @@ var logic = (function () {
         getLoggedInUser: getLoggedInUser,
         retrieveUsers: retrieveUsers,
         isUserLoggedIn: isUserLoggedIn,
+
         savePostInfo: savePostInfo,
         retrievePostsLatestFirst: retrievePostsLatestFirst,
         removePost: removePost,
-        editPostText: editPostText
+        editPostText: editPostText,
+
+        sendMessageTo: sendMessageTo,
+        retrieveMessagesWith: retrieveMessagesWith
     }
 
 })()
