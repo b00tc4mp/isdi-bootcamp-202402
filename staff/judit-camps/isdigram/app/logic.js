@@ -41,7 +41,7 @@ var logic = (function () {
         validateText(username, 'the username', true)
         validatePassword(password, 'the password')
 
-        var user = data.findUser(function (user) {
+        var user = data.users.findOne(function (user) {
             return user.email === email || user.username === username
         })
 
@@ -55,12 +55,12 @@ var logic = (function () {
             password: password
         }
 
-        data.insertUser(user)
+        data.users.insertOne(user)
     }
 
 
     function loginUser(username, password) {
-        var user = data.findUser(function (user) {
+        var user = data.users.findOne(function (user) {
             return user.username === username && user.password === password
         })
 
@@ -68,14 +68,14 @@ var logic = (function () {
 
         user.status = 'online'
 
-        data.updateUser(user)
+        data.users.updateOne(user)
 
         sessionStorage.userId = user.id
     }
 
 
     function getUser() {
-        var user = data.findUser(function (user) {
+        var user = data.users.findOne(function (user) {
             return user.id === sessionStorage.userId
         })
 
@@ -85,7 +85,7 @@ var logic = (function () {
     }
 
     function retrieveUsers() {
-        var users = data.getAllUsers()
+        var users = data.users.getAll()
 
         var indexToDelete = users.findIndex(function (user) {
             return user.id === sessionStorage.userId
@@ -111,7 +111,7 @@ var logic = (function () {
 
     // function that deletes the actual user by clearing the sessionStorage
     function logoutUser() {
-        var user = data.findUser(function (user) {
+        var user = data.users.findOne(function (user) {
             return user.id === sessionStorage.userId
         })
 
@@ -119,7 +119,7 @@ var logic = (function () {
 
         user.status = 'ofline'
 
-        data.updateUser(user)
+        data.users.updateOne(user)
 
         delete sessionStorage.userId
     }
@@ -140,14 +140,14 @@ var logic = (function () {
             caption: caption,
             date: new Date().toLocaleDateString('en-CA')
         }
-        data.insertPost(post)
+        data.posts.insertOne(post)
     }
 
     function retrievePostsLatestFirst() {
-        var posts = data.getAllPosts()
+        var posts = data.posts.getAll()
 
         posts.forEach(function (post) {
-            var user = data.findUser(function (user) {
+            var user = data.users.findOne(function (user) {
                 return user.id === post.author
             })
             post.author = { id: user.id, username: user.username }
@@ -157,7 +157,7 @@ var logic = (function () {
     }
 
     function removePost(postId) {
-        var post = data.findPost(function (post) {
+        var post = data.posts.findOne(function (post) {
             return post.id === postId
         })
 
@@ -165,14 +165,14 @@ var logic = (function () {
 
         if (post.author !== sessionStorage.userId) throw new Error('post does not belong to user')
 
-        data.deletePost(function (post) {
+        data.posts.deleteOne(function (post) {
             return post.id === postId
         })
     }
 
     function editPostText(postId, newCaption) {
         console.log("Received postId:", postId);
-        var post = data.findPost(function (post) {
+        var post = data.posts.findOne(function (post) {
             return post.id === postId
         })
         console.log('Post found: ', post)
@@ -182,9 +182,7 @@ var logic = (function () {
 
         post.caption = newCaption
 
-        data.updatePost(post)
-
-
+        data.posts.updateOne(post)
     }
 
     return {
