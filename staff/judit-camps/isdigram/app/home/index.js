@@ -203,9 +203,9 @@
                 var textBubble = document.createElement('div')
                 textBubble.innerText = message.text
                 if (message.from === sessionStorage.userId)
-                    textBubble.classList.add('right-side')
+                    textBubble.classList.add('text__right')
                 else
-                    textBubble.classList.add('left-side')
+                    textBubble.classList.add('text__left')
 
                 chatDiv.appendChild(textBubble)
                 chatDiv.id = messages.id
