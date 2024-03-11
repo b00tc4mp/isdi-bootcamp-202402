@@ -2,49 +2,96 @@
 
 var logic = (function () {
 
+    //constants
+
+    var DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
+    var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    var PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[A-Za-z])[A-Za-z0-9]+$/
+    var URL_REGEX = /^(http|https):\/\//
+
+
+
+    //helpers
+
+    function validateText(text, explain, checkEmptySpaceInside) {
+        if (typeof text !== 'string')
+            throw new TypeError (explain + ' ' + text + ' is not a string')
+        if (!text.trim().length)
+            throw new Error (explain + '>' + text + '< is empty or blank')
+
+        if (checkEmptySpaceInside)
+            if(text.includes(' '))
+                throw new Error (explain + ' ' + text + ' has empty spaces')
+    }
+
+
+    function validateDate(date, explain) {
+        if (!DATE_REGEX.test(date))
+            throw new Error(explain + ' '+ date + ' is not a date')
+    }
+
+
+    function validateEmail(email, explain) {
+        if (!EMAIL_REGEX.test(email))
+            throw new Error(explain + ' ' + email + ' is not an email')
+    }
+
+
+    function validatePassword(password, explain) {
+        if (!PASSWORD_REGEX.test(password))
+            throw new Error(explain + ' ' + password + ' is not a valid password')
+    }
+
+
+    function validateUrl(url, explain) {
+        if (!URL_REGEX.test(url))
+            throw new Error(explain + ' ' + url + ' is not an url')
+    }
+
+
+
+    //logic
+
     //USER-related functions
     
     function registerUser(username, email, password, confirmedPassword){
-        //errors
-        if (typeof username !== 'string')
-            throw new TypeError (username + ' is not a string')
-        if (typeof username.length < 1)
-            throw new RangeError ('username must have more characters')
-
-        //TODO email validation
-
-        if (typeof password !== 'string')
-            throw new TypeError (password + ' is not a string')
-        if (typeof password.length < 1)
-            throw new RangeError ('password must have more characters')
-        if (typeof confirmedPassword !== 'string')
-            throw new TypeError (confirmedPassword + ' is not a string')
-        if (typeof confirmedPassword.length < 1)
-            throw new RangeError ('confirmedPassword must have more characters')
-        if (password !== confirmedPassword)
-            throw new Error ("passwords don't match")
+        //validation
+        
+        validateText(username, 'username')
+        validateEmail(email, 'email')
 
         //logic
 
-        var foundUser = data.findUser(function (user) {
-            return (user.email === email || user.username === username)
-        })
-
-        if (foundUser) throw new Error ('user already exists')
-
-        var user = {
-            email: email,
-            username: username,
-            password: password,
-            statusbar: 'offline'
+        if (password !== confirmedPassword){
+            throw new Error("Passwords don't match")
         }
 
-        data.insertUser(user)
+        var user = data.users.findOne(function (user){
+            return user.username === username || user.email === email
+        })
+
+        if (user) throw new Error ('user already exists')
+
+        var user = {
+            username: username,
+            email: email,
+            password: password,
+            status: 'offline'
+        }
+
+        data.users.insertOne(user)
     } 
 
 
     function loginUser (username, password){
-        var user = data.findUser(function (user){
+        //validation
+
+        validateText(username, 'username', true)
+
+
+        //logic
+
+        var user = data.users.findOne(function (user){
             return user.username === username && user.password === password
         })
 
@@ -52,14 +99,14 @@ var logic = (function () {
 
         user.status = 'online'
 
-        data.updateUser(user)
+        data.users.updateOne(user)
 
         sessionStorage.userId = user.id
     }
 
 
     function retrieveUser (){
-        var user = data.findUser(function(user){
+        var user = data.users.findOne(function(user){
             return user.id === sessionStorage.userId
         })
 
@@ -70,7 +117,7 @@ var logic = (function () {
 
     
     function retrieveUsers(){
-        var users = data.getAllUsers()
+        var users = data.users.getAll()
 
         var index = users.findIndex(function (user) {
             return user.id === sessionStorage.userId
@@ -94,7 +141,7 @@ var logic = (function () {
 
 
     function logoutUser(){
-        var user = data.findUser(function (user) {
+        var user = data.users.findOne(function (user) {
             return user.id === sessionStorage.userId
         })
 
@@ -104,7 +151,7 @@ var logic = (function () {
 
         user.status = 'offline'
 
-        data.updateUser(user)
+        data.users.updateOne(user)
 
         delete sessionStorage.userId
     }
@@ -122,7 +169,12 @@ var logic = (function () {
 
     //POST-related functions    
 
-    function createPost (photo, comment){       
+    function createPost (photo, comment){     
+        //validation
+
+        validateText(comment, 'comment')
+
+        //logic
 
         var post = {
             author: sessionStorage.userId,
@@ -131,15 +183,15 @@ var logic = (function () {
             date: new Date().toLocaleDateString('en-CA')
         }
 
-        data.insertPost(post)
+        data.posts.insertOne(post)
     }
 
 
     function retrievePosts(){
-        var posts = data.getAllPosts()
+        var posts = data.posts.getAll()
         
         posts.forEach(function (post) {
-            var user = data.findUser(function (user) {
+            var user = data.users.findOne(function (user) {
                 return user.id === post.author
             })
 
@@ -150,7 +202,12 @@ var logic = (function () {
 
 
     function deletePost (postId) {
-        var post = data.findPost(function (post) {
+        //validation
+
+        validateText(postId, 'PostId', true)
+
+        //logic
+        var post = data.posts.findOne(function (post) {
             return post.id === postId
         })
 
@@ -158,10 +215,34 @@ var logic = (function () {
 
         if (post.author !== sessionStorage.userId) throw new Error ("can't delete somebody else's post")
 
-        data.deletePost(function (post) {
+        data.posts.deleteOne(function (post) {
             return post.id === postId
         })
     }
+
+
+    function updatePost (postId, text){
+        //validation
+
+        validateText(postId, 'PostId', true)
+        validateText(text, 'text')
+
+        //logic
+        var post = data.posts.findOne(function (post){
+            return post.id === postId
+        })
+
+        if (!post)
+            throw new Error ('post not found')
+
+        if (post.author !== sessionStorage.userId)
+            throw new Error ('post does not belong to user')
+
+        post.comment = text
+
+        data.posts.updateOne(post)
+    }
+
 
 
     //CHAT-related functions
@@ -173,32 +254,41 @@ var logic = (function () {
             date: new Date().toLocaleDateString('en-CA')
         }
 
-        data.insertChat(chat)
+        data.chats.insertOne(chat)
 
         return chat
     }
 
-    function addMessageToChat (message, chat){
-        var chat = data.findChat(function (chat1){
-            return chat1.id === chat.id
+
+    function addMessageToChat (message, chatId){
+        var chat = data.chats.findOne(function (chat){
+            return chatId === chat.id
         })
 
         chat.messages.push(message)
 
-        data.updateChat(chat)
+        data.chats.updateOne(chat)
     }
 
-    function retrieveChatWith(user){
-        var chat = data.findChat(function (chat){
-            var foundUser1 = (chat.users.some(function (user1){
-                return (user1 === user.id)
-            }))
-            var foundUser2 = (chat.users.some(function (user2){
-                return (user2 === sessionStorage.userId)
-            }))
 
-            return (foundUser1 && foundUser2)
+    function retrieveMessagesWith (userID){
+        var chat = data.chats.findOne(function (chat) {
+            return chat.users.includes(userID) && chat.users.includes(sessionStorage.userId)
         })
+
+        if (chat)
+            return chat.messages
+        else
+            return []
+    }
+
+
+    function retrieveChatWith (userID){
+        var chat = data.chats.findOne(function(chat){
+            return chat.users.includes(userID) && chat.users.includes(sessionStorage.userId)
+        })
+
+        if (!chat) throw new Error('user not found')
 
         return chat
     }
@@ -224,12 +314,17 @@ var logic = (function () {
         logoutUser: logoutUser,
         getLoggedInUserId: getLoggedInUserId,
         checkLoggedInStatus: checkLoggedInStatus,
+
         createPost: createPost,
         retrievePosts: retrievePosts,
         deletePost: deletePost,
+        updatePost: updatePost,
+        
         createChat: createChat,
         addMessageToChat: addMessageToChat,
+        retrieveMessagesWith: retrieveMessagesWith,
         retrieveChatWith: retrieveChatWith,
+
         createMessage: createMessage
     }
 }) ()

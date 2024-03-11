@@ -26,7 +26,7 @@ h2{
     padding-left: 2vw;
 }
 
-#create-post {
+#post-img {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,6 +35,11 @@ h2{
     border: 0;
     border-radius: 50%;    
     font-size: 4vh;
+}
+
+#create-post {
+    background: none;
+    border: 0;
 }
 
 .image-div{
@@ -120,26 +125,26 @@ footer {
     display: none;
 }
 
-li{
-    height: 8vh;
-    border-top: 1px solid gray;
-    display: flex;
-    align-items: center;
-    font-size: 3vh;
-    padding-left: 2vw;
-}
-
 ul {
-    padding: 0vw;
-    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+    padding-left: 0;
+    font-size: 3vh;
+    background-color: #ebeaea;
+    list-style-position: inside;
 }
 
-.user-list-offline{
-    background-color: #f3f2f2;
+li {
+    padding: 1.5vh 0 1.5vh 4vw;
+    border-bottom: gray 1px solid;
+    margin: 0;
 }
 
-.user-list-online{
-    background-color: #AFCDEF;
+.user-list-online::marker{
+    color:limegreen;
+}
+
+.user-list-offline::marker{
+    color: red;
 }
 
 #button-div{
@@ -187,6 +192,7 @@ ul {
     height: 5vh;
     margin: 0;
     margin: 0 4vw 0 3vw;
+    padding: 0 2vw 0 2vw;
 }
 
 .send-message-button {

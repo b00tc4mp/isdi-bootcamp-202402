@@ -122,7 +122,7 @@
                     deleteButton.classList.add('delete-post-button')
 
                     var updatePostButton = document.createElement('button')
-                    updatePostButton.innerText = 'Update'
+                    updatePostButton.innerText = 'Edit'
                     updatePostButton.classList.add('update-post-button')
 
                     postButtonsDiv.append(deleteButton, updatePostButton)
@@ -143,7 +143,7 @@
                     }
 
                     updatePostButton.onclick = function () {
-                        
+
                     }
                 }              
                     
@@ -175,12 +175,7 @@
 
                 userLi.addEventListener('click',  function showChat() {
 
-                    var foundChat = logic.retrieveChatWith(user)
-
-                    if (!foundChat)
-                        var chat = logic.createChat(user)
-                    else 
-                        var chat = foundChat
+                    var messages = logic.retrieveMessagesWith(user.id)
                     
                     chatSection.innerHTML = ''
                     userList.style.display = 'none'
@@ -191,22 +186,24 @@
                     chatTitle.innerHTML = user.username
 
                     var messageSection = document.createElement('section')
+
+                    
                     messageSection.classList.add('message-section')
-                    for (var i = 0; i < chat.messages.length; i++){
-                        var message = chat.messages[i].text
+                    for (var i = 0; i < messages.length; i++){
+                        var message = messages[i].text
                         if (!!message){
                             var messageP = document.createElement('p')
                             messageP.innerText = message
 
-                            if (chat.messages[i].author === sessionStorage.userId)
+                            if (messages[i].author === sessionStorage.userId)
                                 messageP.classList.add('chat-message-sent')
                             else
                                 messageP.classList.add('chat-message-recieved')
                             
                             messageSection.appendChild(messageP)
                         }
-
                     }
+
 
                     var chatForm = document.createElement('form')
                     chatForm.classList.add('chat-form')
@@ -235,18 +232,27 @@
 
                         var messageImput = document.getElementById('chat-text-input')
                         var messageText = messageImput.value
-                        
-                        try {
-                            var message = logic.createMessage(messageText)
 
-                            logic.addMessageToChat(message, chat)
-                        } catch (error) {
-                            console.alert(error.message)
-                        }
+                        if (messageText.length > 0){
+                            try {
+                                var message = logic.createMessage(messageText)
 
-                        chatForm.reset()
-
-                        showChat()
+                                if (messages.length < 1)
+                                    var chat = logic.createChat(user)
+                                else 
+                                    var chat = logic.retrieveChatWith(user.id)
+    
+                                logic.addMessageToChat(message, chat.id)
+                            } catch (error) {
+                                console.alert(error.message)
+                            }
+    
+                            chatForm.reset()
+    
+                            showChat()
+                        } else {
+                            throw new Error ('Add a text')
+                        }                      
                     }
                 })
 
