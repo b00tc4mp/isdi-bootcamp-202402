@@ -104,14 +104,56 @@
 
                 imageDiv.appendChild(image)
 
+                var commentDiv = document.createElement('div')
+                commentDiv.classList.add('comment-div')
+
+                var editPostForm = document.createElement('form')
+                editPostForm.classList.add('edit-post-form')
+
+                var editPostInput = document.createElement('input')
+                editPostInput.classList.add('edit-post-input')
+                editPostInput.value = post.comment
+
+                var editPostButton = document.createElement('button')
+                editPostButton.classList.add('edit-post-button')
+                editPostButton.style.type = 'submit'
+                editPostButton.innerHTML = 'Edit'  
+                
+                var returnFromEditButton = document.createElement('button')
+                returnFromEditButton.classList.add('return-from-edit-post-button')
+                returnFromEditButton.innerHTML = 'Return'
+
                 var paragraph = document.createElement('p')
+                paragraph.classList.add('comment-p')
                 paragraph.innerText = post.comment
+
+                editPostForm.append(editPostInput, editPostButton, returnFromEditButton)
+
+                returnFromEditButton.onclick = function (){
+                    paragraph.style.display = 'block'
+                    editPostButton.style.display = 'block'
+                    editPostForm.style.display = 'none'
+
+                    editPostForm.reset()
+                }
+
+                editPostForm.onsubmit = function (){
+
+                    editPostForm.style.display = 'none'
+                    paragraph.style.display = 'block'
+                    updatePostButton.style.display= 'block'
+
+                    var newComment = editPostInput.value
+
+                    logic.updatePost(post.id, newComment)
+                }
+
+                commentDiv.append(paragraph, editPostForm)
 
                 var dateTime = document.createElement('time')
                 dateTime.innerText = post.date
 
-
-                article.append(authorHeading, imageDiv, paragraph, dateTime)
+                article.append(authorHeading, imageDiv, commentDiv, dateTime)
 
                 if (post.author.id === logic.getLoggedInUserId()){
                     var postButtonsDiv = document.createElement('div')
@@ -143,7 +185,9 @@
                     }
 
                     updatePostButton.onclick = function () {
-
+                        updatePostButton.style.display = 'none'
+                        paragraph.style.display = 'none'
+                        editPostForm.style.display = 'flex'
                     }
                 }              
                     
@@ -155,14 +199,24 @@
         
     }
 
+    var renderMessagesIntervalId
 
-    function renderUserList () {
+
+    chatButton.onclick = function (){
+        footer.style.display = 'none'
+        postListSection.style.display = 'none'
+        chatButton.style.display = 'none'
+        homeButton.style.display = 'block'
+        userList.style.display = 'block'
+        chatSection.style.display = 'none'
+        chatButton.style.display = 'none'
+
+        userList.innerHTML = ''
+
         try {
             var users = logic.retrieveUsers()
 
-            userList.innerHTML = ''
-
-            users.forEach(function (user) {
+            users.forEach(function (user){
                 var userLi = document.createElement('li')
 
                 if (user.status === 'online'){
@@ -173,10 +227,9 @@
 
                 userLi.innerHTML = user.username
 
-                userLi.addEventListener('click',  function showChat() {
 
-                    var messages = logic.retrieveMessagesWith(user.id)
-                    
+
+                userLi.onclick = function (){
                     chatSection.innerHTML = ''
                     userList.style.display = 'none'
                     chatButton.style.display = ''
@@ -185,25 +238,8 @@
                     chatTitle.classList.add('chat-title')
                     chatTitle.innerHTML = user.username
 
-                    var messageSection = document.createElement('section')
-
-                    
+                    var messageSection = document.createElement('section')                    
                     messageSection.classList.add('message-section')
-                    for (var i = 0; i < messages.length; i++){
-                        var message = messages[i].text
-                        if (!!message){
-                            var messageP = document.createElement('p')
-                            messageP.innerText = message
-
-                            if (messages[i].author === sessionStorage.userId)
-                                messageP.classList.add('chat-message-sent')
-                            else
-                                messageP.classList.add('chat-message-recieved')
-                            
-                            messageSection.appendChild(messageP)
-                        }
-                    }
-
 
                     var chatForm = document.createElement('form')
                     chatForm.classList.add('chat-form')
@@ -227,9 +263,42 @@
                     chatSection.append(chatTitle, messageSection, chatForm)
                     chatSection.style.display = 'flex'
 
+                    function renderMessages() {
+                        try {
+                            var messages = logic.retrieveMessagesWith(user.id)
+
+                            messageSection.innerHTML = ''
+
+                            messages.forEach(function (message){
+                                var messageP = document.createElement('p')
+                                messageP.innerText = message.text
+
+                                if (message.author === sessionStorage.userId)
+                                    messageP.classList.add('chat-message-sent')
+                                else
+                                    messageP.classList.add('chat-message-recieved')
+                                
+                                messageSection.appendChild(messageP)
+                            })
+                        } catch (error) {
+                            console.error(error)
+
+                            alert(error.message)
+                        }
+                    }
+
+                    renderMessages()
+
+                    clearInterval(renderMessagesIntervalId)
+
+                    renderMessagesIntervalId = setInterval(renderMessages, 1000)
+
+
+
                     chatForm.onsubmit = function (){
                         event.preventDefault()
 
+                        var messages = logic.retrieveMessagesWith(user.id)
                         var messageImput = document.getElementById('chat-text-input')
                         var messageText = messageImput.value
 
@@ -243,37 +312,25 @@
                                     var chat = logic.retrieveChatWith(user.id)
     
                                 logic.addMessageToChat(message, chat.id)
-                            } catch (error) {
-                                console.alert(error.message)
-                            }
-    
-                            chatForm.reset()
-    
-                            showChat()
-                        } else {
-                            throw new Error ('Add a text')
-                        }                      
-                    }
-                })
 
+                                chatForm.reset()
+
+                                renderMessages()
+                            } catch (error) {
+                                console.error(error)
+
+                                alert(error.message)
+                            }
+                        }                            
+                    }
+                }
                 userList.appendChild(userLi)
             })
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
-    }
-
-
-    chatButton.onclick = function (){
-        footer.style.display = 'none'
-        postListSection.style.display = 'none'
-        chatButton.style.display = 'none'
-        homeButton.style.display = 'block'
-        userList.style.display = 'block'
-        chatSection.style.display = 'none'
-        chatButton.style.display = 'none'
-
-        renderUserList()
     }
 
 

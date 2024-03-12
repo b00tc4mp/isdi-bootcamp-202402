@@ -266,7 +266,7 @@ var logic = (function () {
         })
 
         chat.messages.push(message)
-
+        
         data.chats.updateOne(chat)
     }
 

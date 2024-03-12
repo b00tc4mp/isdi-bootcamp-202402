@@ -19,9 +19,28 @@ Collection.prototype._loadDocuments = function () {
 }
 
 Collection.prototype._saveDocuments = function (documents) {
+    //validation
+
+    if (!(documents instanceof Array))
+        throw new TypeError ('documents is not an Array')
+
+    documents.forEach(function (document){
+        if(!(document instanceof Object))
+            throw new TypeError('some elements in documents are not a document')
+    })
+
+    //logic
     var documentsJSON = JSON.stringify(documents)
 
     localStorage[this.name] = documentsJSON
+}
+
+Collection.prototype._backup = function (){
+    localStorage[this.name + '_backup'] = localStorage[this.name]
+}
+
+Collection.prototype._restore = function (){
+    localStorage[this.name] = localStorage[this.name + '_backup']
 }
 
 
@@ -29,6 +48,12 @@ Collection.prototype._saveDocuments = function (documents) {
 // CRUD
 
 Collection.prototype.findOne = function (callback) {
+    //validation
+
+    if (!(callback instanceof Function))
+        throw new TypeError ('callback is not a Function')
+
+    //logic
     var documents = this._loadDocuments()
 
     var document = documents.find(callback)
