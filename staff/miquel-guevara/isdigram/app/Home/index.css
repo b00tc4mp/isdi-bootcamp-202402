@@ -10,111 +10,19 @@ main {
 form {
   display: flex;
   flex-direction: column;
-  width: 60vw;
 }
 
-#footer {
+footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  height: 50px;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 10px;
   box-sizing: border-box;
-}
-
-#btn_createPost {
-  background-color: rgb(102, 177, 235);
-  color: white;
-  width: 100px;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
-
-#submit-post {
-  background-color: rgb(102, 177, 235);
-  color: white;
-  width: 100px;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
-
-#btn_logout {
-  background-color: rgb(102, 177, 235);
-  color: white;
-  width: 100px;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
-
-#create-post-cancel-button {
-  background-color: rgb(102, 177, 235);
-  color: white;
-  width: 100px;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
-
-#create-post-button {
-  background-color: rgb(102, 177, 235);
-  color: white;
-  width: 40px;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  justify-content: center;
-  align-items: center;
-}
-
-h1 {
-  text-align: center;
-  color: white;
-  background-color: rgb(57, 144, 211);
-  border-radius: 5px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-h2 {
-  text-align: center;
-  color: white;
-  background-color: rgb(57, 144, 211);
-  border-radius: 5px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: white;
 }
 
 img {
@@ -133,12 +41,45 @@ img {
   padding: 5vw;
 }
 
+#edit-post-section {
+  display: none;
+  margin-bottom: 50px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5vw;
+}
+
 #post-list-section {
   margin-bottom: 50px;
 }
 
 #chat-section {
   display: none;
+}
+
+#chat-panel {
+  display: none;
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-list__item--left {
+  align-self: flex-start;
+}
+
+.message-list__item--right {
+  align-self: flex-end;
+}
+
+.user-list__item {
+  cursor: pointer;
 }
 
 .user-list__item--online::marker {
