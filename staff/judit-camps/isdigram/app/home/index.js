@@ -308,6 +308,7 @@
         formDiv.style.display = 'none'
         changePostTextSection.style.display = 'none'
         postsSection.style.display = 'none'
+        messageButton.style.display = 'none'
 
 
         logoutButton.addEventListener('click', function () {

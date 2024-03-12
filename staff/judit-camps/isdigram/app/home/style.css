@@ -241,6 +241,11 @@ li span {
   border-radius: 16px;
 }
 
+#send-message-form {
+  flex-direction: row;
+  height: 30px;
+}
+
 footer {
   width: 100%;
   position: fixed;
