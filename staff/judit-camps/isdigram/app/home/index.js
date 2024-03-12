@@ -12,22 +12,22 @@
 
 
     var userButton = document.querySelector('#user-button')
-    var logoutButton = document.getElementById('logout-button')
-    var newPostBtn = document.getElementById('new-post-button')
-    var cancelBtn = document.getElementById('cancel-post-button')
+    var newPostBtn = document.querySelector('#new-post-button')
+    var cancelBtn = document.querySelector('#cancel-post-button')
     var homeButton = document.querySelector('#home-button')
     var messageButton = document.querySelector('#message-button')
     var backToChatsButton = document.querySelector('#back-to-chats-btn')
-    var changePasswordButton = document.querySelector('#change-password-button')
+
 
     var chatDiv = document.querySelector('#chat-bubbles-div')
 
 
-    var postForm = document.getElementById('post-form')
-    var formDiv = document.getElementById('form-div')
+    var postForm = document.querySelector('#post-form')
+    var formDiv = document.querySelector('#form-div')
     // var editPostForm = document.querySelector('')
     var sendMessageForm = document.querySelector('#send-message-form')
 
+    var userSection = document.querySelector('#user-section')
     var postsSection = document.querySelector('#posts-section')
     var chatSection = document.querySelector('#chat-section')
     var userList = document.querySelector('#user-list')
@@ -44,29 +44,37 @@
     } catch (error) {
         console.error(error)
         alert(error.message)
+
+        try {
+            logic.logoutUser()
+        } catch (error) {
+            logic.cleanUpLoggedInUser()
+        }
+
+        location.href = '../login'
     }
 
-    homeButton.addEventListener('click', function () {
-        postsSection.style.display = ''
+    homeButton.onclick = function () {
         chatSection.style.display = 'none'
+        userSection.style.display = 'none'
+
+        postsSection.style.display = ''
         newPostBtn.style.display = ''
         messageButton.style.display = ''
-        logoutButton.style.display = 'none'
-        changePasswordButton.style.display = 'none'
 
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         })
-    })
+    }
 
-    newPostBtn.addEventListener('click', function (event) {
+    newPostBtn.onclick = function (event) {
         event.preventDefault()
 
         formDiv.style.display = ''
-    })
+    }
 
-    postForm.addEventListener('submit', function (event) {
+    postForm.onsubmit = function (event) {
         event.preventDefault()
         // call function to save form info into new array of posts in local storage
 
@@ -91,16 +99,16 @@
         var imageElem = document.createElement('img')
         imageElem.src = image
 
-    })
+    }
 
-    cancelBtn.addEventListener('click', function () {
+    cancelBtn.onclick = function () {
         formDiv.style.display = 'none'
         newPostBtn.style.display = ''
-    })
+    }
 
-    cancelCaptionChangeButton.addEventListener('click', function () {
+    cancelCaptionChangeButton.onclick = function () {
         changePostTextSection.style.display = 'none'
-    })
+    }
 
     function renderPost() {
         try {
@@ -148,7 +156,7 @@
 
                     article.append(postHeading, image, caption, dateTime)
 
-                    deletePostButton.addEventListener('click', function () {
+                    deletePostButton.onclick = function () {
                         if (confirm('delete post?'))
                             try {
                                 logic.removePost(post.id)
@@ -157,13 +165,14 @@
                                 console.error(error)
                                 alert(error.message)
                             }
-                    })
+                    }
 
-                    editPostButton.addEventListener('click', function () {
+
+                    editPostButton.onclick = function () {
                         changePostTextSection.style.display = 'block'
                         var changeCaptionButton = document.querySelector('#change-caption-button')
 
-                        changeCaptionButton.addEventListener('click', function () {
+                        changeCaptionButton.onclick = function () {
                             try {
                                 var newCaptionInput = document.querySelector('#new-caption')
                                 var newCaption = newCaptionInput.value
@@ -176,8 +185,8 @@
                                 alert(error.message)
                             }
 
-                        })
-                    })
+                        }
+                    }
 
                 } else {
                     article.append(authorHeading, image, caption, dateTime)
@@ -247,10 +256,10 @@
                     item.classList.add('user-list__item--offline')
 
                 item.innerText = user.username
-                userList.appendChild(item)
+
 
                 item.onclick = function () {
-                    messageSection.style.display = 'block'
+                    messageSection.style.display = 'flex'
                     footer.style.display = 'none'
                     console.log('clicked ' + user.username + ' ' + user.id)
                     userList.style.display = 'none'
@@ -281,6 +290,7 @@
                         }
                     }
                 }
+                userList.appendChild(item)
             })
         } catch (error) {
             console.log(error)
@@ -295,13 +305,10 @@
         sendMessageForm.style.display = 'none'
         chatTitle.style.display = 'none'
         backToChatsButton.style.display = 'none'
-
     }
 
 
-    userButton.addEventListener('click', function () {
-        changePasswordButton.style.display = 'flex'
-        logoutButton.style.display = 'flex'
+    userButton.onclick = function () {
         newPostBtn.style.display = 'none'
         chatSection.style.display = 'none'
         messageSection.style.display = 'none'
@@ -310,14 +317,19 @@
         postsSection.style.display = 'none'
         messageButton.style.display = 'none'
 
+        userSection.style.display = 'flex'
 
-        logoutButton.addEventListener('click', function () {
+        var changePasswordButton = userSection.querySelector('#change-password-button')
+        var logoutButton = userSection.querySelector('#logout-button')
+
+        changePasswordButton.style.display = 'flex'
+        logoutButton.style.display = 'flex'
+
+        logoutButton.onclick = function () {
             // calling the function to logout the user and going back to the login page
             logic.logoutUser()
 
             location.href = '../login'
-        })
-    })
-
-
+        }
+    }
 })()

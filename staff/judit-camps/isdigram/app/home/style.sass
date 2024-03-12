@@ -1,5 +1,6 @@
 @use '../style.sass'
 
+// header
 header
     z-index: 1
     top: 0
@@ -12,6 +13,7 @@ header
     padding: 0 8px
     box-sizing: border-box
 
+// user section
 #logout-button
     display: none
 
@@ -89,10 +91,21 @@ img
     margin-top: 0
     margin-bottom: 0
 
+.caption-div
+    display: flex
+    flex-direction: row
+
 time
     font-size: 12px
     color: grey
 
+#change-post-text
+    background-color: #d6bbbb
+    display: none
+    position: fixed
+    top: 25%
+
+// CHAT
 #chat-section
     margin: 0
     text-align: left
@@ -109,33 +122,38 @@ li span
 .user-list__item--offline::marker
     color: red
 
-#change-post-text
-    background-color: #d6bbbb
-    display: none
-    position: fixed
-    top: 25%
+#message-section
+    display: flex
+    flex-direction: column
 
 #chat-bubbles-div
     padding: 10px
+    display: flex
+    flex-direction: column
+    width: 90%
 
 .text__right
+    display: flex
     margin: 8px
     padding: 8px
     border-radius: 16px
-    text-align: right
+    align-self: flex-end
     background-color: #b3d9e4
+    width: fit-content
 
 .text__left
-    text-align: left
     margin: 8px
     padding: 8px
     background-color: #e2e2e2
     border-radius: 16px
+    width: fit-content
+    align-self: flex-start
 
 #send-message-form
     flex-direction: row
     height: 30px
 
+// FOOTER
 footer
     width: 100%
     position: fixed

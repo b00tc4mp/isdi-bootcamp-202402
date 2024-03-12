@@ -101,9 +101,11 @@ var logic = (function () {
         })
 
         users.sort(function (a, b) {
-            return a.username < b.username ? -1 : 1
-        }).sort(function (a, b) {
             return a.status > b.status ? -1 : 1
+
+        })
+        users.sort(function (a, b) {
+            return a.username < b.username ? -1 : 1
         })
 
         return users
@@ -117,7 +119,7 @@ var logic = (function () {
 
         if (!user) throw new Error('wrong credentials')
 
-        user.status = 'ofline'
+        user.status = 'offline'
 
         data.users.updateOne(user)
 
@@ -130,6 +132,10 @@ var logic = (function () {
 
     function isUserLoggedIn() {
         return !!sessionStorage.userId
+    }
+
+    function cleanUpLoggedInUser() {
+        delete sessionStorage.userId
     }
 
     function savePostInfo(image, caption) {
@@ -235,6 +241,7 @@ var logic = (function () {
         getLoggedInUser: getLoggedInUser,
         retrieveUsers: retrieveUsers,
         isUserLoggedIn: isUserLoggedIn,
+        cleanUpLoggedInUser: cleanUpLoggedInUser,
 
         savePostInfo: savePostInfo,
         retrievePostsLatestFirst: retrievePostsLatestFirst,
