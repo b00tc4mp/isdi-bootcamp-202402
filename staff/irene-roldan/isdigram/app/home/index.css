@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background: #F5F5F5;
 }
 
 main {
@@ -14,11 +15,12 @@ form {
 footer {
   position: fixed;
   bottom: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   padding: 10px;
   box-sizing: border-box;
-  width: 100%;
+  background-color: rgba(248, 111, 47, 0.7607843137);
 }
 
 img {
@@ -27,11 +29,99 @@ img {
 
 #create-post-section {
   display: none;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(173, 216, 230, 0.537254902);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5vw;
 }
 
 #post-list-section {
   margin-bottom: 50px;
+}
+
+#chat-section {
+  display: none;
+}
+
+.user-list__item--online::marker {
+  color: limegreen;
+}
+
+.user-list__item--offline::marker {
+  color: tomato;
+}
+
+#home-button {
+  display: none;
+}
+
+#menu-nav {
+  display: flex;
+}
+
+#create-post-button {
+  background: white;
+  border-radius: 2px;
+  width: 35px;
+  height: 35px;
+  border: none;
+}
+
+h2 {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  text-align: center;
+}
+
+label {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: black;
+  margin: 5px;
+}
+
+#create-post-cancel-button {
+  background: #1877f2;
+  border: 2px;
+  border-radius: 2px;
+  box-shadow: 5px 5px white;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: black;
+  margin: 5px;
+  width: 60px;
+}
+
+#add-post {
+  background: #1877f2;
+  border: 2px;
+  border-radius: 2px;
+  box-shadow: 5px 5px white;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: black;
+  margin: 5px;
+  width: 60px;
+}
+
+#modifyText {
+  display: none;
+  margin-bottom: 40px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(173, 216, 230, 0.537254902);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5vw;
 }
 
 /*# sourceMappingURL=index.css.map */

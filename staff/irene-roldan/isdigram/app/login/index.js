@@ -1,4 +1,5 @@
-//presentation
+//presentation layer
+
 (function() {
     
     if(logic.isUserLoggedIn()) {

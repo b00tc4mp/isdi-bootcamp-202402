@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background: #F5F5F5;
 }
 
 main {
@@ -11,5 +12,4 @@ form {
   flex-direction: column;
 }
 
-
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=index.css.map */

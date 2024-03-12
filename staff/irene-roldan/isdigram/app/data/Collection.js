@@ -1,0 +1,79 @@
+// helper
+function Collection(name) {
+    this.name = name
+}
+
+// helpers
+Collection.prototype._generateId = function () {
+    return (+((parseInt(Math.random() * 10 ** 17)).toString())).toString(36)
+}
+
+Collection.prototype._loadDocuments = function () {
+    var documentsJSON = localStorage[this.name]
+
+    var documents = JSON.parse(documentsJSON || '[]')
+
+    return documents 
+}
+
+Collection.prototype._saveDocuments = function (params) {
+    var documentsJSON = JSON.stringify(documents)
+    
+    localStorage[this.name] = documentsJSON
+}
+
+//CRUD
+Collection.prototype._findOne = function (callback) {
+    var documents = this._loadDocuments()
+
+    var document  = documents.find(callback)
+
+    return document
+}
+
+Collection.prototype._insertOne = function (document) {
+    var documents = this._loadDocuments()
+
+    document.id = this._generateId()
+
+    documents.push(document)
+
+    this._saveDocuments(documents)
+}
+
+Collection.prototype._updatOne = function (document) {
+    var documents = this._loadDocuments()
+
+    var index = documents.findIndex(function (document2) {
+        return document2.id === document.id
+    })
+
+    if (index > - 1) {
+        documents.splice(index, 1, document)
+
+        this._saveDocuments(documents)
+    }
+}
+
+Collection.prototype._deleteOne = function (callback) {
+    
+    var documents = this._loadDocuments()
+
+    var index = documents.findIndex(callback)
+
+    documents.splice(index, 1)
+
+    this._saveDocuments(documents)
+}
+
+Collection.prototype._getAll = function () {
+    var documents = this._loadDocuments()
+
+    return documents
+}
+
+Collection.prototype._printAll = function () {
+    var documents = this._loadDocuments()
+
+    console.table(document)
+}
