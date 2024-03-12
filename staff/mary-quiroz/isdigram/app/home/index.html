@@ -6,15 +6,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="index.css">
     </head>
 
     <body>
         <main>
             <h1>Hello, World!</h1>
-            <button id="logout-button">Logout</button>
+            <nav id="menu-nav">
+                <button id="home-button">🏚️</button>
+                <button id="chat-button">💬</button>
+                <button id="logout-button">🚪</button>
+            </nav>
 
             <section id="post-list-section"></section>
+
+            <section id="chat-section">
+                <ul id="user-list"></ul>
+            </section>
 
             <section id="create-post-section">
                 <h2>Create Post</h2>
@@ -31,15 +39,18 @@
 
                 <button id="create-post-cancel-button">Cancel</button>
             </section>
-
         </main>
-        <footer>
+
+        <footer id="footer">
             <button id="create-post-button">+</button>
         </footer>
 
-        <script src="data.js"></script>
-        <script src="logic.js"></script>
-        <script src="home.js"></script>
+        <script src="../data/Collection.js"></script>
+        <script src="../data/index.js"></script>
+
+        <script src="../logic.js"></script>
+
+        <script src="index.js"></script>
     </body>
 
 </html>
