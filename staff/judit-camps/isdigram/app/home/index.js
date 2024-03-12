@@ -11,13 +11,15 @@
     var chatTitle = document.querySelector('#chat-user-title')
 
 
-    var userButton = document.getElementById('#user-button')
+    var userButton = document.querySelector('#user-button')
     var logoutButton = document.getElementById('logout-button')
     var newPostBtn = document.getElementById('new-post-button')
     var cancelBtn = document.getElementById('cancel-post-button')
     var homeButton = document.querySelector('#home-button')
     var messageButton = document.querySelector('#message-button')
     var backToChatsButton = document.querySelector('#back-to-chats-btn')
+    var changePasswordButton = document.querySelector('#change-password-button')
+
     var chatDiv = document.querySelector('#chat-bubbles-div')
 
 
@@ -49,6 +51,8 @@
         chatSection.style.display = 'none'
         newPostBtn.style.display = ''
         messageButton.style.display = ''
+        logoutButton.style.display = 'none'
+        changePasswordButton.style.display = 'none'
 
         window.scrollTo({
             top: 0,
@@ -293,10 +297,18 @@
         backToChatsButton.style.display = 'none'
 
     }
+
+
     userButton.addEventListener('click', function () {
-        console.log('user page')
-        newPostBtn.style.display = 'none'
+        changePasswordButton.style.display = 'flex'
         logoutButton.style.display = 'flex'
+        newPostBtn.style.display = 'none'
+        chatSection.style.display = 'none'
+        messageSection.style.display = 'none'
+        formDiv.style.display = 'none'
+        changePostTextSection.style.display = 'none'
+        postsSection.style.display = 'none'
+
 
         logoutButton.addEventListener('click', function () {
             // calling the function to logout the user and going back to the login page
