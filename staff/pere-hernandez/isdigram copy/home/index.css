@@ -17,6 +17,8 @@ header {
     max-width: 4vw;
 }
 
+
+
 #logo-title{
     font-size: 3vh;
     padding: 0;
@@ -24,7 +26,7 @@ header {
     text-shadow: 0 0 0;
 }
 
-#logout-button {
+#logout {
     height: 50%;
     border: 0;
     margin-right: 2vw;
@@ -37,7 +39,7 @@ h2{
     padding-left: 2vw;
 }
 
-#create-post-img {
+#post-img {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,12 +50,12 @@ h2{
     font-size: 4vh;
 }
 
-#create-post-button {
+#create-post {
     background: none;
     border: 0;
 }
 
-#photo-div{
+.image-div{
     align-self: center;
     display: flex;
     align-content: center;
