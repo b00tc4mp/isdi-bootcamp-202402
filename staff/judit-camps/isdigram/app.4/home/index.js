@@ -10,7 +10,6 @@
     var homeTitle = document.querySelector('#home-title')
     var chatTitle = document.querySelector('#chat-user-title')
 
-
     var userButton = document.querySelector('#user-button')
     var newPostBtn = document.querySelector('#new-post-button')
     var cancelBtn = document.querySelector('#cancel-post-button')
@@ -18,12 +17,10 @@
     var messageButton = document.querySelector('#message-button')
     var backToChatsButton = document.querySelector('#back-to-chats-btn')
 
-
     var chatDiv = document.querySelector('#chat-bubbles-div')
 
-
-    var postForm = document.querySelector('#post-form')
     var formDiv = document.querySelector('#form-div')
+    var postForm = document.querySelector('#post-form')
     // var editPostForm = document.querySelector('')
     var sendMessageForm = document.querySelector('#send-message-form')
 
@@ -37,13 +34,17 @@
     var cancelCaptionChangeButton = document.querySelector('#cancel-caption-change-button')
 
 
+    function showFeedback(error) {
+        console.error(error)
+        alert(error.message)
+    }
+
     try {
         var user = logic.getUser()
         homeTitle.innerText = 'Hello ' + user.name + '!'
 
     } catch (error) {
-        console.error(error)
-        alert(error.message)
+        showFeedback(error)
 
         try {
             logic.logoutUser()
@@ -53,6 +54,34 @@
 
         location.href = '../login'
     }
+
+
+    // USER SECTION -> LOGOUT & CHANGE PASSWORD
+    userButton.onclick = function () {
+        newPostBtn.style.display = 'none'
+        chatSection.style.display = 'none'
+        messageSection.style.display = 'none'
+        formDiv.style.display = 'none'
+        changePostTextSection.style.display = 'none'
+        postsSection.style.display = 'none'
+        messageButton.style.display = 'none'
+
+        userSection.style.display = 'flex'
+
+        var changePasswordButton = userSection.querySelector('#change-password-button')
+        var logoutButton = userSection.querySelector('#logout-button')
+
+        changePasswordButton.style.display = 'flex'
+        logoutButton.style.display = 'flex'
+
+        logoutButton.onclick = function () {
+            // calling the function to logout the user and going back to the login page
+            logic.logoutUser()
+
+            location.href = '../login'
+        }
+    }
+
 
     homeButton.onclick = function () {
         chatSection.style.display = 'none'
@@ -68,12 +97,14 @@
         })
     }
 
+    // SHOW POST FORM
     newPostBtn.onclick = function (event) {
         event.preventDefault()
 
         formDiv.style.display = ''
     }
 
+    // SUBMIT POST FORM
     postForm.onsubmit = function (event) {
         event.preventDefault()
         // call function to save form info into new array of posts in local storage
@@ -88,11 +119,10 @@
             logic.savePostInfo(image, caption)
             postForm.reset()
             formDiv.style.display = 'none'
-            renderPost()
+            renderPosts()
 
         } catch (error) {
-            console.error(error)
-            alert(error.message)
+            showFeedback(error)
         }
 
         newPostBtn.style.display = ''
@@ -101,6 +131,7 @@
 
     }
 
+    // CANCEL POST FORM
     cancelBtn.onclick = function () {
         formDiv.style.display = 'none'
         newPostBtn.style.display = ''
@@ -110,7 +141,7 @@
         changePostTextSection.style.display = 'none'
     }
 
-    function renderPost() {
+    function renderPosts() {
         try {
             formDiv.style.display = 'none'
             chatSection.style.display = 'none'
@@ -160,10 +191,9 @@
                         if (confirm('delete post?'))
                             try {
                                 logic.removePost(post.id)
-                                renderPost()
+                                renderPosts()
                             } catch (error) {
-                                console.error(error)
-                                alert(error.message)
+                                showFeedback(error)
                             }
                     }
 
@@ -179,7 +209,7 @@
 
                                 logic.editPostText(post.id, newCaption)
 
-                                renderPost()
+                                renderPosts()
                             } catch (error) {
                                 console.log(error)
                                 alert(error.message)
@@ -204,32 +234,16 @@
             alert(error.message)
         }
     }
-    renderPost()
+    renderPosts()
 
+    function renderPost() {
 
-    function renderMessages(userId) {
-        chatDiv.innerHTML = ''
-        var messages = logic.retrieveMessagesWith(userId)
-
-        try {
-            messages.forEach(function (message) {
-                var textBubble = document.createElement('div')
-                textBubble.innerText = message.text
-                if (message.from === sessionStorage.userId)
-                    textBubble.classList.add('text__right')
-                else
-                    textBubble.classList.add('text__left')
-
-                chatDiv.appendChild(textBubble)
-                chatDiv.id = messages.id
-            })
-
-
-        } catch (error) {
-            console.log(error)
-            alert(error.message)
-        }
     }
+
+
+
+
+
 
     messageButton.onclick = function () {
         sendMessageForm.style.display = 'none'
@@ -240,62 +254,8 @@
 
         chatSection.style.display = ''
 
-        var listUsers = document.querySelector('#user-list')
+        renderUsers()
 
-        listUsers.innerHTML = ''
-
-        try {
-            var users = logic.retrieveUsers()
-
-            users.forEach(function (user) {
-                var item = document.createElement('li')
-
-                if (user.status === 'online')
-                    item.classList.add('user-list__item--online')
-                else if (user.status === 'offline')
-                    item.classList.add('user-list__item--offline')
-
-                item.innerText = user.username
-
-
-                item.onclick = function () {
-                    messageSection.style.display = 'flex'
-                    footer.style.display = 'none'
-                    console.log('clicked ' + user.username + ' ' + user.id)
-                    userList.style.display = 'none'
-
-                    backToChatsButton.style.display = 'flex'
-                    chatTitle.style.display = 'flex'
-                    chatTitle.innerText = user.username
-                    sendMessageForm.style.display = 'flex'
-
-                    var hasChat = logic.retrieveMessagesWith(user.id)
-                    if (!!hasChat)
-                        renderMessages(user.id)
-
-                    sendMessageForm.onsubmit = function (event) {
-                        event.preventDefault()
-                        try {
-                            var textInput = document.querySelector('#input-text')
-                            var text = textInput.value
-
-                            logic.sendMessageTo(user.id, text)
-                            sendMessageForm.reset()
-
-                            renderMessages(user.id)
-
-                        } catch (error) {
-                            console.error(error)
-                            alert(error.message)
-                        }
-                    }
-                }
-                userList.appendChild(item)
-            })
-        } catch (error) {
-            console.log(error)
-            alert(error.message)
-        }
     }
 
     backToChatsButton.onclick = function () {
@@ -308,28 +268,93 @@
     }
 
 
-    userButton.onclick = function () {
-        newPostBtn.style.display = 'none'
-        chatSection.style.display = 'none'
-        messageSection.style.display = 'none'
-        formDiv.style.display = 'none'
-        changePostTextSection.style.display = 'none'
-        postsSection.style.display = 'none'
-        messageButton.style.display = 'none'
+    function renderUsers() {
+        var listUsers = document.querySelector('#user-list')
 
-        userSection.style.display = 'flex'
+        listUsers.innerHTML = ''
 
-        var changePasswordButton = userSection.querySelector('#change-password-button')
-        var logoutButton = userSection.querySelector('#logout-button')
+        try {
+            var users = logic.retrieveUsers()
 
-        changePasswordButton.style.display = 'flex'
-        logoutButton.style.display = 'flex'
-
-        logoutButton.onclick = function () {
-            // calling the function to logout the user and going back to the login page
-            logic.logoutUser()
-
-            location.href = '../login'
+            users.forEach(renderUser)
+        } catch (error) {
+            showFeedback(error)
         }
     }
+
+
+    function renderUser(user) {
+        var item = document.createElement('li')
+
+        if (user.status === 'online')
+            item.classList.add('user-list__item--online')
+        else if (user.status === 'offline')
+            item.classList.add('user-list__item--offline')
+
+        item.innerText = user.username
+
+        item.onclick = function () {
+            messageSection.style.display = 'flex'
+            footer.style.display = 'none'
+            console.log('clicked ' + user.username + ' ' + user.id)
+            userList.style.display = 'none'
+
+            backToChatsButton.style.display = 'flex'
+            chatTitle.style.display = 'flex'
+            chatTitle.innerText = user.username
+            sendMessageForm.style.display = 'flex'
+
+            var hasChat = logic.retrieveMessagesWith(user.id)
+            if (!!hasChat)
+
+                renderMessages(user.id)
+
+            clearInterval(renderMessagesIntervalId)
+
+            renderMessagesIntervalId = setInterval(function () {
+                renderMessages(user)
+            }, 1000)
+
+            sendMessageForm.onsubmit = function (event) {
+                event.preventDefault()
+
+                var textInput = document.querySelector('#input-text')
+                var text = textInput.value
+
+                try {
+                    logic.sendMessageTo(user.id, text)
+                    sendMessageForm.reset()
+
+                    renderMessages(user.id)
+
+                } catch (error) {
+                    showFeedback(error)
+                }
+            }
+        }
+        userList.appendChild(item)
+    }
+
+    function renderMessages(userId) {
+        chatDiv.innerHTML = ''
+        var messages = logic.retrieveMessagesWith(userId)
+
+        try {
+            messages.forEach(renderMessage)
+        } catch (error) {
+            showFeedback(error)
+        }
+    }
+
+    function renderMessage(message) {
+        var textBubble = document.createElement('div')
+        textBubble.innerText = message.text
+        if (message.from === sessionStorage.userId)
+            textBubble.classList.add('text__right')
+        else
+            textBubble.classList.add('text__left')
+
+        chatDiv.appendChild(textBubble)
+    }
+
 })()
