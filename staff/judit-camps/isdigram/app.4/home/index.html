@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isdigram</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <h3>Isdigram</h3>
+        <button id="message-button">messages</button>
+    </header>
+    <main>
+        <h1 id="home-title">Hello World!</h1>
+
+        <section id="user-section">
+            <button id="change-password-button">change password</button>
+            <button id="logout-button">Log out</button>
+        </section>
+
+        <section id="chat-section">
+            <h1>Your chats</h1>
+            <button id="back-to-chats-btn" style="display: none;">back to chats</button>
+            <ul id="user-list"></ul>
+
+            <section id="message-section">
+                <h2 id="chat-user-title"></h2>
+
+                <div id="chat-bubbles-div">
+                </div>
+                <form action="" id="send-message-form">
+                    <input type="text" id="input-text">
+                    <button id="send-message-button">send</button>
+                </form>
+            </section>
+        </section>
+
+        <section id="posts-section"></section>
+
+        <section id="form-div">
+            <p>Create a new post!</p>
+            <form id="post-form" action="">
+
+                <label for="image">image</label>
+                <input type="url" name="" id="image">
+
+                <label for="caption">caption</label>
+                <input type="text" name="" id="caption">
+
+                <button id="post-button">post</button>
+            </form>
+            <button id="cancel-post-button">cancel</button>
+        </section>
+
+        <section id="change-post-text">
+            <form id="change-caption-form" action="">
+                <label for="text">new caption</label>
+                <input type="text" id="new-caption">
+
+                <button id="change-caption-button">change caption</button>
+            </form>
+            <button id="cancel-caption-change-button">cancel</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <button id="home-button">home</button>
+        <button id="new-post-button">+</button>
+        <button id="user-button">user</button>
+    </footer>
+
+    <script src="../data/Collection.js"></script>
+    <script src="../data/index.js"></script>
+
+    <script src="../logic.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
