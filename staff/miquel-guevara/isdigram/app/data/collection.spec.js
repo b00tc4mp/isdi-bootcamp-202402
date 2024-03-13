@@ -227,31 +227,70 @@ describe("Collection", function () {
         expect(document.brand).toBe("nissan");
         expect(document.model).toBe("qashqai");
       });
-    });
 
-    describe("updateOne", function () {
-      it("should upatDate a document", function () {
-        localStorage.cars =
-          '[{"brand":"porsche","model":"911","id":"1"},{"brand":"fiat","model":"500","id":"2"}]';
+      it("should give error on an empty document", function () {});
 
-        var cars = new Collection("cars");
+      describe("updateOne", function () {
+        it("should upatDate a document", function () {
+          localStorage.cars =
+            '[{"brand":"porsche","model":"911","id":"1"},{"brand":"fiat","model":"500","id":"2"}]';
 
-        var car = cars.updateOne({ brand: "opel", model: "corsa", id: "2" });
+          var cars = new Collection("cars");
 
-        var documents = cars._loadDocuments();
+          var car = cars.updateOne({ brand: "opel", model: "corsa", id: "2" });
 
-        expect(documents).toBeInstanceOf(Array);
-        expect(documents.length).toBe(2);
+          var documents = cars._loadDocuments();
 
-        var document = documents[0];
-        expect(document).toBeInstanceOf(Object);
-        expect(document.brand).toBe("porsche");
-        expect(document.model).toBe("911");
+          expect(documents).toBeInstanceOf(Array);
+          expect(documents.length).toBe(2);
 
-        var document = documents[1];
+          var document = documents[0];
+          expect(document).toBeInstanceOf(Object);
+          expect(document.brand).toBe("porsche");
+          expect(document.model).toBe("911");
 
-        expect(document.brand).toBe("opel");
-        expect(document.model).toBe("corsa");
+          var document = documents[1];
+
+          expect(document.brand).toBe("opel");
+          expect(document.model).toBe("corsa");
+        });
+      });
+
+      describe("deleteOne", function () {
+        it("should delete a document", function () {
+          localStorage.cars =
+            '[{"brand":"porsche","model":"911"},{"brand":"fiat","model":"500"}]';
+
+          var cars = new Collection("cars");
+
+          var car = cars.deleteOne(function (car) {
+            return car.brand === "fiat";
+          });
+
+          var documents = cars._loadDocuments();
+
+          expect(documents).toBeInstanceOf(Array);
+          expect(documents.length).toBe(1);
+
+          var document = documents[0];
+          expect(document.brand).toBe("porsche");
+          expect(document.model).toBe("911");
+        });
+      });
+
+      describe("getAll", function () {
+        it("should return array if localStorage is empty ", function () {
+          localStorage.cars = "[]";
+
+          var cars = new Collection("cars");
+
+          var car = cars.getAll({});
+
+          var documents = cars._loadDocuments();
+
+          expect(documents).toBeInstanceOf(Object);
+          expect(documents.length).toBe(0);
+        });
       });
     });
   });
