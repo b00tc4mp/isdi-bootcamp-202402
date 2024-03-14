@@ -92,10 +92,6 @@ header {
   box-sizing: border-box;
 }
 
-#logout-button {
-  display: none;
-}
-
 #change-password-button {
   display: none;
 }
@@ -103,13 +99,6 @@ header {
 label {
   font-size: small;
   margin-top: 8px;
-}
-
-button {
-  background-color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 20px;
 }
 
 .form-header {
