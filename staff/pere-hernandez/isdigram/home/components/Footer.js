@@ -10,6 +10,12 @@ function Footer (){
 
     createPostButton.add(createPostImage)
 
+    createPostButton.onClick(function (){
+        var postFormSection = new PostFormSection
+
+        home.add(postFormSection)
+    })
+
     this.add(createPostButton)
 }
 

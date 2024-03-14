@@ -22,6 +22,7 @@ function Post (post){
 
     if (post.author.id === logic.getLoggedInUserId()){
         var postButtonsBar = new PostButtonsBar
+        postButtonsBar.setId('post-buttons-bar')
 
         this.add(postButtonsBar)
     }
