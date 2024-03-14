@@ -72,7 +72,7 @@ p {
     padding-left: 2vw;
 }
 
-.delete-post-button, .update-post-button {
+#delete-post-button, #edit-post-button {
     margin-top: 1vh ;
 }
 
@@ -238,7 +238,7 @@ li {
     width: 100%;
 }
 
-.post-buttons-bar {
+#post-buttons-bar {
     box-sizing: border-box;
     display: flex;
     width: 100%;

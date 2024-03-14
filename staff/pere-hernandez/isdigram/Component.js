@@ -15,7 +15,7 @@ Component.prototype.assembleTo = function (element) {
 Component.prototype.add = function () {
     //validation
 
-    [].forEach.call(arguments, function (child){
+    Array.prototype.forEach.call(arguments, function (child){
 
         if (!(child instanceof Component))
             throw new TypeError ('child is not a Component')
