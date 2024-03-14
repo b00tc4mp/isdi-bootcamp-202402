@@ -217,5 +217,25 @@ describe("logic", function () {
     });
   });
 
-  // TODO test all methods
+  describe("retrieveUser", function () {
+    it("is successful with user recovery", function () {
+      db.users.deleteOne({ username: "peperoni" });
+
+      db.users.insertOne({
+        name: "Pepe Roni",
+        birthdate: "2000-01-01",
+        email: "pepe@roni.com",
+        username: "peperoni",
+        password: "123qwe123",
+      });
+
+      var user = logic.retrieveUser("peperoni");
+
+      expect(user.name).toBe("Pepe Roni");
+      expect(user.birthdate).toBe("2000-01-01");
+      expect(user.email).toBe("pepe@roni.com");
+      expect(user.username).toBe("peperoni");
+      expect(user.password).toBe("123qwe123");
+    });
+  });
 });
