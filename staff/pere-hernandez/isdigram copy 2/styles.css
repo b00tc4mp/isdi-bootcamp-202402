@@ -1,0 +1,93 @@
+body, form, #interactive-content {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-size: 2vh;
+    font-family: 'Open-sans', sans-serif;
+    overflow: scroll;
+}
+
+body {
+    height: 100vh;
+}
+
+h1{
+    font-size: 7vh;
+    margin-top: 0;
+}
+
+input {
+    background-color: #AFCDEF;
+    border: none;
+    width: 100%;
+    height: 4vh;
+    margin-bottom: 2vh;
+    box-sizing: border-box;
+}
+
+#title {
+    margin-top: 2vh;
+}
+
+#title-logo {
+    margin-bottom: 0;
+    max-width: 5vh;
+}
+
+#newPostForm {
+    width: 80%;
+}
+
+#return {
+    margin-bottom: 7vh;
+    max-width: 20vw;
+}
+
+
+#header-title{
+    font-size: 3vh;
+    padding: 0;
+    margin: 0;
+    text-shadow: 0 0 0;
+}
+
+#header-img {
+    max-width: 4vw;
+}
+
+h2 {
+    font-size: 7vw;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+article {
+    margin-bottom: 5vh;
+}
+
+img {
+    max-width: 100%;
+}
+
+#post-list-section {
+    display: flex;
+    flex-direction: column;
+}
+
+#post-form-section {
+    display: none;
+}
+
+.delete-post-button {
+    display: flex;
+    justify-self: flex-end;
+    margin-top: 2vh;
+}
+
+h3{
+    padding-left: 2vw;
+}

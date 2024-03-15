@@ -1,9 +1,9 @@
-import Collection from "./Collection.mjs"
+import Collection from "./Collection"
 
 describe('Collection', () => {
     describe('constructor', () => {
         it('creates a collection', () => {
-            const cars = new Collection('cars')
+            var cars = new Collection('cars')
 
             expect(cars).toBeInstanceOf(Collection)
         })
@@ -114,7 +114,7 @@ describe('Collection', () => {
                 delete (localStorage.cars)
             })
 
-            it('should fail on documents being an Array of non-documents',  () => {
+            it('should fail on documents being an Array of non-documents', function (){
                 delete (localStorage.cars)
 
                 var documents = ['I am not an Object', 123]
@@ -196,7 +196,7 @@ describe('Collection', () => {
 
                 var cars = new Collection('cars')
 
-                var car = cars.findOne((car) => {
+                var car = cars.findOne(function (car){
                     return car.brand === 'Renault'
                 })
 
@@ -217,7 +217,7 @@ describe('Collection', () => {
 
                 var cars = new Collection('cars')
 
-                var car = cars.findOne( (car) => {
+                var car = cars.findOne(function (car){
                     return car.brand === 'Fiat'
                 })
 
@@ -228,7 +228,7 @@ describe('Collection', () => {
                 delete (localStorage.cars_backup)
             })
 
-            it('should fail on callback not a Function', () => {
+            it('should fail on callback not a function', () => {
                 delete (localStorage.cars)
 
                 localStorage.cars = '[{"brand":"Renault","model":"Megane"},{"brand":"Peugeot","model":"208"}]'
@@ -284,7 +284,7 @@ describe('Collection', () => {
             })
 
 
-            it('should not work on non-Object document', () =>  {
+            it('should not work on non-Object document', () => {
                 delete (localStorage.cars)
 
                 localStorage.cars = '[{"brand":"Renault","model":"Megane"},{"brand":"Peugeot","model":"208"}]'
@@ -321,8 +321,8 @@ describe('Collection', () => {
 
 
 
-        describe('updateOne', () =>{
-            it('should find a document in its Collection and change its values', () =>{
+        describe('updateOne', () => {
+            it('should find a document in its Collection and change its values', () => {
                 delete (localStorage.cars)
 
                 localStorage.cars = '[{"brand":"Renault","model":"Megane","id":"1"},{"brand":"Peugeot","model":"208","id":"2"}]'
@@ -350,7 +350,7 @@ describe('Collection', () => {
             })
 
 
-            it('should fail on no matches', () =>{
+            it('should fail on no matches', () => {
                 delete (localStorage.cars)
 
                 localStorage.cars = '[{"brand":"Renault","model":"Megane"},{"brand":"Peugeot","model":"208"}]'
@@ -376,7 +376,7 @@ describe('Collection', () => {
             })
 
 
-            it('should fail on non-Object document', () =>{
+            it('should fail on non-Object document', () => {
                 delete (localStorage.cars)
 
                 localStorage.cars = '[{"brand":"Renault","model":"Megane","id":"1"},{"brand":"Peugeot","model":"208","id":"2"}]'
@@ -412,7 +412,7 @@ describe('Collection', () => {
                 delete (localStorage.cars)
             })
 
-            it ('should fail on non-string document.id', () =>{
+            it ('should fail on non-string document.id', () => {
                 delete (localStorage.cars)
 
                 localStorage.cars = '[{"brand":"Renault","model":"Megane","id":"1"},{"brand":"Peugeot","model":"208","id":"2"}]'
@@ -451,8 +451,8 @@ describe('Collection', () => {
 
 
 
-        describe('deleteOne', () =>{
-            it('should delete document from Collection', () =>{
+        describe('deleteOne', () => {
+            it('should delete document from Collection', () => {
                 delete (localStorage.cars)
 
                 localStorage.cars = '[{"brand":"Renault","model":"Megane","id":"1"},{"brand":"Peugeot","model":"208","id":"2"}]'
@@ -478,7 +478,7 @@ describe('Collection', () => {
             })
 
 
-            it('should fail on no matches', () =>{
+            it('should fail on no matches', () => {
                 delete (localStorage.cars)
 
                 localStorage.cars = '[{"brand":"Renault","model":"Megane","id":"1"},{"brand":"Peugeot","model":"208","id":"2"}]'
@@ -508,7 +508,7 @@ describe('Collection', () => {
             })
 
 
-            it('should fail on non-Function callback', () =>{
+            it('should fail on non-Function callback', () => {
                 delete (localStorage.cars)
 
                 localStorage.cars = '[{"brand":"Renault","model":"Megane","id":"1"},{"brand":"Peugeot","model":"208","id":"2"}]'
@@ -547,8 +547,8 @@ describe('Collection', () => {
 
 
 
-        describe('getAll', () =>{
-            it('should return an Array of documents', () =>{
+        describe('getAll', () => {
+            it('should return an Array of documents', () => {
                 delete (localStorage.cars)
 
                 localStorage.cars = '[{"brand":"Renault","model":"Megane","id":"1"},{"brand":"Peugeot","model":"208","id":"2"}]'
@@ -576,7 +576,7 @@ describe('Collection', () => {
 
 
         describe('printAll', () => {
-            it('should print a table of a Collection', () =>{
+            it('should print a table of a Collection', () => {
                 delete (localStorage.cars)
 
                 localStorage.cars = '[{"brand":"Renault","model":"Megane","id":"1"},{"brand":"Peugeot","model":"208","id":"2"}]'

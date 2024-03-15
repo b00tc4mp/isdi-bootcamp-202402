@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#interactive-content {
+    width: 70vw;
+    margin: 0;
+    margin-top: 4vh;
+}
+
+h1 {
+    margin: 0;
+}
+
+#title {
+    margin: 0;
+}
+
+#terms {
+    margin: 0;
+    margin-right: 2vw;
+    max-height: 2vh;
+    max-width: 2vh;
+}
+
+#terms-text {
+    font-size: 1.5vh;
+}
+
+#login-button{
+    width: 70vw;
+    margin-top: 2vh;
+    height: 8vh;
+    border: 0;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    font-size: 3vh;
+}
+
+#register-button{
+    width: 70vw;
+    margin-top: 2vh;
+    height: 8vh;
+    border: 0;
+    background-color: #6CA4E6;
+    color: aliceblue;
+    border-radius: 10px;
+    font-size: 3vh;
+}
+
+#termsDiv{
+    width: 100%;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+}
