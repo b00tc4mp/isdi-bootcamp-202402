@@ -1,44 +1,41 @@
-//presentation layer
-
-(function(){
-
+{
     if(logic.isUserLoggedIn()) {
         location.href = '../home'
+    } else{
 
-        return
+        const form = document.querySelector('form')  
+
+        form.addEventListener('submit', event => { 
+            console.log('form submit')
+
+            event.preventDefault() 
+
+            const nameInput = document.getElementById('name')
+            const name = nameInput.value
+
+            const birthdateInput = document.getElementById('birthdate')
+            const birthdate = birthdateInput.value
+
+            const emailInput = document.getElementById('email')
+            const email = emailInput.value
+
+            const usernameInput = document.getElementById('username')
+            const username = usernameInput.value
+
+            const passwordInput = document.getElementById('password')
+            const password = passwordInput.value
+
+            try{
+
+                logic.registerUser(name, birthdate, email, username, password)
+
+                form.reset()
+
+                location.href = '../login'
+            }catch(error){
+                alert(error.message)
+            }
+        })
     }
-    
-    var form = document.querySelector('form')  
 
-    form.addEventListener('submit', function(event){ 
-        console.log('form submit')
-
-        event.preventDefault() 
-
-        var nameInput = document.getElementById('name')
-        var name = nameInput.value
-
-        var birthdateInput = document.getElementById('birthdate')
-        var birthdate = birthdateInput.value
-
-        var emailInput = document.getElementById('email')
-        var email = emailInput.value
-
-        var usernameInput = document.getElementById('username')
-        var username = usernameInput.value
-
-        var passwordInput = document.getElementById('password')
-        var password = passwordInput.value
-
-        try{
-
-            logic.registerUser(name, birthdate, email, username, password)
-
-            form.reset()
-
-            location.href = '../login'
-        }catch(error){
-            alert(error.message)
-        }
-    })
-})()
+}

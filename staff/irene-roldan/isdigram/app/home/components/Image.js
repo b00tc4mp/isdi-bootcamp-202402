@@ -1,13 +1,11 @@
-function Image() {
-    Component.call(this, 'img')
+class Image extends Component {
+    constructor(){
+        super('img')
+    }
 
-}
+    setSource(source) {
+        if(typeof source !== 'string') throw new TypeError('source is not a string')
 
-Image.prototype = Object.create(Component.prototype)
-Image.prototype.constructor = Image
-
-Image.prototype.setSource = function (source){
-    if(typeof source !== 'string') throw new TypeError('source is not a string')
-
-    this._container.src = source
+        this._container.src = source
+    }
 }

@@ -1,12 +1,10 @@
-var logic = (function () {
-    // constants
+const logic = (() => {
 
-    var DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
-    var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    var PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[A-Za-z])[A-Za-z0-9]+$/
-    var URL_REGEX = /^(http|https):\/\//
+    const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
+    const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[A-Za-z])[A-Za-z0-9]+$/
+    const URL_REGEX = /^(http|https):\/\//
 
-    // helpers
 
     function validateText(text, explain, checkEmptySpaceInside) {
         if (typeof text !== 'string') throw new TypeError(explain + ' ' + text + ' is not a string')
@@ -44,9 +42,7 @@ var logic = (function () {
 
         // TODO input validation
 
-        var user = db.users.findOne(function (user) {
-            return user.email === email || user.username === username
-        })
+        let user = db.users.findOne((user) => user.email === email || user.username === username)
 
         if (user) throw new Error('user already exists')
 
@@ -66,9 +62,7 @@ var logic = (function () {
         validateText(username, 'username', true)
         validatePassword(password, 'password')
 
-        var user = db.users.findOne(function (user) {
-            return user.username === username
-        })
+        const user = db.users.findOne((user) => user.username === username)
 
         if (!user) throw new Error('user not found')
 
@@ -82,9 +76,7 @@ var logic = (function () {
     }
 
     function retrieveUser() {
-        var user = db.users.findOne(function (user) {
-            return user.id === sessionStorage.userId
-        })
+        const user = db.users.findOne((user) => user.id === sessionStorage.userId)
 
         if (!user) throw new Error('user not found')
 
@@ -92,9 +84,7 @@ var logic = (function () {
     }
 
     function logoutUser() {
-        var user = db.users.findOne(function (user) {
-            return user.id === sessionStorage.userId
-        })
+        const user = db.users.findOne((user) => user.id === sessionStorage.userId)
 
         if (!user) throw new Error('user not found')
 
@@ -118,11 +108,9 @@ var logic = (function () {
     }
 
     function retrieveUsersWithStatus() {
-        var users = db.users.getAll()
+        const users = db.users.getAll()
 
-        var index = users.findIndex(function (user) {
-            return user.id === sessionStorage.userId
-        })
+        const index = users.findIndex((user) => user.id === sessionStorage.userId)
 
         users.splice(index, 1)
 
@@ -147,22 +135,14 @@ var logic = (function () {
         validateText(userId, 'userId', true)
         validateText(text, 'text')
 
-        // { id, users: [id, id], messages: [{ from: id, text, date }, { from: id, text, date }, ...] }
-
-        // find chat in chats (by user ids)
-        // if no chat yet, then create it
-        // add message in chat
-        // update or insert chat in chats
-        // save chats
-
-        var chat = db.chats.findOne(function (chat) {
+        const chat = db.chats.findOne(function (chat) {
             return chat.users.includes(userId) && chat.users.includes(sessionStorage.userId)
         })
 
         if (!chat)
             chat = { users: [userId, sessionStorage.userId], messages: [] }
 
-        var message = { from: sessionStorage.userId, text: text, date: new Date().toISOString() }
+        const message = { from: sessionStorage.userId, text: text, date: new Date().toISOString() }
 
         chat.messages.push(message)
 
@@ -175,7 +155,7 @@ var logic = (function () {
     function retrieveMessagesWithUser(userId) {
         validateText(userId, 'userId', true)
 
-        var chat = db.chats.findOne(function (chat) {
+        const chat = db.chats.findOne(function (chat) {
             return chat.users.includes(userId) && chat.users.includes(sessionStorage.userId)
         })
 
@@ -191,7 +171,7 @@ var logic = (function () {
         if (text)
             validateText(text, 'text')
 
-        var post = {
+        const post = {
             author: sessionStorage.userId,
             image: image,
             text: text,
@@ -202,12 +182,10 @@ var logic = (function () {
     }
 
     function retrievePosts() {
-        var posts = db.posts.getAll()
+        const posts = db.posts.getAll()
 
         posts.forEach(function (post) {
-            var user = db.users.findOne(function (user) {
-                return user.id === post.author
-            })
+            const user = db.users.findOne((user) => user.id === post.author)
 
             post.author = { id: user.id, username: user.username }
         })
@@ -218,26 +196,20 @@ var logic = (function () {
     function removePost(postId) {
         validateText(postId, 'postId', true)
 
-        var post = db.posts.findOne(function (post) {
-            return post.id === postId
-        })
+        const post = db.posts.findOne((post) => post.id === postId)
 
         if (!post) throw new Error('post not found')
 
         if (post.author !== sessionStorage.userId) throw new Error('post does not belong to user')
 
-        db.deletePost(function (post) {
-            return post.id === postId
-        })
+        db.deletePost((post) => post.id === postId)
     }
 
     function modifyPost(postId, text) {
         validateText(postId, 'postId', true)
         validateText(text, 'text')
 
-        var post = db.posts.findOne(function (post) {
-            return post.id === postId
-        })
+        const post = db.posts.findOne((post) => post.id === postId)
 
         if (!post) throw new Error('post not found')
 
@@ -249,21 +221,21 @@ var logic = (function () {
     }
 
     return {
-        registerUser: registerUser,
-        loginUser: loginUser,
-        retrieveUser: retrieveUser,
-        logoutUser: logoutUser,
-        getLoggedInUserId: getLoggedInUserId,
-        isUserLoggedIn: isUserLoggedIn,
-        cleanUpLoggedInUserId: cleanUpLoggedInUserId,
+        registerUser,
+        loginUser,
+        retrieveUser,
+        logoutUser,
+        getLoggedInUserId,
+        isUserLoggedIn,
+        cleanUpLoggedInUserId,
 
-        retrieveUsersWithStatus: retrieveUsersWithStatus,
-        sendMessageToUser: sendMessageToUser,
-        retrieveMessagesWithUser: retrieveMessagesWithUser,
+        retrieveUsersWithStatus,
+        sendMessageToUser,
+        retrieveMessagesWithUser,
 
-        createPost: createPost,
-        retrievePosts: retrievePosts,
-        removePost: removePost,
-        modifyPost: modifyPost
+        createPost,
+        retrievePosts,
+        removePost,
+        modifyPost
     }
 })()

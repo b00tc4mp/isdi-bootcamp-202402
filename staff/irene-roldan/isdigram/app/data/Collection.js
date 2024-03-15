@@ -1,100 +1,98 @@
-// helper
-function Collection(name) {
+class Collection {
+    constructor(name){
     this.name = name
-}
+    }
 
-// helpers
-Collection.prototype._generateId = function () {
-    return (+((parseInt(Math.random() * 10 ** 17)).toString())).toString(36)
-}
+    _generateId() {
+        return (+((parseInt(Math.random() * 10 ** 17)).toString())).toString(36)
+    }
 
-Collection.prototype._loadDocuments = function () {
-    var documentsJSON = localStorage[this.name]
+    _loadDocuments() {
+        const documentsJSON = localStorage[this.name]
 
-    var documents = JSON.parse(documentsJSON || '[]')
+        const documents = JSON.parse(documentsJSON || '[]')
 
-    return documents 
-}
+        return documents 
+    }
 
-Collection.prototype._saveDocuments = function (documents) {
-    
-    if (!(documents instanceof Array)) throw new TypeError('documents is not an array')
+    _saveDocuments(documents) {
+        
+        if (!(documents instanceof Array)) throw new TypeError('documents is not an array')
 
-    documents.forEach(function(document){
-        if(!(document instanceof Object)) throw new TypeError ('a document in documents is not an object')
-    })
-    
-    var documentsJSON = JSON.stringify(documents)
-    
-    localStorage[this.name] = documentsJSON
-}
+        documents.forEach((document) => {
+            if(!(document instanceof Object)) throw new TypeError ('a document in documents is not an object')
+        })
+        
+        const documentsJSON = JSON.stringify(documents)
+        
+        localStorage[this.name] = documentsJSON
+    }
 
-Collection.prototype._backup = function(){
-    localStorage[this.name + '-backup'] = localStorage[this.name]
-}
+    _backup = function(){
+        localStorage[this.name + '-backup'] = localStorage[this.name]
+    }
 
-Collection.prototype._restore = function (){
-    localStorage[this.name] = localStorage[this.name + '-backup']
-}
+    _restore(){
+        localStorage[this.name] = localStorage[this.name + '-backup']
+    }
 
-//CRUD
-Collection.prototype.findOne = function (callback) {
+    //CRUD
+    findOne(callback) {
 
-    if(typeof callback !== 'function') throw new TypeError ('callback is not a function')
+        if(typeof callback !== 'function') throw new TypeError ('callback is not a function')
 
-    var documents = this._loadDocuments()
+        const documents = this._loadDocuments()
 
-    var document  = documents.find(callback)
+        const document  = documents.find(callback)
 
-    return document
-}
+        return document
+    }
 
-Collection.prototype.insertOne = function (document) {
-    var documents = this._loadDocuments()
+    insertOne(document) {
+        const documents = this._loadDocuments()
 
-    document.id = this._generateId()
+        document.id = this._generateId()
 
-    documents.push(document)
-
-    this._saveDocuments(documents)
-}
-
-Collection.prototype.updatOne = function (document) {
-    var documents = this._loadDocuments()
-
-    var index = documents.findIndex(function (document2) {
-        return document2.id === document.id
-    })
-
-    if (index > - 1) {
-        documents.splice(index, 1, document)
+        documents.push(document)
 
         this._saveDocuments(documents)
     }
-}
 
-Collection.prototype.deleteOne = function (callback) {
-    
-    var documents = this._loadDocuments()
+    updatOne(document) {
+        const documents = this._loadDocuments()
 
-    var index = documents.findIndex(callback)
+        const index = documents.findIndex((document2) => document2.id === document.id)
 
-    if (index > -1) {
-        documents.splice(index, 1)
+        if (index > - 1) {
+            documents.splice(index, 1, document)
 
-        this._saveDocuments(documents)
+            this._saveDocuments(documents)
+        }
     }
-    
-}
 
-Collection.prototype.getAll = function () {
-    var documents = this._loadDocuments()
+    deleteOne(callback) {
+        
+        const documents = this._loadDocuments()
 
-    return documents
-}
+        const index = documents.findIndex(callback)
 
-Collection.prototype.print = function () {
-    var document = this._loadDocuments()
+        if (index > -1) {
+            documents.splice(index, 1)
 
-    console.table(document)
+            this._saveDocuments(documents)
+        }
+        
+    }
+
+    getAll() {
+        const documents = this._loadDocuments()
+
+        return documents
+    }
+
+    print() {
+        const document = this._loadDocuments()
+
+        console.table(document)
+    }
 }

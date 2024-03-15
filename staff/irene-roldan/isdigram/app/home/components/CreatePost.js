@@ -1,38 +1,37 @@
-function CreatePost(){
-    Component.call(this, 'section')
+class CreatePost extends Component {
+    constructor(){
+        super('section')
 
-    var title = new Component('h2')
-    title.setText('Create Post')
+        const title = new Component('h2')
+        title.setText('Create Post')
 
-    var form = new Component('form')
+        const form = new Component('form')
 
-    var imageLabel = new Label
-    imageLabel.setFor('image')
-    imageLabel.setText('Image')
+        const imageLabel = new Label
+        imageLabel.setFor('image')
+        imageLabel.setText('Image')
 
-    var imageInput = new Input 
-    imageInput.setId('image')
-    imageInput.setType('text')
+        const imageInput = new Input 
+        imageInput.setId('image')
+        imageInput.setType('text')
 
-    var textLabel = new Label
-    textLabel.setFor('text')
-    textLabel.setText('Text')
+        const textLabel = new Label
+        textLabel.setFor('text')
+        textLabel.setText('Text')
 
-    var textInput = new Input
-    textInput.setId('text')
-    textInput.setType('text')
+        const textInput = new Input
+        textInput.setId('text')
+        textInput.setType('text')
 
-    var createButton = new Button
-    createButton.setType('submit')
-    createButton.setText('Create')
+        const createButton = new Button
+        createButton.setType('submit')
+        createButton.setText('Create')
 
-    form.add(imageLabel, imageInput, textLabel, textInput, createButton)
+        form.add(imageLabel, imageInput, textLabel, textInput, createButton)
 
-    var cancelButton = new Button
-    cancelButton.onClick(function(){
+        const cancelButton = new Button
+        cancelButton.onClick(function(){
 
-    })
-}
-
-CreatePost.prototype = Object.create(Component.prototype)
-CreatePost.prototype.constructor = CreatePost
+        })
+    }
+}   

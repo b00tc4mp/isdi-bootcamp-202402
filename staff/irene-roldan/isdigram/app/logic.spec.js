@@ -1,15 +1,11 @@
 describe('logic', function(){
     describe('register user', function(){
-        it('succed a new user', function(){
-            db.users.deleteOne(function(user){
-                return user.username === 'pepe'
-            })
+        it('succed a new user', () => {
+            db.users.deleteOne((user) =>user.username === 'pepe')
             
             logic.registerUser('Pepe Roni', '2000-01-01', 'pepe@roni.com', 'peperoni', '123qwe123')
 
-            var user = db.users.findOne(function(user){
-                return user.username === 'peperoni'
-            })
+            const user = db.users.findOne((user) => user.username === 'peperoni')
 
             expect(!!user).toBe(true) 
             expect(user.name).toBe('Pepe Roni')
@@ -19,14 +15,12 @@ describe('logic', function(){
             expect(user.password).toBe('123qwe123')
         })
 
-        it('fails on existing users', function(){
-            db.users.deleteOne(function(){
-                return user.username === 'pepe'
-            })
+        it('fails on existing users', () => {
+            db.users.deleteOne(() => user.username === 'pepe')
 
             db.users.insertOne({name:'Pepe', birthdate:'2000-01-01', email: 'pepe@pepe.com', username: 'pepe', password: '123qwe123'})
 
-            var errorThrow
+            let errorThrow
             try {
                 logic.registerUser('Pepe', '2000-01-01', 'pepe@pepe.com', 'pepe', '123qwe123')
             } catch (error) {

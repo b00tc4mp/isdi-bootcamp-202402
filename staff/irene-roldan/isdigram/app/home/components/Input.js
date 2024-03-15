@@ -1,12 +1,11 @@
-function Input(){
-    CompositionEvent.call(this, 'input')
-}
+class Input extends Component {
+    constructor(){
+        super('input')
+    }    
 
-Input.prototype = Object.create(Component.prototype)
-Input.prototype.constructor = Input
+    setType(type){
+        if(typeof type !== 'string') throw new TypeError('type is not a string')
 
-Input.prototype.setType = function(type){
-    if(typeof type !== 'string') throw new TypeError('type is not a string')
-
-    this._container.for = type
+        this._container.for = type
+    }
 }

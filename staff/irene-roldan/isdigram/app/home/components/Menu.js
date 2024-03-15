@@ -1,20 +1,21 @@
-function Menu(){
-    Component.call(this, 'nav')
+class Menu extends Component {
+    constructor(){
+        super('nav')
+    
+        const chatButton = new Button
+        chatButton.setText('💬')
 
-    var chatButton = new Component('button')
-    chatButton.setText('💬')
+        const exitButton = new Button
+        exitButton.setText('🔙')
 
-    var exitButton = new Component('button')
-    exitButton.setText('🔙')
+        exitButton.onClick(() => {
+            logic.logoutUser()
 
-    exitButton.onClick(function(){
-        logic.logoutUser()
+            location.href = '../login'
+        })
 
-        location.href = '../login'
-    })
+        this.add(chatButton, exitButton)
 
-    this.add(chatButton, exitButton)
+    }
 }
 
-Menu.prototype = Object.create(Component.prototype)
-Menu.prototype.constructor = Menu
