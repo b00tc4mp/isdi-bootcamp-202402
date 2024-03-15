@@ -13,7 +13,7 @@ body {
 }
 
 main {
-  margin: 0 2vw 32px;
+  margin: 45px 2vw 32px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -90,6 +90,11 @@ header {
   justify-content: space-between;
   padding: 0 8px;
   box-sizing: border-box;
+}
+
+#create-post-form {
+  background-color: grey;
+  top: 50%;
 }
 
 #change-password-button {

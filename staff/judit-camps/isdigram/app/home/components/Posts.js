@@ -1,14 +1,13 @@
-function Posts() {
-    Component.call(this, 'section')
+class Posts extends Component {
+    constructor() {
+        super('section')
 
-    var posts = logic.retrievePostsLatestFirst()
+        const posts = logic.retrievePostsLatestFirst()
 
-    posts.forEach(function (post) {
-        var post2 = new Post(post)
+        posts.forEach((post) => {
+            let post2 = new Post(post)
 
-        this.add(post2)
-    }.bind(this))
+            this.add(post2)
+        })
+    }
 }
-
-Posts.prototype = Object.create(Component.prototype)
-Posts.prototype.constructor = Posts

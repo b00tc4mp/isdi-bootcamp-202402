@@ -13,7 +13,7 @@ body {
 }
 
 main {
-  margin: 0 2vw 32px;
+  margin: 45px 2vw 32px;
   display: flex;
   flex-direction: column;
   width: 100%;

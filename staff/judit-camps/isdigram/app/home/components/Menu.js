@@ -4,9 +4,6 @@ function Menu() {
     var chatButton = new Button
     chatButton.setText('chat')
 
-    var exitButton = new Button
-    exitButton.setText('log out')
-
     exitButton.onClick(function () {
         logic.logoutUser()
 

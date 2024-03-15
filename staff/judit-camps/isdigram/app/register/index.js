@@ -1,44 +1,43 @@
 // PRESENTATION
 
-(function () {
-    if (logic.isUserLoggedIn()) {
+{
+    if (logic.isUserLoggedIn())
         location.href = '../home'
-        return
+
+    else {
+        const form = document.querySelector('form')
+
+        form.addEventListener('submit', function (event) {
+            console.log('form submit register')
+            // prevent web from reloading itsef when clicking on submit button
+            event.preventDefault()
+
+            const nameInput = document.getElementById('name')
+            const name = nameInput.value
+
+            const birthdateInput = document.getElementById('birthdate')
+            const birthdate = birthdateInput.value
+
+            const emailInput = document.getElementById('email')
+            const email = emailInput.value
+
+            const usernameInput = document.getElementById('username')
+            const username = usernameInput.value
+
+            const passwordInput = document.getElementById('password')
+            const password = passwordInput.value
+
+            try {
+                logic.registerUser(name, birthdate, email, username, password)
+
+                form.reset() // clean form
+
+                location.href = '../login'
+
+
+            } catch (error) {
+                showFeedback(error)
+            }
+        })
     }
-
-    var form = document.querySelector('form')
-
-    form.addEventListener('submit', function (event) {
-        console.log('form submit register')
-        // prevent web from reloading itsef when clicking on submit button
-        event.preventDefault()
-
-        var nameInput = document.getElementById('name')
-        var name = nameInput.value
-
-        var birthdateInput = document.getElementById('birthdate')
-        var birthdate = birthdateInput.value
-
-        var emailInput = document.getElementById('email')
-        var email = emailInput.value
-
-        var usernameInput = document.getElementById('username')
-        var username = usernameInput.value
-
-        var passwordInput = document.getElementById('password')
-        var password = passwordInput.value
-
-        try {
-            logic.registerUser(name, birthdate, email, username, password)
-
-            form.reset() // clean form
-
-            location.href = '../login'
-
-
-        } catch (error) {
-            alert(error.message)
-        }
-    })
-
-})()
+}

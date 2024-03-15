@@ -35,10 +35,6 @@
         showFeedback(error)
     }
 
-    var menu = new Menu
-
-    home.add(menu)
-
     var posts = new Posts
 
     home.add(posts)
@@ -48,9 +44,23 @@
     var footer = new Component('footer')
     footer.assembleTo(document.body)
 
+    var homeButton = new Button
+    homeButton.setText('home')
+
     var newPostButton = new Component('button')
     newPostButton.setText('+')
+    newPostButton.onClick(function () {
+        try {
+            var createPostForm = new CreatePost
+            home.add(createPostForm)
+        } catch (error) {
+            showFeedback(error)
+        }
+    })
 
-    footer.add(newPostButton)
+    var exitButton = new Button
+    exitButton.setText('log out')
+
+    footer.add(homeButton, newPostButton, exitButton)
 
 })()

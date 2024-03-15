@@ -1,11 +1,11 @@
 // bussiness (logic)
-var logic = (function () {
+const logic = (() => {
 
     // constants
-    var DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
-    var PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[A-Za-z])[A-Za-z0-9]+$/
-    var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    var URL_REGEX = /^(http|https):\/\//
+    const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
+    const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[A-Za-z])[A-Za-z0-9]+$/
+    const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const URL_REGEX = /^(http|https):\/\//
 
     // helpers
     function validateDate(date, explanation) {
@@ -41,13 +41,13 @@ var logic = (function () {
         validateText(username, 'the username', true)
         validatePassword(password, 'the password')
 
-        var user = data.users.findOne(function (user) {
+        let user = db.users.findOne(function (user) {
             return user.email === email || user.username === username
         })
 
         if (user) throw new Error('user already exists')
 
-        var user = {
+        user = {
             name: name,
             birthdate: birthdate,
             email: email,
@@ -55,12 +55,12 @@ var logic = (function () {
             password: password
         }
 
-        data.users.insertOne(user)
+        db.users.insertOne(user)
     }
 
 
     function loginUser(username, password) {
-        var user = data.users.findOne(function (user) {
+        const user = db.users.findOne(function (user) {
             return user.username === username && user.password === password
         })
 
@@ -68,14 +68,14 @@ var logic = (function () {
 
         user.status = 'online'
 
-        data.users.updateOne(user)
+        db.users.updateOne(user)
 
         sessionStorage.userId = user.id
     }
 
 
     function getUser() {
-        var user = data.users.findOne(function (user) {
+        const user = db.users.findOne(function (user) {
             return user.id === sessionStorage.userId
         })
 
@@ -85,9 +85,9 @@ var logic = (function () {
     }
 
     function retrieveUsers() {
-        var users = data.users.getAll()
+        const users = db.users.getAll()
 
-        var indexToDelete = users.findIndex(function (user) {
+        const indexToDelete = users.findIndex(function (user) {
             return user.id === sessionStorage.userId
         })
 
@@ -113,7 +113,7 @@ var logic = (function () {
 
     // function that deletes the actual user by clearing the sessionStorage
     function logoutUser() {
-        var user = data.users.findOne(function (user) {
+        const user = db.users.findOne(function (user) {
             return user.id === sessionStorage.userId
         })
 
@@ -121,7 +121,7 @@ var logic = (function () {
 
         user.status = 'offline'
 
-        data.users.updateOne(user)
+        db.users.updateOne(user)
 
         delete sessionStorage.userId
     }
@@ -140,20 +140,20 @@ var logic = (function () {
 
     function savePostInfo(image, caption) {
         validateUrl(image, 'the url')
-        var post = {
+        const post = {
             author: sessionStorage.userId,
             image: image,
             caption: caption,
             date: new Date().toLocaleDateString('en-CA')
         }
-        data.posts.insertOne(post)
+        db.posts.insertOne(post)
     }
 
     function retrievePostsLatestFirst() {
-        var posts = data.posts.getAll()
+        const posts = db.posts.getAll()
 
         posts.forEach(function (post) {
-            var user = data.users.findOne(function (user) {
+            const user = db.users.findOne(function (user) {
                 return user.id === post.author
             })
             post.author = { id: user.id, username: user.username }
@@ -163,7 +163,7 @@ var logic = (function () {
     }
 
     function removePost(postId) {
-        var post = data.posts.findOne(function (post) {
+        const post = db.posts.findOne(function (post) {
             return post.id === postId
         })
 
@@ -171,14 +171,14 @@ var logic = (function () {
 
         if (post.author !== sessionStorage.userId) throw new Error('post does not belong to user')
 
-        data.posts.deleteOne(function (post) {
+        db.posts.deleteOne(function (post) {
             return post.id === postId
         })
     }
 
     function editPostText(postId, newCaption) {
         console.log("Received postId:", postId);
-        var post = data.posts.findOne(function (post) {
+        const post = db.posts.findOne(function (post) {
             return post.id === postId
         })
         console.log('Post found: ', post)
@@ -188,14 +188,14 @@ var logic = (function () {
 
         post.caption = newCaption
 
-        data.posts.updateOne(post)
+        db.posts.updateOne(post)
     }
 
     function sendMessageTo(userId, text) {
         validateText(userId, 'userId', true)
         validateText(text, 'text')
 
-        var chat = data.chats.findOne(function (chat) {
+        const chat = db.chats.findOne(function (chat) {
             return chat.users.includes(userId) && chat.users.includes(sessionStorage.userId)
         })
 
@@ -206,7 +206,7 @@ var logic = (function () {
             }
         }
 
-        var message = {
+        const message = {
             from: sessionStorage.userId,
             text: text,
             date: new Date().toISOString()
@@ -215,15 +215,15 @@ var logic = (function () {
         chat.messages.push(message)
 
         if (!chat.id)
-            data.chats.insertOne(chat)
+            db.chats.insertOne(chat)
         else
-            data.chats.updateOne(chat)
+            db.chats.updateOne(chat)
     }
 
     function retrieveMessagesWith(userId) {
         validateText(userId, 'userId', true)
 
-        var chat = data.chats.findOne(function (chat) {
+        const chat = db.chats.findOne(function (chat) {
             return chat.users.includes(userId) && chat.users.includes(sessionStorage.userId)
         })
 
