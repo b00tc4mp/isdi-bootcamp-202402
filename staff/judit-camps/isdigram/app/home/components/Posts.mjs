@@ -1,3 +1,8 @@
+import logic from "../../logic.mjs"
+
+import Component from "../../core/Component.mjs"
+import Post from "./Post.mjs"
+
 class Posts extends Component {
     constructor() {
         super('section')
@@ -11,3 +16,5 @@ class Posts extends Component {
         })
     }
 }
+
+export default Posts

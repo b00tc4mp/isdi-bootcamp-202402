@@ -1,3 +1,4 @@
+import Component from "./Component.mjs"
 class Button extends Component {
     constructor() {
         super('button')
@@ -9,6 +10,8 @@ class Button extends Component {
         this._container.type = type
     }
 }
+
+export default Button
 
 
 

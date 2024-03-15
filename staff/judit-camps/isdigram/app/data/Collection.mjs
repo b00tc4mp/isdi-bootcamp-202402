@@ -84,3 +84,5 @@ class Collection {
         console.table(documents)
     }
 }
+
+export default Collection

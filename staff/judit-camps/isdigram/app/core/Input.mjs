@@ -1,3 +1,5 @@
+import Component from "./Component.mjs"
+
 class Input extends Component {
     constructor() {
         super('input')
@@ -7,3 +9,5 @@ class Input extends Component {
         this._container.type = type
     }
 }
+
+export default Input

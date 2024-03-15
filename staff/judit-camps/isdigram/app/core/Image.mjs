@@ -1,3 +1,4 @@
+import Component from "./Component.mjs"
 class Image extends Component {
     constructor() {
         super('img')
@@ -8,3 +9,5 @@ class Image extends Component {
         this._container.src = source
     }
 }
+
+export default Image

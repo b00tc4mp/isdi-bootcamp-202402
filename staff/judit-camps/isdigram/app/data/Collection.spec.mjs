@@ -1,3 +1,5 @@
+import Collection from "./Collection.mjs"
+
 describe('Collection', function () {
     describe('>constructor', function () {
         it('creates a collection', function () {

@@ -1,11 +1,15 @@
-// PRESENTATION
-(function () {
-    if (!logic.isUserLoggedIn()) {
-        location.href = '../login'
+import utils from "../utils.mjs"
+import logic from "../logic.mjs"
 
-        return
-    }
+import Component from "../core/Component.mjs"
+import Button from "../core/Button.mjs"
+import Posts from "./components/Posts.mjs"
+import CreatePost from "./components/CreatePost.mjs"
 
+if (!logic.isUserLoggedIn())
+    location.href = '../login'
+
+else {
     // HEADER
     var header = new Component('header')
     header.assembleTo(document.body)
@@ -13,7 +17,7 @@
     var headerTitle = new Component('h3')
     headerTitle.setText('Isdigram')
 
-    var messageButton = new Component('button')
+    var messageButton = new Button
     messageButton.setText('messages')
 
     header.add(headerTitle, messageButton)
@@ -32,7 +36,7 @@
         home.add(title)
 
     } catch (error) {
-        showFeedback(error)
+        utils.showFeedback(error)
     }
 
     var posts = new Posts
@@ -62,5 +66,5 @@
     exitButton.setText('log out')
 
     footer.add(homeButton, newPostButton, exitButton)
+}
 
-})()

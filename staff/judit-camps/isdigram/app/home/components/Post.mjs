@@ -1,3 +1,11 @@
+import logic from "../../logic.mjs"
+import utils from "../../utils.mjs"
+
+import Component from "../../core/Component.mjs"
+
+import Image from "../../core/Image.mjs"
+import Button from "../../core/Button.mjs"
+
 
 class Post extends Component {
     constructor(post) {
@@ -18,7 +26,7 @@ class Post extends Component {
         this.add(author, picture, paragraph, dateTime)
 
         if (post.author === logic.getUser()) {
-            const deletePostButton = new Component('button')
+            const deletePostButton = new Button
             deletePostButton.setText('...')
 
             deletePostButton.onClick(function () {
@@ -28,13 +36,11 @@ class Post extends Component {
 
                         // TO DO: Render posts
                     } catch (error) {
-                        console.error(error)
-
-                        alert(error.message)
+                        utils.showFeedback(error)
                     }
             })
 
-            const editPostButton = new Component('button')
+            const editPostButton = new Button
             editPostButton.setText('edit')
 
             editPostButton.onClick(function () {
@@ -44,5 +50,6 @@ class Post extends Component {
             this.add(editPostButton, deletePostButton)
         }
     }
-
 }
+
+export default Post

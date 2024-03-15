@@ -1,3 +1,10 @@
+import utils from "../../utils.mjs"
+
+import Component from "../../core/Component.mjs"
+import Label from "../../core/Label.mjs"
+import Input from "../../core/Input.mjs"
+import Button from "../../core/Button.mjs"
+
 class CreatePost extends Component {
     constructor() {
         super('section')
@@ -36,3 +43,5 @@ class CreatePost extends Component {
         })
     }
 }
+
+export default CreatePost

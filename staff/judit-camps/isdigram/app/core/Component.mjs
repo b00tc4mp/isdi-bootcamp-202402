@@ -1,5 +1,3 @@
-// COMPONENT
-
 class Component {
     constructor(tagName) {
         this._container = document.createElement(tagName)
@@ -37,3 +35,5 @@ class Component {
         this._container.id = id
     }
 }
+
+export default Component
