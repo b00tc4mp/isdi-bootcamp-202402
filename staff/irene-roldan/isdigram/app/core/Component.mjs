@@ -20,6 +20,22 @@ class Component {
         })
     }
 
+    replace(oldChild, newChild) {
+        if(!(oldChild instanceof Component)) throw new TypeError('child is not a Component')
+        if(!(newChild instanceof Component)) throw new TypeError('child is not a Component')
+
+        this._container.replace(newChild._container, oldChild._container)
+    }
+
+    remove(child){
+        if(!(Child instanceof Component)) throw new TypeError('child is not a Component')
+        this._container.removeChild(child._container)
+    }
+
+    removeAll(){
+        this._container.innerHTML = ''
+    }
+
     assembleTo(element) {
         if (!(element instanceof HTMLElement)) throw new TypeError('element is not an HTMLElement')
 
@@ -27,6 +43,7 @@ class Component {
     }
 
     onClick(callback) {
+        if(typeof callback !== 'function') throw new TypeError('callback is not a function')
         this._container.onclick = callback
     }
 
@@ -35,4 +52,10 @@ class Component {
 
         this._container.id = id
     }
+
+    addClass(classname){
+        this._container.classList.add(classname)
+    }
 }
+
+export default Component

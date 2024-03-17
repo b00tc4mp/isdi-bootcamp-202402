@@ -58,7 +58,7 @@ class Collection {
         this._saveDocuments(documents)
     }
 
-    updatOne(document) {
+    updateOne(document) {
         const documents = this._loadDocuments()
 
         const index = documents.findIndex((document2) => document2.id === document.id)
@@ -96,3 +96,5 @@ class Collection {
         console.table(document)
     }
 }
+
+export default Collection

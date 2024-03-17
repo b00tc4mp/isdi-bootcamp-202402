@@ -1,3 +1,5 @@
+import Component from './Component.mjs'
+
 class Button extends Component {
     constructor(){
         super('button')
@@ -6,6 +8,8 @@ class Button extends Component {
         setType(type){
             if(typeof type !== 'string') throw new TypeError('type is not a string')
 
-            this._container.for = type
+            this._container.type = type
         }
 }
+
+export default Button

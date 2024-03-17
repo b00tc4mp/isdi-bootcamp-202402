@@ -1,3 +1,5 @@
+import Component from './Component.mjs'
+
 class Label extends Component {
     constructor(){
         super('label')
@@ -9,3 +11,5 @@ class Label extends Component {
         this._container.for = forId
     }
 }
+
+export default Label

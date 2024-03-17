@@ -1,3 +1,5 @@
+import Collection from "./Collection.mjs"
+
 describe('Collection', () => {
     describe('constructor', () => {
         it('creates a collection', () => {
@@ -192,6 +194,37 @@ describe('Collection', () => {
 
                 expect(car).toBeInstanceOf(Object)
                 
+            })
+        })
+
+        describe('upadateOne', () => {
+            it('should update an existing document', () => {
+                localStorage.cars = JSON.stringify([{ "id": "1", "brand": "porsche", "model": "911" }, { "id": "2", "brand": "fiat", "model": "500" }])
+
+                const cars = new Collection('cars')
+
+                const updatedCar = ({ "id": "1", "brand": "porsche", "model": "911 Turbo" },  { "id": "2", "brand": "fiat", "model": "500" })
+                cars.updateOne(updatedCar)
+
+                const updatedDocuments = JSON.parse(localStorage.cars)
+
+                const updatedCarInStorage = updatedDocuments.find(doc => doc.id === updatedCar.id)
+
+                expect(updatedCarInStorage).toBe(updatedCar)
+        
+            })
+        })
+
+        describe('deleteOne', () => {
+            it('should delete an existing document', () =>{
+                localStorage.cars = JSON.stringify([{ "id": "1", "brand": "porsche", "model": "911" }, { "id": "2", "brand": "fiat", "model": "500" }])
+
+                const cars = new Collection('cars')
+
+                const updatedCar = { "id": "1", "brand": "porsche", "model": "911 Turbo" }
+                cars.deleteOne(updatedCar)
+
+                const updatedDocuments = JSON.parse(localStorage.cars)
             })
         })
 

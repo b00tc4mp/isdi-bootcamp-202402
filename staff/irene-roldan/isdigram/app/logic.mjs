@@ -1,4 +1,4 @@
-const logic = (() => {
+import db from './data/index.mjs'
 
     const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
     const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -220,7 +220,7 @@ const logic = (() => {
         db.posts.updateOne(post)
     }
 
-    return {
+    const logic = {
         registerUser,
         loginUser,
         retrieveUser,
@@ -238,4 +238,6 @@ const logic = (() => {
         removePost,
         modifyPost
     }
-})()
+
+
+export default logic

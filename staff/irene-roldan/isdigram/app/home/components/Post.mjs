@@ -1,3 +1,8 @@
+import logic from '../../logic.mjs'
+import utils from '../../utils.mjs'
+import Image from '../../core/Image.mjs'
+import Component from '../../core/Component.mjs'
+
 class Post extends Component {
     constructor(post){
         super('article')
@@ -26,9 +31,7 @@ class Post extends Component {
                     logic.removePost(post.id)
 
                 } catch (error) {
-                    console.error(error)
-
-                    alert(error.message)
+                    utils.showFeedback
                 }
             }
         })
@@ -43,3 +46,5 @@ class Post extends Component {
         }
     }
 }
+
+export default Post
