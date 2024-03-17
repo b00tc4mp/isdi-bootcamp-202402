@@ -4,7 +4,7 @@ class Button extends Component {
         super('button')
     }
 
-    setType = (type) => {
+    setType(type) {
         if (typeof type !== 'string') throw new TypeError('type is not a string')
 
         this._container.type = type

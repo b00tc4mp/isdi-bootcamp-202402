@@ -5,32 +5,47 @@ import Component from "../core/Component.mjs"
 import Button from "../core/Button.mjs"
 import Posts from "./components/Posts.mjs"
 import CreatePost from "./components/CreatePost.mjs"
+import Footer from "./components/Footer.mjs"
+import Chat from "./components/Chat.mjs"
+import Header from "./components/Header.mjs"
 
 if (!logic.isUserLoggedIn())
     location.href = '../login'
 
 else {
     // HEADER
-    var header = new Component('header')
+    const header = new Header
     header.assembleTo(document.body)
 
-    var headerTitle = new Component('h3')
-    headerTitle.setText('Isdigram')
-
-    var messageButton = new Button
-    messageButton.setText('messages')
-
-    header.add(headerTitle, messageButton)
 
 
+    const headerTitle = header._title
+    headerTitle.onClick(() => {
+        home.removeAll()
+        try {
+            const user = logic.getUser()
+
+            const title = new Component('h1')
+            title.setText('Hello, ' + user.name + '!')
+
+            home.add(title)
+
+        } catch (error) {
+            utils.showFeedback(error)
+        }
+        home.add(posts)
+        footer.reset()
+    })
+
+    const chatButton = header._chatButton
     // HOME
-    var home = new Component('main')
+    const home = new Component('main')
     home.assembleTo(document.body)
 
     try {
-        var user = logic.getUser()
+        const user = logic.getUser()
 
-        var title = new Component('h1')
+        const title = new Component('h1')
         title.setText('Hello, ' + user.name + '!')
 
         home.add(title)
@@ -39,32 +54,77 @@ else {
         utils.showFeedback(error)
     }
 
-    var posts = new Posts
+    const footer = new Footer
+    const homeButton = footer._homeButton
+    const newPostButton = footer._newPostButton
+
+    const chat = new Chat
+    chatButton.onClick(() => {
+        home.remove(posts)
+        footer.removeAll()
+        home.add(chat)
+    })
+
+    homeButton.onClick(() => {
+        home.remove(chat)
+        home.add(posts)
+        posts.refresh()
+    })
+
+
+    const posts = new Posts
 
     home.add(posts)
 
 
+
     // FOOTER
-    var footer = new Component('footer')
-    footer.assembleTo(document.body)
 
-    var homeButton = new Button
-    homeButton.setText('home')
+    footer.onCreateNewPostClick(() => {
+        const newPostForm = new CreatePost
+        newPostForm.setId('new-post-form')
 
-    var newPostButton = new Component('button')
-    newPostButton.setText('+')
-    newPostButton.onClick(function () {
-        try {
-            var createPostForm = new CreatePost
-            home.add(createPostForm)
-        } catch (error) {
-            showFeedback(error)
-        }
+
+        newPostForm.onCancelClick(() => {
+            home.remove(newPostForm)
+        })
+
+        newPostForm.onPostCreated(() => {
+            home.remove(newPostForm)
+            posts.refresh()
+            footer.add(newPostButton)
+        })
+
+        home.add(newPostForm)
     })
 
-    var exitButton = new Button
-    exitButton.setText('log out')
+    const userPage = new Component('div')
+    footer.onUserButtonClick(() => {
+        home.remove(posts)
 
-    footer.add(homeButton, newPostButton, exitButton)
+        const logOutButton = new Button
+        logOutButton.setText('log out')
+
+        logOutButton.onClick(() => {
+            logic.logoutUser()
+
+            location.href = '../login'
+        })
+
+        const changePasswordButton = new Button
+        changePasswordButton.setText('change password')
+
+        userPage.add(changePasswordButton, logOutButton)
+        home.add(userPage)
+    })
+
+    footer.onHomeButtonClick(() => {
+        home.remove(userPage)
+        home.add(posts)
+
+        posts.refresh()
+    })
+
+    footer.assembleTo(document.body)
 }
 

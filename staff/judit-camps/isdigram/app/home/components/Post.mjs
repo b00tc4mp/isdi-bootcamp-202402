@@ -17,15 +17,16 @@ class Post extends Component {
         const picture = new Image
         picture.setSource(post.image)
 
+        const caption = new Component('div')
+
         const paragraph = new Component('p')
-        paragraph.setText(post.text)
+        paragraph.setText(post.caption)
+        caption.add(paragraph)
 
         const dateTime = new Component('time')
         dateTime.setText(post.date)
 
-        this.add(author, picture, paragraph, dateTime)
-
-        if (post.author === logic.getUser()) {
+        if (post.author === logic.getLoggedInUser()) {
             const deletePostButton = new Button
             deletePostButton.setText('...')
 
@@ -47,8 +48,11 @@ class Post extends Component {
                 // TO DO open edit pannel
             })
 
-            this.add(editPostButton, deletePostButton)
+            caption.add(editPostButton, deletePostButton)
+
         }
+
+        this.add(author, picture, caption, dateTime)
     }
 }
 

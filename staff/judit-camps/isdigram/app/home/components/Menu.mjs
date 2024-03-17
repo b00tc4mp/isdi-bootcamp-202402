@@ -13,8 +13,8 @@ class Menu extends Component {
 
             location.href = '../login'
         })
-        this.add(chatButton, exitButton)
 
+        this.add(chatButton, exitButton)
     }
 }
 

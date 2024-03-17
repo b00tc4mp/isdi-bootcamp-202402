@@ -19,6 +19,23 @@ class Component {
         })
     }
 
+    replace(oldChild, newChild) {
+        if (!(oldChild instanceof Component)) throw new TypeError('oldChild is not a Component')
+        if (!(newChild instanceof Component)) throw new TypeError('newChild is not a Component')
+
+        this._container.replaceChild(newChild._container, oldChild._container)
+    }
+
+    remove(child) {
+        if (!(child instanceof Component)) throw new TypeError('child is not a Component')
+
+        this._container.removeChild(child._container)
+    }
+
+    removeAll() {
+        this._container.innerHTML = ''
+    }
+
 
     assembleTo(parentElem) {
         if (!(parentElem instanceof HTMLElement)) throw new TypeError('parent element is not an HTML element')
@@ -33,6 +50,10 @@ class Component {
     setId(id) {
         if (typeof id !== 'string') throw new TypeError('id is not a string')
         this._container.id = id
+    }
+
+    addClass(className) {
+        this._container.classList.add(className)
     }
 }
 
