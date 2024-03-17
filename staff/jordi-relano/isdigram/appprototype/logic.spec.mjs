@@ -1,13 +1,13 @@
-describe('logic', function () {
-    describe('registerUser', function () {
-        it('succeeds a new user', function () {
-            data.users.deleteOne(function (user) {
+describe('logic', () => {
+    describe('registerUser', () => {
+        it('succeeds a new user', () => {
+            data.users.deleteOne( (user) => {
                 return user.username === 'peperoni'
             })
 
             logic.registerUser('Pepe Roni', '2000-01-01', 'pepe@roni.com', 'peperoni', '123qwe123')
 
-            var user = data.users.findOne(function (user) {
+            const user = data.users.findOne((user) => {
                 return user.username === 'peperoni'
             })
 
@@ -19,14 +19,14 @@ describe('logic', function () {
             expect(user.password).toBe('123qwe123')
         })
 
-        it('fails on existing users', function () {
+        it('fails on existing users', () => {
             data.users.deleteOne(function (user) {
                 return user.username === 'peperoni'
             })
 
             data.users.insertOne({ name: 'Pepe Roni', birthdate: '2000-01-01', email: 'pepe@roni.com', username: 'peperoni', password: '123qwe123' })
 
-            var errorThrown
+            let errorThrown
 
             try {
                 logic.registerUser('Pepe Roni', '2000-01-01', 'pepe@roni.com', 'peperoni', '123qwe123')
