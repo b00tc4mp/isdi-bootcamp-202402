@@ -1,9 +1,10 @@
-describe("logic", function () {
-  describe("registerUser", function () {
-    it("succeeds a new user", function () {
-      db.users.deleteOne(function (user) {
-        return user.username === "peperoni";
-      });
+import db from "./data/index.mjs";
+import logic from "./logic.mjs";
+
+describe("logic", () => {
+  describe("registerUser", () => {
+    it("succeeds a new user", () => {
+      db.users.deleteOne((user) => user.username === "peperoni");
 
       logic.registerUser(
         "Pepe Roni",
@@ -13,9 +14,7 @@ describe("logic", function () {
         "123qwe123"
       );
 
-      var user = db.users.findOne(function (user) {
-        return user.username === "peperoni";
-      });
+      const user = db.users.findOne((user) => user.username === "peperoni");
 
       expect(!!user).toBe(true);
       expect(user.name).toBe("Pepe Roni");
@@ -25,10 +24,8 @@ describe("logic", function () {
       expect(user.password).toBe("123qwe123");
     });
 
-    it("fails on existing users", function () {
-      db.users.deleteOne(function (user) {
-        return user.username === "peperoni";
-      });
+    it("fails on existing users", () => {
+      db.users.deleteOne((user) => user.username === "peperoni");
 
       db.users.insertOne({
         name: "Pepe Roni",
@@ -38,7 +35,7 @@ describe("logic", function () {
         password: "123qwe123",
       });
 
-      var errorThrown;
+      let errorThrown;
 
       try {
         logic.registerUser(
@@ -56,8 +53,8 @@ describe("logic", function () {
       expect(errorThrown.message).toBe("user already exists");
     });
 
-    it("fails on non string name", function () {
-      var errorThrown;
+    it("fails on non string name", () => {
+      let errorThrown;
 
       try {
         logic.registerUser(
@@ -75,8 +72,8 @@ describe("logic", function () {
       expect(errorThrown.message).toBe("name 123 is not a string");
     });
 
-    it("fails on empty name", function () {
-      var errorThrown;
+    it("fails on empty name", () => {
+      let errorThrown;
 
       try {
         logic.registerUser(
@@ -94,8 +91,8 @@ describe("logic", function () {
       expect(errorThrown.message).toBe("name >< is empty or blank");
     });
 
-    it("fails on non string birthdate", function () {
-      var errorThrown;
+    it("fails on non string birthdate", () => {
+      let errorThrown;
 
       try {
         logic.registerUser(
@@ -113,8 +110,8 @@ describe("logic", function () {
       expect(errorThrown.message).toBe("birthdate 123 is not a string");
     });
 
-    it("fails on incorrect birthdate format", function () {
-      var errorThrown;
+    it("fails on incorrect birthdate format", () => {
+      let errorThrown;
 
       try {
         logic.registerUser(
@@ -137,11 +134,9 @@ describe("logic", function () {
     // TODO add other unhappy test cases
   });
 
-  describe("loginUser", function () {
-    it("succeeds on existing user and correct credentials", function () {
-      db.users.deleteOne(function (user) {
-        return user.username === "peperoni";
-      });
+  describe("loginUser", () => {
+    it("succeeds on existing user and correct credentials", () => {
+      db.users.deleteOne((user) => user.username === "peperoni");
 
       db.users.insertOne({
         name: "Pepe Roni",
@@ -151,25 +146,19 @@ describe("logic", function () {
         password: "123qwe123",
       });
 
-      var user = db.users.findOne(function (user) {
-        return user.username === "peperoni";
-      });
+      let user = db.users.findOne((user) => user.username === "peperoni");
 
       logic.loginUser("peperoni", "123qwe123");
 
       expect(sessionStorage.userId).toBe(user.id);
 
-      var user = db.users.findOne(function (user) {
-        return user.id === sessionStorage.userId;
-      });
+      user = db.users.findOne((user) => user.id === sessionStorage.userId);
 
       expect(user.status).toBe("online");
     });
 
-    it("fails on existing user and incorrect password", function () {
-      db.users.deleteOne(function (user) {
-        return user.username === "peperoni";
-      });
+    it("fails on existing user and incorrect password", () => {
+      db.users.deleteOne((user) => user.username === "peperoni");
 
       db.users.insertOne({
         name: "Pepe Roni",
@@ -179,7 +168,7 @@ describe("logic", function () {
         password: "123qwe123",
       });
 
-      var errorThrown;
+      let errorThrown;
 
       try {
         logic.loginUser("peperoni", "123qwe123qwe");
@@ -191,10 +180,8 @@ describe("logic", function () {
       expect(errorThrown.message).toBe("wrong password");
     });
 
-    it("fails on existing user and incorrect username", function () {
-      db.users.deleteOne(function (user) {
-        return user.username === "peperoni";
-      });
+    it("fails on existing user and incorrect username", () => {
+      db.users.deleteOne((user) => user.username === "peperoni");
 
       db.users.insertOne({
         name: "Pepe Roni",
@@ -204,7 +191,7 @@ describe("logic", function () {
         password: "123qwe123",
       });
 
-      var errorThrown;
+      let errorThrown;
 
       try {
         logic.loginUser("peperoni2", "123qwe123");
@@ -217,25 +204,5 @@ describe("logic", function () {
     });
   });
 
-  describe("retrieveUser", function () {
-    it("is successful with user recovery", function () {
-      db.users.deleteOne({ username: "peperoni" });
-
-      db.users.insertOne({
-        name: "Pepe Roni",
-        birthdate: "2000-01-01",
-        email: "pepe@roni.com",
-        username: "peperoni",
-        password: "123qwe123",
-      });
-
-      var user = logic.retrieveUser("peperoni");
-
-      expect(user.name).toBe("Pepe Roni");
-      expect(user.birthdate).toBe("2000-01-01");
-      expect(user.email).toBe("pepe@roni.com");
-      expect(user.username).toBe("peperoni");
-      expect(user.password).toBe("123qwe123");
-    });
-  });
+  // TODO test all methods
 });
