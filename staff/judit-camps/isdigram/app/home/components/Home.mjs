@@ -7,6 +7,7 @@ import Header from "./Header.mjs";
 import Footer from "./Footer.mjs";
 import PostsLists from "./PostList.mjs";
 import Chat from "./Chat.mjs";
+import Button from "../../core/Button.mjs";
 
 
 class Home extends Component {
@@ -99,6 +100,8 @@ class Home extends Component {
         footer.onUserButtonClick(() => {
             home.remove(posts)
 
+
+
             const logOutButton = new Button
             logOutButton.setText('log out')
 
@@ -117,6 +120,7 @@ class Home extends Component {
 
         footer.onHomeButtonClick(() => {
             home.remove(userPage)
+            userPage.removeAll()
             home.add(posts)
 
             posts.refresh()

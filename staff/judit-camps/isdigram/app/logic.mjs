@@ -177,7 +177,7 @@ function sendMessageTo(userId, text) {
     validateText(userId, 'userId', true)
     validateText(text, 'text')
 
-    const chat = db.chats.findOne(chat => chat.users.includes(userId) && chat.users.includes(sessionStorage.userId))
+    let chat = db.chats.findOne(chat => chat.users.includes(userId) && chat.users.includes(sessionStorage.userId))
 
     if (!chat) {
         chat = {
