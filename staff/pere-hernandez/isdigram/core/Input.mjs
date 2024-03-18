@@ -1,4 +1,4 @@
-import Component from ".Component"
+import Component from "./Component.mjs"
 
 class Input extends Component {
     constructor() {
@@ -12,6 +12,10 @@ class Input extends Component {
 
         //logic
         this._container.type = type
+    }
+
+    getValue() {
+        return this._container.value
     }
 }
 

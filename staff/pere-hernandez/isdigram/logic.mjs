@@ -65,12 +65,12 @@ function registerUser(username, email, password, confirmedPassword){
         throw new Error("Passwords don't match")
     }
 
-    var user = data.users.findOne(user => user.username === username || user.email === email
+    const user = data.users.findOne(user => user.username === username || user.email === email
     )
 
     if (user) throw new Error ('user already exists')
 
-    var user = {
+    user = {
         username: username,
         email: email,
         password: password,
@@ -196,7 +196,7 @@ function deletePost (postId) {
     validateText(postId, 'PostId', true)
 
     //logic
-    const post = data.posts.findOne(user => post.id === postId)
+    const post = data.posts.findOne(post => post.id === postId)
 
     if (!post) throw new Error ('post not found')
 
@@ -275,7 +275,7 @@ function retrieveChatWith (userID){
 //MESSAGE-related functions
 
 function createMessage(message){
-    var message = {
+    message = {
         text: message,
         author: sessionStorage.userId,
         time: new Date().toLocaleDateString('en-CA')

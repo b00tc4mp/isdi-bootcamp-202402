@@ -48,6 +48,16 @@ class Component {
         this._container.id = id
     }
 
+    setClass(className) {
+        //validation
+
+        if (typeof className !== 'string')
+            throw new TypeError ('className is not a name')
+
+        //logoc
+        this._container.classList.add(className)
+    }
+
     onClick (callback) {
         //validation
         if (!(callback instanceof Function))
@@ -55,6 +65,33 @@ class Component {
 
         //logic
         this._container.onclick = callback
+    }
+
+    removeAll(){
+        this._container.innerHTML = ''
+    }
+
+    remove(child) {
+        //validation
+
+        if(!(child instanceof Component))
+            throw new TypeError ('child is not a Component')
+
+        //logic
+        this._container.removeChild(child._container)
+    }
+
+    replace(oldChild, newChild){
+        //validation
+
+        if(!(oldChild instanceof Component))
+            throw new TypeError ('oldChild is not a Component')
+        if(!(newChild instanceof Component))
+            throw new TypeError ('newChild is not a Component')
+
+        //logic
+
+        this._container.replaceChild(newChild._container, oldChild._container)
     }
 }
 

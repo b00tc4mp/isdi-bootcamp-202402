@@ -1,4 +1,5 @@
-import Component from "./Component.mjs";
+import Component from "./Component.mjs"
+
 
 class Form extends Component {
     constructor(){
@@ -11,7 +12,7 @@ class Form extends Component {
         if (typeof callback !== 'function')
             throw new TypeError('callback is not a function')
 
-        this._container.onSubmit = callback
+        this._container.onsubmit = callback
     }
 }
 

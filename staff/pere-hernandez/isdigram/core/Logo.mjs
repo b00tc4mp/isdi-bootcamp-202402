@@ -1,7 +1,7 @@
 import Component from "./Component.mjs"
 import Image from "./Image.mjs"
 
-class Logo extends Component() {
+class Logo extends Component {
     constructor(){
         super('div')
 
