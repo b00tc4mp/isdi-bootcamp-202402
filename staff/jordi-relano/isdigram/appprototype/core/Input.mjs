@@ -5,6 +5,7 @@ class Input extends Component {
         super('input')
     }
 
+
     setType(type) {
         if (typeof type !== 'string') throw new TypeError('type is not a string')
 
@@ -14,6 +15,12 @@ class Input extends Component {
     getValue() {
         return this._container.value
     }
-}
+
+    setValue(value) {
+        return this._container.value = value
+    }
+
+ }
 
 export default Input
+ 

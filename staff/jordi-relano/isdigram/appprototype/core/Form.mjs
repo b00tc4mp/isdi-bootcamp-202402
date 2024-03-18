@@ -10,6 +10,9 @@ class Form extends Component {
 
         this._container.onsubmit = callback
     }
+    reset() {
+        this._container.reset()
+    }
 }
 
 export default Form

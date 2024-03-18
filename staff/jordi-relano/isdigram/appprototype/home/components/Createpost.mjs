@@ -1,82 +1,97 @@
-import utils from '../../utils.mjs'
+import utils from "../../utils.mjs";
 
-import logic from '../../logic.mjs'
+import logic from "../../logic.mjs";
 
-import Component from '../../core/Component.mjs'
-import Label from '../../core/Label.mjs'
-import Input from '../../core/Input.mjs'
-import Button from '../../core/Button.mjs'
-import Form from '../../core/Form.mjs'
+import Component from "../../core/Component.mjs";
+import Label from "../../core/Label.mjs";
+import Input from "../../core/Input.mjs";
+import Button from "../../core/Button.mjs";
+import Form from "../../core/Form.mjs";
 
 class CreatePost extends Component {
     constructor() {
-        super('section')
+        super("section");
 
-        this.addClass('create-post')
+        this.addClass("create-post");
 
-        const title = new Component('h2')
-        title.setText('Create Post')
+        const title = new Component("h2");
+        title.setText("Create Post");
 
-        const form = new Form
+        const form = new Form();
 
-        const imageLabel = new Label
-        imageLabel.setFor('image')
-        imageLabel.setText('Image')
+        const imageLabel = new Label();
+        imageLabel.setFor("image");
+        imageLabel.setText("Image");
 
-        const imageInput = new Input
-        imageInput.setId('image')
-        imageInput.setType('text')
+        const imageInput = new Input();
+        imageInput.setId("image");
+        imageInput.setType("text");
 
-        const textLabel = new Label
-        textLabel.setFor('text')
-        textLabel.setText('Text')
+        const textLabel = new Label();
+        textLabel.setFor("text");
+        textLabel.setText("Text");
 
-        const textInput = new Input
-        textInput.setId('text')
-        textInput.setType('text')
+        const textInput = new Input();
+        textInput.setId("text");
+        textInput.setType("text");
 
-        const createButton = new Button
-        createButton.setType('submit')
-        createButton.setText('Create')
+        const createButton = new Button();
+        createButton.setType("submit");
+        createButton.setText("Create");
 
-        form.add(imageLabel, imageInput, textLabel, textInput, createButton)
+        form.add(title, imageLabel, imageInput, textLabel, textInput, createButton);
 
-        const cancelButton = new Button
-        cancelButton.setText('Cancel')
+        const cancelButton = new Button();
+        cancelButton.setText("Cancel");
 
-        this._cancelButton = cancelButton
+        this._cancelButton = cancelButton;
 
-        this.add(form, cancelButton)
+        this.add(form, cancelButton);
 
-        form.onSubmit(event => {
-            event.preventDefault()
+        form.onSubmit((event) => {
+            event.preventDefault();
 
-            const image = imageInput.getValue()
-            const text = textInput.getValue()
+            const image = imageInput.getValue();
+            const text = textInput.getValue();
 
             try {
-                logic.createPost(image, text)
+                logic.createPost(image, text);
 
-                this._onPostCreatedCallback()
+                this._onPostCreatedCallback();
             } catch (error) {
-                utils.showFeedback(error)
+                utils.showFeedback(error);
             }
-        })
+        });
+        this._onPostCreatedCallback = null;
 
-        this._onPostCreatedCallback = null
+        CreatePost.active = true
+
+
     }
 
-    onCancelClick(callback) {
-        if (typeof callback !== 'function') throw new TypeError('callback is not a function')
+    static active = false
 
-        this._cancelButton.onClick(callback)
+    onCancelClick(callback) {
+        if (typeof callback !== "function")
+            throw new TypeError("callback is not a function");
+
+        this._cancelButton.onClick(() => {
+            CreatePost.active = false
+
+            callback()
+        })
     }
 
     onPostCreated(callback) {
-        if (typeof callback !== 'function') throw new TypeError('callback is not a function')
+        if (typeof callback !== "function")
+            throw new TypeError("callback is not a function");
 
-        this._onPostCreatedCallback = callback
+            this._onPostCreatedCallback = () => {
+                CreatePost.active = false
+    
+                callback()
+            }
     }
 }
 
-export default CreatePost
+export default CreatePost;

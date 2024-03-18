@@ -5,9 +5,6 @@ import logic from '../../logic.mjs'
 import Component from '../../core/Component.mjs'
 import Post from './Post.mjs'
 
-
-
-
 class Posts extends Component {
     constructor() {
         super('section')
@@ -23,6 +20,10 @@ class Posts extends Component {
 
             posts.forEach(post => {
                 const post2 = new Post(post)
+
+                post2.onDeleted(() => this.refresh())
+
+                post2.onEdited(() => this.refresh())
 
                 this.add(post2)
             })

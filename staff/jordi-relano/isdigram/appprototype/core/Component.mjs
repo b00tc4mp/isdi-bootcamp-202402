@@ -1,6 +1,6 @@
 class Component {
-
-    constructor(tagName) {
+    // si en el constructor dejas el tagName tal cual, y entra un undefined (si pones el = 'div'), se hará eso por defecto
+    constructor(tagName = 'div') {
         this._container = document.createElement(tagName)
         // el parametro que pasamos por aqui pasa al valor apra crearse commo elemento HTML y se referencia como this._container ( que es home)
         // const home = new Component('main')
