@@ -161,9 +161,9 @@ function removePost(postId) {
 }
 
 function editPostText(postId, newCaption) {
-    console.log("Received postId:", postId);
+    // console.log("Received postId:", postId);
     const post = db.posts.findOne(post => post.id === postId)
-    console.log('Post found: ', post)
+    // console.log('Post found: ', post)
     if (!post) throw new Error('post not found')
 
     if (post.author !== sessionStorage.userId) throw new Error('post does not belong to user')

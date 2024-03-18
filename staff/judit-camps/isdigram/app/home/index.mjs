@@ -3,7 +3,7 @@ import logic from "../logic.mjs"
 
 import Component from "../core/Component.mjs"
 import Button from "../core/Button.mjs"
-import Posts from "./components/Posts.mjs"
+import Posts from "./components/PostList.mjs"
 import CreatePost from "./components/CreatePost.mjs"
 import Footer from "./components/Footer.mjs"
 import Chat from "./components/Chat.mjs"
@@ -92,7 +92,6 @@ else {
         newPostForm.onPostCreated(() => {
             home.remove(newPostForm)
             posts.refresh()
-            footer.add(newPostButton)
         })
 
         home.add(newPostForm)

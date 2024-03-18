@@ -5,6 +5,7 @@ import Component from "../../core/Component.mjs"
 
 import Image from "../../core/Image.mjs"
 import Button from "../../core/Button.mjs"
+import EditPost from "./EditPost.mjs"
 
 
 class Post extends Component {
@@ -26,16 +27,16 @@ class Post extends Component {
         const dateTime = new Component('time')
         dateTime.setText(post.date)
 
-        if (post.author === logic.getLoggedInUser()) {
+        if (post.author.id === logic.getLoggedInUser()) {
             const deletePostButton = new Button
             deletePostButton.setText('...')
 
-            deletePostButton.onClick(function () {
+            deletePostButton.onClick(() => {
                 if (confirm('delete post?'))
                     try {
                         logic.removePost(post.id)
 
-                        // TO DO: Render posts
+                        this._onDeletedCallback()
                     } catch (error) {
                         utils.showFeedback(error)
                     }
@@ -44,8 +45,17 @@ class Post extends Component {
             const editPostButton = new Button
             editPostButton.setText('edit')
 
-            editPostButton.onClick(function () {
-                // TO DO open edit pannel
+            editPostButton.onClick(() => {
+                if (!EditPost.active) {
+                    const editPost = new EditPost(post)
+
+                    editPost.onCancelClick(() => this.remove(editPost))
+
+                    editPost.onPostEdited(() => this._onEditedCallback())
+
+                    this.add(editPost)
+                }
+
             })
 
             caption.add(editPostButton, deletePostButton)
@@ -53,7 +63,23 @@ class Post extends Component {
         }
 
         this.add(author, picture, caption, dateTime)
+
+        this._onDeletedCallback = null
+        this._onEditedCallback = null
     }
+    onDeleted(callback) {
+        if (typeof callback !== 'function') throw new TypeError('callback is not a function')
+
+        this._onDeletedCallback = callback
+    }
+
+    onEdited(callback) {
+        if (typeof callback !== 'function') throw new TypeError('callback is not a function')
+
+        this._onEditedCallback = callback
+    }
+
+
 }
 
 export default Post
