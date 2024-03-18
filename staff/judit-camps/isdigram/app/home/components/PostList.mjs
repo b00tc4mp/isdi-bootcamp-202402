@@ -4,7 +4,7 @@ import Component from "../../core/Component.mjs"
 import Post from "./Post.mjs"
 import utils from "../../utils.mjs"
 
-class Posts extends Component {
+class PostsLists extends Component {
     constructor() {
         super('section')
 
@@ -32,4 +32,4 @@ class Posts extends Component {
     }
 }
 
-export default Posts
+export default PostsLists
