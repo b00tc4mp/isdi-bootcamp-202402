@@ -5,8 +5,10 @@ import logic from "../../logic.mjs";
 import Component from "../../core/Component.mjs";
 import Label from "../../core/Label.mjs";
 import Input from "../../core/Input.mjs";
-import Button from "../../core/Button.mjs";
 import Form from "../../core/Form.mjs";
+
+import SubmitButton from "../../library/SubmitButton.mjs";
+import CancelButton from "../../library/CancelButton.mjs";
 
 class EditPost extends Component {
   constructor(post) {
@@ -28,13 +30,13 @@ class EditPost extends Component {
     textInput.setType("text");
     textInput.setValue(post.text);
 
-    const editButton = new Button();
+    const editButton = new SubmitButton();
     editButton.setType("submit");
     editButton.setText("Save");
 
     form.add(textLabel, textInput, editButton);
 
-    const cancelButton = new Button();
+    const cancelButton = new CancelButton();
     cancelButton.setText("Cancel");
 
     this._cancelButton = cancelButton;

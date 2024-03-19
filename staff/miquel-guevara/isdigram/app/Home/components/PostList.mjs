@@ -10,6 +10,8 @@ class PostList extends Component {
     super("section");
 
     this.refresh();
+
+    this._refreshIntervalId = setInterval(() => this.refresh(), 5000);
   }
 
   refresh() {
@@ -30,6 +32,10 @@ class PostList extends Component {
     } catch (error) {
       utils.showFeedback(error);
     }
+  }
+
+  stopAutoRefresh() {
+    clearInterval(this._refreshIntervalId);
   }
 }
 
