@@ -5,6 +5,7 @@ import Input from "../core/Input.mjs";
 import Label from "../core/Label.mjs";
 import Link from "../core/Link.mjs";
 import logic from "../logic.mjs";
+import utils from "../utils.mjs"
 
 class Login extends Component {
     constructor() {
@@ -44,7 +45,7 @@ class Login extends Component {
                 location.href = '../home'
 
             } catch (error) {
-                showFeedback(error)
+                utils.showFeedback(error)
             }
 
         })
@@ -55,7 +56,7 @@ class Login extends Component {
         phrase.setText('If you do not have an account')
         const link = new Link
         link.setText('Register')
-        link.setHref('../register.')
+        link.setHref('../register')
 
         this.add(title, form, phrase, link)
     }
