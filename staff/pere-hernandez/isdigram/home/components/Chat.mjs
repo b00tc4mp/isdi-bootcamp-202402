@@ -1,127 +1,52 @@
-import Component from "../../core/Component.mjs";
+import Component from "../../core/Component.mjs"
 
-import logic from "../../logic.mjs";
-
-import Input from "../../core/Input.mjs"
-import Form from "../../core/Form.mjs";
-import Button from "../../core/Button.mjs"
-import Image from "../../core/Image.mjs"
+import UserList from "./UserList.mjs"
+import messageList from "./MessageList.mjs"
+import ChatForm from "./ChatForm.mjs"
+import MessageList from "./MessageList.mjs"
 
 class Chat extends Component {
     constructor(){
         super('section')
 
-        const userList = new Component('ul')
+        const userList = new UserList
+        userList.setId('user-list-section')
 
-        try {
-            const users = logic.retrieveUsers()
+        this._messageList
+        let chatForm
 
-            let chat = null
+        userList.onUserClick(user => {
+            this.remove(userList)
+            if (!this._messageList) {
+                let chatSection = new Component('div')
 
-            users.forEach(user => {
-                const userLi = new Component ('li')
+                let chatTitle = new Component('div')
+                chatTitle.setClass('chat-title')
+                chatTitle.setText(user.username)
 
-                userLi.setText(user.username)
+                this._messageList = new messageList(user)
+                chatForm = new ChatForm(user)
 
-                if (user.status === 'online')
-                    userLi.setClass('user-list-online')
-                else
-                userLi.setClass('user-list-offline')
+                chatForm.onSendMessage(() => this._messageList.refresh())
 
-                userLi.onClick(() => {
-                    if (chat) this.remove(chat)
+                chatSection.add(chatTitle, this._messageList, chatForm)
 
-                    chat = new Component('section')
-                    chat.setId('chat-section')
+                this.add(chatSection)
+            } else {
+                this._messageList.stopAutoRefresh()
 
-                    this.remove(userList)
-                    const chatTitle = new Component ('div')
-                    chatTitle.setClass('chat-title')
-                    chatTitle.setText(user.username)
+                const oldMessageList = this._messageList
+                const oldChatForm = chatForm
 
-                    const messageSection = new Component ('section')
-                    messageSection.setClass('message-section')
+                this._messageList = new MessageList(user)
+                chatForm = new ChatForm(user)
 
-                    function renderMessages(){
-                        messageSection.removeAll()
+                chatForm.onSendMessage(() => this._messageList.refresh())
 
-                        try {
-                            const messages = logic.retrieveMessagesWith(user.id)
-
-                            messages.forEach(message => {
-                                const messageP = new Component ('p')
-
-                                messageP.setText(message.text)
-
-                                if (message.author === logic.getLoggedInUserId())
-                                    messageP.setClass('chat-message-sent')
-                                else 
-                                    messageP.setClass('chat-message-recieved')
-
-                                messageSection.add(messageP)
-                            })
-                        } catch (error) {
-                            alert(error.message)
-                        }
-                    }
-
-                    renderMessages.call(this)
-
-                    chat.add(chatTitle, messageSection)
-
-                    this.add(chat)
-
-                    const chatForm = new Form
-                    chatForm.setClass('chat-form')
-
-                    chatForm.onSubmit(event => {
-                        event.preventDefault()
-
-                        let chatWith = logic.retrieveChatWith(user.id)
-
-                        if (!chatWith)
-                            chatWith = logic.createChat(user)
-
-                            const messageValue = input.getValue()
-
-                            const newMessage = logic.createMessage(messageValue)
-
-                        try {
-                            logic.addMessageToChat(newMessage, chatWith.id)
-
-                            chatForm.reset()
-
-                            renderMessages.call(this)
-                        } catch (error) {
-                            alert(error.message)
-                        }
-                    })
-
-                    const input = new Input
-                    input.setId('chat-text-input')
-                    input.setType('text')
-
-                    const sendMessageButton = new Button
-                    sendMessageButton.setClass('send-message-button')
-                    sendMessageButton.setType('submit')
-
-                    const sendMessageImg = new Image
-                    sendMessageImg.setSource('../mail.png')
-                    sendMessageImg.setClass('message-icon')
-
-                    sendMessageButton.add(sendMessageImg)
-
-                    chatForm.add(input, sendMessageButton)
-
-                    chat.add(chatForm)
-
-                })
-
-                userList.add(userLi)
-            })  
-        } catch (error){
-            alert(error.message)
-        }
+                this.replace(oldMessageList, this._messageList)
+                this.replace(oldChatForm, chatForm)
+            }
+        })
         this.add(userList)
     }
 }

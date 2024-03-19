@@ -7,6 +7,7 @@ header {
     justify-content: space-between;
     box-sizing: border-box;
     background-color:  #AFCDEF;
+    border-bottom: 1px solid gray;
 }
 
 #logo {
@@ -72,8 +73,15 @@ p {
     padding-left: 2vw;
 }
 
-#delete-post-button, #edit-post-button {
-    margin-top: 1vh ;
+.update-post-button{
+    margin-top: 2vh;
+    border: 0;
+    border-bottom: 1px solid gray;
+}
+
+.delete-post-button{
+    border: 0;
+    border-bottom: 1px solid gray;
 }
 
 .post-form-section {
@@ -183,6 +191,8 @@ li {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    overflow: auto;
+    margin-bottom: 10vh;
 }
 
 .message-icon{
@@ -207,6 +217,7 @@ li {
     margin: 0;
     margin: 0 4vw 0 3vw;
     padding: 0 2vw 0 2vw;
+    border-top: 1px solid gray;
 }
 
 .send-message-button {
@@ -222,13 +233,14 @@ li {
 }
 
 .chat-message-sent, .chat-message-recieved {
+    font-size: 2vh;
     background-color: #AFCDEF;
     padding: 1.5vw;
-    margin: 2vh 2vw 0  16vw;
     border-radius: 5px;
     width: fit-content;
     align-self: flex-end;
     margin-left: 16vw;
+    margin: 2vh 2vw 0 16vw;
 }
 
 .chat-message-recieved {
@@ -238,7 +250,13 @@ li {
 }
 
 .message-section {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    padding: 0 0 2vh 0;
+    margin: 0;
+    list-style-type: none;
 }
 
 #post-buttons-bar {

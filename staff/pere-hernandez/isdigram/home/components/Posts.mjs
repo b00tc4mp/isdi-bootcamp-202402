@@ -20,13 +20,16 @@ class Posts extends Component {
         } catch (error) {
             alert(error.message)
         }    
+
         posts.forEach((post) => {
             const post1 = new Post(post) 
             this.add(post1)
-        })          
-    }
 
-        
+            post1.onDeleted(() => {
+                this.refresh()
+            })
+        })          
+    }        
 }
 
 export default Posts

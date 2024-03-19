@@ -265,8 +265,6 @@ function retrieveMessagesWith (userID){
 function retrieveChatWith (userID){
     const chat = data.chats.findOne(chat => chat.users.includes(userID) && chat.users.includes(sessionStorage.userId))
 
-    if (!chat) throw new Error('user not found')
-
     return chat
 }
 

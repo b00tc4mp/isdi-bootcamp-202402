@@ -1,7 +1,5 @@
 import Component from "../../core/Component.mjs"
 
-import logic from "../../logic.mjs"
-
 import Button from "../../core/Button.mjs"
 import Image from "../../core/Image.mjs"
 
