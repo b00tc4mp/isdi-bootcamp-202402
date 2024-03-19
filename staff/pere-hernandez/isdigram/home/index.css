@@ -228,7 +228,7 @@ li {
     border-radius: 5px;
     width: fit-content;
     align-self: flex-end;
-    margin-left: 8vw;
+    margin-left: 16vw;
 }
 
 .chat-message-recieved {
