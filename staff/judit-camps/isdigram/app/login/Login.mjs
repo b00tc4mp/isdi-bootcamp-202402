@@ -16,15 +16,13 @@ class Login extends Component {
 
         const form = new Form
 
-        const usernameLabel = new Label
-        usernameLabel.setFor('text')
         const usernameInput = new Input
         usernameInput.setType('text')
+        usernameInput.setPlaceholder('username')
 
-        const passwordLabel = new Label
-        passwordLabel.setFor('password')
         const passwordInput = new Input
         passwordInput.setType('password')
+        passwordInput.setPlaceholder('password')
 
         const loginButton = new Button
         loginButton.setType('submit')
@@ -50,7 +48,7 @@ class Login extends Component {
 
         })
 
-        form.add(usernameLabel, usernameInput, passwordLabel, passwordInput, loginButton)
+        form.add(usernameInput, passwordInput, loginButton)
 
         const phrase = new Component('p')
         phrase.setText('If you do not have an account')

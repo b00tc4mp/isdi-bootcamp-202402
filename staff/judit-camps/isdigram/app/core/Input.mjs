@@ -17,6 +17,10 @@ class Input extends Component {
     setValue(value) {
         this._container.value = value
     }
+
+    setPlaceholder(text) {
+        this._container.placeholder = text
+    }
 }
 
 export default Input

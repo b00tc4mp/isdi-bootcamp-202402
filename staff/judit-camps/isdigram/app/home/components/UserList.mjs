@@ -12,6 +12,7 @@ class UserList extends Component {
             users.forEach(user => {
                 const userItem = new Component('li')
                 userItem.setText(user.username)
+                userItem.addClass('user-list__item')
 
                 if (user.status === 'online')
                     userItem.addClass('user-list__item--online')

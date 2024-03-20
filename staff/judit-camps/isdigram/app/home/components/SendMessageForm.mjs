@@ -10,11 +10,12 @@ class SendMessageForm extends Form {
         super()
 
         const textInput = new Input
-        textInput.setId('text')
+        textInput.setId('send-message-form__text')
 
         const sendButton = new Button
         sendButton.setText('send')
         sendButton.setType('submit')
+        sendButton.setId('send-message-form__button')
 
         this.setId('send-message-form')
 

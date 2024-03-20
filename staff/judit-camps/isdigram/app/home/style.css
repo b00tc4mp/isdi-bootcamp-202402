@@ -60,15 +60,6 @@ input {
   display: none;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-form button {
-  margin: 32px 80px;
-}
-
 form p, a {
   margin-top: 0;
   text-align: center;
@@ -77,6 +68,61 @@ form p, a {
 
 form p {
   margin-bottom: 4px;
+}
+
+.user-list__item {
+  cursor: pointer;
+  margin: 30px;
+}
+
+.user-list__item--online::marker {
+  color: limegreen;
+  font-size: 30px;
+}
+
+.user-list__item--offline::marker {
+  color: red;
+  font-size: 30px;
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.message-list__item--right {
+  background-color: #8edaed;
+  margin: 4px;
+  border-radius: 20px;
+  padding: 10px;
+  right: 0;
+  text-align: right;
+  width: fit-content;
+}
+
+.message-list__item--left {
+  background-color: #b3b3b3;
+  margin: 4px;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: left;
+  margin-left: 0;
+  width: fit-content;
+}
+
+.send-message-form {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 75% 25%;
+}
+
+.send-message-form__text {
+  grid-column: 1/2;
+}
+
+.send-message-form__button {
+  grid-column-start: 2;
 }
 
 header {
@@ -178,65 +224,6 @@ time {
   display: none;
   position: fixed;
   top: 25%;
-}
-
-#chat-section {
-  margin: 0;
-  text-align: left;
-}
-
-li {
-  padding: 15px 0;
-  margin-left: 0;
-  font-size: larger;
-}
-
-li span {
-  font-size: large;
-}
-
-.user-list__item--online::marker {
-  color: limegreen;
-}
-
-.user-list__item--offline::marker {
-  color: red;
-}
-
-#message-section {
-  display: flex;
-  flex-direction: column;
-}
-
-#chat-bubbles-div {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-}
-
-.text__right {
-  display: flex;
-  margin: 8px;
-  padding: 8px;
-  border-radius: 16px;
-  align-self: flex-end;
-  background-color: #b3d9e4;
-  width: fit-content;
-}
-
-.text__left {
-  margin: 8px;
-  padding: 8px;
-  background-color: #e2e2e2;
-  border-radius: 16px;
-  width: fit-content;
-  align-self: flex-start;
-}
-
-#send-message-form {
-  flex-direction: row;
-  height: 30px;
 }
 
 footer {

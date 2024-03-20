@@ -1,4 +1,7 @@
 @use '../style.sass'
+@use './components/UserList'
+@use './components/MessageList'
+@use './components/SendMessageForm'
 
 // header
 header
@@ -86,54 +89,6 @@ time
     display: none
     position: fixed
     top: 25%
-
-// CHAT
-#chat-section
-    margin: 0
-    text-align: left
-li
-    padding: 15px 0
-    margin-left: 0
-    font-size: larger
-li span 
-    font-size: large
-
-.user-list__item--online::marker
-    color: limegreen
-
-.user-list__item--offline::marker
-    color: red
-
-#message-section
-    display: flex
-    flex-direction: column
-
-#chat-bubbles-div
-    padding: 10px
-    display: flex
-    flex-direction: column
-    width: 90%
-
-.text__right
-    display: flex
-    margin: 8px
-    padding: 8px
-    border-radius: 16px
-    align-self: flex-end
-    background-color: #b3d9e4
-    width: fit-content
-
-.text__left
-    margin: 8px
-    padding: 8px
-    background-color: #e2e2e2
-    border-radius: 16px
-    width: fit-content
-    align-self: flex-start
-
-#send-message-form
-    flex-direction: row
-    height: 30px
 
 // FOOTER
 footer

@@ -60,15 +60,6 @@ input {
   display: none;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-form button {
-  margin: 32px 80px;
-}
-
 form p, a {
   margin-top: 0;
   text-align: center;
