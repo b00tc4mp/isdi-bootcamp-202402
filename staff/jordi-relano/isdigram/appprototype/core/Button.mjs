@@ -1,8 +1,9 @@
-import component from './Component.mjs'
+import Component from './Component.mjs'
 
-class Button extends component {
+class Button extends Component {
     constructor() {
         super('button')
+        // plantilla (class), 
     }
 
 

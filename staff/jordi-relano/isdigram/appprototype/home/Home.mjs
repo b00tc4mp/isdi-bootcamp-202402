@@ -31,6 +31,8 @@ class Home extends Component {
     const chat = new Chat
 
     menu.onChatClick(() => {
+      postList.stopAutoRefresh()
+
       this.remove(postList)
       this.remove(footer)
 
@@ -38,6 +40,7 @@ class Home extends Component {
     })
 
     menu.onHomeClick(() => {
+      chat.stopAutoRefresh()
       this.remove(chat)
 
       this.add(postList)
@@ -53,7 +56,7 @@ class Home extends Component {
     const footer = new Footer
 
     footer.onCreatePostClick(() => {
-      if (!CreatePost.active) {
+      if (!CreatePost.active) { // si es fals el valor de la vrariabvle active, entres:
         const createPost = new CreatePost
 
         createPost.onCancelClick(() => this.remove(createPost))

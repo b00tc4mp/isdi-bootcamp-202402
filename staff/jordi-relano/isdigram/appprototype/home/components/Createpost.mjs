@@ -1,7 +1,8 @@
 import Component from '../../core/Component.mjs'
 import Label from '../../core/Label.mjs'
 import Input from '../../core/Input.mjs'
-import Button from '../../core/Button.mjs'
+import SubmitButton from '../../library/SubmitButton.mjs'
+import CancelButton from '../../library/CancelButton.mjs'
 import Form from '../../core/Form.mjs'
 import utils from '../../utils.mjs'
 
@@ -9,31 +10,48 @@ import logic from '../../logic.mjs'
 
 class CreatePost extends Component {
     constructor() {
-        super('section')
+        super('section') // crides al constructor de la super clase (component), asignes al tagName com a section. Cirdes al component amb el parametre section a tagname
+
         this.addClass('create-post')
+
         const title = new Component('h2')
+        // 
         title.setText('Create Post')
         const form = new Form
         const imageLabel = new Label
+
         imageLabel.setFor('image')
         imageLabel.setText('Image')
+
         const imageInput = new Input
+
         imageInput.setId('image')
         imageInput.setType('text')
+
         const textLabel = new Label
+
         textLabel.setFor('text')
         textLabel.setText('Text')
+
         const textInput = new Input
+
         textInput.setId('text')
         textInput.setType('text')
-        const createButton = new Button
+
+        const createButton = new SubmitButton
+
         createButton.setType('submit')
         createButton.setText('Create')
+
         form.add(imageLabel, imageInput, textLabel, textInput, createButton)
-        const cancelButton = new Button
+
+        const cancelButton = new CancelButton
+
         cancelButton.setText('Cancel')
+
         this._cancelButton = cancelButton
         this.add(form, cancelButton)
+        
         form.onSubmit(event => {
             event.preventDefault()
             const image = imageInput.getValue()
@@ -52,6 +70,7 @@ class CreatePost extends Component {
     }
 
     static active = false
+    // metode static funciona amb totes les instancies de la clase, inclús amb la plantilla de la clase
 
 
     onCancelClick(callback) {
@@ -59,6 +78,7 @@ class CreatePost extends Component {
 
         this._cancelButton.onClick(() => {
             CreatePost.active = false
+
 
             callback()
         })
