@@ -1,0 +1,170 @@
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  flex-direction: column;
+  align-items: center;
+  color: #00013a;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+}
+
+form input {
+  padding: 12px;
+  border-radius: 12px;
+  margin: 4px 0;
+}
+
+form button {
+  width: fit-content;
+  padding: 8px;
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+form p {
+  background-color: yellow;
+}
+
+.landing {
+  background-color: #c9f1ff;
+  display: flex;
+  justify-content: center;
+}
+
+.landing-title {
+  font-size: 90px;
+  color: #00013a;
+}
+
+.landing-link {
+  font-size: 40px;
+  background-color: white;
+  padding: 30px;
+  color: #00013a;
+  text-decoration: none;
+  margin: 10px 30px;
+  border-radius: 40px;
+}
+
+.login {
+  background-color: #c9f1ff;
+  display: flex;
+  justify-content: center;
+}
+
+.login-title {
+  font-size: 72px;
+  color: #00013a;
+  margin: 12px;
+}
+
+.login p {
+  font-size: 16px;
+  color: #00013a;
+}
+
+.login-link {
+  font-size: 20px;
+  background-color: white;
+  padding: 8px 0;
+  color: #00013a;
+  text-decoration: none;
+  border-radius: 40px;
+}
+
+.header {
+  background-color: grey;
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  display: flex;
+  padding: 8px;
+}
+
+.header button {
+  margin-left: 30px;
+  border: 0;
+  border-radius: 20px;
+  height: max-content;
+  align-self: center;
+}
+
+.footer {
+  width: 100vw;
+  display: flex;
+  background-color: #80dfff;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+}
+
+.footer button {
+  width: 72px;
+  border-radius: 24px;
+  margin: 8px;
+  border: 0;
+  box-shadow: 5px black;
+}
+
+.post {
+  background-color: grey;
+}
+
+.post-caption {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.post-date {
+  font-size: small;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 95vw;
+}
+
+.create-post {
+  background-color: pink;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.background-gradient {
+  background: linear-gradient(to bottom, #FCFEFF, #2DAAE1);
+  background-attachment: fixed;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.main {
+  margin-bottom: 50px;
+}
+
+label {
+  font-size: small;
+  margin-top: 8px;
+}
+
+/*# sourceMappingURL=index.css.map */
