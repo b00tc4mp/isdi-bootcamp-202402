@@ -1,7 +1,9 @@
 class Component {
-    constructor (tagName){
-    
-        this._container = document.createElement(tagName)
+    constructor(tagNameOrContainer = 'div') {
+        if (tagNameOrContainer instanceof HTMLElement)
+            this._container = tagNameOrContainer
+        else
+            this._container = document.createElement(tagNameOrContainer)
     }
 
     setText(text) {
@@ -21,18 +23,19 @@ class Component {
     }
 
     replace(oldChild, newChild) {
-        if(!(oldChild instanceof Component)) throw new TypeError('child is not a Component')
-        if(!(newChild instanceof Component)) throw new TypeError('child is not a Component')
+        if (!(oldChild instanceof Component)) throw new TypeError('onChild is not a Component')
+        if (!(newChild instanceof Component)) throw new TypeError('newChild is not a Component')
 
-        this._container.replace(newChild._container, oldChild._container)
+        this._container.replaceChild(newChild._container, oldChild._container)
     }
 
-    remove(child){
-        if(!(Child instanceof Component)) throw new TypeError('child is not a Component')
+    remove(child) {
+        if (!(child instanceof Component)) throw new TypeError('child is not a Component')
+
         this._container.removeChild(child._container)
     }
 
-    removeAll(){
+    removeAll() {
         this._container.innerHTML = ''
     }
 
@@ -43,7 +46,8 @@ class Component {
     }
 
     onClick(callback) {
-        if(typeof callback !== 'function') throw new TypeError('callback is not a function')
+        if (typeof callback !== 'function') throw new TypeError('callback is not a function')
+
         this._container.onclick = callback
     }
 
@@ -53,7 +57,7 @@ class Component {
         this._container.id = id
     }
 
-    addClass(classname){
+    addClass(classname) {
         this._container.classList.add(classname)
     }
 }

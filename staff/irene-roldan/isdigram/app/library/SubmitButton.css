@@ -1,0 +1,11 @@
+.round-button {
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 10px 0;
+}
+
+.submit-button {
+  background-color: #F86F2F;
+}
+
+/*# sourceMappingURL=SubmitButton.css.map */
