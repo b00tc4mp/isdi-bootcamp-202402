@@ -1,10 +1,15 @@
-body
-    margin: 0
+@use './resets'
 
-main
-    margin: 0
-    padding: 0 5vw
+@use './home/components/library/RoundButton'
+@use './home/components/library/SubmitButton'
+@use './home/components/library/CancelButton'
 
-form
-    display: flex
-    flex-direction: column
+@use './home/components/PostList'
+@use './home/components/CreatePost'
+@use './home/components/EditPost'
+@use './home/components/UserList'
+@use './home/components/MessageList'
+@use './home/components/Footer'
+
+.main
+    margin-bottom: 50px
