@@ -14,7 +14,7 @@ class MessageList extends Component {
 
         this.refresh()
 
-        setInterval(() => {
+        this._refreshIntervalId = setInterval(() => {
             console.count('message-list interval')
 
             if (MessageList.active) {
@@ -24,7 +24,7 @@ class MessageList extends Component {
             }
         }, 1000)
 
-        setInterval(() => MessageList.active && this.refresh(), 1000)
+        // setInterval(() => MessageList.active && this.refresh(), 1000)
 
         MessageList.active = true
     }
