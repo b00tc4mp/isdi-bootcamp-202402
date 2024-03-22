@@ -56,6 +56,8 @@ li {
     background-color: transparent;
     border: 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 article {
@@ -301,14 +303,26 @@ header {
 
 /*Chat styles*/
 
+.title-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color:#AFCDEF;
+    margin-top: 2vh;
+}
+
 .chat-title {
     display: flex;
     align-items: center;
-    background-color:#AFCDEF;
     font-size: 8vw;
     padding-left: 2vw;
     height: 8vh;
-    margin: 2vh 0 0 0;
+    margin: 0;
+}
+
+.return-img {
+    width: 12vw;
+    transform: rotate(-0.25turn);
 }
 
 .message-form {
