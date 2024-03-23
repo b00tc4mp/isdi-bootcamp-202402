@@ -14,8 +14,11 @@ class Register extends Component {
     constructor() {
         super('main')
 
+        this.addClass('register')
+
         const title = new Component('h1')
         title.setText('Register')
+        title.addClass('register-title')
 
         const form = new Form
 
@@ -25,6 +28,7 @@ class Register extends Component {
         const nameInput = new Input
         nameInput.setType('text')
         nameInput.setPlaceholder('name')
+        nameInput.addClass('register-input')
 
 
         const birthdateLabel = new Label
@@ -32,6 +36,8 @@ class Register extends Component {
         birthdateLabel.setText('birthdate')
         const birthdateInput = new Input
         birthdateInput.setType('date')
+        birthdateInput.addClass('register-input')
+
 
         const emailLabel = new Label
         emailLabel.setFor('email')
@@ -39,7 +45,7 @@ class Register extends Component {
         const emailInput = new Input
         emailInput.setType('email')
         emailInput.setPlaceholder('email')
-
+        emailInput.addClass('register-input')
 
 
         const usernameLabel = new Label
@@ -48,7 +54,7 @@ class Register extends Component {
         const usernameInput = new Input
         usernameInput.setType('text')
         usernameInput.setPlaceholder('username')
-
+        usernameInput.addClass('register-input')
 
 
         const passwordLabel = new Label
@@ -57,6 +63,7 @@ class Register extends Component {
         const passwordInput = new Input
         passwordInput.setType('password')
         passwordInput.setPlaceholder('password')
+        passwordInput.addClass('register-input')
 
         const registerButton = new Button
         registerButton.setText('register')

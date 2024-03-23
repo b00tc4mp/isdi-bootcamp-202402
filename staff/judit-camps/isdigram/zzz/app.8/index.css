@@ -37,8 +37,9 @@ form p {
 
 .landing {
   background-color: #c9f1ff;
-  display: flex;
+  display: grid;
   justify-content: center;
+  align-content: center;
 }
 
 .landing-title {
@@ -48,24 +49,37 @@ form p {
 
 .landing-link {
   font-size: 40px;
+  width: 140px;
+  margin: 8px 0;
+  height: max-content;
+  padding: 8px 16px;
   background-color: white;
-  padding: 30px;
   color: #00013a;
   text-decoration: none;
-  margin: 10px 30px;
   border-radius: 40px;
+  justify-self: center;
 }
 
 .login {
   background-color: #c9f1ff;
-  display: flex;
+  display: grid;
   justify-content: center;
+  align-content: center;
 }
 
 .login-title {
   font-size: 72px;
   color: #00013a;
   margin: 12px;
+}
+
+.login-input {
+  border: none;
+  box-shadow: inset 1px 2px 10px #cecffd;
+}
+
+.login-button {
+  border: none;
 }
 
 .login p {
@@ -76,10 +90,53 @@ form p {
 .login-link {
   font-size: 20px;
   background-color: white;
-  padding: 8px 0;
+  padding: 8px 16px;
   color: #00013a;
   text-decoration: none;
   border-radius: 40px;
+  width: fit-content;
+  justify-self: center;
+  display: flex;
+}
+
+.register {
+  background-color: #c9f1ff;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.register-title {
+  font-size: 72px;
+  color: #00013a;
+  margin: 12px;
+}
+
+.register-input {
+  border: none;
+  box-shadow: inset 1px 2px 10px #cecffd;
+  width: 140px;
+}
+
+.register-button {
+  border: none;
+}
+
+.register p {
+  font-size: 16px;
+  color: #00013a;
+}
+
+.register-link {
+  font-size: 20px;
+  background-color: white;
+  padding: 8px 16px;
+  color: #00013a;
+  text-decoration: none;
+  border-radius: 40px;
+  width: fit-content;
+  justify-self: center;
+  display: flex;
 }
 
 .header {
