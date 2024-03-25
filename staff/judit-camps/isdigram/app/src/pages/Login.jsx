@@ -8,7 +8,7 @@ class Login extends Component {
     }
 
     render() {
-        return <main>
+        return <main id='login'>
             <h1>Login</h1>
             <form onSubmit={event => {
                 event.preventDefault()

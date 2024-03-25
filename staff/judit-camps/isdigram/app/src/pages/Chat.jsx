@@ -3,6 +3,8 @@ import logic from '../logic.mjs'
 
 import { Component } from 'react'
 
+import UserChat from './UserChat'
+
 class Chat extends Component {
     constructor() {
         super()
@@ -21,12 +23,26 @@ class Chat extends Component {
         }
 
         const userList = users.map(user => {
-            return <li onClick={event => {
+            let classStatus
+            if (user.status === 'online')
+                classStatus = ' user-list__item--online'
+            else
+                classStatus = ' user-list__item--offline'
+
+            return <li className={'user-list__item' + classStatus} onClick={event => {
                 event.preventDefault()
 
-                console.log(user.id)
+                console.log(user.username, user.id)
+
+                return (<div>
+                    < UserChat user />
+                </div>)
+                // this.state.onUserChatClick(user)
             }}>{user.username}</li>
+
+
         })
+
 
         return <main>
             <header>

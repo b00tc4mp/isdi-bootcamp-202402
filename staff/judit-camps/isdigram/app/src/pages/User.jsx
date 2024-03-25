@@ -16,7 +16,7 @@ class User extends Component {
             utils.showFeedback(error)
         }
 
-        return <main>
+        return <main id="user-page">
             <header>
                 <h3>Isdigram</h3>
                 <button>Chat</button>

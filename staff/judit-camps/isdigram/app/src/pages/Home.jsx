@@ -2,33 +2,28 @@ import utils from '../utils.mjs'
 import logic from '../logic.mjs'
 import { Component } from "react"
 
+import PostList from './components/PostList'
+import CreatePost from './components/CreatePost'
+
 
 class Home extends Component {
     constructor() {
         super()
 
-    }
-
-    render() {
-        let user
         try {
-            user = logic.getUser()
+            const user = logic.getUser()
+
+            this.user = user
         } catch (error) {
             utils.showFeedback(error)
         }
 
-        const posts = logic.retrievePostsLatestFirst()
-        const postList = posts.map(post => {
-            return <article className='post'>
-                <h3 className='post-author'>{post.author.username}</h3>
-                <img src={post.image} alt="" />
-                <div className='post-caption'>
-                    <p>{post.caption}</p>
-                </div>
-                <time>{post.date}</time>
-            </article>
-        })
-        return <main>
+        this.state = { view: null, stamp: null }
+
+    }
+
+    render() {
+        return <main className='main'>
             <header id='header'>
                 <h3>Isdigram</h3>
 
@@ -39,17 +34,18 @@ class Home extends Component {
                 }}>Chat</button>
             </header>
 
-            <h1>hello, {user.name}!</h1>
+            <h1>hello, {this.user.name}!</h1>
 
-            <section className="post-section">
-                {postList}
-            </section>
+            <PostList refreshStamp={this.state.stamp} />
+
+            {this.state.view === 'create-post' && <CreatePost onCancelClick={() => this.setState({ view: null })} onPostCreated={() => this.setState({ view: null, stamp: Date.now() })} />}
 
             <footer className="footer">
                 <button>home</button>
-                <button>+</button>
-                <button onClick={event => {
-                    event.preventDefault()
+                <button onClick={() => {
+                    this.setState({ view: 'create-post' })
+                }}>+</button>
+                <button onClick={() => {
                     this.props.onUserPageClick()
                 }} >user</button>
 

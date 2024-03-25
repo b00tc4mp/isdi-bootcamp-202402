@@ -91,11 +91,9 @@ function retrieveUsers() {
     })
 
     users.sort(function (a, b) {
-        return a.status > b.status ? -1 : 1
-
-    })
-    users.sort(function (a, b) {
         return a.username < b.username ? -1 : 1
+    }).sort(function (a, b) {
+        return a.status > b.status ? -1 : 1
     })
 
     return users

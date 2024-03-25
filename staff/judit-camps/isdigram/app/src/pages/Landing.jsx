@@ -5,15 +5,15 @@ class Landing extends Component {
     }
 
     render() {
-        return <main>
-            <h1>App</h1>
-            <a href="" onClick={event => {
+        return <main className='landing-main'>
+            <h1 className='landing-title'>App</h1>
+            <a className="landing-link" href="" onClick={event => {
                 event.preventDefault()
 
                 this.props.onLoginClick()
             }}>Login</a>
 
-            <a href="" onClick={event => {
+            <a className="landing-link" href="" onClick={event => {
                 event.preventDefault()
 
                 this.props.onRegisterClick()

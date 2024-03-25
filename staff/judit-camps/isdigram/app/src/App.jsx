@@ -1,3 +1,5 @@
+import logic from './logic.mjs'
+
 import { Component } from 'react'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
@@ -5,13 +7,14 @@ import Register from './pages/Register'
 import Home from './pages/Home'
 import Chat from './pages/Chat'
 import User from './pages/User'
+import UserChat from './pages/UserChat'
 
 
 class App extends Component {
   constructor() {
     super()
 
-    this.state = { view: 'landing' }
+    this.state = { view: logic.isUserLoggedIn() ? 'home' : 'landing' }
   }
 
   render() {
@@ -27,15 +30,21 @@ class App extends Component {
     else if (this.state.view === 'home')
       return <Home onChatClick={() => this.setState({ view: 'chat' })} onUserPageClick={() => this.setState({ view: 'user' })} />
 
+    else if (this.state.view === 'user')
+      return <User onLogoutClick={() => this.setState({ view: 'login' })} onHomeClick={() => this.setState({ view: 'home' })} />
+
     else if (this.state.view === 'chat')
       return <Chat onHomeClick={() => this.setState({ view: 'home' })} />
 
-    else if (this.state.view === 'user')
-      return <User onLogoutClick={() => this.setState({ view: 'login' })} onHomeClick={() => this.setState({ view: 'home' })} />
+    else if (this.state.view === 'messages')
+      return <UserChat onHomeClick={() => this.setState({ view: 'home' })} onBackToChatsClick={() => this.setState({ view: 'chat' })} />
     else
-      return <h1></h1>
+      return <h1>Error 404</h1>
   }
 
 }
 
 export default App
+
+
+// onHomeClick={() => this.setState({ view: 'home' })} onBackToChatsClick={() => this.setState({ view: 'chat' })}
