@@ -3,48 +3,32 @@ import logic from '../logic.mjs'
 
 import { Component } from 'react'
 
-import UserChat from './UserChat'
+import UserChat from './components/UserChat'
 
 class Chat extends Component {
     constructor() {
         super()
-    }
 
-    render() {
-        let userName
-        let users
         try {
             const user = logic.getUser()
+            this.user = user
 
-            users = logic.retrieveUsers()
-            userName = user.name
+            const users = logic.retrieveUsers()
+
+            this.state = {
+                users,
+                viewUsers: true,
+                viewMessageWithUser: null,
+                selectedUser: null
+            }
         } catch (error) {
             utils.showFeedback(error)
         }
-
-        const userList = users.map(user => {
-            let classStatus
-            if (user.status === 'online')
-                classStatus = ' user-list__item--online'
-            else
-                classStatus = ' user-list__item--offline'
-
-            return <li className={'user-list__item' + classStatus} onClick={event => {
-                event.preventDefault()
-
-                console.log(user.username, user.id)
-
-                return (<div>
-                    < UserChat user />
-                </div>)
-                // this.state.onUserChatClick(user)
-            }}>{user.username}</li>
+    }
 
 
-        })
-
-
-        return <main>
+    render() {
+        return <main >
             <header>
                 <h3>Isdigram</h3>
                 <button onClick={event => {
@@ -52,13 +36,30 @@ class Chat extends Component {
                     this.props.onHomeClick()
                 }}>Home</button>
             </header>
-            <h1>hello, {userName}!</h1>
-            <h3>chats</h3>
+            <h1 className='chats-title'>hello, {this.user.name}!</h1>
 
 
-            <ul className='user-list'>
-                {userList}
-            </ul>
+            {this.state.viewUsers && (<ul className='user-list'>
+                <h2>chats</h2>
+                {this.state.users.map(user => {
+                    let classStatus
+                    if (user.status === 'online')
+                        classStatus = ' user-list__item--online'
+                    else
+                        classStatus = ' user-list__item--offline'
+
+                    return <li key={user.id} className={'user-list__item' + classStatus} onClick={() => {
+                        console.log(user.username, user.id)
+                        this.setState({ viewUsers: null, viewMessageWithUser: true, selectedUser: user })
+
+                    }}>{user.username}</li>
+                })}
+            </ul>)
+            }
+
+            {this.state.viewMessageWithUser && (
+                <UserChat userToChat={this.state.selectedUser}
+                    onBackToChatsClick={() => this.setState({ viewUsers: true, viewMessageWithUser: false })} />)}
         </main>
     }
 }

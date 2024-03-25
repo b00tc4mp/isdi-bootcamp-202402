@@ -7,7 +7,6 @@ import Register from './pages/Register'
 import Home from './pages/Home'
 import Chat from './pages/Chat'
 import User from './pages/User'
-import UserChat from './pages/UserChat'
 
 
 class App extends Component {
@@ -36,8 +35,6 @@ class App extends Component {
     else if (this.state.view === 'chat')
       return <Chat onHomeClick={() => this.setState({ view: 'home' })} />
 
-    else if (this.state.view === 'messages')
-      return <UserChat onHomeClick={() => this.setState({ view: 'home' })} onBackToChatsClick={() => this.setState({ view: 'chat' })} />
     else
       return <h1>Error 404</h1>
   }
