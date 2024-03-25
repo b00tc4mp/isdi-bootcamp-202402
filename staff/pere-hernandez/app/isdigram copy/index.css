@@ -1,7 +1,6 @@
 body{
     margin: 0;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    color: #213547;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -9,7 +8,6 @@ h1 {
 }
 
 main {
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,7 +15,7 @@ main {
     width: 100vw;
     height: 100vh;
     margin: 0;
-    font-family: Avenir, Arial, Helvetica, sans-serif;
+    font-family: 'Open-sans', sans-serif;
     font-size: 2vh;
 }
 
@@ -37,11 +35,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #AFCDEF;
-}
-
-nav {
-    display: flex;
+    background-color:  #AFCDEF;
 }
 
 ul{
@@ -146,8 +140,8 @@ form {
     display: block;
 }
 
-.home-main-scroll {
-    overflow: auto;
+.home-main--noScroll{
+    overflow: hidden;
 }
 
 #greeting {
@@ -266,7 +260,7 @@ header {
 
 /*EditPost styles*/
 
-.edit-post-div {
+.edit-post-section {
     margin: 0;
     padding: 0;
     display: flex;
