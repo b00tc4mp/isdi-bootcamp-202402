@@ -18,6 +18,20 @@ class UserChat extends Component {
         }
     }
 
+    componentWillReceiveProps(newProps) {
+        console.log(this.props, newProps)
+
+        if (newProps.refreshStamp !== this.props.stamp) {
+            try {
+                const messages = logic.retrieveMessagesWith(this.props.userToChat.id)
+
+                this.setState({ messages })
+            } catch (error) {
+                utils.showFeedback()
+            }
+        }
+    }
+
 
     render() {
         const { userToChat } = this.state
@@ -37,8 +51,23 @@ class UserChat extends Component {
 
             </div>
 
-            <form className="message-form" action="">
-                <input type="text" />
+            <form className="message-form" onSubmit={event => {
+                event.preventDefault()
+
+                const form = event.target
+
+                const message = form.message.value
+
+                try {
+                    logic.sendMessageTo(userToChat.id, message)
+
+                    form.reset()
+                    this.props.onMessageSent()
+                } catch (error) {
+                    utils.showFeedback(error)
+                }
+            }} >
+                <input id="message" type="text" />
                 <button>send</button>
             </form>
 

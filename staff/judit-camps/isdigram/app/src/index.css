@@ -165,10 +165,23 @@ form {
 
 .message-div {
   display: grid;
+  margin: 8px;
 }
 
 .message__right {
   justify-self: right;
+  background-color: #b7f2ff;
+  color: black;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.message__left {
+  background-color: #f9f9f9;
+  color: black;
+  padding: 6px;
+  border-radius: 6px;
+  width: max-content;
 }
 
 .message-form {

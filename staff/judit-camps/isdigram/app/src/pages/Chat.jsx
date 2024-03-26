@@ -18,7 +18,8 @@ class Chat extends Component {
                 users,
                 viewUsers: true,
                 viewMessageWithUser: null,
-                selectedUser: null
+                selectedUser: null,
+                stamp: null
             }
         } catch (error) {
             utils.showFeedback(error)
@@ -58,7 +59,9 @@ class Chat extends Component {
 
             {this.state.viewMessageWithUser && (
                 <UserChat userToChat={this.state.selectedUser}
-                    onBackToChatsClick={() => this.setState({ viewUsers: true, viewMessageWithUser: false })} />)}
+                    onBackToChatsClick={() => this.setState({ viewUsers: true, viewMessageWithUser: false })}
+                    onMessageSent={() => this.setState({ stamp: Date.now() })}
+                    refreshStamp={this.state.stamp} />)}
         </main>
     }
 }
