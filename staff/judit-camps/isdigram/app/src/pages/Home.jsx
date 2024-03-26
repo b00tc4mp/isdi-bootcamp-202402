@@ -4,7 +4,7 @@ import { Component } from "react"
 
 import PostList from './components/PostList'
 import CreatePost from './components/CreatePost'
-
+import EditPost from './components/EditPost'
 
 class Home extends Component {
     constructor() {
@@ -13,12 +13,15 @@ class Home extends Component {
         try {
             const user = logic.getUser()
 
-            this.user = user
+            this.state = {
+                user,
+                view: null,
+                stamp: null,
+                postToEdit: null
+            }
         } catch (error) {
             utils.showFeedback(error)
         }
-
-        this.state = { view: null, stamp: null }
 
     }
 
@@ -34,9 +37,13 @@ class Home extends Component {
                 }}>Chat</button>
             </header>
 
-            <h1>hello, {this.user.name}!</h1>
+            <h1>hello, {this.state.user.name}!</h1>
 
-            <PostList refreshStamp={this.state.stamp} />
+            <PostList refreshStamp={this.state.stamp}
+                onPostDeleted={() => this.setState({ stamp: Date.now() })}
+                onEditButtonClicked={(post) => this.setState({ view: 'edit-post', postToEdit: post })} />
+
+            {this.state.view === 'edit-post' && <EditPost postToEdit={this.state.postToEdit} onPostEdited={() => { this.setState({ view: null, stamp: Date.now() }) }} onCancelClick={() => this.setState({ view: null })} />}
 
             {this.state.view === 'create-post' && <CreatePost onCancelClick={() => this.setState({ view: null })} onPostCreated={() => this.setState({ view: null, stamp: Date.now() })} />}
 

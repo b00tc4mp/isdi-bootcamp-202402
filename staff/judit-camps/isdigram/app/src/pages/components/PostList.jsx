@@ -9,7 +9,9 @@ class PostList extends Component {
 
         try {
             const posts = logic.retrievePostsLatestFirst()
-            this.state = { posts }
+            this.state = {
+                posts
+            }
         } catch (error) {
             utils.showFeedback(error)
         }
@@ -37,6 +39,20 @@ class PostList extends Component {
                     <img src={post.image} alt="" />
                     <div className='post-caption'>
                         <p>{post.caption}</p>
+
+                        {post.author.id === logic.getLoggedInUser() &&
+                            <div>
+                                <button onClick={() => { this.props.onEditButtonClicked(post) }}>edit</button>
+
+                                <button onClick={() => {
+                                    if (confirm('Do you want to delete this post?')) {
+                                        console.log('post to be deleted: ' + post.caption)
+
+                                        logic.removePost(post.id)
+                                        this.props.onPostDeleted()
+                                    }
+                                }}>delete</button>
+                            </div>}
                     </div>
                     <time>{post.date}</time>
                 </article>

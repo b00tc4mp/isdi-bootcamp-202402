@@ -24,7 +24,7 @@ class UserChat extends Component {
 
         return <section>
             <button onClick={() => this.props.onBackToChatsClick()}>back to chats</button>
-            <h4>this is a new chat with {userToChat.username}</h4>
+            <h2>{userToChat.username}</h2>
 
             <div className="message-div">
                 {this.state.messages.map((message) => {

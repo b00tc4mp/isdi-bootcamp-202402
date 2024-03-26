@@ -14,7 +14,6 @@ class Chat extends Component {
             this.user = user
 
             const users = logic.retrieveUsers()
-
             this.state = {
                 users,
                 viewUsers: true,
