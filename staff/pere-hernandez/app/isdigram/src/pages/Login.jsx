@@ -7,30 +7,38 @@ class Login extends Component {
         super()
     }
 
+    handleSubmit (event) {
+        event.preventDefault()
+
+        const form = event.target
+
+        const username = form.username.value
+        const password = form.password.value
+
+        try {
+            logic.loginUser(username, password)
+
+            form.reset()
+
+            this.props.onUserLoggedIn()
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    handleRegisterClick (event) {
+        event.preventDefault()
+
+        this.props.onRegisterClick()
+    }
+
     render() {
         return <main>
             <img id="login-logo-img" src="../../logo.png"></img>
 
             <h1 className="title">Isdigram.</h1>
 
-            <form id="login-form" onSubmit={event => {
-                event.preventDefault()
-
-                const form = event.target
-
-                const username = form.username.value
-                const password = form.password.value
-
-                try {
-                    logic.loginUser(username, password)
-
-                    form.reset()
-
-                    this.props.onUserLoggedIn()
-                } catch (error) {
-                    alert(error.message)
-                }
-            }}>
+            <form id="login-form" onSubmit={this.handleSubmit.bind(this)}>
                 <label htmlFor="username">Write your username here</label>
                 <input id="username" type="text"></input>
 
@@ -40,11 +48,7 @@ class Login extends Component {
                 <button type="submit" className="submit-button">Log In</button>
             </form>
 
-            <button className="secondary-button" onClick={event => {
-                event.preventDefault()
-
-                this.props.onRegisterClick()
-            }}>Register</button>
+            <button className="secondary-button" onClick={this.handleRegisterClick.bind(this)}>Register</button>
         </main>
     }
 }

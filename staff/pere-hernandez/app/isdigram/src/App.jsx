@@ -19,30 +19,37 @@ class App extends Component {
       this.state = {view: 'home'}
   }
 
+  displayPage = page => {
+    //validation
+    if(typeof page !== 'string')
+      throw new TypeError('page must be a string')
+
+    //logic
+    this.setState({view: page })
+  }
+
   render(){
     if (this.state.view === 'landing')
       return <Landing 
-        onRegisterClick={() => this.setState({ view: 'register' })}        
-        onLoginClick={() => this.setState({ view: 'login' })}
+        onRegisterClick={()=> {this.displayPage('register')}}      
+        onLoginClick={()=> {this.displayPage('login')}}
       />
     
     else if (this.state.view === 'register')
       return <Register 
-        onLoginClick={() => this.setState({ view: 'login' })}
-        onRegistered={() => this.setState({ view: 'login' })}
+        onLoginClick={()=> {this.displayPage('login')}}
+        onRegistered={()=> {this.displayPage('login')}}
       />
 
     else if (this.state.view === 'login')
       return <Login 
-        onRegisterClick={() => this.setState({ view: 'register' })}
-        onUserLoggedIn={() => {
-          this.setState({ view: 'home' })
-        }}
+        onRegisterClick={()=> {this.displayPage('register')}}
+        onUserLoggedIn={()=> {this.displayPage('home')}}
       />
 
     else if (this.state.view === 'home')
       return <Home 
-        onLogout={() => this.setState({ view: 'login' })}
+        onLogout={()=> {this.displayPage('login')}}
       />
 
     else{

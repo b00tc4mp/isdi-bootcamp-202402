@@ -297,7 +297,8 @@ function createMessage(message){
     var message = {
         text: message,
         author: sessionStorage.userId,
-        time: new Date().toLocaleDateString('en-CA')
+        time: new Date().toLocaleDateString('en-CA'),
+        id: (+((parseInt(Math.random() * 10 ** 17)).toString())).toString(36)
     }
     return message
 }

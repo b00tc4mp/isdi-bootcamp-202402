@@ -1,9 +1,11 @@
 import logic from "../logic.mjs"
 
 import { Component } from "react"
+
 import Menu from "../components/Menu"
 import CreatePost from "../components/CreatePost"
 import PostList from "../components/PostList"
+import Chat from "../components/Chat"
 
 class Home extends Component {
     constructor(){
@@ -24,43 +26,50 @@ class Home extends Component {
         this.setState({overflow: !this.state.overflow})
     }
 
+    handleLogout(){
+        try {
+            logic.logoutUser()
+        } catch (error) {
+            alert(error.message)
+        }
+
+        this.props.onLogout()
+    }
+
     render(){
         return <main id="home-main" className="home-main-scroll">
             <header>
                 <div id="logo">
                     <img src="../../logo.png" id="logo-img"></img>
-
+        
                     <h5 id="logo-title">Isdigram.</h5>
                 </div>
 
-                <button id="logout" onClick={() => {
-                    try {
-                        logic.logoutUser()
-                    } catch (error) {
-                        alert(error.message)
-                    }
-
-                    this.props.onLogout()
-                }}>Logout</button>
+                <button id="logout" onClick={this.handleLogout.bind(this)}>Logout</button>
             </header>
 
             <h1 id="greeting">Hello, {this.user.username}</h1>
 
-            <Menu /> 
+            <Menu onChatClick={() => {
+                this.setState({ view: 'chat'})
+            }}
+                onHomeClick={() => {
+                    this.setState({view: null})
+                }}/>
 
-            <footer>
+            {this.state.view !== 'chat' && <footer>
                 <button id="new-post-button" className="transparent-button" onClick={() => {
                     this.setState({view: 'post-form'})
                 }}>
                     <img id="new-post-button-img" src="../../circulo-plus.png"></img>
                 </button>
-            </footer>            
+            </footer>}
             
-            <PostList refreshStamp={this.state.stamp}
+            {this.state.view !== 'chat' && <PostList refreshStamp={this.state.stamp}
             onDelete={() => {
                 this.setState({stamp: Date.now()})
-            }}/>           
-
+            }}/> }       
+            
             {this.state.view === 'post-form' && <CreatePost onCancelNewPostClick={() => {
                 this.setState({view: null})
                 
@@ -69,6 +78,8 @@ class Home extends Component {
                 this.setState({view: null, stamp: Date.now()})
             }}
             />}
+
+            {this.state.view === 'chat' && <Chat />}
         </main>
     }
         /*

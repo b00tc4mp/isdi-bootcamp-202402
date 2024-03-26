@@ -5,23 +5,27 @@ class Landing extends Component{
         super()
     }
 
+    handleLoginClick (event) {
+        event.preventDefault()
+
+        this.props.onLoginClick()
+    }
+
+    handleRegisterClik (event) {
+        event.preventDefault()
+
+        this.props.onRegisterClick()
+    }
+
     render(){
         return <main>
             <img src='../../logo.png' id='landing-img'></img>
 
             <h1>Welcome to Isdigram.</h1>
 
-            <button className='landing-button' onClick={event => {
-                event.preventDefault()
+            <button className='landing-button' onClick={this.handleLoginClick.bind(this)}>Log In</button>
 
-                this.props.onLoginClick()
-            }}>Log In</button>
-
-            <button className='landing-button' onClick={event => {
-                event.preventDefault()
-
-                this.props.onRegisterClick()
-            }}>Register</button>
+            <button className='landing-button' onClick={this.handleRegisterClik.bind(this)}>Register</button>
         </main>
     }
 }
