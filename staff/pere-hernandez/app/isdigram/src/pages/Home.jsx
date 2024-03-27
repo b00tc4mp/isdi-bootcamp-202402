@@ -36,6 +36,10 @@ class Home extends Component {
         this.props.onLogout()
     }
 
+    changeView(view){
+        this.setState({view})
+    }
+
     render(){
         return <main id="home-main" className="home-main-scroll">
             <header>
@@ -50,65 +54,21 @@ class Home extends Component {
 
             <h1 id="greeting">Hello, {this.user.username}</h1>
 
-            <Menu onChatClick={() => {
-                this.setState({ view: 'chat'})
-            }}
-                onHomeClick={() => {
-                    this.setState({view: null})
-                }}/>
+            <Menu onChatClick={() => this.changeView('chat')} onHomeClick={() => this.setState({view: null})}/>
 
             {this.state.view !== 'chat' && <footer>
-                <button id="new-post-button" className="transparent-button" onClick={() => {
-                    this.setState({view: 'post-form'})
-                }}>
+                <button id="new-post-button" className="transparent-button" onClick={() => this.changeView('post-form')}>
                     <img id="new-post-button-img" src="../../circulo-plus.png"></img>
                 </button>
             </footer>}
             
-            {this.state.view !== 'chat' && <PostList refreshStamp={this.state.stamp}
-            onDelete={() => {
-                this.setState({stamp: Date.now()})
-            }}/> }       
+            {this.state.view !== 'chat' && <PostList refreshStamp={this.state.stamp} onDelete={() => this.setState({stamp: Date.now()})}/>}       
             
-            {this.state.view === 'post-form' && <CreatePost onCancelNewPostClick={() => {
-                this.setState({view: null})
-                
-            }}
-            onNewPost={() => {
-                this.setState({view: null, stamp: Date.now()})
-            }}
-            />}
+            {this.state.view === 'post-form' && <CreatePost onCancelNewPostClick={() => {this.changeView(null)}} onNewPost={() => {this.setState({view: null, stamp: Date.now()})}}/>}
 
             {this.state.view === 'chat' && <Chat />}
         </main>
     }
-        /*
-        const menu = new Menu
-        const chat = new Chat
-
-        this.add(menu)
-
-        menu.onChatClick(() => {
-            PostList.active = false
-
-            this.remove(postList)
-            this.remove(footer)
-
-            Chat.active = true
-
-            this.add(chat)
-        })
-
-        menu.onHomeClick(() => {
-            Chat.active = false
-            PostList.active = true
-            
-            this.remove(chat)
-
-            this.add(postList, footer)
-        })
-    }
-    */
 }
 
 export default Home
