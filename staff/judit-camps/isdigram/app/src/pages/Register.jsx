@@ -1,39 +1,47 @@
-import utils from '../utils.mjs'
+import { logger, showFeedback } from '../utils'
+
 import logic from '../logic.mjs'
+
 import { Component } from 'react'
 
 class Register extends Component {
     constructor() {
+        logger.debug('Register')
         super()
+    }
 
+    handleSubmit = event => {
+        event.preventDefault()
+
+        const form = event.target
+
+        const name = form.name.value
+        const birthdate = form.birthdate.value
+        const email = form.email.value
+        const username = form.username.value
+        const password = form.password.value
+
+        try {
+            logic.registerUser(name, birthdate, email, username, password)
+            form.reset()
+
+            this.props.onUserRegistered()
+
+        } catch (error) {
+            utils.showFeedback(error)
+        }
+    }
+
+    handleLoginClick = event => {
+        event.preventDefault()
+
+        this.props.onLoginClick()
     }
 
     render() {
         return <main>
             <h1>Register</h1>
-            <form onSubmit={event => {
-                event.preventDefault()
-
-                const form = event.target
-
-                const name = form.name.value
-                const birthdate = form.birthdate.value
-                const email = form.email.value
-                const username = form.username.value
-                const password = form.password.value
-
-                try {
-                    logic.registerUser(name, birthdate, email, username, password)
-                    form.reset()
-
-                    this.props.onUserRegistered()
-
-                } catch (error) {
-                    utils.showFeedback(error)
-                }
-
-
-            }}>
+            <form onSubmit={this.handleSubmit}>
                 <label htmlFor="name">name</label>
                 <input type="text" id='name' />
 
@@ -52,10 +60,7 @@ class Register extends Component {
                 <button>Register</button>
 
             </form>
-            <a href="" onClick={event => {
-                event.preventDefault()
-                this.props.onLoginClick()
-            }}>Login</a>
+            <a href="" onClick={this.handleLoginClick}>Login</a>
         </main>
     }
 }

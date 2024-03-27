@@ -1,4 +1,5 @@
-import utils from "../utils.mjs"
+import { logger, showFeedback } from '../utils'
+
 import logic from "../logic.mjs"
 
 import { Component } from "react"
@@ -6,6 +7,16 @@ import { Component } from "react"
 class User extends Component {
     constructor() {
         super()
+    }
+
+    handleLogoutClick = () => {
+        try {
+            logic.logoutUser()
+        } catch (error) {
+            logic.cleanUpLoggedInUser()
+        } finally {
+            this.props.onLogoutClick()
+        }
     }
 
     render() {
@@ -24,13 +35,7 @@ class User extends Component {
             </header>
             <h1>hello, {user.name}!</h1>
             <button>Change password</button>
-            <button onClick={event => {
-                event.preventDefault()
-
-                logic.logoutUser()
-
-                this.props.onLogoutClick()
-            }}>Log out</button>
+            <button onClick={this.handleLogoutClick}>Log out</button>
 
             <footer className="footer">
                 <button onClick={event => {

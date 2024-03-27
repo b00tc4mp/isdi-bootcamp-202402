@@ -1,13 +1,16 @@
-import utils from '../utils.mjs'
-import logic from '../logic.mjs'
-import { Component } from "react"
+import { logger, showFeedback } from '../utils/index.mjs'
 
-import PostList from './components/PostList'
-import CreatePost from './components/CreatePost'
-import EditPost from './components/EditPost'
+import logic from '../logic.mjs'
+
+import { Component } from "react"
+import PostList from '../components/PostList'
+import CreatePost from '../components/CreatePost'
+import EditPost from '../components/EditPost'
 
 class Home extends Component {
     constructor() {
+        logger.debug('Home')
+
         super()
 
         try {
@@ -17,44 +20,71 @@ class Home extends Component {
                 user,
                 view: null,
                 stamp: null,
-                postToEdit: null
+                post: null
             }
         } catch (error) {
-            utils.showFeedback(error)
+            showFeedback(error)
         }
-
     }
 
+    setState(state) {
+        // logger.debug('Home -> setState', JSON.stringify(state))
+
+        super.setState(state)
+    }
+
+    clearView = () => this.setState({ view: null })
+
+    // CHAT
+    handleChatClick = () => this.props.onChatClick()
+
+
+    // USER
+    handleUserClick = () => this.props.onUserPageClick()
+
+
+    // CREATE POST
+    handleCreatePostClick = () => this.setState({ view: 'create-post' })
+    handlePostCreated = () => this.setState({ view: null, stamp: Date.now() })
+    handleCreatePostCancelClick = () => this.clearView()
+
+
+    // EDIT POST
+    handleEditPostClick = post => this.setState({ view: 'edit-post', post })
+    handleEditPostCancelClick = () => this.clearView()
+    handlePostEdited = () => { this.setState({ view: null, stamp: Date.now(), post: null }) }
+
     render() {
+        logger.debug('Home -> render')
+
         return <main className='main'>
             <header id='header'>
                 <h3>Isdigram</h3>
 
-                <button onClick={event => {
-                    event.preventDefault()
-
-                    this.props.onChatClick()
-                }}>Chat</button>
+                <button onClick={this.handleChatClick}>Chat</button>
             </header>
 
             <h1>hello, {this.state.user.name}!</h1>
 
-            <PostList refreshStamp={this.state.stamp}
-                onPostDeleted={() => this.setState({ stamp: Date.now() })}
-                onEditButtonClicked={(post) => this.setState({ view: 'edit-post', postToEdit: post })} />
+            <PostList
+                stamp={this.state.stamp}
+                onEditButtonClicked={this.handleEditPostClick} />
 
-            {this.state.view === 'edit-post' && <EditPost postToEdit={this.state.postToEdit} onPostEdited={() => { this.setState({ view: null, stamp: Date.now() }) }} onCancelClick={() => this.setState({ view: null })} />}
 
-            {this.state.view === 'create-post' && <CreatePost onCancelClick={() => this.setState({ view: null })} onPostCreated={() => this.setState({ view: null, stamp: Date.now() })} />}
+            {this.state.view === 'create-post' && <CreatePost
+                onCancelClick={this.handleCreatePostCancelClick}
+                onPostCreated={this.handlePostCreated} />}
+
+            {this.state.view === 'edit-post' && <EditPost
+                post={this.state.post}
+                onPostEdited={this.handlePostEdited}
+                onCancelClick={this.handleEditPostCancelClick} />}
+
 
             <footer className="footer">
                 <button>home</button>
-                <button onClick={() => {
-                    this.setState({ view: 'create-post' })
-                }}>+</button>
-                <button onClick={() => {
-                    this.props.onUserPageClick()
-                }} >user</button>
+                <button onClick={this.handleCreatePostClick}>+</button>
+                <button onClick={this.handleUserClick} >user</button>
 
             </footer>
 

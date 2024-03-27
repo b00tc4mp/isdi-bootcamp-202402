@@ -1,10 +1,10 @@
-import utils from '../utils.mjs'
+import { logger, showFeedback } from '../utils/index.mjs'
+
 import logic from '../logic.mjs'
 
 import { Component } from 'react'
 
-import UserChat from './components/UserChat'
-
+import UserChat from '../components/UserChat'
 class Chat extends Component {
     constructor() {
         super()
@@ -22,7 +22,7 @@ class Chat extends Component {
                 stamp: null
             }
         } catch (error) {
-            utils.showFeedback(error)
+            showFeedback(error)
         }
     }
 

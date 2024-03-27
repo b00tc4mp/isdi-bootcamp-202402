@@ -1,5 +1,5 @@
-import utils from "../../utils.mjs";
-import logic from "../../logic.mjs";
+import { logger, showFeedback } from "../utils/index.mjs";
+import logic from "../logic.mjs";
 
 import { Component } from "react";
 
@@ -14,7 +14,7 @@ class UserChat extends Component {
                 userToChat: this.props.userToChat
             }
         } catch (error) {
-            utils.showFeedback(error)
+            showFeedback(error)
         }
     }
 
