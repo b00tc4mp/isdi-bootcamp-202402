@@ -1,3 +1,5 @@
+import{ logger } from './utils'
+
 import logic from './logic'
 
 import{ Component } from 'react'
