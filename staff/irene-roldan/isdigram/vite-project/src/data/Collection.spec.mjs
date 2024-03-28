@@ -239,13 +239,13 @@ describe('Collection', () => {
                 const cars = new Collection('cars')
                 const car = { brand: 'porsche', model: '911' }
                 cars.insertOne(car)
-
+5
                 expect(car).to.be.instanceOf(Object)
                 
             })
         })
 
-        describe('upadateOne', () => {
+        describe('upDateOne', () => {
             it('should update an existing document', () => {
                 fs.writeFile('./data/cars.json', [{ "id": "1", "brand": "porsche", "model": "911" }, { "id": "2", "brand": "fiat", "model": "500" }], error => {
                     if(error){
