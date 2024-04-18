@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  flex-direction: column;
+  align-items: center;
+  color: #00013a;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+}
+
+form input {
+  padding: 12px;
+  border-radius: 12px;
+  margin: 4px 0;
+}
+
+form button {
+  width: fit-content;
+  padding: 8px;
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+form p {
+  background-color: yellow;
+}
+
+/*# sourceMappingURL=resets.css.map */
