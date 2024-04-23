@@ -1,0 +1,51 @@
+import {logger} from '../utils'
+
+import logic from '../logic/logic'
+
+import {useState, useEffect} from 'react'
+
+import Post from './Post'
+
+import { useContext } from '../context'
+
+function PostList({stamp, onEditPostClick}) {
+    
+        logger.debug('PostList -> constructor')
+
+        const [posts, setPosts] = useState([])
+
+        const { showFeedback} =  useContext()
+     
+    const loadPosts = ()=> {
+
+        logger.debug('PostList -> loadPosts')
+
+        try {
+            logic.retrievePosts()
+            .then(setPosts)
+            .catch(error=>showFeedback(error, 'error'))
+
+
+        } catch (error) {
+            showFeedback(error)
+
+        }
+    }
+
+    useEffect(()=> {
+        loadPosts()
+    }, [stamp])
+
+    const handlePostDeleted = ()=> loadPosts()
+
+    const handleEditClick = post => onEditPostClick(post)
+
+
+        logger.debug('PostList -> render')
+
+        return <section>
+            {posts.map(post=> <Post key={post.id} item={post} onEditClick={handleEditClick} onDeleted={handlePostDeleted} />)}
+        </section>
+}
+
+export default PostList
