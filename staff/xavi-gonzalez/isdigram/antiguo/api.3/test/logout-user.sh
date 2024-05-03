@@ -1,0 +1,1 @@
+curl -X PATCH -H "Content-Type: application/json" -d '{"status":"offline"}' http://localhost:8080/users/2dxg953dtq4 -v
