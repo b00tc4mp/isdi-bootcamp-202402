@@ -1,0 +1,1 @@
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjM4Y2M1YTcyNzlkMjIwNWY1MzBkY2EiLCJpYXQiOjE3MTUxNTMyOTQsImV4cCI6MTcxNTE1Njg5NH0.n_2RIZgnPp90AIX4yW0lGuqzkPQzP9JcCVexg2GG0Oo" http://localhost:8585/wods/strength/random -v

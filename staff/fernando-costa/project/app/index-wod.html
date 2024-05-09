@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Crossfit WOD Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div class="blackboard">
+        <div class="heading">
+            Today's WOD
+            <div class="heading-border"></div>
+        </div>
+        <div id="wod"></div>
+        <div id="generate-button">
+            Generate Another
+        </div>
+    </div>
+
+    <script>
+        let wodEl = document.getElementById('wod')
+        let generateButtonEl = document.getElementById('generate-button')
+        let samples = ["for time\r\n1500 mt run\r\n21 sumo deadlift high-pull\r\n10 burpee\r\n15 push press\r\n300 mt run\r\n21 kettlebell swing\r\n15 deadlift", "9 rounds for time\r\n10 push-up\r\n15 double under", "for time\r\n400 mt run\r\n50 kettlebell swing\r\n10 pull-up\r\n200 mt row\r\n12 burpee over the bar\r\n10 pull-up\r\n50 mt sprint", "2 rounds for time\r\n30 thruster\r\n15 pull-up", "2 rounds for time\r\n800 mt run\r\n21 thruster\r\n40 sit-up\r\n400 mt run\r\n20 thruster\r\n20 pull-up", "for time\r\n2000 mt run\r\n100 sit-up\r\n100 air squat", "5 rounds for time\r\n22 sit-up\r\n4 thruster\r\n10 burpee box jump over\r\n15 toes-to-bar", "5 rounds for time 15 minutes\r\n15 power snatch\r\n800 mt run", "2 rounds for time\r\n400 mt run\r\n20 mt handstand walk\r\n25 one-legged squat", "5 rounds\r\n10 push press\r\n25 squat", "5 rounds for time\r\n400 mt run\r\n21 kettlebell swing\r\n9 for time\r\n25 one-legged squat\r\n25 pull-up", "5 rounds for time 25 minutes\r\n400 mt run\r\n15 overhead squat"]
+
+        function showSample() {
+            let i = Math.floor(Math.random() * samples.length)
+            let content = samples[i]
+            content = content.replace(/\r\n/g, '<br>')
+            wodEl.innerHTML = content
+        }
+
+        generateButtonEl.addEventListener('click', showSample, false)
+        showSample()
+    </script>
+
+</body>
+
+</html>
