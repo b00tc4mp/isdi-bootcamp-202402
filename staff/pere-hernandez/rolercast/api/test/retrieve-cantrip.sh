@@ -1,0 +1,1 @@
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjM0YjZmNzY5YTM2NTIxZmEzMDRkZDQiLCJpYXQiOjE3MTUxNzYwMzYsImV4cCI6MTcxNTE4NjAzNn0.cIn1lefdKBuagi9LTFmcnzl_7REP6MEQqIfp-5-Eu20" http://localhost:9000/cantrips/66354088b3c877f621450008 -v 
