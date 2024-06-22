@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "composite": true,
+        "emitDeclarationOnly": true,
+        "allowImportingTsExtensions": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "baseUrl": "./"
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "**/*.ts"
+    ]
+}
